@@ -22,11 +22,20 @@ var Pod = require('bip-pod'),
     Imgur = new Pod({
         name : 'imgur',
         description : 'Imgur',
-        description_long : 'Imgur is used to share photos with social networks and online communities, and has the funniest pictures from all over the Internet.'
+        description_long : 'Imgur is used to share photos with social networks and online communities, and has the funniest pictures from all over the Internet.',
         // @todo hybrid auth types. Action level auth schemas
+        config : {
+            "issuer_token" : {
+                "username" : ""        
+            },
+            "oauth" : {        
+                "clientID" : "",
+                "clientSecret" : ""        
+            }
+        }
     });
 
-Imgur.add(require('./send_sms.js'));
+Imgur.add(require('./image_upload_anon.js'));
 
 // -----------------------------------------------------------------------------
 module.exports = Imgur;
