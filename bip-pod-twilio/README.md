@@ -28,7 +28,8 @@ Sample Channel Config :
 "action" : "twilio.send_sms",
 "config": {
   "body": "Default Text body, Pretty boring!",
-  "to_phone" : "+1234567890"
+  "to_phone" : "+1234567890",
+  "from_phone" : "+0987654321"
 }
 ```
 
