@@ -17,10 +17,9 @@ Manually restart the bipio server at your convenience.
 
 ## Actions
 
-### send_sms
+### image_upload_anon
 
-Sends a new outgoing SMS Message. If you are sending SMS while your Imgur 
-account is in Trial mode, the "To" phone number must be verified with Imgur.
+Imgur is used to share photos with social networks and online communities, and has the funniest pictures from all over the Internet.
 
 Sample Channel Config :
 
