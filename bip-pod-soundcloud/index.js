@@ -20,9 +20,20 @@
  */
 var Pod = require('bip-pod'),
     Soundcloud = new Pod({
-        name : 'Soundcloud',
+        name : 'soundcloud',
         description : 'Soundcloud',
-        authType : 'oauth'        
+        authType : 'oauth',
+        config : {
+            "oauth": {
+               "clientID" : "",
+               "clientSecret" : "",
+               "callbackURL" : "http://localhost:5000/rpc/oauth/soundcloud/cb",
+               "scopes" : [
+                    "non-expiring"
+               ],
+               "method" : "authenticate"
+            }
+        }
     });
 
 Soundcloud.add(require('./get_favorites.js'));
