@@ -1,7 +1,7 @@
 bip-pod-imgur
 =======
 
-Imgur Pod for Bipio.  
+[Imgur](http://imgur.com/) Pod for [Bipio](https://bip.io).  
 
 ## Installation
 
@@ -19,7 +19,7 @@ Manually restart the bipio server at your convenience.
 
 ### image_upload_anon
 
-Imgur is used to share photos with social networks and online communities, and has the funniest pictures from all over the Internet.
+Upload an image to Imgur Anonymously (meaning, not tied to your account)
 
 Sample Channel Config :
 

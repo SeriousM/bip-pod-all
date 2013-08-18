@@ -28,8 +28,8 @@ var request = require('request'),
 
 function ImageUploadAnon(podConfig) {
     this.name = 'image_upload_anon';
-    this.description = 'Imgur',
-    this.description_long = 'Imgur is used to share photos with social networks and online communities, and has the funniest pictures from all over the Internet.',
+    this.description = 'Anon Image Upload',
+    this.description_long = 'Upload an image to Imgur Anonymously (meaning, not tied to your account)',
     this.trigger = false;
     this.singleton = false;
     this.podConfig = podConfig;
