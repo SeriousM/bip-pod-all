@@ -30,7 +30,5 @@
     },
     "engines": {
         "node": ">= 0.10.0"
-    },
-    "_id": "bip-pod-twilio@0.0.1",
-    "_from": "bip-pod-twilio@>=0.0.0"
+    }
 }
