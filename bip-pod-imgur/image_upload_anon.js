@@ -32,6 +32,7 @@ function ImageUploadAnon(podConfig) {
     this.description_long = 'Upload an image to Imgur Anonymously (meaning, not tied to your account)',
     this.trigger = false;
     this.singleton = false;
+    this.auto = true; // can auto-install with empty config
     this.podConfig = podConfig;
 }
 

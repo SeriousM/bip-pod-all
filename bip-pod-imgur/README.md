@@ -1,17 +1,19 @@
-bip-pod-imgur
+![Imgur](imgur.png) bip-pod-imgur
 =======
 
-[Imgur](http://imgur.com/) Pod for [Bipio](https://bip.io).  
+[Imgur API](http://api.imgur.com/) pod for [bipio](https://bip.io).  
 
 ## Installation
 
-From bipio server install directory
+From bipio server root directory
 
     npm install bip-pod-imgur
+    ./tools/pod-install.js -a imgur [-u optional account-wide channel auto install]
 
-Auto install script will register the pod with the bipio server and add sparse
+The pod-install script is a server script which will register the pod with the bipio server and add sparse
 configuration to your NODE_ENV environment config ('default.json', staging or production)
-keyed to 'imgur'.
+keyed to 'imgur', based on the default config in the pod constructor.  It will also move the
+pod icon into the server cdn
 
 Manually restart the bipio server at your convenience.
 

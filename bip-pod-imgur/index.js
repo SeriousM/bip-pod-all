@@ -23,14 +23,18 @@ var Pod = require('bip-pod'),
         name : 'imgur',
         description : 'Imgur',
         description_long : 'Imgur is used to share photos with social networks and online communities, and has the funniest pictures from all over the Internet.',
-        // @todo hybrid auth types. Action level auth schemas
+        authType : 'none', // @todo hybrid auth types. Action level auth schemas
+        passportStrategy : require('passport-imgur').Strategy,        
         config : {
-            "issuer_token" : {
-                "username" : ""        
-            },
+            // application outh
             "oauth" : {        
                 "clientID" : "",
-                "clientSecret" : ""        
+                "clientSecret" : "",
+                "callbackURL" : ""
+            },
+            // api key (non-user interactions)
+            "issuer_token" : {
+                "username" : ""        
             }
         }
     });
