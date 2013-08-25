@@ -31,7 +31,7 @@ function ImageUploadAnon(podConfig) {
     this.description = 'Anon Image Upload',
     this.description_long = 'Upload an image to Imgur Anonymously (meaning, not tied to your account)',
     this.trigger = false;
-    this.singleton = false;
+    this.singleton = true;
     this.auto = true; // can auto-install with empty config
     this.podConfig = podConfig;
 }
@@ -83,7 +83,7 @@ ImageUploadAnon.prototype.invoke = function(imports, channel, sysImports, conten
                 var options = {
                     url: 'https://api.imgur.com/3/upload',
                     headers: {
-                        'Authorization': 'Client-ID ' + this.podConfig.issuer_token.username
+                        'Authorization': 'Client-ID ' + this.podConfig.oauth.clientID
                     }
                 };
 
@@ -99,6 +99,8 @@ ImageUploadAnon.prototype.invoke = function(imports, channel, sysImports, conten
                 var upload = post.form();
                 upload.append('type', 'file');
                 upload.append('image', fs.createReadStream(contentParts._files[i].localpath));
+            } else {
+                next(false, exports);
             }
         }
     } else {

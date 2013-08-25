@@ -31,10 +31,6 @@ var Pod = require('bip-pod'),
                 "clientID" : "",
                 "clientSecret" : "",
                 "callbackURL" : ""
-            },
-            // api key (non-user interactions)
-            "issuer_token" : {
-                "username" : ""        
             }
         }
     });
