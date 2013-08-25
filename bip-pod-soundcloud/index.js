@@ -23,11 +23,12 @@ var Pod = require('bip-pod'),
         name : 'soundcloud',
         description : 'Soundcloud',
         authType : 'oauth',
+        passportStrategy : require('passport-soundcloud').Strategy,
         config : {
             "oauth": {
                "clientID" : "",
                "clientSecret" : "",
-               "callbackURL" : "http://localhost:5000/rpc/oauth/soundcloud/cb",
+               "callbackURL" : "",
                "scopes" : [
                     "non-expiring"
                ],

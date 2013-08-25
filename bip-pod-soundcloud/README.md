@@ -1,17 +1,19 @@
-bip-pod-soundcloud
+![SoundCloud](soundcloud.png) bip-pod-soundcloud
 =======
 
-Soundcloud Pod for Bipio.  
+[SoundCloud](https://www.soundcloud.com/) pod for [bipio](https://bip.io).  
 
 ## Installation
 
-From bipio server install directory
+From bipio server root directory
 
     npm install bip-pod-soundcloud
+    ./tools/pod-install.js -a soundcloud [-u optional account-wide channel auto install]
 
-Auto install script will register the pod with the bipio server and add sparse
+The pod-install script is a server script which will register the pod with the bipio server and add sparse
 configuration to your NODE_ENV environment config ('default.json', staging or production)
-keyed to 'soundcloud'.
+keyed to 'soundcloud', based on the default config in the pod constructor.  It will also move the
+pod icon into the server cdn
 
 Manually restart the bipio server at your convenience.
 

@@ -27,7 +27,8 @@ function GetFavorites(podConfig) {
     this.name = 'get_favorites';
     this.description = "Retrieve Sounds I've Favorited";
     this.trigger = true; 
-    this.singleton = false;    
+    this.singleton = false;  
+    this.auto = true;
     this.podConfig = podConfig;
 }
 
@@ -87,7 +88,7 @@ GetFavorites.prototype.getSchema = function() {
  * Invokes (runs) the action.
  */
 GetFavorites.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
-    var uri = '/me/favorites', token = sysImports._oauth_token,
+    var uri = '/me/favorites', token = sysImports.auth.oauth_token,
         resource = this.$resource;
         
     var dataDir = process.cwd() + resource.getDataDir(channel, 'get_favorites');
