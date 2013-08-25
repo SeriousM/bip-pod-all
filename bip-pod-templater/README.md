@@ -41,7 +41,7 @@ Sample Channel Config :
 ```
 "action" : "templater.markdown2html",
 "config": {
-  "body": "this is **markdown**, it should be *html*"
+  "message": "this is **markdown**, it should be *html*"
 }
 ```
 

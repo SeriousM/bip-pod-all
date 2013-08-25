@@ -1,6 +1,6 @@
 {
     "name": "bip-pod-templater",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "Templating Pod for Bipio",
     "keywords": [
     "bip",
