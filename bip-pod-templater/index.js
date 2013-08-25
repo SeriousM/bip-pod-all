@@ -25,6 +25,7 @@ var Pod = require('bip-pod'),
     });
 
 Templater.add(require('./text_template.js'));
+Templater.add(require('./markdown2html.js'));
 
 // -----------------------------------------------------------------------------
 module.exports = Templater;

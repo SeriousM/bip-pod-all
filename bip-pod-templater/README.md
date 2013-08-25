@@ -1,18 +1,27 @@
-bip-pod-templater
+![Templater](templater.png) bip-pod-templater
 =======
 
-Templater Pod for Bipio.  
+Templating Pod for [bipio](https://bip.io).  
 
 ## Installation
 
-From bipio server install directory
+From bipio server root directory
 
     npm install bip-pod-templater
+    ./tools/pod-install.js -a templater [-u optional account-wide channel auto install]
+
+The pod-install script is a server script which will register the pod with the bipio server and add sparse
+configuration to your NODE_ENV environment config ('default.json', staging or production)
+keyed to 'templater', based on the default config in the pod constructor.  It will also move the
+pod icon into the server cdn
+
+Manually restart the bipio server at your convenience.
 
 ## Actions
 
 ### text_template
 
+Generic Text template
 
 Sample Channel Config :
 
@@ -22,6 +31,20 @@ Sample Channel Config :
   "message": "Default Text Message"
 }
 ```
+
+### markdown2html
+
+[Markdown](http://daringfireball.net/projects/markdown/) exports as HTML
+
+Sample Channel Config :
+
+```
+"action" : "templater.markdown2html",
+"config": {
+  "body": "this is **markdown**, it should be *html*"
+}
+```
+
 
 [Bipio Docs](https://bip.io/docs/pods/templater)
 
