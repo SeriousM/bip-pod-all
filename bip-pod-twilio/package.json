@@ -1,6 +1,6 @@
 {
     "name": "bip-pod-twilio",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "Twilio Pod for Bipio",
     "keywords": [
     "bip",

@@ -94,7 +94,12 @@ SendSMS.prototype.getSchema = function() {
  * Invokes (runs) the action.
  */
 SendSMS.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
-    var exports = {};
+    var $resource = this.$resource,
+        self = this,
+        log = $resource.log,
+        exports = {}, 
+        to_phone, 
+        body;
     
     // @todo via sysimports auth config
     // should be migrated into
@@ -103,22 +108,34 @@ SendSMS.prototype.invoke = function(imports, channel, sysImports, contentParts, 
         sysImports.auth.issuer_token.password
     );
    
-    var to_phone = imports.phone_to || channel.config.to_phone,
-        body = imports.body || channel.config.body;
-
+    if (imports.to_phone && '' !== imports.to_phone) {
+        to_phone = imports.to_phone;
+    } else {
+        to_phone = channel.config.to_phone;
+    }
+   
+    if (imports.body && '' !== imports.body) {
+        body = imports.body;
+    } else {
+        body = channel.config.body;
+    }
+    
     if (body && '' !== body && to_phone && '' !== to_phone) {
         client.sms.messages.create({
             to:to_phone,
-            from: channel.from_phone,
+            from: channel.config.from_phone,
             body: body
         }, function(error, message) {                       
-            
-            exports.sid = message.sid;
-            exports.body = message.body;
-            exports.status = message.status;
-            exports.uri = message.uri;
+            if (error) {
+                log(error, channel, 'error');
+            } else {
+                exports.sid = message.sid;
+                exports.body = message.body;
+                exports.status = message.status;
+                exports.uri = message.uri;
 
-            next(error, exports);
+                next(error, exports);
+            }
         });
     } else {
         next(false, exports);

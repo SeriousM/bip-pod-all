@@ -22,7 +22,12 @@ var Pod = require('bip-pod'),
     Twilio = new Pod({
         name : 'twilio',
         description : 'Twilio',
-        authType : 'issuer_token'        
+        // users can override accountsid/authtoken
+        authType : 'issuer_token',
+        authMap : {
+            username : 'AccountSid',
+            password : 'AuthToken'
+        }
     });
 
 Twilio.add(require('./send_sms.js'));
