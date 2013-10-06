@@ -62,6 +62,10 @@ NewPost.prototype.getSchema = function() {
                             "$ref" : "#/definitions/bool"
                         }
                     ]
+                },
+                'site' : { 
+                    type : 'string',
+                    description : 'Site ID or Site domain'
                 }
             },
             definitions : {

@@ -18,6 +18,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+/**
+ * @link http://developer.wordpress.com/docs/api
+ */
 var Pod = require('bip-pod'),
     Wordpress = new Pod({
         name : 'wordpress',
@@ -27,8 +30,8 @@ var Pod = require('bip-pod'),
         passportStrategy : require('passport-wordpress').Strategy,
         config : {
             "oauth": {
-                "consumerKey" : "",
-                "consumerSecret" : ""
+                "clientID" : "",
+                "clientSecret" : ""
             }
         }
     });
