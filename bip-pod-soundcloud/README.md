@@ -17,21 +17,7 @@ pod icon into the server cdn
 
 Manually restart the bipio server at your convenience.
 
-## Emitters
-
-### get_favorites
-
-Retrieves Sounds I've Favorited.  Where the 'download' config option is set on
-a channel, retrieves the file and pushes it into a hub
-
-Sample Channel Config :
-
-```
-"action" : "soundcloud.get_favorites",
-"config": {
-  "download": true
-}
-```
+## Documentation
 
 [Bipio Docs](https://bip.io/docs/pods/soundcloud)
 

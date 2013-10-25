@@ -19,7 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 var Pod = require('bip-pod'),
-    Soundcloud = new Pod({
+    SoundCloud = new Pod({
         name : 'soundcloud',
         description : 'Soundcloud',
         authType : 'oauth',
@@ -37,7 +37,8 @@ var Pod = require('bip-pod'),
         }
     });
 
-Soundcloud.add(require('./get_favorites.js'));
+SoundCloud._apiURL = 'https://api.soundcloud.com';
+SoundCloud.add(require('./get_favorites.js'));
 
 // -----------------------------------------------------------------------------
-module.exports = Soundcloud;
+module.exports = SoundCloud;
