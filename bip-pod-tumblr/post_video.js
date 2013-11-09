@@ -19,28 +19,28 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-function PostText(podConfig) {
-  this.name = 'post_text';
-  this.description = 'New Text Post';
-  this.description_long = 'Create a new Text Post';
+function PostVideo(podConfig) {
+  this.name = 'post_video';
+  this.description = 'New Video Post';
+  this.description_long = 'Create a new Video Post';
   this.trigger = false;
   this.singleton = false;
   this.podConfig = podConfig;
 }
 
-PostText.prototype = {};
+PostVideo.prototype = {};
 
-PostText.prototype.getSchema = function() {
+PostVideo.prototype.getSchema = function() {
   var schema = {
     imports: {
       properties : {
-        title : {
+        caption : {
           type : "string",
-          description : "Post Title"
+          description : "Caption"
         },
-        body : {
+        embed : {
           type : "string",
-          description : "Post Body"
+          description : "HTML embed code"
         }
       }
     }
@@ -52,9 +52,9 @@ PostText.prototype.getSchema = function() {
  * Invokes (runs) the action.
  *
  */
-PostText.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
-  this.pod._createPost('text', imports, channel, sysImports, contentParts, next);
+PostVideo.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
+  this.pod._createPost('video', imports, channel, sysImports, contentParts, next);
 }
 
 // -----------------------------------------------------------------------------
-module.exports = PostText;
+module.exports = PostVideo;

@@ -19,32 +19,33 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-function PostText(podConfig) {
-  this.name = 'post_text';
-  this.description = 'New Text Post';
-  this.description_long = 'Create a new Text Post';
+function PostChat(podConfig) {
+  this.name = 'post_chat';
+  this.description = 'New Chat Post';
+  this.description_long = 'Create a new Chat Post';
   this.trigger = false;
   this.singleton = false;
   this.podConfig = podConfig;
 }
 
-PostText.prototype = {};
+PostChat.prototype = {};
 
-PostText.prototype.getSchema = function() {
+PostChat.prototype.getSchema = function() {
   var schema = {
     imports: {
       properties : {
         title : {
           type : "string",
-          description : "Post Title"
+          description : "Chat Title"
         },
-        body : {
+        conversation : {
           type : "string",
-          description : "Post Body"
-        }
+          description : "Chat Transcript",
+          optional : false
+        }        
       }
     }
-  };  
+  };
   return this.pod._decoratePostSchema(schema);
 }
 
@@ -52,9 +53,9 @@ PostText.prototype.getSchema = function() {
  * Invokes (runs) the action.
  *
  */
-PostText.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
-  this.pod._createPost('text', imports, channel, sysImports, contentParts, next);
+PostChat.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
+  this.pod._createPost('chat', imports, channel, sysImports, contentParts, next);
 }
 
 // -----------------------------------------------------------------------------
-module.exports = PostText;
+module.exports = PostChat;

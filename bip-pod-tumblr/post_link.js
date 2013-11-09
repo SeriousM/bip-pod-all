@@ -19,32 +19,36 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-function PostText(podConfig) {
-  this.name = 'post_text';
-  this.description = 'New Text Post';
-  this.description_long = 'Create a new Text Post';
+function PostLink(podConfig) {
+  this.name = 'post_link';
+  this.description = 'New Link Post';
+  this.description_long = 'Create a new Link Post';
   this.trigger = false;
   this.singleton = false;
   this.podConfig = podConfig;
 }
 
-PostText.prototype = {};
+PostLink.prototype = {};
 
-PostText.prototype.getSchema = function() {
+PostLink.prototype.getSchema = function() {
   var schema = {
     imports: {
       properties : {
         title : {
           type : "string",
-          description : "Post Title"
+          description : "Link Title"
         },
-        body : {
+        url : {
           type : "string",
-          description : "Post Body"
-        }
+          description : "URL"
+        },
+        description : {
+          type : "string",
+          description : "Link Summary"
+        }        
       }
     }
-  };  
+  };
   return this.pod._decoratePostSchema(schema);
 }
 
@@ -52,9 +56,9 @@ PostText.prototype.getSchema = function() {
  * Invokes (runs) the action.
  *
  */
-PostText.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
-  this.pod._createPost('text', imports, channel, sysImports, contentParts, next);
+PostLink.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
+  this.pod._createPost('link', imports, channel, sysImports, contentParts, next);
 }
 
 // -----------------------------------------------------------------------------
-module.exports = PostText;
+module.exports = PostLink;

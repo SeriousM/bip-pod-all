@@ -19,29 +19,33 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-function PostText(podConfig) {
-  this.name = 'post_text';
-  this.description = 'New Text Post';
-  this.description_long = 'Create a new Text Post';
+function PostPhoto(podConfig) {
+  this.name = 'post_photo';
+  this.description = 'New Photo Post';
+  this.description_long = 'Create a new Photo Post';
   this.trigger = false;
   this.singleton = false;
   this.podConfig = podConfig;
 }
 
-PostText.prototype = {};
+PostPhoto.prototype = {};
 
-PostText.prototype.getSchema = function() {
+PostPhoto.prototype.getSchema = function() {
   var schema = {
     imports: {
       properties : {
-        title : {
+        caption : {
           type : "string",
-          description : "Post Title"
+          description : "Caption"
         },
-        body : {
+        link : {
           type : "string",
-          description : "Post Body"
-        }
+          description : "Link"
+        },
+        source : {
+          type : "string",
+          description : "Image Source URL"
+        }        
       }
     }
   };  
@@ -52,9 +56,9 @@ PostText.prototype.getSchema = function() {
  * Invokes (runs) the action.
  *
  */
-PostText.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
-  this.pod._createPost('text', imports, channel, sysImports, contentParts, next);
+PostPhoto.prototype.invoke = function(imports, channel, sysImports, contentParts, next) { 
+  this.pod._createPost('photo', imports, channel, sysImports, contentParts, next);
 }
 
 // -----------------------------------------------------------------------------
-module.exports = PostText;
+module.exports = PostPhoto;
