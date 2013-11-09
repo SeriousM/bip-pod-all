@@ -22,6 +22,10 @@ var Pod = require('bip-pod'),
     SoundCloud = new Pod({
         name : 'soundcloud',
         description : 'Soundcloud',
+        description_long : 'An audio platform that enables sound creators to upload, record, promote and share their originally-created sounds',
+        dataSources : [ 
+            require('./models/track_favorite'),
+        ],
         authType : 'oauth',
         passportStrategy : require('passport-soundcloud').Strategy,
         config : {
