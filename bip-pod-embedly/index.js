@@ -38,8 +38,7 @@ Embedly.api = function(channel, sysImports, cb) {
       self.log(err, channel, 'error');
     } 
     
-    cb(err, api);
-    
+    cb(err, api);    
   });
 }
 

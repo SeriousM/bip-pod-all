@@ -1,6 +1,6 @@
 /**
  *
- * The Bipio OEmbed Pod.  boilerplate sample action definition
+ * The Bipio Embedly Pod
  * ---------------------------------------------------------------
  *
  * @author Michael Pearson <michael@cloudspark.com.au>
@@ -103,7 +103,7 @@ OEmbed.prototype.getSchema = function() {
         "url" : {
           "type" : "string",
           "description" : "URL (Photo Types)"
-        },
+        }
       }
     }
   }
@@ -113,24 +113,33 @@ OEmbed.prototype.getSchema = function() {
  * Invokes (runs) the action.
  */
 OEmbed.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
-  var log = this.$resource.log;
-  if ('' !== channel.config.url) {
+  var log = this.$resource.log,
+    pod = this.pod;
+
+  if (imports.url && '' !== imports.url) {
     this.pod.api(channel, sysImports, function(err, api) {
       if (err) {
         next(err);
       } else {
         var opts = {
-          url : channel.config.url ,
+          url : imports.url ,
           format : 'json'
         };
 
+        pod._testAndSet(imports, opts, 'maxwidth');
+        pod._testAndSet(imports, opts, 'maxheight');
+        pod._testAndSet(imports, opts, 'autoplay');
+        pod._testAndSet(imports, opts, 'words');        
+
         api.oembed(opts, function(err, obj) {
-            if (err) {
-              log(err, channel, 'error');
-            } else {              
-              next(false, obj);
-            }
+          if (err) {
+            log(err, channel, 'error');
+          } else {              
+            for (var i = 0; i < obj.length; i++) {
+              next(false, obj[i]);  
+            }              
           }
+        }
         );
       }      
     });
