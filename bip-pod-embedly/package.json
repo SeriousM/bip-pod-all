@@ -1,0 +1,33 @@
+{
+    "name": "bip-pod-embedly",
+    "version": "0.0.1",
+    "description": "Embedly Pod for Bipio",
+    "keywords": [
+    "bip",
+    "bipio",
+    "pod",
+    "embedly"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/bipio-server/bip-pod-embedly.git"
+    },
+    "bugs": {
+        "url": "http://github.com/bipio-server/bip-pod-embedly/issues"
+    },
+    "licenses": [
+    {
+        "type": "GNU GPLv3",
+        "url": "http://www.gnu.org/copyleft/gpl.html"
+    }
+    ],
+    "main": ".",
+    "dependencies": {
+        "pkginfo": "0.2.x",
+        "bip-pod" : ">=0.0.1",
+        "embedly" : ">=1.0.2"
+    },
+    "engines": {
+        "node": ">= 0.10.0"
+    }
+}
