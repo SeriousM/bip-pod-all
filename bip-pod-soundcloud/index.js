@@ -43,6 +43,7 @@ var Pod = require('bip-pod'),
 
 SoundCloud._apiURL = 'https://api.soundcloud.com';
 SoundCloud.add(require('./get_favorites.js'));
+SoundCloud.add(require('./oembed.js'));
 
 // -----------------------------------------------------------------------------
 module.exports = SoundCloud;
