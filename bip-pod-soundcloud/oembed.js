@@ -35,7 +35,7 @@ OEmbed.prototype.getSchema = function() {
   return {
     'config' : {
       properties : {
-      }
+    }
     },
     'imports' : {
       properties : {
@@ -96,18 +96,17 @@ OEmbed.prototype.getSchema = function() {
  * Invokes (runs) the action.
  */
 OEmbed.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
-  var uri = '/oembed?format=json', 
-    log = this.$resource.log;
+  var uri = '/oembed?format=json',
+  log = this.$resource.log;
 
-  if (imports.url && '' !== imports.url) {    
+  if (imports.url && '' !== imports.url) {
     request.get(
-      self.pod._apiURL + uri + '&url=' + imports.url,
-      function(error, res, body) {                    
+      this.pod._apiURL + uri + '&url=' + imports.url,
+      function(error, res, res) {
         if (error) {
-          log(body, channel, 'error');
+          log(res, channel, 'error');
         }
-        
-        next(error, body);                  
+        next(error, JSON.parse(res));
       });
   }
 }
