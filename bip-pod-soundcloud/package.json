@@ -1,6 +1,6 @@
 {
     "name": "bip-pod-soundcloud",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "description": "SoundCloud Pod for Bipio",
     "keywords": [
     "bip",
@@ -26,7 +26,8 @@
         "pkginfo": "0.2.x",
         "moment" : ">=2.4.0",
         "bip-pod" : ">=0.0.1",        
-        "passport-soundcloud" : ">=0.1.2"
+        "passport-soundcloud" : ">=0.1.2",
+        "request" : ">=2.29.1"         
     },
     "engines": {
         "node": ">= 0.10.0"
