@@ -19,7 +19,7 @@ Manually restart the bipio server at your convenience.
 
 ## Documentation
 
-[Bipio Docs](https://bip.io/docs/pods/Bitly)
+[Bipio Docs](https://bip.io/docs/pods/bitly)
 
 ## License
 
