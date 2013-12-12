@@ -1,4 +1,4 @@
-![Embedly](Bitly.png) bip-pod-Bitly
+![Bitly](bitly.png) bip-pod-Bitly
 =======
 
 <a href="http://bitly.com">Bitly</a> pod for [bipio](https://bip.io).  
