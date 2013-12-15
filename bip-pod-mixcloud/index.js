@@ -32,7 +32,7 @@ MixCloud = new Pod({
   passportStrategy : require('passport-mixcloud').Strategy,
   config : {
     "oauth": {
-      "clientKey" : "",
+      "clientID" : "",
       "clientSecret" : ""
     }
   }
