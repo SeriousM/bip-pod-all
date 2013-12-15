@@ -25,7 +25,7 @@
   "dependencies": {
     "pkginfo": "0.2.x",
     "bip-pod" : ">=0.0.1",
-    "passport-bitly": "git://github.com/simov/passport-bitly.git"
+    "passport-bitly": "git://github.com/simov/passport-bitly.git",
     "request" : "2.29.0"
   },
   "engines": {
