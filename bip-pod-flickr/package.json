@@ -1,0 +1,33 @@
+{
+    "name": "bip-pod-flickr",
+    "version": "0.0.1",
+    "description": "Flickr Pod for Bipio",
+    "keywords": [
+    "bip",
+    "bipio",
+    "pod",
+    "flickr"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/bipio-server/bip-pod-flickr.git"
+    },
+    "bugs": {
+        "url": "http://github.com/bipio-server/bip-pod-flickr/issues"
+    },
+    "licenses": [
+    {
+        "type": "GNU GPLv3",
+        "url": "http://www.gnu.org/copyleft/gpl.html"
+    }
+    ],
+    "main": ".",
+    "dependencies": {
+        "pkginfo": "0.2.x",
+        "bip-pod" : ">=0.0.1",
+        "passport-flickr" : ">=0.1.1"  
+    },
+    "engines": {
+        "node": ">= 0.10.0"
+    }
+}
