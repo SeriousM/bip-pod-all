@@ -1,25 +1,25 @@
-![Instagram](instagram.png) bip-pod-instagram
+![Flickr](flickr.png) bip-pod-flickr
 =======
 
-<a href="http://www.instagram.com">instagram</a> pod for [bipio](https://bip.io).  
+<a href="http://www.flickr.com">flickr</a> pod for [bipio](https://bip.io).  
 
 ## Installation
 
 From bipio server root directory
 
-    npm install bip-pod-instagram
-    ./tools/pod-install.js -a instagram [-u optional account-wide channel auto install]
+    npm install bip-pod-flickr
+    ./tools/pod-install.js -a flickr [-u optional account-wide channel auto install]
 
 The pod-install script is a server script which will register the pod with the bipio server and add sparse
 configuration to your NODE_ENV environment config ('default.json', staging or production)
-keyed to 'instagram', based on the default config in the pod constructor.  It will also move the
+keyed to 'flickr', based on the default config in the pod constructor.  It will also move the
 pod icon into the server cdn
 
 Manually restart the bipio server at your convenience.
 
 ## Documentation
 
-[Bipio Docs](https://bip.io/docs/pods/instagram)
+[Bipio Docs](https://bip.io/docs/pods/flickr)
 
 ## License
 
