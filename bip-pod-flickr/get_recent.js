@@ -22,8 +22,8 @@
 
 function GetRecent(podConfig) {
   this.name = 'get_recent';
-  this.description = "My Recent Photos";
-  this.description_long = "Returns a list of the latest public photos uploaded to flickr.";
+  this.description = "Get Recent Photos";
+  this.description_long = "Returns a list of your latest public photos uploaded to flickr.";
   this.trigger = true;
   this.singleton = true;
   this.auto = true;
@@ -44,32 +44,82 @@ GetRecent.prototype.getSchema = function() {
     },
     'exports' : {
       properties : {
-        'file_name' : {
+        'title' : {
           type : 'string',
-          description : 'File Name'
+          description : 'Title'
         },
-        'caption' : {
+        'media_original_url' : {
           type : 'string',
-          description : 'Media Caption'
+          description : 'Media Original Res URL'
         },
-        'filter' : {
+        'tags' : {
           type : 'string',
-          description : 'Filter Name'
-        },
-        'media_url' : {
-          type : 'string',
-          description : 'Media Standard Res URL'
+          description : 'Tags'
         }
       }
     }
   }
 }
 
+GetRecent.prototype.setup = function(channel, accountInfo, next) {
+  this.pod.trackingStart(channel, accountInfo, true, next);  
+}
+
+GetRecent.prototype.teardown = function(channel, accountInfo, next) {
+  this.pod.trackingRemove(channel, accountInfo, next);  
+}
+
 GetRecent.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
   var pod = this.pod,
-  log = this.$resource.log;
+    log = this.$resource.log,
+    profile = JSON.parse(sysImports.auth.oauth.profile)
+  
+  pod.trackingGet(channel, function(err, since) {
+    if (!err) {
+      pod.trackingUpdate(channel, function(err, until) {
+        pod.getClient(sysImports, function(err, client) {
+          if (err) {
+            log(err, channel, 'error');
+          } else {
+            var args = {
+              user_id : profile.id,
+              min_upload_date : Math.floor(since / 1000),
+              //extras : 'date_upload, date_taken, owner_name, icon_server, original_format, last_update, geo, tags, machine_tags, o_dims, views, media, path_alias, url_sq, url_t, url_s, url_q, url_m, url_n, url_z, url_c, url_l, url_o'
+              extras : 'date_upload, date_taken, owner_name, original_format, last_update, geo, tags, o_dims, views, media, url_m, url_o',
+              page : 1,
+              per_page: 1
+            };
 
-  pod.getDataDir(channel, this.name, function(err, dataDir) {
+            function getPhotos(args) {
+              client.people.getPhotos(args, function(err, result) {
+                var p;
+                if (err) {
+                  log(err, channel, 'error');    
+                } else {
+                  for (var i = 0; i < result.photos.photo.length; i++) {
+                    p = result.photos.photo[i];
+                    next(false, {
+                      title : p.title,
+                      media_original_url : p.url_o,
+                      tags : p.tags
+                    });
+                  }
+
+                  if (result.photos.pages) {
+                    if (result.photos.page < result.photos.pages) {
+                      args.page++;
+                      getPhotos(args);
+                    }                  
+                  }
+                }
+              });
+            }
+            
+            getPhotos(args);
+          }
+        });
+      });
+    }
   });
 }
 
