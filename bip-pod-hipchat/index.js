@@ -36,6 +36,8 @@ HipChat.getClient = function(sysImports) {
 
 // Include any actions
 HipChat.add(require('./room_notify.js'));
+HipChat.add(require('./create_webhook.js'));
+HipChat.add(require('./set_topic.js'));
 
 // -----------------------------------------------------------------------------
 module.exports = HipChat;
