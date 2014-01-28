@@ -1,7 +1,7 @@
 {
-    "name": "bip-pod-boilerplate",
-    "version": "0.0.1",
-    "description": "Boilerplate Pod for Bipio",
+    "name": "bip-pod-mailchimp",
+    "version": "0.0.2",
+    "description": "MailChimp Pod for Bipio",
     "keywords": [
     "bip",
     "bipio",
