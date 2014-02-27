@@ -59,7 +59,7 @@ Tumblr._decoratePostSchema = function(schema) {
     description : 'Default State',
     oneOf : [
     {
-      "$ref" : "#/definitions/state"
+      "$ref" : "#/config/definitions/state"
     }
     ]
   };
