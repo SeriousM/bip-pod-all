@@ -107,40 +107,43 @@ GetRecent.prototype.invoke = function(imports, channel, sysImports, contentParts
                   for (var i = 0; i < result.photos.photo.length; i++) {
                     p = result.photos.photo[i];
                     if (channel.config.download) {
-                      pod.getDataDir(channel, self.name, function(err, dataDir) {
-                        if (err) {
-                          next(err);
-                        } else {
-                          var fName = p.url_o.split('/').pop(),
-                            outfile = dataDir + fName,
-                            exports = {
-                              title : p.title,
-                              media_original_url : p.url_o,
-                              tags : p.tags
-                            };
-                          pod._httpStreamToFile(
-                            p.url_o,
-                            outfile,
-                            function(err, exports, fileStruct) {
-                              if (err) {
-                                next(err);
-                              } else {
-                                next(err, exports, {
-                                  _files : [ fileStruct ]
-                                  }, fileStruct.size);
+                      (function(p) {
+                        pod.getDataDir(channel, self.name, function(err, dataDir) {
+                          if (err) {
+                            next(err);
+                          } else {
+                            var fName = p.url_o.split('/').pop(),
+                              outfile = dataDir + fName,
+                              exports = {
+                                title : p.title,
+                                media_original_url : p.url_o,
+                                tags : p.tags
+                              };
+                            pod._httpStreamToFile(
+                              p.url_o,
+                              outfile,
+                              function(err, exports, fileStruct) {
+                                if (err) {
+                                  next(err);
+                                } else {
+                                  next(err, exports, {
+                                    _files : [ fileStruct ]
+                                    }, fileStruct.size);
+                                }
+                              },
+                              exports,  // export
+                              {       // file meta container
+                                txId : sysImports.id,
+                                localpath : outfile,
+                                name : fName,
+                                type : mime.lookup(fName),
+                                encoding : 'binary'
                               }
-                            },
-                            exports,  // export
-                            {       // file meta container
-                              txId : sysImports.id,
-                              localpath : outfile,
-                              name : fName,
-                              type : mime.lookup(fName),
-                              encoding : 'binary'
-                            }
-                          );
-                        }
-                      });
+                            );
+                          }
+                        });
+                      })(p);
+
                     } else {
                       next(false, {
                         title : p.title,
