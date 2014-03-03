@@ -94,8 +94,9 @@ Tumblr._decoratePostSchema = function(schema) {
 }
 
 Tumblr._createPost = function(type, imports, channel, sysImports, contentParts, next) {
+
   var log = this.log,
-    user = sysImports.auth.oauth.profile.response.user,
+    user = JSON.parse(sysImports.auth.oauth.profile).response.user,
     podConfig = this.getConfig();
 
   var client = new tumblr.Client({
@@ -112,7 +113,7 @@ Tumblr._createPost = function(type, imports, channel, sysImports, contentParts, 
   imports.format = (channel.config.format && '' !== channel.config.format) ? 
     channel.config.format : 
     user.default_post_format;
-  client[type](channel.config.url, imports, function(err, response) {
+    client[type](channel.config.url, imports, function(err, response) {
     if (err) {
       log(err, channel, 'error');
     }

@@ -57,8 +57,19 @@ PostPhoto.prototype.getSchema = function() {
  *
  */
 PostPhoto.prototype.invoke = function(imports, channel, sysImports, contentParts, next) { 
-  this.pod._createPost('photo', imports, channel, sysImports, contentParts, next);
+  
+  if (contentParts._files) {
+    for (var i = 0; i < contentParts._files.length; i++) {     
+      var localImports = app._.clone(imports);
+      delete localImports.source;
+      delete localImports.link;
+      
+      localImports.data = contentParts._files[i].localpath;     
+      this.pod._createPost('photo', localImports, channel, sysImports, contentParts, next);
+    }
+  } else {
+    this.pod._createPost('photo', imports, channel, sysImports, contentParts, next);
+  }
 }
-
 // -----------------------------------------------------------------------------
 module.exports = PostPhoto;
