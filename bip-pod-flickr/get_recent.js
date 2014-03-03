@@ -4,7 +4,7 @@
  * ---------------------------------------------------------------
  *
  * @author Michael Pearson <michael@cloudspark.com.au>
- * Copyright (c) 2010-2013 CloudSpark pty ltd http://www.cloudspark.com.au
+ * Copyright (c) 2010-2014 CloudSpark pty ltd http://www.cloudspark.com.au
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -36,7 +36,13 @@ GetRecent.prototype.getSchema = function() {
   return {
     'config' : {
       properties : {
-    }
+        download : {
+          type : 'boolean',
+          description : 'Download File',
+          'default' : false
+        }
+
+      }
     },
     'imports' : {
       properties : {
@@ -62,18 +68,20 @@ GetRecent.prototype.getSchema = function() {
 }
 
 GetRecent.prototype.setup = function(channel, accountInfo, next) {
-  this.pod.trackingStart(channel, accountInfo, true, next);  
+  this.pod.trackingStart(channel, accountInfo, true, next);
 }
 
 GetRecent.prototype.teardown = function(channel, accountInfo, next) {
-  this.pod.trackingRemove(channel, accountInfo, next);  
+  this.pod.trackingRemove(channel, accountInfo, next);
 }
 
 GetRecent.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
   var pod = this.pod,
+    self = this,
     log = this.$resource.log,
+    mime = this.$resource.mime,
     profile = JSON.parse(sysImports.auth.oauth.profile)
-  
+
   pod.trackingGet(channel, function(err, since) {
     if (!err) {
       pod.trackingUpdate(channel, function(err, until) {
@@ -94,27 +102,64 @@ GetRecent.prototype.invoke = function(imports, channel, sysImports, contentParts
               client.people.getPhotos(args, function(err, result) {
                 var p;
                 if (err) {
-                  log(err, channel, 'error');    
+                  log(err, channel, 'error');
                 } else {
                   for (var i = 0; i < result.photos.photo.length; i++) {
                     p = result.photos.photo[i];
-                    next(false, {
-                      title : p.title,
-                      media_original_url : p.url_o,
-                      tags : p.tags
-                    });
+                    if (channel.config.download) {
+                      pod.getDataDir(channel, self.name, function(err, dataDir) {
+                        if (err) {
+                          next(err);
+                        } else {
+                          var fName = p.url_o.split('/').pop(),
+                            outfile = dataDir + fName,
+                            exports = {
+                              title : p.title,
+                              media_original_url : p.url_o,
+                              tags : p.tags
+                            };
+                          pod._httpStreamToFile(
+                            p.url_o,
+                            outfile,
+                            function(err, exports, fileStruct) {
+                              if (err) {
+                                next(err);
+                              } else {
+                                next(err, exports, {
+                                  _files : [ fileStruct ]
+                                  }, fileStruct.size);
+                              }
+                            },
+                            exports,  // export
+                            {       // file meta container
+                              txId : sysImports.id,
+                              localpath : outfile,
+                              name : fName,
+                              type : mime.lookup(fName),
+                              encoding : 'binary'
+                            }
+                          );
+                        }
+                      });
+                    } else {
+                      next(false, {
+                        title : p.title,
+                        media_original_url : p.url_o,
+                        tags : p.tags
+                      });
+                    }
                   }
 
                   if (result.photos.pages) {
                     if (result.photos.page < result.photos.pages) {
                       args.page++;
                       getPhotos(args);
-                    }                  
+                    }
                   }
                 }
               });
             }
-            
+
             getPhotos(args);
           }
         });
