@@ -1,9 +1,9 @@
 /**
  *
- * The Bipio MailChimp Pod (!?!)
+ * The Bipio MailChimp Pod
  *
  * @author Michael Pearson <michael@cloudspark.com.au>
- * Copyright (c) 2010-2013 CloudSpark pty ltd http://www.cloudspark.com.au
+ * Copyright (c) 2010-2014 CloudSpark pty ltd http://www.cloudspark.com.au
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -52,7 +52,7 @@ MailChimp.callMC = function(section, method, args, sysImports, next) {
 }
 
 MailChimp.getList = function(sysImports, next) {
-  var api = this.getAPI();
+  var api = this.getAPI(sysImports);
 
   api.call('lists', 'list', {
     apikey : sysImports.auth.oauth.token
@@ -61,6 +61,7 @@ MailChimp.getList = function(sysImports, next) {
 
 // Include any actions
 MailChimp.add(require('./add_subscriber.js'));
+MailChimp.add(require('./add_static_segment.js'));
 
 // -----------------------------------------------------------------------------
 module.exports = MailChimp;

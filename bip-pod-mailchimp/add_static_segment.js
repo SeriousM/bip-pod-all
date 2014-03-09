@@ -1,6 +1,6 @@
 /**
  *
- * AddSubscriber
+ * AddSegmentStatic
  * ---------------------------------------------------------------
  *
  * @author Michael Pearson <michael@cloudspark.com.au>
@@ -20,52 +20,44 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-function AddSubscriber(podConfig) {
-  this.name = 'add_subscriber'; // action name (channel action suffix - "action: boilerplate.simple")
-  this.description = 'Add a Subscriber', // short description
-  this.description_long = 'Any Email address this channel receives will be added as a subscriber to an existing list', // long description
+function AddSegmentStatic(podConfig) {
+  this.name = 'add_static_segment'; // action name (channel action suffix - "action: boilerplate.simple")
+  this.description = 'Add Static Segment', // short description
+  this.description_long = 'Adds a Static Segment to an existing List', // long description
   this.trigger = false; // this action can trigger
   this.singleton = false; // 1 instance per account (can auto install)
   this.auto = false; // automatically install this action
   this.podConfig = podConfig; // general system level config for this pod (transports etc)
 }
 
-AddSubscriber.prototype = {};
+AddSegmentStatic.prototype = {};
 
-// AddSubscriber schema definition
+// AddSegmentStatic schema definition
 // @see http://json-schema.org/
-AddSubscriber.prototype.getSchema = function() {
+AddSegmentStatic.prototype.getSchema = function() {
   return {
     "config": {
       "properties" : {
         "list_id" : {
           "type" :  "string",
           "description" : "List ID"
-        }
+        }       
       }
     },
     "imports": {
       "properties" : {
-        "email" : {
+        "segment_name" : {
           "type" :  "string",
-          "description" : "Email Address"
+          "description" : "Segment Name"
         }
       }
     },
     "exports": {
       "properties" : {
-        "email" : {
+        "id" : {
           "type" : "string",
-          "description" : "Added Email Address"
-        },
-        "euid" : {
-          "type" : "string",
-          "description" : "Email Unique ID"
-        },
-        "leid" : {
-          "type" : "string",
-          "description" : "List Email Unique ID"
-        }
+          "description" : "Segment ID"
+        }        
       }
     },
     'renderers' : {
@@ -73,12 +65,12 @@ AddSubscriber.prototype.getSchema = function() {
         description : 'Retrieve Lists',
         description_long : 'Retrieves all lists for your account',
         contentType : DEFS.CONTENTTYPE_JSON
-      }     
+      }
     }
   }
 }
 
-AddSubscriber.prototype.rpc = function(method, sysImports, options, channel, req, res) {
+AddSegmentStatic.prototype.rpc = function(method, sysImports, options, channel, req, res) {
   if (method === 'get_lists') {
     res.contentType(this.getSchema().renderers[method].contentType);
     this.pod.getList(sysImports, function(err, result) {
@@ -93,30 +85,29 @@ AddSubscriber.prototype.rpc = function(method, sysImports, options, channel, req
   }
 }
 
-AddSubscriber.prototype.setup = function(channel, accountInfo, next) {
+AddSegmentStatic.prototype.setup = function(channel, accountInfo, next) {
   next(false, 'channel', channel);
 }
 
-AddSubscriber.prototype.teardown = function(channel, accountInfo, next) {
+AddSegmentStatic.prototype.teardown = function(channel, accountInfo, next) {
   next(false, 'channel', channel);
 }
 
-AddSubscriber.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
+AddSegmentStatic.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
   var log = this.$resource.log,
-    args;
+  args;
 
-  if (channel.config.list_id && imports.email) {  
+  if (channel.config.list_id && imports.segment_name) {
     args = {
       id : channel.config.list_id,
-      email : {
-        email : imports.email
-      }
+      name : imports.segment_name
     };
-    this.pod.callMC('lists', 'subscribe', args, sysImports, function(err, response) {    
+    
+    this.pod.callMC('lists', 'static-segment-add', args, sysImports, function(err, response) {
       next(err, response);
     });
   }
 }
 
 // -----------------------------------------------------------------------------
-module.exports = AddSubscriber;
+module.exports = AddSegmentStatic;
