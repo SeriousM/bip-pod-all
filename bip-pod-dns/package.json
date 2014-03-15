@@ -1,6 +1,6 @@
 {
   "name": "bip-pod-dns",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "DNS Pod for Bipio",
   "keywords": [
     "bip",

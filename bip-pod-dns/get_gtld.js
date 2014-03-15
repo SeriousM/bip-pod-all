@@ -46,7 +46,7 @@ GetGTLD.prototype.getSchema = function() {
           "type" : "string",
           "description" : "Generic Top Level Domain"
         },
-        "domian" : {
+        "domain" : {
           "type" : "string",
           "description" : "Domain"
         },
