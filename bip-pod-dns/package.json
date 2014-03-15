@@ -1,0 +1,32 @@
+{
+  "name": "bip-pod-dns",
+  "version": "0.0.1",
+  "description": "DNS Pod for Bipio",
+  "keywords": [
+    "bip",
+    "bipio",
+    "pod",
+    "dns"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bipio-server/bip-pod-dns.git"
+  },
+  "bugs": {
+    "url": "http://github.com/bipio-server/bip-pod-dns/issues"
+  },
+  "licenses": [
+    {
+      "type": "GNU GPLv3",
+      "url": "http://www.gnu.org/copyleft/gpl.html"
+    }
+  ],
+  "main": ".",
+  "dependencies": {
+    "bip-pod": ">=0.0.1",
+    "tldtools": "0.0.9"
+  },
+  "engines": {
+    "node": ">= 0.10.0"
+  }
+}
