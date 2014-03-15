@@ -17,6 +17,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+var ipaddr = require('ipaddr.js');
+
 function Reverse(podConfig) {
   this.name = 'reverse';
   this.description = 'Reverse Lookup',
@@ -58,19 +60,23 @@ Reverse.prototype.getSchema = function() {
 Reverse.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
   var tldTools = this.pod.tldTools();
   if (imports.ip_addr) {
-    this.pod.get().reverse(imports.ip_addr, function(err, ip_addrs) {
-      if (err) {
-        next(err);
-      } else {
-        next(
-          false,
-          {
-            ip_first : ip_addrs.length ? ip_addrs[0] : '',
-            ip_all : ip_addrs
-          }
-          );
-      }
-    });
+    if (!ipaddr.IPv4.isValid(imports.ip_addr) && !ipaddr.IPv6.isValid(imports.ip_addr) ) {
+      next('Invalid IP Address ' + imports.ip_addr);
+    } else {    
+      this.pod.get().reverse(imports.ip_addr, function(err, ip_addrs) {
+        if (err) {
+          next(err);
+        } else {
+          next(
+            false,
+            {
+              ip_first : ip_addrs.length ? ip_addrs[0] : '',
+              ip_all : ip_addrs
+            }
+            );
+        }
+      });
+    }
   }
 }
 

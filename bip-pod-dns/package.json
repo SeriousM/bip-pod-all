@@ -1,6 +1,6 @@
 {
   "name": "bip-pod-dns",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "DNS Pod for Bipio",
   "keywords": [
     "bip",
@@ -24,7 +24,8 @@
   "main": ".",
   "dependencies": {
     "bip-pod": ">=0.0.1",
-    "tldtools": "0.0.9"
+    "tldtools": "0.0.9",
+    "ipaddr.js" : ">=0.1.2"
   },
   "engines": {
     "node": ">= 0.10.0"
