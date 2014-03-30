@@ -3,7 +3,7 @@
  * The Bipio Tumblr Pod.  Tumblr Actions and Content Emitters
  *
  * @author Michael Pearson <michael@cloudspark.com.au>
- * Copyright (c) 2010-2013 CloudSpark pty ltd http://www.cloudspark.com.au
+ * Copyright (c) 2010-2014 CloudSpark pty ltd http://www.cloudspark.com.au
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -31,8 +31,60 @@ Tumblr = new Pod({
       "consumerKey" : "",
       "consumerSecret" : ""
     }
+  },
+  'renderers' : {
+    'user_info' : {
+      description : 'Get User Info',
+      contentType : DEFS.CONTENTTYPE_JSON,
+      properties : {
+        'name' : {
+          type : "string",
+          description: 'Name'
+        },
+        'likes' : {
+          type : "integer",
+          description: 'Likes'
+        },
+        'following' : {
+          type : "integer",
+          description: 'Following'
+        },
+        'default_post_format' : {
+          type : "string",
+          description: 'Default Post Format'
+        },
+        'blogs' : {
+          type : "array",
+          description: 'List of Blogs'
+        }
+      }
+    }
   }
 });
+
+Tumblr.rpc = function(action, method, sysImports, options, channel, req, res) {
+  var podConfig = this.getConfig();
+  if (method == 'user_info') {
+    
+    var client = new tumblr.Client({
+      consumer_key : podConfig.oauth.consumerKey,
+      consumer_secret : podConfig.oauth.consumerSecret,
+      token : sysImports.auth.oauth.token,
+      token_secret : sysImports.auth.oauth.secret
+    });
+    
+    client.userInfo(function(err, resp) {
+      if (err) {
+        res.send(err, 500);
+      } else {
+        res.send(resp);
+      }
+    });
+
+  } else {
+    this.__proto__.rpc.apply(this, arguments);
+  }
+}
 
 //
 Tumblr._decoratePostSchema = function(schema) {
@@ -51,7 +103,12 @@ Tumblr._decoratePostSchema = function(schema) {
     type: "string",
     description: 'Blog URL eg: blog.tumblr.com',
     optional: false,
-    unique : true
+    unique : true,
+    oneOf : [
+        {
+          '$ref' : '/renderers/user_info#user/blogs/{name}'
+        }            
+      ]
   };
 
   schema.config.properties.state = {
@@ -96,8 +153,8 @@ Tumblr._decoratePostSchema = function(schema) {
 Tumblr._createPost = function(type, imports, channel, sysImports, contentParts, next) {
 
   var log = this.log,
-    user = JSON.parse(sysImports.auth.oauth.profile).response.user,
-    podConfig = this.getConfig();
+  user = JSON.parse(sysImports.auth.oauth.profile).response.user,
+  podConfig = this.getConfig();
 
   var client = new tumblr.Client({
     consumer_key : podConfig.oauth.consumerKey,
@@ -107,13 +164,13 @@ Tumblr._createPost = function(type, imports, channel, sysImports, contentParts, 
   });
 
   imports.state = (channel.config.state && '' !== channel.config.state) ?
-    channel.config.state :
-    'draft';
+  channel.config.state :
+  'draft';
 
-  imports.format = (channel.config.format && '' !== channel.config.format) ? 
-    channel.config.format : 
-    user.default_post_format;
-    client[type](channel.config.url, imports, function(err, response) {
+  imports.format = (channel.config.format && '' !== channel.config.format) ?
+  channel.config.format :
+  user.default_post_format;
+  client[type](channel.config.url, imports, function(err, response) {
     if (err) {
       log(err, channel, 'error');
     }
