@@ -170,7 +170,13 @@ Tumblr._createPost = function(type, imports, channel, sysImports, contentParts, 
   imports.format = (channel.config.format && '' !== channel.config.format) ?
   channel.config.format :
   user.default_post_format;
-  client[type](channel.config.url, imports, function(err, response) {
+  var url = channel.config.url;
+  
+  if (-1 === url.indexOf('.')) {
+    url += '.tumblr.com';
+  }
+  
+  client[type](url, imports, function(err, response) {
     if (err) {
       log(err, channel, 'error');
     }
