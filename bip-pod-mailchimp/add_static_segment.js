@@ -40,7 +40,15 @@ AddSegmentStatic.prototype.getSchema = function() {
       "properties" : {
         "list_id" : {
           "type" :  "string",
-          "description" : "List ID"
+          "description" : "List ID",
+          oneOf : [
+            {
+              '$ref' : '/renderers/get_lists#data/{id}'
+            }            
+          ],
+          label : {
+            '$ref' : '/renderers/get_lists#data/{name}'
+          }
         }       
       }
     },

@@ -31,8 +31,39 @@ MailChimp = new Pod({
       "clientID" : "",
       "clientSecret" : ""
     }
+  },
+  'renderers' : {
+    'get_lists' : {
+      description : 'Get Lists',
+      contentType : DEFS.CONTENTTYPE_JSON,
+      properties : {
+        'total' : {
+          type : "integer",
+          description: 'Name'
+        },
+        'data' : {
+          type : "array",
+          description: 'Array of Lists'
+        }
+      }
+    }
   }
 });
+
+MailChimp.rpc = function(action, method, sysImports, options, channel, req, res) {
+
+  if (method == 'get_lists') {
+    this.getList(sysImports, function(err, results) {
+      if (err) {
+        res.send(err, 500);
+      } else {
+        res.send(results);
+      }
+    });   
+  } else {
+    this.__proto__.rpc.apply(this, arguments);
+  }
+}
 
 MailChimp.getAPI = function(sysImports) {  
   // fudge the api key for the mailchimp package.
