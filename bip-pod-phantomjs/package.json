@@ -24,9 +24,7 @@
   "main": ".",
   "dependencies": {
     "bip-pod": ">=0.0.1",
-    "node-phantom-simple": "~1.1.1",
-    "webshot": "~0.11.1",
-    "tldtools": "0.0.9"
+    "webshot": "~0.11.1"
   },
   "engines": {
     "node": ">= 0.10.0"
