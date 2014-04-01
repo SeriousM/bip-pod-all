@@ -35,7 +35,7 @@ function Eval(podConfig) {
 Eval.prototype = {};
 
 Eval.prototype.getSchema = function() {
-  return {   
+  return {
     "imports": {
       "properties" : {
         "expression" : {
@@ -58,14 +58,22 @@ Eval.prototype.getSchema = function() {
 Eval.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
   if (imports.expression) {
     try {
-      var result = math.eval(imports.expression);
-      next(false, { result : result });
+      // need a little utf8 BOM massaging for mathjs
+      var exp = new Buffer(
+        imports.expression.toString().trim(), 'utf8'
+        ).toString('ascii').replace(/B/g, '');
+
+      var result = math.eval(exp);
+
+      next(false, {
+        result : result
+      });
     } catch (e) {
       next(e.message);
     }
   } else {
     next();
-  }  
+  }
 }
 
 // -----------------------------------------------------------------------------
