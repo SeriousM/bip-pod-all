@@ -38,9 +38,15 @@ Time.get = function(time) {
   }
 }
 
+Time.format = function(date, format) {
+  return moment(date).format(format);
+}
+
+
 // Include any actions
 Time.add(require('./format.js'));
 Time.add(require('./tz_convert.js'));
+Time.add(require('./calculate.js'));
 
 // -----------------------------------------------------------------------------
 module.exports = Time;
