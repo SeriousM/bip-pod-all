@@ -43,6 +43,7 @@ Embedly.api = function(channel, sysImports, cb) {
 }
 
 Embedly.add(require('./oembed.js'));
+Embedly.add(require('./extract.js'));
 
 // -----------------------------------------------------------------------------
 module.exports = Embedly;

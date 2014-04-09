@@ -20,19 +20,19 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-function OEmbed(podConfig) {
-  this.name = 'oembed';
-  this.description = 'Create oEmbed',
-  this.description_long = 'oEmbed is Embedly’s basic offering, providing a simple API for embedding content from any URL',
+function Extract(podConfig) {
+  this.name = 'extract';
+  this.description = 'Extract Page',
+  this.description_long = 'The Extract endpoint is designed to provide users with important information from each link including the article text, keywords, related links, and even video embeds.',
   this.trigger = false; // this action can trigger
   this.singleton = true; // only 1 instance per account (can auto install)
   this.auto = true; // no config, not a singleton but can auto-install anyhow
   this.podConfig = podConfig; // general system level config for this pod (transports etc)
 }
 
-OEmbed.prototype = {};
+Extract.prototype = {};
 
-OEmbed.prototype.getSchema = function() {
+Extract.prototype.getSchema = function() {
   return {
     "imports": {
       "properties" : {
@@ -47,62 +47,30 @@ OEmbed.prototype.getSchema = function() {
         "maxheight" : {
           "type" : "integer",
           "description" : "Max Height"
-        },
-        "autoplay" : {
-          "type" : "boolean",
-          "description" : "Autoplay Video"
-        },
-        "words" : {
-          "type" : "integer",
-          "description" : "Max Description Words"
         }
       }
     },
     "exports": {
       "properties" : {
-        "type" : {
+        "url" : {
           "type" : "string",
-          "description" : "Resource Type"
+          "description" : "URL"
         },
-        "author_name" : {
+        "title" : {
           "type" : "string",
-          "description" : "Author Name"
-        },
-        "author_url" : {
-          "type" : "string",
-          "description" : "Author URL"
-        },
-        "provider_name" : {
-          "type" : "string",
-          "description" : "Provider Name"
-        },
-        "provider_url" : {
-          "type" : "string",
-          "description" : "Provider URL"
-        },
-        "thumbnail_url" : {
-          "type" : "string",
-          "description" : "Thumbnail URL"
+          "description" : "Title"
         },
         "description" : {
           "type" : "string",
-          "description" : "URL Description"
+          "description" : "Description"
         },
-        "html" : {
+        "favicon_url" : {
           "type" : "string",
-          "description" : "HTML (Rich/Video Types)"
+          "description" : "Favicon URL"
         },
-        "width" : {
+        "content" : {
           "type" : "string",
-          "description" : "Width (Rich/Video Types)"
-        },
-        "height" : {
-          "type" : "string",
-          "description" : "Height (Rich/Video Types)"
-        },
-        "url" : {
-          "type" : "string",
-          "description" : "URL (Photo Types)"
+          "description" : "Extracted Content"
         }
       }
     }
@@ -112,7 +80,7 @@ OEmbed.prototype.getSchema = function() {
 /**
  * Invokes (runs) the action.
  */
-OEmbed.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
+Extract.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
   var log = this.$resource.log,
     pod = this.pod;
 
@@ -131,12 +99,12 @@ OEmbed.prototype.invoke = function(imports, channel, sysImports, contentParts, n
         pod._testAndSet(imports, opts, 'autoplay');
         pod._testAndSet(imports, opts, 'words');        
 
-        api.oembed(opts, function(err, obj) {
+        api.extract(opts, function(err, obj) {
           if (err) {
             log(err, channel, 'error');
           } else {              
             for (var i = 0; i < obj.length; i++) {
-              next(false, obj[i], contentParts, 0);  
+              next(false, obj[i]);  
             }              
           }
         }
@@ -147,4 +115,4 @@ OEmbed.prototype.invoke = function(imports, channel, sysImports, contentParts, n
 }
 
 // -----------------------------------------------------------------------------
-module.exports = OEmbed;
+module.exports = Extract;
