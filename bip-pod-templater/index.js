@@ -3,7 +3,7 @@
  * The Bipio Templater Pod.  Text based message templating
  * 
  * @author Michael Pearson <michael@cloudspark.com.au>
- * Copyright (c) 2010-2013 CloudSpark pty ltd http://www.cloudspark.com.au
+ * Copyright (c) 2010-2014 CloudSpark pty ltd http://www.cloudspark.com.au
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,6 +26,7 @@ var Pod = require('bip-pod'),
 
 Templater.add(require('./text_template.js'));
 Templater.add(require('./markdown2html.js'));
+Templater.add(require('./html2markdown.js'));
 
 // -----------------------------------------------------------------------------
 module.exports = Templater;
