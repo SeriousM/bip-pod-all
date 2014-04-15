@@ -4,7 +4,7 @@
  * ---------------------------------------------------------------
  *
  * @author Michael Pearson <michael@cloudspark.com.au>
- * Copyright (c) 2010-2013 CloudSpark pty ltd http://www.cloudspark.com.au
+ * Copyright (c) 2010-2014 CloudSpark pty ltd http://www.cloudspark.com.au
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -38,9 +38,17 @@ SetTopic.prototype.getSchema = function() {
   return {
     "config": {
       "properties" : {
-        "room_id" : {
-          "type" :  "string",
-          "description" : "Room ID"
+        'room_id' : {
+          type : 'string',
+          description : 'Room ID',
+          oneOf : [
+          {
+            '$ref' : '/renderers/room_list/{id}'
+          }
+          ],
+          label : {
+            '$ref' : '/renderers/my_pages/{name}'
+          }
         }
       }
     },
@@ -53,8 +61,8 @@ SetTopic.prototype.getSchema = function() {
       }
     },
     "exports": {
-      "properties" : {        
-      }
+      "properties" : {
+    }
     }
   }
 }
@@ -63,16 +71,16 @@ SetTopic.prototype.invoke = function(imports, channel, sysImports, contentParts,
   if (imports.topic && channel.config.room_id) {
     var client = this.pod.getClient(sysImports);
     client.set_topic(
-      channel.config.room_id, 
+      channel.config.room_id,
       imports.topic,
       function(err, result) {
         if (err) {
           err = result;
-        }        
+        }
         next(err, {});
       }
-    );
-  }  
+      );
+  }
 }
 
 // -----------------------------------------------------------------------------

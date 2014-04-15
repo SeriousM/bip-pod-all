@@ -38,9 +38,17 @@ RoomNotify.prototype.getSchema = function() {
   return {
     "config": {
       "properties" : {
-        "room_id" : {
-          "type" :  "string",
-          "description" : "Room ID"
+        'room_id' : {
+          type : 'string',
+          description : 'Room ID',
+          oneOf : [
+          {
+            '$ref' : '/renderers/room_list/{id}'
+          }
+          ],
+          label : {
+            '$ref' : '/renderers/my_pages/{name}'
+          }
         },
         "room_token" : {
           "type" :  "string",
@@ -57,8 +65,8 @@ RoomNotify.prototype.getSchema = function() {
       }
     },
     "exports": {
-      "properties" : {        
-      }
+      "properties" : {
+    }
     }
   }
 }
@@ -67,19 +75,19 @@ RoomNotify.prototype.invoke = function(imports, channel, sysImports, contentPart
   if (imports.message && channel.config.room_id && channel.config.room_token) {
     var client = this.pod.getClient(sysImports);
     client.notify(
-      channel.config.room_id, 
-      { 
+      channel.config.room_id,
+      {
         message : imports.message,
         token : channel.config.room_token
       },
       function(err, result) {
         if (err) {
           err = result;
-        }        
+        }
         next(err, {});
       }
-    );
-  }  
+      );
+  }
 }
 
 // -----------------------------------------------------------------------------

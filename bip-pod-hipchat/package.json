@@ -1,6 +1,6 @@
 {
     "name": "bip-pod-hipchat",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "HipChat Pod for Bipio",
     "keywords": [
     "bip",
