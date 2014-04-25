@@ -40,7 +40,7 @@ Validate.prototype.getSchema = function() {
       "properties" : {
         "aggregate" : {
           "type" :  "string",
-          "description" : "URL",
+          "description" : "Error Aggregation Type",
           oneOf : [
             {
               "$ref" : "#/config/definitions/aggregate_type"
