@@ -1,0 +1,32 @@
+{
+  "name": "bip-pod-html",
+  "version": "0.0.1",
+  "description": "HTML Pod for Bipio",
+  "keywords": [
+    "bip",
+    "bipio",
+    "pod",
+    "html"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bipio-server/bip-pod-html.git"
+  },
+  "bugs": {
+    "url": "http://github.com/bipio-server/bip-pod-html/issues"
+  },
+  "licenses": [
+    {
+      "type": "GNU GPLv3",
+      "url": "http://www.gnu.org/copyleft/gpl.html"
+    }
+  ],
+  "main": ".",
+  "dependencies": {
+    "bip-pod": ">=0.0.1",
+    "jsdom": "^0.10.5"
+  },
+  "engines": {
+    "node": ">= 0.10.0"
+  }
+}
