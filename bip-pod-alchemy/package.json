@@ -1,0 +1,33 @@
+{
+  "name": "bip-pod-alchemy",
+  "version": "0.0.1",
+  "description": "AlchemyAPI Pod for Bipio",
+  "keywords": [
+    "bip",
+    "bipio",
+    "pod",
+    "alchemy"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bipio-server/bip-pod-alchemy.git"
+  },
+  "bugs": {
+    "url": "http://github.com/bipio-server/bip-pod-alchemy/issues"
+  },
+  "licenses": [
+    {
+      "type": "GNU GPLv3",
+      "url": "http://www.gnu.org/copyleft/gpl.html"
+    }
+  ],
+  "main": ".",
+  "dependencies": {
+    "bip-pod": ">=0.0.1",
+    "form-data": "^0.1.2",
+    "request": "^2.34.0"
+  },
+  "engines": {
+    "node": ">= 0.10.0"
+  }
+}
