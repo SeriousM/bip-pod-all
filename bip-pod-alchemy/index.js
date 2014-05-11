@@ -20,7 +20,6 @@
  */
 var Pod = require('bip-pod'),
   request = require('request'),
-  FormData = require('form-data'),
   Alchemy = new Pod({
         name : 'alchemy', // pod name (action prefix)
         description : 'AlchemyAPI', // short description
