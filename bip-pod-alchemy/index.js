@@ -52,16 +52,21 @@ Alchemy.post = function(method, params, sysImports, next) {
       if (err) {
         next(err);
       } else {
-        if ('ERROR' === body.status) {
-          var msg = res.statusInfo;
-          
-          if (err.usage) {
-            msg += ':' + err.usage;
+        try {
+          body = JSON.parse(body);
+          if ('ERROR' === body.status) {
+            var msg = body.statusInfo;
+
+            if (body.usage) {
+              msg += ':' + body.usage;
+            }
+
+            next(msg);
+          } else {
+              next(false, body);            
           }
-          
-          next(msg);
-        } else {
-          next(false, body);
+        } catch (e) {
+          next(e.message);
         }
       }
     }
@@ -71,6 +76,10 @@ Alchemy.post = function(method, params, sysImports, next) {
 // Include any actions
 Alchemy.add(require('./scrape_nlp_url.js'));
 Alchemy.add(require('./scrape_nlp_html.js'));
+
+Alchemy.add(require('./taxonomize_url.js'));
+Alchemy.add(require('./taxonomize_text.js'));
+Alchemy.add(require('./taxonomize_html.js'));
 
 // -----------------------------------------------------------------------------
 module.exports = Alchemy;
