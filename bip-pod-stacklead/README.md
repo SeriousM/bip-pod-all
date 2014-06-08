@@ -1,7 +1,7 @@
 ![stacklead](stacklead.png) bip-pod-stacklead
 =======
 
-<a href="http://en.wikipedia.org/wiki/stacklead_(text)">stacklead</a> pod for [bipio](https://bip.io).  
+<a href="https://stacklead.com">StackLead</a> pod for [bipio](https://bip.io).  
 
 ## Installation
 
