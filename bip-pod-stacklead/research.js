@@ -1,0 +1,68 @@
+/**
+ * @author Michael Pearson <michael@cloudspark.com.au>
+ * Copyright (c) 2010-2014 CloudSpark pty ltd http://www.cloudspark.com.au
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+function Research(podConfig) {
+  this.name = 'research';
+  this.description = 'Research A Lead',
+  this.description_long = 'Delivers Research results of an email lead to your inbox',
+  this.trigger = false;
+  this.singleton = true;
+  this.podConfig = podConfig;
+}
+
+Research.prototype = {};
+
+Research.prototype.getSchema = function() {
+  return {
+    "imports": {
+      "properties" : {
+        "email_address" : {
+          "type" :  "string",
+          "description" : "Email Address"
+        }
+      }
+    },
+    "exports": {
+      "properties" : {
+        "message" : {
+          "type" :  "string",
+          "description" : "Response Message"
+        }
+      }
+    }
+  }
+}
+
+Research.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
+  var httpGet = this.$resource._httpGet;
+  
+  if (imports.email_address) {    
+    httpGet(
+      'https://stacklead.com/api/leads?email=' 
+        + imports.email_address 
+        + '&api_key=' 
+        + sysImports.auth.issuer_token.username,
+      function(err, resp) {
+        next(err, resp);
+      }
+    );
+  }
+}
+
+// -----------------------------------------------------------------------------
+module.exports = Research;
