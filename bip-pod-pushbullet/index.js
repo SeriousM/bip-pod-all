@@ -54,10 +54,6 @@ PushBullet.pushbulletRequest = function(path, params, sysImports, next, method) 
     }
   }
   
-console.log(opts)  ;
-
-console.log(paramStr);
-  
   var req = https.request(opts, next);
   
   if ('POST' === method) {
