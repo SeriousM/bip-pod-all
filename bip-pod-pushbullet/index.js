@@ -78,11 +78,7 @@ PushBullet.pushbulletRequestParsed = function(path, params, sysImports, next, me
       } else {
         try {
           var parsedBody = JSON.parse(data);
-          if (!parsedBody.ok) {
-            next(parsedBody.error, parsedBody);
-          } else {
-            next(false, parsedBody);
-          }
+          next(false, JSON.parse(data));          
         } catch (e) {
           next(e.message);
         }
