@@ -60,8 +60,7 @@ PushBullet.pushbulletRequest = function(path, params, sysImports, next, method) 
     req.write(paramStr);
   }
   
-  req.end();
-  
+  req.end(); 
 }
 
 PushBullet.pushbulletRequestParsed = function(path, params, sysImports, next, method) {
@@ -77,7 +76,6 @@ PushBullet.pushbulletRequestParsed = function(path, params, sysImports, next, me
         next(data);
       } else {
         try {
-          var parsedBody = JSON.parse(data);
           next(false, JSON.parse(data));          
         } catch (e) {
           next(e.message);

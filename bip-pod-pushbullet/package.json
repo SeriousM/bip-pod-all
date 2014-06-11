@@ -1,6 +1,6 @@
 {
     "name": "bip-pod-pushbullet",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "description": "PushBullet Pod for Bipio",
     "keywords": [
     "bip",

@@ -134,7 +134,7 @@ PushNote.prototype.invoke = function(imports, channel, sysImports, contentParts,
       params,
       sysImports,
       function(err, body) {
-        next(err, body);
+        next(err, body || {});
       },
       'POST'
     );
