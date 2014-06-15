@@ -25,7 +25,8 @@ var moment = require('moment');
 
 function GetFavorites(podConfig) {
   this.name = 'get_favorites';
-  this.description = "Retrieve Sounds I've Favorited";
+  this.description = "Get Favorites";
+  this.description_long = "Retrieves the sounds you've favorited, exporting track data and (optionally) the track itself";
   this.trigger = true;
   this.singleton = false;
   this.auto = true;
@@ -108,7 +109,6 @@ GetFavorites.prototype.invoke = function(imports, channel, sysImports, contentPa
           numTracks = data.length;
           for (var i = 0; i < numTracks; i++) {
             track = data[i];
-            
             (function(track, channel, next) {
               var nowTime = moment().unix();
               

@@ -21,8 +21,8 @@
 var Pod = require('bip-pod'),
     SoundCloud = new Pod({
         name : 'soundcloud',
-        description : 'Soundcloud',
-        description_long : 'An audio platform that enables sound creators to upload, record, promote and share their originally-created sounds',
+        description : 'SoundCloud',
+        description_long : '<a href="https://soundcloud.com">SoundCloud</a> is an audio platform that enables sound creators to upload, record, promote and share their originally-created sounds',
         dataSources : [ 
             require('./models/track_favorite'),
         ],
@@ -32,7 +32,6 @@ var Pod = require('bip-pod'),
             "oauth": {
                "clientID" : "",
                "clientSecret" : "",
-               "callbackURL" : "",
                "scopes" : [
                     "non-expiring"
                ],
