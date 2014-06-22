@@ -22,7 +22,7 @@ var Pod = require('bip-pod'),
 Stacklead = new Pod({
   name : 'stacklead',
   description : 'StackLead',
-  description_long : 'Spend your time making calls and closing deals, not researching prospects online with <a href="https://stacklead.com/">StackLead<a>',
+  description_long : 'Spend your time making calls and closing deals, not researching prospects online with <a href="https://stacklead.com/">StackLead</a>',
   authType : 'issuer_token',
   authMap : {
     username : 'API Token'

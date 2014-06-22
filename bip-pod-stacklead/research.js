@@ -19,7 +19,7 @@
 function Research(podConfig) {
   this.name = 'research';
   this.description = 'Research A Lead',
-  this.description_long = 'Delivers Research results of an email lead to your inbox',
+  this.description_long = 'Delivers lead research results to your inbox or configured webhook',
   this.trigger = false;
   this.singleton = true;
   this.podConfig = podConfig;
@@ -29,6 +29,25 @@ Research.prototype = {};
 
 Research.prototype.getSchema = function() {
   return {
+    "config": {
+      "properties" : {
+        "delivery_method" : {
+          "type" :  "string",
+          "description" : "Delivery Method",
+          oneOf : [ {
+            "$ref" : "#/config/definitions/delivery_method"
+          }]
+        }
+      },
+      definitions : {
+        delivery_method : {
+          "description" : "Delivery Method",
+          "enum" : [ "email" , "webhook" ],
+          "enum_label" : [ "Email" , "Web Hook" ],
+          'default' : "email"
+        }
+      }
+    },
     "imports": {
       "properties" : {
         "email_address" : {
@@ -49,12 +68,14 @@ Research.prototype.getSchema = function() {
 }
 
 Research.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
-  var httpGet = this.$resource._httpGet;
+  var httpGet = this.$resource._httpGet,
+    deliveryMethod = channel.config.delivery_method || this.getSchema().config.definitions.delivery_method['default'];
   
-  if (imports.email_address) {    
+  if (imports.email_address) {
     httpGet(
       'https://stacklead.com/api/leads?email=' 
         + imports.email_address 
+        + '&delivery_method=' + deliveryMethod
         + '&api_key=' 
         + sysImports.auth.issuer_token.username,
       function(err, resp) {
