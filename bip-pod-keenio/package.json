@@ -1,0 +1,32 @@
+{
+  "name": "bip-pod-keenio",
+  "version": "0.0.1",
+  "description": "KeenIO Pod for Bipio",
+  "keywords": [
+    "bip",
+    "bipio",
+    "pod",
+    "keenio"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bipio-server/bip-pod-keenio.git"
+  },
+  "bugs": {
+    "url": "http://github.com/bipio-server/bip-pod-keenio/issues"
+  },
+  "licenses": [
+    {
+      "type": "GNU GPLv3",
+      "url": "http://www.gnu.org/copyleft/gpl.html"
+    }
+  ],
+  "main": ".",
+  "dependencies": {
+    "bip-pod": ">=0.0.1",
+    "keen.io": "^0.1.2"
+  },
+  "engines": {
+    "node": ">= 0.10.0"
+  }
+}
