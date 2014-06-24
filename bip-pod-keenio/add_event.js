@@ -46,8 +46,8 @@ AddEvent.prototype.getSchema = function() {
           "description" : "Collection Name"
         },
         "event" : {
-          "type" :  "object",
-          "description" : "Event Object"
+          "type" :  "string",
+          "description" : "Event Object (JSON String)"
         }
       }
     },
