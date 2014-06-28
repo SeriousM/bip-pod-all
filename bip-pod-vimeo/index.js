@@ -21,22 +21,29 @@
 var Pod = require('bip-pod'),
 VimeoAPI = require('vimeo-api').Vimeo,
 Vimeo = new Pod({
-  name : 'vimeo', // pod name (action prefix)
-  description : 'Vimeo', // short description
+  name : 'vimeo',
+  description : 'Vimeo',
   description_long : '<a href="https://vimeo.com">Vimeo</a>.  Your videos will love it here',
   authType : 'oauth',
   passportStrategy : require('passport-vimeo-oauth2').Strategy,
   config : {
     "oauth": {
       "clientID" : "",
-      "clientSecret" : ""
+      "clientSecret" : "",
+      "scopes": [
+        "public",
+        "private",
+        "create",
+        "interact",
+        "upload"
+      ]
     }
   }
 });
 
 Vimeo._getClient = function(sysImports) {
   var podConfig = this.getConfig(),
-    client = new VimeoAPI(podConfig.oauth.clientID, podConfig.oauth.clientSecret);
+  client = new VimeoAPI(podConfig.oauth.clientID, podConfig.oauth.clientSecret);
 
   client.access_token = sysImports.auth.oauth.token;
   client.scope = 'public private upload';
