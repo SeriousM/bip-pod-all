@@ -1,6 +1,6 @@
 {
     "name": "bip-pod-vimeo",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "Vimeo Pod for Bipio",
     "keywords": [
     "bip",
@@ -25,6 +25,7 @@
     "dependencies": {
         "bip-pod" : ">=0.0.1",
         "vimeo-api" : ">=0.9.4"
+        "passport-vimeo-oauth2" : ">=0.0.1"
     },
     "engines": {
         "node": ">= 0.10.0"
