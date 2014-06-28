@@ -19,7 +19,7 @@
 function Upload(podConfig) {
   this.name = 'upload';
   this.description = 'Upload Video',
-  this.description_long = 'the long description',
+  this.description_long = 'Uploads a File to Vimeo.',
   this.trigger = false;
   this.singleton = true;
   this.auto = false;
