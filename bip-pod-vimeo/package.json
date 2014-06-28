@@ -24,7 +24,7 @@
     "main": ".",
     "dependencies": {
         "bip-pod" : ">=0.0.1",
-        "vimeo-api" : ">=0.9.4"
+        "vimeo-api" : ">=0.9.4",
         "passport-vimeo-oauth2" : ">=0.0.1"
     },
     "engines": {
