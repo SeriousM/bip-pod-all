@@ -73,13 +73,20 @@ Alchemy.post = function(method, params, sysImports, next) {
   );
 }
 
-// Include any actions
+// http://www.alchemyapi.com/api/content-scraping
 Alchemy.add(require('./scrape_nlp_url.js'));
 Alchemy.add(require('./scrape_nlp_html.js'));
 
+// http://www.alchemyapi.com/api/taxonomy
 Alchemy.add(require('./taxonomize_url.js'));
 Alchemy.add(require('./taxonomize_text.js'));
 Alchemy.add(require('./taxonomize_html.js'));
+
+// http://www.alchemyapi.com/api/image-tagging
+Alchemy.add(require('./image_tag_url.js'));
+
+// http://www.alchemyapi.com/api/sentiment
+Alchemy.add(require('./sentiment_text.js'));
 
 // -----------------------------------------------------------------------------
 module.exports = Alchemy;
