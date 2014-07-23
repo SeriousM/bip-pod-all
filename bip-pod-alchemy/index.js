@@ -87,6 +87,7 @@ Alchemy.add(require('./image_tag_url.js'));
 
 // http://www.alchemyapi.com/api/sentiment
 Alchemy.add(require('./sentiment_text.js'));
+Alchemy.add(require('./sentiment_text_target.js'));
 
 // -----------------------------------------------------------------------------
 module.exports = Alchemy;

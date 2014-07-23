@@ -17,25 +17,29 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-function SentimentText(podConfig) {
-  this.name = 'sentiment_text';
-  this.description = 'Get Sentiment from Text',
-  this.description_long = 'Analyses the sentiment (positive, neutral, negative, mixed) of the given text',
+function SentimentTextTarget(podConfig) {
+  this.name = 'sentiment_text_target';
+  this.description = 'Get Target Sentiment from Text',
+  this.description_long = 'Analyses the sentiment (positive, neutral, negative, mixed) of the given text for a keyword target',
   this.trigger = false;
   this.singleton = true;
   this.auto = true;
   this.podConfig = podConfig;
 }
 
-SentimentText.prototype = {};
+SentimentTextTarget.prototype = {};
 
-SentimentText.prototype.getSchema = function() {
+SentimentTextTarget.prototype.getSchema = function() {
   return {   
     "imports": {
       "properties" : {
         "text" : {
           "type" :  "string",
           "description" : "Source Text"
+        },
+        "target" : {
+          "type" :  "string",
+          "description" : "Target Phrase"
         },
         "url" : {
           "type" :  "string",
@@ -68,11 +72,12 @@ SentimentText.prototype.getSchema = function() {
 }
 
 
-SentimentText.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
+SentimentTextTarget.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
   
-  if (imports.text) {
+  if (imports.text && imports.target) {
     var params = {
-      text : imports.text
+      text : imports.text,
+      target : imports.target
     };
     
     if (imports.url) {
@@ -80,13 +85,13 @@ SentimentText.prototype.invoke = function(imports, channel, sysImports, contentP
     }
     
     this.pod.post(
-      'text/TextGetTextSentiment',
+      'text/TextGetTargetedSentiment',
       params,
       sysImports,
       function(err, body) {
         if (err) {
           next(err);
-        } else {
+        } else {          
           body.docSentiment.language = body.language;
           next(false, body.docSentiment);
         }
@@ -96,4 +101,4 @@ SentimentText.prototype.invoke = function(imports, channel, sysImports, contentP
 }
 
 // -----------------------------------------------------------------------------
-module.exports = SentimentText;
+module.exports = SentimentTextTarget;
