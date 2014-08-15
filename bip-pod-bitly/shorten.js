@@ -3,8 +3,8 @@
  * The Bipio Bitly Pod
  * ---------------------------------------------------------------
  *
- * @author Michael Pearson <michael@cloudspark.com.au>
- * Copyright (c) 2010-2013 CloudSpark pty ltd http://www.cloudspark.com.au
+ * @author Michael Pearson <github@m.bip.io>
+ * Copyright (c) 2010-2013 Michael Pearson https://github.com/mjpearson
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -75,7 +75,7 @@ Shorten.prototype.invoke = function(imports, channel, sysImports, contentParts, 
   if (imports.url && '' !== imports.url) {
     uri += imports.url + '&access_token=' + sysImports.auth.oauth.token;
     pod._httpGet(uri, function(err, bodyJSON) {
-      next(err || bodyJSON.status_code !== 200, bodyJSON.data);
+      next(err || bodyJSON.status_code !== 200, bodyJSON.data, contentParts, 0);
     });
   }    
 }
