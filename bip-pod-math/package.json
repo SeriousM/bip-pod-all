@@ -1,6 +1,7 @@
 {
   "name": "bip-pod-math",
-  "version": "0.0.2",
+  "version": "0.0.3",
+  "author" : "Michael Pearson",
   "description": "Math Pod for Bipio",
   "keywords": [
     "bip",
