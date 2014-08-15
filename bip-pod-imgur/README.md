@@ -17,17 +17,7 @@ pod icon into the server cdn
 
 Manually restart the bipio server at your convenience.
 
-## Actions
-
-### image_upload_anon
-
-Upload an image to Imgur Anonymously (meaning, not tied to your account)
-
-Sample Channel Config :
-
-```
-"action" : "imgur.image_upload_anon",
-```
+## Documentation
 
 [Bipio Docs](https://bip.io/docs/pods/imgur)
 
@@ -35,10 +25,6 @@ Sample Channel Config :
 
 BipIO is free for non-commercial use - [GPLv3](http://www.gnu.org/copyleft/gpl.html)
 
-Our open source license is the appropriate option if you are creating an open source application under a license compatible with the GNU GPL license v3. 
+If you'd like to integrate BipIO with your proprietary system, GPLv3 is likely incompatible. To secure a Commercial OEM License for Bipio, please [reach us](mailto:support.bip.io)
 
-Bipio may not be used for Commercial purposes by an entity who has not secured a Bipio Commercial OEM License.  To secure a Commercial OEM License for Bipio,
-please [reach us](mailto:enquiries@cloudspark.com.au)
-
-![Cloud Spark](http://www.cloudspark.com.au/cdn/static/img/cs_logo.png "Cloud Spark - Rapid Web Stacks Built Beautifully")
-Copyright (c) 2010-2013  [CloudSpark pty ltd](http://www.cloudspark.com.au)
+Copyright (c) 2010-2013  [Michael Pearson](https://github.com/mjpearson)

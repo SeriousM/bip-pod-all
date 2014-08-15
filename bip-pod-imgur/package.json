@@ -1,6 +1,7 @@
 {
     "name": "bip-pod-imgur",
-    "version": "0.0.5",
+    "version": "0.0.7",
+    "author" : "Michael Pearson",
     "description": "Imgur Pod for Bipio",
     "keywords": [
     "bip",
