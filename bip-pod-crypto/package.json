@@ -1,6 +1,7 @@
 {
     "name": "bip-pod-crypto",
-    "version": "0.0.1",
+    "version": "0.0.2",
+    "author" : "Michael Pearson",
     "description": "Crypto Pod for Bipio",
     "keywords": [
     "bip",
