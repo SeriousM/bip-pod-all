@@ -1,6 +1,7 @@
 {
     "name": "bip-pod-kato",
-    "version": "0.0.1",
+    "version": "0.0.2",
+    "author" : "Michael Pearson",
     "description": "Kato Pod for Bipio",
     "keywords": [
     "bip",
