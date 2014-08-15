@@ -1,6 +1,7 @@
 {
   "name": "bip-pod-alchemy",
-  "version": "0.0.5",
+  "author" : "Michael Pearson",
+  "version": "0.0.6",
   "description": "AlchemyAPI Pod for Bipio",
   "keywords": [
     "bip",
