@@ -1,6 +1,7 @@
 {
   "name": "bip-pod-dns",
-  "version": "0.0.4",
+  "author" : "Michael Pearson",
+  "version": "0.0.5",
   "description": "DNS Pod for Bipio",
   "keywords": [
     "bip",
