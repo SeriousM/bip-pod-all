@@ -3,8 +3,8 @@
  * AddItem
  * ---------------------------------------------------------------
  *
- * @author Michael Pearson <michael@cloudspark.com.au>
- * Copyright (c) 2010-2013 CloudSpark pty ltd http://www.cloudspark.com.au
+ * @author Michael Pearson <github@m.bip.io>
+ * Copyright (c) 2010-2013 Michael Pearson https://github.com/mjpearson
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ function AddItem(podConfig) {
   this.description = 'Add a Task', // short description
   this.description_long = 'Adds a Todoist Task', // long description
   this.trigger = false; // this action can trigger
-  this.singleton = true; // 1 instance per account (can auto install)
+  this.singleton = false; // 1 instance per account (can auto install)
   this.auto = false; // automatically install this action
   this.podConfig = podConfig; // general system level config for this pod (transports etc)
 }
@@ -35,12 +35,18 @@ AddItem.prototype = {};
 // AddItem schema definition
 // @see http://json-schema.org/
 AddItem.prototype.getSchema = function() {
-  return {
+  var schema = {
     "config": {
       "properties" : {
         "project_id" : {
           "type" :  "string",
-          "description" : "Project ID"
+          "description" : "Project ID"/*,
+          "oneOf" : [
+            {
+              "$ref" : "#/renderers/get_projects/{id}",
+              "label" : "{name}"
+            }
+          ]*/
         }
       }
     },
@@ -84,10 +90,16 @@ AddItem.prototype.getSchema = function() {
       'get_projects' : {
         description : 'Retrieve Projects',
         description_long : 'Retrieves all projects for your account',
-        contentType : DEFS.CONTENTTYPE_JSON
+        contentType : DEFS.CONTENTTYPE_JSON,
+        properties : {          
+        }
       }
     }
-  }
+  };
+  
+  //schema.renderers.get_projects.properties = this.pod.getProjectSchema().properties;
+  
+  return schema;
 }
 
 // RPC/Renderer accessor - /rpc/render/channel/{channel id}/hello

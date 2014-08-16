@@ -1,6 +1,7 @@
 {
     "name": "bip-pod-todoist",
-    "version": "0.0.1",
+    "version": "0.0.2",
+    "author" : "Michael Pearson",
     "description": "Todoist Pod for Bipio",
     "keywords": [
     "bip",

@@ -2,8 +2,8 @@
  *
  * The Bipio Todoist Pod
  *
- * @author Michael Pearson <michael@cloudspark.com.au>
- * Copyright (c) 2010-2013 CloudSpark pty ltd http://www.cloudspark.com.au
+ * @author Michael Pearson <github@m.bip.io>
+ * Copyright (c) 2010-2013 Michael Pearson https://github.com/mjpearson
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,6 +29,42 @@ Todoist = new Pod({
   }
 });
 
+
+Todoist.getProjectSchema = function() {
+  return {
+    "properties" : {
+      "id" : {
+        "type" :  "integer",
+        "description" : "ID"
+      },
+      "name" : {
+        "type" :  "string",
+        "description" : "Name"
+      },
+      "color" : {
+        "type" :  "string",
+        "description" : "Label Color"
+      },
+      "is_archived" : {
+        "type" :  "integer",
+        "description" : "Is Archived"
+      },
+      "is_deleted" : {
+        "type" :  "integer",
+        "description" : "Is Archived"
+      },
+      "inbox_project" : {
+        "type" :  "boolean",
+        "description" : "Is InBox"
+      },
+      "last_updated" : {
+        "type" :  "string",
+        "description" : ""
+      }
+    }
+  }
+}
+
 //
 Todoist.getRequest = function(method, sysImports, params, next) {
   var p = [];
@@ -41,7 +77,7 @@ Todoist.getRequest = function(method, sysImports, params, next) {
   this._httpGet(
     'https://todoist.com/API/' + method + '?token=' + sysImports.auth.issuer_token.password + '&' + p.join('&'),
     next
-  );
+    );
 }
 
 // Include any actions
