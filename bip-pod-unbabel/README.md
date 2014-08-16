@@ -1,4 +1,4 @@
-![Unbabel](undefined.png) bip-pod-unbabel
+![Unbabel](unbabel.png) bip-pod-unbabel
 =======
 
 <a href="http://en.wikipedia.org/wiki/Unbabel_(text)">unbabel</a> pod for [bipio](https://bip.io).  
