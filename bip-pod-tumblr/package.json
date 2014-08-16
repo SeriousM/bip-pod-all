@@ -1,6 +1,7 @@
 {
   "name": "bip-pod-tumblr",
-  "version": "0.0.10",
+  "version": "0.0.11",
+  "author" : "Michael Pearson",
   "description": "Tumblr Pod for Bipio",
   "keywords": [
     "bip",
