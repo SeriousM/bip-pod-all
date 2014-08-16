@@ -1,7 +1,7 @@
 /**
  *
- * @author Michael Pearson <michael@cloudspark.com.au>
- * Copyright (c) 2010-2014 CloudSpark pty ltd http://www.cloudspark.com.au
+ * @author Michael Pearson <github@m.bip.io>
+ * Copyright (c) 2010-2014 Michael Pearson https://github.com/mjpearson
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -36,11 +36,13 @@ Calculate.prototype.getSchema = function() {
       "properties" : {
         "expression" : {
           "type" :  "string",
-          "description" : "Date Expression"
+          "description" : "Date Expression",
+          "example" : "in 3 days"
         },
         "format" : {
           "type" :  "string",
-          "description" : "Date Format"
+          "description" : "Date Format",
+          "example" : "DD/MM/YYYY"
         }
       }
     },
@@ -48,7 +50,7 @@ Calculate.prototype.getSchema = function() {
       "properties" : {
         "date_calculated" : {
           "type" : "string",
-          "description" : "Calculateted Time"
+          "description" : "Calculated Time"
         }
       }
     }
