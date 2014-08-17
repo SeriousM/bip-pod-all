@@ -1,6 +1,6 @@
 {
   "name": "bip-pod-wordpress",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author" : "Michael Pearson",
   "description": "Wordpress Pod for Bipio",
   "keywords": [
