@@ -19,8 +19,8 @@
 
 function ScrapeURL(podConfig) {
   this.name = 'scrape_nlp_url';
-  this.description = 'Scrape a URL using natural language',
-  this.description_long = 'Extract structured data from a URL using natural language.',
+  this.title = 'Scrape a URL using natural language',
+  this.description = 'Extract structured data from a URL using natural language.',
   this.trigger = false;
   this.singleton = true;
   this.auto = true;
@@ -43,7 +43,8 @@ ScrapeURL.prototype.getSchema = function() {
           "type" :  "string",
           "description" : "NLP Query"
         }
-      }
+      },
+      "required" : [ "url", "query" ]
     },
     "exports": {
       "properties" : {

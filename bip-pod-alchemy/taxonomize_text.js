@@ -19,8 +19,8 @@
 
 function TaxonomizeText(podConfig) {
   this.name = 'taxonomize_text';
-  this.description = 'Classify Text',
-  this.description_long = 'Classifies Text Content',
+  this.title = 'Classify Text',
+  this.description = 'Classifies Text Content',
   this.trigger = false;
   this.singleton = true;
   this.auto = true;

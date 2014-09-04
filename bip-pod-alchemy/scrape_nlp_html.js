@@ -19,8 +19,8 @@
 
 function ScrapeHTML(podConfig) {
   this.name = 'scrape_nlp_html';
-  this.description = 'Scrape HTML using natural language',
-  this.description_long = 'Extract structured data for uploaded HTML using natural language',
+  this.title = 'Scrape HTML using natural language',
+  this.description = 'Extract structured data for uploaded HTML using natural language',
   this.trigger = false;
   this.singleton = true;
   this.auto = true;
@@ -43,7 +43,8 @@ ScrapeHTML.prototype.getSchema = function() {
           "type" :  "string",
           "description" : "NLP Query"
         }
-      }
+      },
+      "required" : [ "html", "query" ]
     },
     "exports": {
       "properties" : {

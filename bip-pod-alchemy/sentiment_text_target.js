@@ -19,8 +19,8 @@
 
 function SentimentTextTarget(podConfig) {
   this.name = 'sentiment_text_target';
-  this.description = 'Get Target Sentiment from Text',
-  this.description_long = 'Analyses the sentiment (positive, neutral, negative, mixed) of the given text for a keyword target',
+  this.title = 'Get Target Sentiment from Text',
+  this.description = 'Analyses the sentiment (positive, neutral, negative, mixed) of the given text for a keyword target',
   this.trigger = false;
   this.singleton = true;
   this.auto = true;
@@ -46,7 +46,8 @@ SentimentTextTarget.prototype.getSchema = function() {
           "description" : "Source URL (optional)",
           "required" : false
         }
-      }
+      },
+      "required" : [ "text", "target" ]
     },
     "exports": {
       "properties" : {

@@ -19,8 +19,8 @@
 
 function TaxonomizeURL(podConfig) {
   this.name = 'taxonomize_url';
-  this.description = 'Classify by URL',
-  this.description_long = 'Classifies web content by URL',
+  this.title = 'Classify by URL',
+  this.description = 'Classifies web content by URL',
   this.trigger = false;
   this.singleton = true;
   this.auto = true;

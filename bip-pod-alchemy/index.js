@@ -22,8 +22,8 @@ var Pod = require('bip-pod'),
   request = require('request'),
   Alchemy = new Pod({
         name : 'alchemy', // pod name (action prefix)
-        description : 'AlchemyAPI', // short description
-        description_long : 'Text Analysis by <a href="http://www.alchemyapi.com/" target="_blank">AlchemyAPI</a>. The World\'s Most Popular Natural Language Processing Service.',
+        title : 'AlchemyAPI', // short description
+        description : 'Text Analysis by <a href="http://www.alchemyapi.com/" target="_blank">AlchemyAPI</a>. The World\'s Most Popular Natural Language Processing Service.',
         authType : 'issuer_token',
         authMap : {
             password : 'API Key'

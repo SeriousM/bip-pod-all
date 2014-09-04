@@ -1,7 +1,7 @@
 /**
  *
  * @author Michael Pearson <github@m.bip.io>
- * Copyright (c) 2010-2013 Michael Pearson https://github.com/mjpearson
+ * Copyright (c) 2010-2014 Michael Pearson https://github.com/mjpearson
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,8 +19,8 @@
 
 function ImageTagURL(podConfig) {
   this.name = 'image_tag_url';
-  this.description = 'Tag an image by URL',
-  this.description_long = 'Tags an image by URL',
+  this.title = 'Tag an image by URL',
+  this.description = 'Tags an image by URL',
   this.trigger = false;
   this.singleton = true;
   this.auto = true;
@@ -39,7 +39,8 @@ ImageTagURL.prototype.getSchema = function() {
           "type" :  "string",
           "description" : "Source URL"
         }
-      }
+      },
+      "required" : [ "url" ]
     },
     "exports": {
       "properties" : {

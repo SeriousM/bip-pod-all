@@ -19,8 +19,8 @@
 
 function TaxonomizeHTML(podConfig) {
   this.name = 'taxonomize_html';
-  this.description = 'Classify by HTML',
-  this.description_long = 'Classifies HTML Content',
+  this.title = 'Classify by HTML',
+  this.description = 'Classifies HTML Content',
   this.trigger = false;
   this.singleton = true;
   this.auto = true;
