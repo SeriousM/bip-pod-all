@@ -22,8 +22,8 @@ var Pod = require('bip-pod'),
   tldtools = require('tldtools'),
   DNS = new Pod({
     name : 'dns', // pod name (action prefix)
-    description : 'DNS',
-    description_long : 'Host, whois and general discovery with the global Domain Name System'
+    title : 'DNS',
+    description : 'Host, whois and general discovery with the global Domain Name System'
   });
 
 tldtools.init();

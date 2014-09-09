@@ -19,8 +19,8 @@
 
 function ResolveMX(podConfig) {
   this.name = 'resolve_mx';
-  this.description = 'Resolve MX',
-  this.description_long = 'Resolves the MX (Mail Exchange) for a URL',
+  this.title = 'Resolve MX',
+  this.description = 'Resolves the MX (Mail Exchange) for a URL',
   this.trigger = false; // this action can trigger
   this.singleton = true; // 1 instance per account (can auto install)
   this.podConfig = podConfig; // general system level config for this pod (transports etc)
@@ -38,7 +38,8 @@ ResolveMX.prototype.getSchema = function() {
           "type" :  "string",
           "description" : "URL"
         }
-      }
+      },
+      "required" : [ "url" ]
     },
     "exports": {
       "properties" : {
@@ -82,7 +83,7 @@ ResolveMX.prototype.invoke = function(imports, channel, sysImports, contentParts
             if (undefined === p || p <= mx.priority) {
               exports.mx_first = mx;
               p = mx.priority;
-            }            
+            }
           }
           next(false, exports);
         }

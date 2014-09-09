@@ -19,8 +19,8 @@
 
 function Whois(podConfig) {
   this.name = 'whois';
-  this.description = 'Get Whois',
-  this.description_long = 'Extracts Whois Data from a URL',
+  this.title = 'Get Whois',
+  this.description = 'Extracts Whois Data from a URL',
   this.trigger = false; // this action can trigger
   this.singleton = true; // 1 instance per account (can auto install)
   this.podConfig = podConfig; // general system level config for this pod (transports etc)
@@ -38,7 +38,8 @@ Whois.prototype.getSchema = function() {
           "type" :  "string",
           "description" : "URL"
         }
-      }
+      },
+      "required" : [ "url" ]
     },
     "exports": {
       "properties" : {
@@ -57,7 +58,7 @@ Whois.prototype.invoke = function(imports, channel, sysImports, contentParts, ne
     tldTools.whois(
       imports.url,
       {
-        onSuccess : function(whoisData) {          
+        onSuccess : function(whoisData) {
           next(
             false,
             {

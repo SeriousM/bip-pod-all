@@ -21,8 +21,8 @@ var ipaddr = require('ipaddr.js');
 
 function Reverse(podConfig) {
   this.name = 'reverse';
-  this.description = 'Reverse Lookup',
-  this.description_long = 'Reverse resolves an ip address to an array of domain names',
+  this.title = 'Reverse Lookup',
+  this.description = 'Reverse resolves an ip address to an array of domain names',
   this.trigger = false; // this action can trigger
   this.singleton = true; // 1 instance per account (can auto install)
   this.podConfig = podConfig; // general system level config for this pod (transports etc)
@@ -40,7 +40,8 @@ Reverse.prototype.getSchema = function() {
           "type" :  "string",
           "description" : "IP Address"
         }
-      }
+      },
+      "required" : [ "ip_addr" ]
     },
     "exports": {
       "properties" : {
@@ -62,7 +63,7 @@ Reverse.prototype.invoke = function(imports, channel, sysImports, contentParts, 
   if (imports.ip_addr) {
     if (!ipaddr.IPv4.isValid(imports.ip_addr) && !ipaddr.IPv6.isValid(imports.ip_addr) ) {
       next('Invalid IP Address ' + imports.ip_addr);
-    } else {    
+    } else {
       this.pod.get().reverse(imports.ip_addr, function(err, ip_addrs) {
         if (err) {
           next(err);

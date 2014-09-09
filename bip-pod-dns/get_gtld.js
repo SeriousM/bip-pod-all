@@ -19,8 +19,8 @@
 
 function GetGTLD(podConfig) {
   this.name = 'get_gtld';
-  this.description = 'Get GTLD',
-  this.description_long = 'Extracts GTLD and Subdomain tokens from a URL.  Works with any URI Scheme.',
+  this.title = 'Get GTLD',
+  this.description = 'Extracts GTLD and Subdomain tokens from a URL.  Works with any URI Scheme.',
   this.trigger = false; // this action can trigger
   this.singleton = true; // 1 instance per account (can auto install)
   this.podConfig = podConfig; // general system level config for this pod (transports etc)
@@ -38,7 +38,8 @@ GetGTLD.prototype.getSchema = function() {
           "type" :  "string",
           "description" : "URL"
         }
-      }
+      },
+      "required" : [ "url" ]
     },
     "exports": {
       "properties" : {
@@ -78,9 +79,9 @@ GetGTLD.prototype.invoke = function(imports, channel, sysImports, contentParts, 
       protocol : tokens.url_tokens.protocol.replace(':', ''),
       host : tokens.url_tokens.hostname
     };
-    
-    next(false, exports);  
-  }  
+
+    next(false, exports);
+  }
 }
 
 // -----------------------------------------------------------------------------

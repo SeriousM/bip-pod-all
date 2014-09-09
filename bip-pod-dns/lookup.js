@@ -19,8 +19,8 @@
 
 function Lookup(podConfig) {
   this.name = 'lookup';
-  this.description = 'Resolve a Domain',
-  this.description_long = 'Resolves a domain into the first found A (IPv4) or AAAA (IPv6) record',
+  this.title = 'Resolve a Domain',
+  this.description = 'Resolves a domain into the first found A (IPv4) or AAAA (IPv6) record',
   this.trigger = false; // this action can trigger
   this.singleton = true; // 1 instance per account (can auto install)
   this.podConfig = podConfig; // general system level config for this pod (transports etc)
@@ -38,7 +38,8 @@ Lookup.prototype.getSchema = function() {
           "type" :  "string",
           "description" : "URL"
         }
-      }
+      },
+      "required" : [ "url" ]
     },
     "exports": {
       "properties" : {
