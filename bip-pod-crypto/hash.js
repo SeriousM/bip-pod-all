@@ -22,8 +22,8 @@
 var crypto = require('crypto');
 function Hash(podConfig) {
   this.name = 'hash';
-  this.description = 'Generates a MD5 Hash',
-  this.description_long = 'Generates a MD5 Hash of the supplied content',
+  this.title = 'Generates a MD5 Hash',
+  this.description = 'Generates a MD5 Hash of the supplied content',
   this.trigger = false;
   this.singleton = true;
   this.podConfig = podConfig;
@@ -39,7 +39,8 @@ Hash.prototype.getSchema = function() {
           type : "string",
           description : "Content Funnel"
         }
-      }
+      },
+      'required' : [ 'funnel' ]
     },
     'exports' : {
       properties : {
