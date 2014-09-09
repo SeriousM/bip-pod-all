@@ -22,8 +22,8 @@
 
 function Shorten(podConfig) {
   this.name = 'shorten';
-  this.description = "Shortens a URL";
-  this.description_long = "Given a long URL, returns a bitly short URL";
+  this.title = "Shortens a URL";
+  this.description = "Given a long URL, returns a bitly short URL";
   this.trigger = false;
   this.singleton = true;
   this.auto = true;
@@ -39,8 +39,9 @@ Shorten.prototype.getSchema = function() {
         'url' : {
           type : 'string',
           description : 'URL'
-        }        
-      }
+        }
+      },
+      "required" : [ 'url' ]
     },
     'exports' : {
       properties : {
@@ -77,7 +78,7 @@ Shorten.prototype.invoke = function(imports, channel, sysImports, contentParts, 
     pod._httpGet(uri, function(err, bodyJSON) {
       next(err || bodyJSON.status_code !== 200, bodyJSON.data, contentParts, 0);
     });
-  }    
+  }
 }
 
 // -----------------------------------------------------------------------------

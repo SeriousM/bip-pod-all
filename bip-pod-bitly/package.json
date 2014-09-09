@@ -1,7 +1,7 @@
 {
   "name": "bip-pod-bitly",
   "author" : "Michael Pearson",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Bitly Pod for Bipio",
   "keywords": [
   "bip",

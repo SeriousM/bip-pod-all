@@ -22,8 +22,8 @@
 
 function Expand(podConfig) {
   this.name = 'expand';
-  this.description = "Expands a URL";
-  this.description_long = "Given a bitly URL or hash (or multiple), returns the target (long) URL";
+  this.title = "Expands a URL";
+  this.description = "Given a bitly URL or hash (or multiple), returns the target (long) URL";
   this.trigger = false;
   this.singleton = true;
   this.auto = true;
@@ -43,8 +43,9 @@ Expand.prototype.getSchema = function() {
         'hash' : {
           type : 'string',
           description : 'Bitly URL Hash (optional)'
-        }        
-      }
+        }
+      },
+      "required" : [ 'short_url']
     },
     'exports' : {
       properties : {
@@ -85,7 +86,7 @@ Expand.prototype.invoke = function(imports, channel, sysImports, contentParts, n
     pod._httpGet(uri, function(err, bodyJSON) {
       next(err || bodyJSON.status_code !== 200, bodyJSON.data, contentParts, 0);
     });
-  }    
+  }
 }
 
 // -----------------------------------------------------------------------------
