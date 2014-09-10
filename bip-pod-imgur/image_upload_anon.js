@@ -7,7 +7,7 @@
  * ---------------------------------------------------------------
  *
  * @author Michael Pearson <github@m.bip.io>
- * Copyright (c) 2010-2013 Michael Pearson https://github.com/mjpearson
+ * Copyright (c) 2010-2014 Michael Pearson https://github.com/mjpearson
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,8 +28,8 @@ var request = require('request'),
 
 function ImageUploadAnon(podConfig) {
     this.name = 'image_upload_anon';
-    this.description = 'Anon Image Upload',
-    this.description_long = 'Upload an image to Imgur Anonymously (meaning, not tied to your account)',
+    this.title = 'Anon Image Upload',
+    this.description = 'Upload an image to Imgur Anonymously (meaning, not tied to your account)',
     this.trigger = false;
     this.singleton = true;
     this.auto = true; // can auto-install with empty config
@@ -39,7 +39,7 @@ function ImageUploadAnon(podConfig) {
 ImageUploadAnon.prototype = {};
 
 ImageUploadAnon.prototype.getSchema = function() {
-    return {        
+    return {
         'exports' : {
             properties : {
                 'id' : {
@@ -56,7 +56,7 @@ ImageUploadAnon.prototype.getSchema = function() {
                 }
             }
         },
-        "imports": {        
+        "imports": {
             properties : {
                 "title" : {
                     type : "string",
@@ -105,8 +105,8 @@ ImageUploadAnon.prototype.invoke = function(imports, channel, sysImports, conten
         }
     } else {
         // silent passthrough
-        next(false, exports);    
-    }    
+        next(false, exports);
+    }
 }
 
 // -----------------------------------------------------------------------------

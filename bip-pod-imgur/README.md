@@ -1,7 +1,7 @@
 ![Imgur](imgur.png) bip-pod-imgur
 =======
 
-[Imgur API](http://api.imgur.com/) pod for [bipio](https://bip.io).  
+[Imgur API](http://api.imgur.com/) pod for [bipio](https://bip.io).
 
 ## Installation
 
@@ -25,6 +25,6 @@ Manually restart the bipio server at your convenience.
 
 BipIO is free for non-commercial use - [GPLv3](http://www.gnu.org/copyleft/gpl.html)
 
-If you'd like to integrate BipIO with your proprietary system, GPLv3 is likely incompatible. To secure a Commercial OEM License for Bipio, please [reach us](mailto:support.bip.io)
+If you'd like to integrate BipIO with your proprietary system, GPLv3 is likely incompatible. To secure a Commercial OEM License for Bipio, please [reach us](mailto:hello@bip.io)
 
-Copyright (c) 2010-2013  [Michael Pearson](https://github.com/mjpearson)
+Copyright (c) 2010-2014  [Michael Pearson](https://github.com/mjpearson)
