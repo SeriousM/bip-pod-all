@@ -22,8 +22,8 @@
 
 function AddSubscriber(podConfig) {
   this.name = 'add_subscriber'; // action name (channel action suffix - "action: boilerplate.simple")
-  this.description = 'Add a Subscriber', // short description
-  this.description_long = 'Any Email address this channel receives will be added as a subscriber to an existing list', // long description
+  this.title = 'Add a Subscriber', // short description
+  this.description = 'Any Email address this channel receives will be added as a subscriber to an existing list', // long description
   this.trigger = false; // this action can trigger
   this.singleton = false; // 1 instance per account (can auto install)
   this.auto = false; // automatically install this action
@@ -44,13 +44,14 @@ AddSubscriber.prototype.getSchema = function() {
           oneOf : [
             {
               '$ref' : '/renderers/get_lists#data/{id}'
-            }            
+            }
           ],
           label : {
             '$ref' : '/renderers/get_lists#data/{name}'
           }
         }
-      }
+      },
+      "required" : [ "list_id" ]
     },
     "imports": {
       "properties" : {
@@ -58,7 +59,8 @@ AddSubscriber.prototype.getSchema = function() {
           "type" :  "string",
           "description" : "Email Address"
         }
-      }
+      },
+      "required" : [ "email" ]
     },
     "exports": {
       "properties" : {
@@ -81,7 +83,7 @@ AddSubscriber.prototype.getSchema = function() {
         description : 'Retrieve Lists',
         description_long : 'Retrieves all lists for your account',
         contentType : DEFS.CONTENTTYPE_JSON
-      }     
+      }
     }
   }
 }
@@ -113,14 +115,14 @@ AddSubscriber.prototype.invoke = function(imports, channel, sysImports, contentP
   var log = this.$resource.log,
     args;
 
-  if (channel.config.list_id && imports.email) {  
+  if (channel.config.list_id && imports.email) {
     args = {
       id : channel.config.list_id,
       email : {
         email : imports.email
       }
     };
-    this.pod.callMC('lists', 'subscribe', args, sysImports, function(err, response) {    
+    this.pod.callMC('lists', 'subscribe', args, sysImports, function(err, response) {
       next(err, response);
     });
   }

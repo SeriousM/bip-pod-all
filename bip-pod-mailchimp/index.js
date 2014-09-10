@@ -22,8 +22,8 @@ var Pod = require('bip-pod'),
 MailChimpAPI = require('mailchimp').MailChimpAPI,
 MailChimp = new Pod({
   name : 'mailchimp', // pod name (action prefix)
-  description : 'MailChimp', // short description
-  description_long : 'MailChimp is an email marketing service provider. It is a web-based application, although data can be downloaded and for some features there is an offline application.', // long description
+  title : 'MailChimp', // short description
+  description : 'MailChimp is an email marketing service provider. It is a web-based application, although data can be downloaded and for some features there is an offline application.', // long description
   authType : 'oauth',
   passportStrategy : require('passport-mailchimp').Strategy,
   config : {
@@ -59,18 +59,18 @@ MailChimp.rpc = function(action, method, sysImports, options, channel, req, res)
       } else {
         res.send(results);
       }
-    });   
+    });
   } else {
     this.__proto__.rpc.apply(this, arguments);
   }
 }
 
-MailChimp.getAPI = function(sysImports) {  
+MailChimp.getAPI = function(sysImports) {
   // fudge the api key for the mailchimp package.
-  // need to inject   
+  // need to inject
   var api = new MailChimpAPI(
-      ' -' + JSON.parse(sysImports.auth.oauth.profile).dc,       
-      {    
+      ' -' + JSON.parse(sysImports.auth.oauth.profile).dc,
+      {
         version : '2.0'
     }
   );

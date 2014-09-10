@@ -22,8 +22,8 @@
 
 function AddSegmentStatic(podConfig) {
   this.name = 'add_static_segment'; // action name (channel action suffix - "action: boilerplate.simple")
-  this.description = 'Add Static Segment', // short description
-  this.description_long = 'Adds a Static Segment to an existing List', // long description
+  this.title = 'Add Static Segment', // short description
+  this.description = 'Adds a Static Segment to an existing List', // long description
   this.trigger = false; // this action can trigger
   this.singleton = false; // 1 instance per account (can auto install)
   this.auto = false; // automatically install this action
@@ -44,13 +44,14 @@ AddSegmentStatic.prototype.getSchema = function() {
           oneOf : [
             {
               '$ref' : '/renderers/get_lists#data/{id}'
-            }            
+            }
           ],
           label : {
             '$ref' : '/renderers/get_lists#data/{name}'
           }
-        }       
-      }
+        }
+      },
+      "required" :  [ "list_id" ]
     },
     "imports": {
       "properties" : {
@@ -58,14 +59,15 @@ AddSegmentStatic.prototype.getSchema = function() {
           "type" :  "string",
           "description" : "Segment Name"
         }
-      }
+      },
+      "required" :  [ "segment_name" ]
     },
     "exports": {
       "properties" : {
         "id" : {
           "type" : "string",
           "description" : "Segment ID"
-        }        
+        }
       }
     },
     'renderers' : {
@@ -110,7 +112,7 @@ AddSegmentStatic.prototype.invoke = function(imports, channel, sysImports, conte
       id : channel.config.list_id,
       name : imports.segment_name
     };
-    
+
     this.pod.callMC('lists', 'static-segment-add', args, sysImports, function(err, response) {
       next(err, response);
     });
