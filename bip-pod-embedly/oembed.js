@@ -56,7 +56,8 @@ OEmbed.prototype.getSchema = function() {
           "type" : "integer",
           "description" : "Max Description Words"
         }
-      }
+      },
+      "required" : [ "url" ]
     },
     "exports": {
       "properties" : {
@@ -129,21 +130,21 @@ OEmbed.prototype.invoke = function(imports, channel, sysImports, contentParts, n
         pod._testAndSet(imports, opts, 'maxwidth');
         pod._testAndSet(imports, opts, 'maxheight');
         pod._testAndSet(imports, opts, 'autoplay');
-        pod._testAndSet(imports, opts, 'words');        
+        pod._testAndSet(imports, opts, 'words');
 
         api.oembed(opts, function(err, obj) {
           if (err) {
             log(err, channel, 'error');
-          } else {              
+          } else {
             for (var i = 0; i < obj.length; i++) {
-              next(false, obj[i], contentParts, 0);  
-            }              
+              next(false, obj[i], contentParts, 0);
+            }
           }
         }
         );
-      }      
+      }
     });
-  }  
+  }
 }
 
 // -----------------------------------------------------------------------------

@@ -22,8 +22,8 @@
 
 function Extract(podConfig) {
   this.name = 'extract';
-  this.description = 'Extract Page',
-  this.description_long = 'The Extract endpoint is designed to provide users with important information from each link including the article text, keywords, related links, and even video embeds.',
+  this.title = 'Extract Page',
+  this.description = 'The Extract endpoint is designed to provide users with important information from each link including the article text, keywords, related links, and even video embeds.',
   this.trigger = false; // this action can trigger
   this.singleton = true; // only 1 instance per account (can auto install)
   this.auto = true; // no config, not a singleton but can auto-install anyhow
@@ -48,7 +48,8 @@ Extract.prototype.getSchema = function() {
           "type" : "integer",
           "description" : "Max Height"
         }
-      }
+      },
+      "required" : [ "url" ]
     },
     "exports": {
       "properties" : {
@@ -97,21 +98,21 @@ Extract.prototype.invoke = function(imports, channel, sysImports, contentParts, 
         pod._testAndSet(imports, opts, 'maxwidth');
         pod._testAndSet(imports, opts, 'maxheight');
         pod._testAndSet(imports, opts, 'autoplay');
-        pod._testAndSet(imports, opts, 'words');        
+        pod._testAndSet(imports, opts, 'words');
 
         api.extract(opts, function(err, obj) {
           if (err) {
             log(err, channel, 'error');
-          } else {              
+          } else {
             for (var i = 0; i < obj.length; i++) {
-              next(false, obj[i]);  
-            }              
+              next(false, obj[i]);
+            }
           }
         }
         );
-      }      
+      }
     });
-  }  
+  }
 }
 
 // -----------------------------------------------------------------------------
