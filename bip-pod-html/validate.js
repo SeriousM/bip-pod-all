@@ -22,8 +22,8 @@
 
 function Validate(podConfig) {
   this.name = 'validate'; // action name (channel action suffix - "action: boilerplate.simple")
-  this.description = 'W3C Validate', // short description
-  this.description_long = 'Validates HTML with the W3C Validation Service, exporting the results', // long description
+  this.title = 'W3C Validate', // short description
+  this.description = 'Validates HTML with the W3C Validation Service, exporting the results', // long description
   this.trigger = false; // this action can trigger
   this.singleton = true; // 1 instance per account (can auto install)
   this.auto = false; // automatically install this action
@@ -63,7 +63,8 @@ Validate.prototype.getSchema = function() {
           "type" :  "string",
           "description" : "URL"
         }
-      }
+      },
+      "required" : [ "url" ]
     },
     "exports": {
       "properties" : {
@@ -98,9 +99,9 @@ Validate.prototype.invoke = function(imports, channel, sysImports, contentParts,
         for (var i = 0; i < result.messages.length; i++) {
           next(false, result.messages[i]);
         }
-      } else if ('json' === channel.config.aggregate) {        
+      } else if ('json' === channel.config.aggregate) {
         next(false, { message : JSON.stringify(result.messages) } );
-        
+
       } else if ('text' === channel.config.aggregate) {
         var textOutput = '', m;
         for (var i = 0; i < result.messages.length; i++) {

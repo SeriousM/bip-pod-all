@@ -27,8 +27,8 @@ var jsdom = require('jsdom'),
 
 function DOMSelect(podConfig) {
   this.name = 'dom_select'; // action name (channel action suffix - "action: boilerplate.simple")
-  this.description = 'DOM Selector', // short description
-  this.description_long = 'Select portions of DOM for export from a URL or raw HTML data using jQuery syntax', // long description
+  this.title = 'DOM Selector', // short description
+  this.description = 'Select portions of DOM for export from a URL or raw HTML data using jQuery syntax', // long description
   this.trigger = false; // this action can trigger
   this.singleton = false; // 1 instance per account (can auto install)
   this.auto = false; // automatically install this action
@@ -40,7 +40,7 @@ DOMSelect.prototype = {};
 // DOMSelect schema definition
 // @see http://json-schema.org/
 DOMSelect.prototype.getSchema = function() {
-  return {    
+  return {
     "imports": {
       "properties" : {
         "selector" : {
@@ -55,7 +55,8 @@ DOMSelect.prototype.getSchema = function() {
           "type" :  "string",
           "description" : "URL or HTML"
         }
-      }
+      },
+      "required" : [ "source" ]
     },
     "exports": {
       "properties" : {
@@ -85,7 +86,7 @@ DOMSelect.prototype.invoke = function(imports, channel, sysImports, contentParts
           if (err) {
             next(err);
           } else {
-            var $ = window.$;        
+            var $ = window.$;
             try {
               $(imports.selector).each(function () {
                 var $this = $(this),
@@ -111,7 +112,7 @@ DOMSelect.prototype.invoke = function(imports, channel, sysImports, contentParts
           }
         }
       };
-      
+
     if (isHTTPRequest) {
       conf.url = imports.source;
     } else {
