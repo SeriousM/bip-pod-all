@@ -25,8 +25,8 @@ request = require('request');
 
 FlickrPod = new Pod({
   name : 'flickr',
-  description : 'Flickr',
-  description_long : 'Picture galleries available with social networking, chat, groups, and photo ratings',
+  title : 'Flickr',
+  description : 'Picture galleries available with social networking, chat, groups, and photo ratings',
   /*
   dataSources : [
     require('./models/my_media'),
@@ -37,7 +37,6 @@ FlickrPod = new Pod({
     "oauth": {
       "consumerKey" : "",
       "consumerSecret" : "",
-      "callbackURL" : "", // eg: http://localhost:5000/rpc/oauth/flickr/cb
       "method" : "authenticate"
     }
   }
@@ -52,9 +51,9 @@ FlickrPod.getClient = function(sysImports, next) {
       user_id : profile.id,
       access_token : sysImports.auth.oauth.token,
       access_token_secret : sysImports.auth.oauth.secret,
-      nobrowser : true      
+      nobrowser : true
     };
-  
+
   Flickr.authenticate(options, next);
 };
 

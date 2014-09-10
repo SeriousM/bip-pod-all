@@ -22,8 +22,8 @@
 
 function GetRecent(podConfig) {
   this.name = 'get_recent';
-  this.description = "Get Recent Photos";
-  this.description_long = "Returns a list of your latest public photos uploaded to flickr.";
+  this.title = "Get Recent Photos";
+  this.description = "Returns a list of your latest public photos uploaded to flickr.";
   this.trigger = true;
   this.singleton = true;
   this.auto = true;
