@@ -22,8 +22,8 @@
 
 function RoomNotify(podConfig) {
   this.name = 'room_notify'; // action name (channel action suffix - "action: boilerplate.simple")
-  this.description = 'Send a message to a room', // short description
-  this.description_long = 'Send a message to a room', // long description
+  this.title = 'Send a message to a room', // short description
+  this.description = 'Send a message to a room', // long description
   this.trigger = false; // this action can trigger
   this.singleton = false; // 1 instance per account (can auto install)
   this.auto = false; // automatically install this action
@@ -54,7 +54,8 @@ RoomNotify.prototype.getSchema = function() {
           "type" :  "string",
           "description" : "Room Notification Token"
         }
-      }
+      },
+      "required" : [ "room_id", "room_token" ]
     },
     "imports": {
       "properties" : {
@@ -62,7 +63,8 @@ RoomNotify.prototype.getSchema = function() {
           "type" :  "string",
           "description" : "Message"
         }
-      }
+      },
+      "required" : [ "message" ]
     },
     "exports": {
       "properties" : {

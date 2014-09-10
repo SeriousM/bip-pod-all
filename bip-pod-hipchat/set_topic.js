@@ -50,7 +50,8 @@ SetTopic.prototype.getSchema = function() {
             '$ref' : '/renderers/my_pages/{name}'
           }
         }
-      }
+      },
+      "required" : [ "room_id" ]
     },
     "imports": {
       "properties" : {
@@ -59,6 +60,7 @@ SetTopic.prototype.getSchema = function() {
           "description" : "New topic"
         }
       }
+      "required" : [ "topic" ]
     },
     "exports": {
       "properties" : {

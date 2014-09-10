@@ -22,8 +22,8 @@
 
 function CreateWebHook(podConfig) {
   this.name = 'create_webhook'; // action name (channel action suffix - "action: boilerplate.simple")
-  this.description = 'Create Webhook', // short description
-  this.description_long = 'Creates a new webhook', // long description
+  this.title = 'Create Webhook', // short description
+  this.description = 'Creates a new webhook', // long description
   this.trigger = false; // this action can trigger
   this.singleton = false; // 1 instance per account (can auto install)
   this.auto = false; // automatically install this action

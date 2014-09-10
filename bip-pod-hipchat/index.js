@@ -22,8 +22,8 @@ var Pod = require('bip-pod'),
 Hipchatter = require('hipchatter'),
 HipChat = new Pod({
   name : 'hipchat', // pod name (action prefix)
-  description : 'HipChat', // short description
-  description_long : 'HipChat is hosted group chat and IM for companies and teams. Supercharge real-time collaboration with persistent chat rooms, file sharing, and chat history', // long description
+  title : 'HipChat', // short description
+  description : 'HipChat is hosted group chat and IM for companies and teams. Supercharge real-time collaboration with persistent chat rooms, file sharing, and chat history', // long description
   authType : 'issuer_token',
   authMap : {
     password : 'API Access Token'
