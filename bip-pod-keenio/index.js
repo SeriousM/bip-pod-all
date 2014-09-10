@@ -22,8 +22,8 @@ var Pod = require('bip-pod'),
   Keen = require('keen.io'),
   KeenIO = new Pod({
     name : 'keenio', // pod name (action prefix)
-    description : 'KeenIO', // short description
-    description_long : '<a href="https://keen.io">Keen IO</a> - Analytics for Developers', // long description
+    title : 'KeenIO', // short description
+    description : '<a href="https://keen.io">Keen IO</a> - Analytics for Developers', // long description
     authType : 'issuer_token',
     authMap : {
       username : 'Read Key',

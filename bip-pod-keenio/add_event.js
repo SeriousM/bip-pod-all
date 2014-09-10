@@ -19,8 +19,8 @@
 
 function AddEvent(podConfig) {
   this.name = 'add_event';
-  this.description = 'Add an Event',
-  this.description_long = 'Adds KeenIO Event data to a Project Id',
+  this.title = 'Add an Event',
+  this.description = 'Adds KeenIO Event data to a Project Id',
   this.trigger = false;
   this.singleton = false;
   this.auto = false;
@@ -37,7 +37,8 @@ AddEvent.prototype.getSchema = function() {
           "type" :  "string",
           "description" : "Project ID"
         }
-      }
+      },
+      "required" : [ "project_id" ]
     },
     "imports": {
       "properties" : {
@@ -49,7 +50,8 @@ AddEvent.prototype.getSchema = function() {
           "type" :  "string",
           "description" : "Event Object (JSON String)"
         }
-      }
+      },
+      "required" : [ "collection_name", "event" ]
     },
     "exports": {
       "properties" : {
@@ -62,9 +64,9 @@ AddEvent.prototype.getSchema = function() {
   }
 }
 
-AddEvent.prototype.invoke = function(imports, channel, sysImports, contentParts, next) { 
+AddEvent.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
   var client = this.pod.getClient(sysImports, channel.config.project_id);
-  
+
   if (imports.collection_name && imports.event) {
     try {
       client.addEvent(imports.collection_name, JSON.parse(imports.event), function(err, res) {
@@ -73,7 +75,7 @@ AddEvent.prototype.invoke = function(imports, channel, sysImports, contentParts,
     } catch (e) {
       next(e);
     }
-  }  
+  }
 }
 
 // -----------------------------------------------------------------------------
