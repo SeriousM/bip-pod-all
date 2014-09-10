@@ -1,5 +1,5 @@
 /**
- * 
+ *
  * @author Michael Pearson <github@m.bip.io>
  * Copyright (c) 2010-2014 Michael Pearson https://github.com/mjpearson
  *
@@ -19,8 +19,8 @@
 
 function PostMessage(podConfig) {
   this.name = 'post_message';
-  this.description = 'Post a Message',
-  this.description_long = 'Posts a new message to a Kato room via the HTTP Post Integration',
+  this.title = 'Post a Message',
+  this.description = 'Posts a new message to a Kato room via the HTTP Post Integration',
   this.trigger = false;
   this.singleton = false;
   this.auto = false;
@@ -39,7 +39,7 @@ PostMessage.prototype.getSchema = function() {
         },
         "renderer" : {
           "type" :  "string",
-          "description" : "Text Renderer",          
+          "description" : "Text Renderer",
           oneOf : [
             {
               "$ref" : "#/config/definitions/renderer"
@@ -62,7 +62,8 @@ PostMessage.prototype.getSchema = function() {
           "enum_label" : ["Default", "Code", "Markdown" ],
           "default" : "default"
         }
-      }
+      },
+      "required" : [ "room_id" ]
     },
     "imports": {
       "properties" : {
@@ -74,7 +75,8 @@ PostMessage.prototype.getSchema = function() {
           "type" :  "string",
           "description" : "Message Text"
         }
-      }
+      },
+      "required" : [ "text" ]
     }
   }
 }
@@ -86,27 +88,27 @@ PostMessage.prototype.invoke = function(imports, channel, sysImports, contentPar
 
   if (channel.config.room_id && imports.text) {
     url += channel.config.room_id + '/simple';
-    
+
     payload = {
       text : imports.text,
       renderer : channel.config.renderer
     };
-    
-    color = imports.color || channel.config.color;    
+
+    color = imports.color || channel.config.color;
     if (color) {
       payload.color = color;
     }
-    
+
     if (channel.config.from) {
       payload.from = channel.config.from;
     }
-    
+
     this.$resource._httpPost(url, payload, function(err, body) {
       next(err, {});
     }, {
       'Content-Type' : 'application/json'
     });
-    
+
   }
 }
 
