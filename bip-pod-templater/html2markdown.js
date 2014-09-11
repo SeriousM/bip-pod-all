@@ -22,8 +22,8 @@ var md = require('html-md');
 
 function HTML2Markdown(podConfig) {
   this.name = 'html2markdown';
-  this.description = 'HTML to Markdown';
-  this.description_long = 'Converts a message from HTML to Markdown';
+  this.title = 'HTML to Markdown';
+  this.description = 'Converts a message from HTML to Markdown';
   this.trigger = false;
   this.singleton = true;
   this.auto = true;
@@ -40,7 +40,8 @@ HTML2Markdown.prototype.getSchema = function() {
           type : 'string',
           description : 'HTML'
         }
-      }
+      },
+      "required" : [ "html" ]
     },
     'exports' : {
       properties : {
@@ -56,9 +57,7 @@ HTML2Markdown.prototype.getSchema = function() {
 HTML2Markdown.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
   if (imports.html) {
     next(false, { markdown : md(imports.html)});
-  } else {
-    next(false, {});
-  }  
+  }
 }
 
 // -----------------------------------------------------------------------------
