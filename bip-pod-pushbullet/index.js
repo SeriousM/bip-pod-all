@@ -22,8 +22,8 @@ var Pod = require('bip-pod'),
 https = require('https'),
 PushBullet = new Pod({
   name : 'pushbullet',
-  description : 'PushBullet',
-  description_long : '<a href="https://www.pushbullet.com">Pushbullet</a> - Send files, links, and more to your phone and back, fast',
+  title : 'PushBullet',
+  description : '<a href="https://www.pushbullet.com">Pushbullet</a> - Send files, links, and more to your phone and back, fast',
   authType : 'issuer_token',
   authMap : {
     username : 'API Key'
@@ -45,22 +45,22 @@ PushBullet.pushbulletRequest = function(path, params, sysImports, next, method) 
     method: method || 'GET',
     auth : sysImports.auth.issuer_token.username + ':'
   }, paramStr;
-  
+
   if ('POST' === method && params) {
     paramStr = JSON.stringify(params);
-    opts.headers = {      
+    opts.headers = {
       'Content-Type': 'application/json',
       'Content-Length': paramStr.length
     }
   }
-  
+
   var req = https.request(opts, next);
-  
+
   if ('POST' === method) {
     req.write(paramStr);
   }
-  
-  req.end(); 
+
+  req.end();
 }
 
 PushBullet.pushbulletRequestParsed = function(path, params, sysImports, next, method) {
@@ -76,7 +76,7 @@ PushBullet.pushbulletRequestParsed = function(path, params, sysImports, next, me
         next(data);
       } else {
         try {
-          next(false, JSON.parse(data));          
+          next(false, JSON.parse(data));
         } catch (e) {
           next(e.message);
         }
@@ -87,11 +87,11 @@ PushBullet.pushbulletRequestParsed = function(path, params, sysImports, next, me
 
 PushBullet.rpc = function(action, method, sysImports, options, channel, req, res) {
   var pod = this.pod;
-  
+
   if (method == 'my_devices') {
     this.pushbulletRequest('devices', {}, sysImports, function(pRes) {
       pRes.pipe(res);
-    });    
+    });
   } else {
     this.__proto__.rpc.apply(this, arguments);
   }

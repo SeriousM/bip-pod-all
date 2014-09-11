@@ -19,8 +19,8 @@
 
 function PushNote(podConfig) {
   this.name = 'push_note';
-  this.description = 'Push a Note',
-  this.description_long = 'Push a Note to one of your connected devices',
+  this.title = 'Push a Note',
+  this.description = 'Push a Note to one of your connected devices',
   this.trigger = false;
   this.singleton = false;
   this.auto = false;
@@ -41,7 +41,7 @@ PushNote.prototype.getSchema = function() {
           oneOf : [
             {
               '$ref' : '/renderers/my_devices#devices/{iden}'
-            }            
+            }
           ],
           label : {
             '$ref' : '/renderers/my_devices#devices/{nickname}'
@@ -59,7 +59,8 @@ PushNote.prototype.getSchema = function() {
           "type" :  "string",
           "description" : "Body"
         }
-      }
+      },
+      "required" : [ "title", "body" ]
     },
     "exports": {
       "properties" : {
@@ -120,8 +121,8 @@ PushNote.prototype.getSchema = function() {
   }
 }
 
-PushNote.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {  
-  if (imports.title || imports.body) {    
+PushNote.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
+  if (imports.title || imports.body) {
     var params = {
       title : imports.title,
       body : imports.body,
