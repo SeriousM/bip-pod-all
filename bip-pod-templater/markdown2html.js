@@ -1,29 +1,29 @@
 /**
- * 
+ *
  * The Bipio Templater Pod.  text_template action definition
- * 
+ *
  * @author Michael Pearson <github@m.bip.io>
  * Copyright (c) 2010-2013 Michael Pearson https://github.com/mjpearson
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- *  
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *  
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 var marked = require('marked');
 
-function Markdown2HTML(podConfig) {    
-    this.name = 'markdown2html'; 
-    this.description = 'Markdown to HTML'; 
-    this.description_long = 'Exports Markdown template parsed to HTML';
+function Markdown2HTML(podConfig) {
+    this.name = 'markdown2html';
+    this.title = 'Markdown to HTML';
+    this.description = 'Exports Markdown template parsed to HTML';
     this.trigger = false; // @todo - create hybrid type
     this.singleton = false;
     this.auto = true;
@@ -67,20 +67,11 @@ Markdown2HTML.prototype.getSchema = function() {
  */
 Markdown2HTML.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
     var exports = {};
-
-    if (!imports.message || '' === imports.message) {
-        exports.message = channel.config.message;
-    } else {
-        exports.message = imports.message;
-    }
-    
-    exports.message = marked(exports.message);
-    
     next(
-        false, 
+        false,
         {
-            message : marked(exports.message)
-        }        
+            message : marked(imports.message || channel.config.message)
+        }
     );
 }
 

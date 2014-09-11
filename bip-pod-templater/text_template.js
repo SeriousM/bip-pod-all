@@ -21,8 +21,8 @@
 
 function TextTemplate(podConfig) {
   this.name = 'text_template';
-  this.description = 'Message Template';
-  this.description_long = 'Generic text message';
+  this.title = 'Message Template';
+  this.description = 'Generic text message';
   this.trigger = false; // @todo - create hybrid type
   this.singleton = false;
   this.auth_required = false;
@@ -64,14 +64,9 @@ TextTemplate.prototype.getSchema = function() {
  * Invokes (runs) the action.
  */
 TextTemplate.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
-  var exports = {};
-
-  if (!imports.message || '' === imports.message) {
-    exports.message = channel.config.message;
-  } else {
-    exports.message = imports.message;
-  }
-  next(false, exports);
+  next(false, {
+    message : imports.message || channel.config.message
+  });
 }
 
 // -----------------------------------------------------------------------------
