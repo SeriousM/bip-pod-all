@@ -1,8 +1,5 @@
 /**
  *
- * The Bipio Eval Pod.  boilerplate sample action definition
- * ---------------------------------------------------------------
- *
  * @author Michael Pearson <github@m.bip.io>
  * Copyright (c) 2010-2013 Michael Pearson https://github.com/mjpearson
  *
@@ -24,8 +21,8 @@ var math = require('mathjs')();
 
 function Eval(podConfig) {
   this.name = 'eval';
-  this.description = 'Eval',
-  this.description_long = 'Evaluates a Math expression, exporting the result',
+  this.title = 'Eval',
+  this.description = 'Evaluates a Math expression, exporting the result',
   this.trigger = false;
   this.singleton = true;
   this.auto = true;
@@ -42,7 +39,8 @@ Eval.prototype.getSchema = function() {
           "type" :  "string",
           "description" : "Math Expression"
         }
-      }
+      },
+      "required" : [ "expression" ]
     },
     "exports": {
       "properties" : {
