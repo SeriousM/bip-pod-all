@@ -22,8 +22,8 @@ var Pod = require('bip-pod'),
 VimeoAPI = require('vimeo-api').Vimeo,
 Vimeo = new Pod({
   name : 'vimeo',
-  description : 'Vimeo',
-  description_long : '<a href="https://vimeo.com">Vimeo</a>.  Your videos will love it here',
+  title : 'Vimeo',
+  description : '<a href="https://vimeo.com">Vimeo</a>.  Your videos will love it here',
   authType : 'oauth',
   passportStrategy : require('passport-vimeo-oauth2').Strategy,
   config : {

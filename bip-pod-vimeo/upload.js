@@ -18,8 +18,8 @@
 
 function Upload(podConfig) {
   this.name = 'upload';
-  this.description = 'Upload Video',
-  this.description_long = 'Uploads a File to Vimeo.',
+  this.title = 'Upload Video',
+  this.description = 'Uploads a File to Vimeo.',
   this.trigger = false;
   this.singleton = true;
   this.auto = false;
@@ -41,15 +41,15 @@ Upload.prototype.getSchema = function() {
   }
 }
 
-Upload.prototype.invoke = function(imports, channel, sysImports, contentParts, next) { 
+Upload.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
   var client, pod = this.pod, f, transferredBytes = 0;
 
   if (contentParts._files && contentParts._files.length) {
     client = pod._getClient(sysImports);
-    
+
     for (var i = 0; i < contentParts._files.length; i++) {
       f = contentParts._files[i];
-      
+
       if ('application/octet-stream' === f.type) {
         transferredBytes += f.size;
         client.streamingUpload(f.localpath, function(err) {
@@ -58,12 +58,12 @@ Upload.prototype.invoke = function(imports, channel, sysImports, contentParts, n
           } else {
             next(false, { status : true }, contentParts, transferredBytes);
           }
-          
+
         });
       }
     }
   }
-  
+
 }
 
 // -----------------------------------------------------------------------------
