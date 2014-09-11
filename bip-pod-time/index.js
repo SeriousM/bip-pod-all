@@ -21,8 +21,8 @@ var Pod = require('bip-pod'),
   moment = require('moment-timezone'),
   Time = new Pod({
     name : 'time', // pod name (action prefix)
-    description : 'Time',
-    description_long : 'Time Manipulation, Formatting, Timezone Conversion + more'
+    title : 'Time',
+    description : 'Time Manipulation, Formatting, Timezone Conversion + more'
   });
 
 Time.get = function(time) {

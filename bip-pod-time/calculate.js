@@ -19,8 +19,8 @@
 
 function Calculate(podConfig) {
   this.name = 'calculate';
-  this.description = 'Calculate a Time',
-  this.description_long = 'Calculates a time from a simple natural language expression, eg: "in 2 days"',
+  this.title = 'Calculate a Time',
+  this.description = 'Calculates a time from a simple natural language expression, eg: "in 2 days"',
   this.trigger = false; // this action can trigger
   this.singleton = true; // 1 instance per account (can auto install)
   this.podConfig = podConfig; // general system level config for this pod (transports etc)
@@ -44,7 +44,8 @@ Calculate.prototype.getSchema = function() {
           "description" : "Date Format",
           "example" : "DD/MM/YYYY"
         }
-      }
+      },
+      "required" : [ "expression" ]
     },
     "exports": {
       "properties" : {
@@ -74,7 +75,7 @@ Calculate.prototype.invoke = function(imports, channel, sysImports, contentParts
     } catch (e) {
       next(e.message);
     }
-    
+
   } else {
     // silent passthrough
     next(false, {});

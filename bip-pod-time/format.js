@@ -19,8 +19,8 @@
 
 function Format(podConfig) {
   this.name = 'format';
-  this.description = 'Format a Time',
-  this.description_long = 'Converts a UTC or string time representation into the given format',
+  this.title = 'Format a Time',
+  this.description = 'Converts a UTC or string time representation into the given format',
   this.trigger = false; // this action can trigger
   this.singleton = true; // 1 instance per account (can auto install)
   this.podConfig = podConfig; // general system level config for this pod (transports etc)
@@ -42,7 +42,8 @@ Format.prototype.getSchema = function() {
           "type" :  "string",
           "description" : "Format to apply"
         }
-      }
+      },
+      "required" : [ "time" ]
     },
     "exports": {
       "properties" : {
