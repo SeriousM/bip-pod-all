@@ -22,8 +22,8 @@
 
 function RequestTranslation(podConfig) {
   this.name = 'request_translation'; // action name (channel action suffix - "action: unbabel.simple")
-  this.description = 'Request Translation', // short description
-  this.description_long = 'Requests a Translation from Unbabel', // long description
+  this.title = 'Request Translation', // short description
+  this.description = 'Requests a Translation from Unbabel', // long description
   this.trigger = false; // this action can trigger
   this.singleton = false; // 1 instance per account (can auto install)
   this.auto = false; // automatically install this action
@@ -109,7 +109,7 @@ RequestTranslation.prototype.getSchema = function() {
         description : 'Update Tracking Status',
         description_long : 'Updates the internally tracked status for a translation UID to something new',
         contentType : DEFS.CONTENTTYPE_JSONL
-      }     
+      }
     }
   }
 }
@@ -138,17 +138,17 @@ RequestTranslation.prototype.teardown = function(channel, accountInfo, next) {
 
 RequestTranslation.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
   var modelName = this.$resource.getDataSourceName('track_translation'),
-    pod = this.pod,    
+    pod = this.pod,
     payload = imports;
     payload.target_language = channel.config.target_language;
-     
+
   pod.requestPOST('translation', payload, sysImports, function(err, response) {
     if (!err) {
       response.price_eur = response.price;
     }
     next(err, response);
-  }); 
- 
+  });
+
 }
 
 // -----------------------------------------------------------------------------

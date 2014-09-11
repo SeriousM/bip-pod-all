@@ -21,8 +21,8 @@
 var Pod = require('bip-pod'),
   Unbabel = new Pod({
     name : 'unbabel',
-    description : 'Unbabel', // short description
-    description_long : 'Unbabel is helping the world communicate through machine translation + crowd editing', // long description
+    title : 'Unbabel', // short description
+    description : '<a href="https://www.unbabel.com">Unbabel</a> is helping the world communicate through machine translation + crowd editing', // long description
     authType : 'issuer_token',
     authMap : {
       username : 'Username',
@@ -38,27 +38,27 @@ var Pod = require('bip-pod'),
 
 Unbabel.requestPOST = function(method, payload, sysImports, next) {
   var config = this.getConfig();
-  
-//  console.log(config.url + '/tapi/v2/' + method);  
+
+//  console.log(config.url + '/tapi/v2/' + method);
 //  console.log(payload);
-  
+
   this._httpPost(
     config.url + '/tapi/v2/' + method + '/',
     payload,
     next,
     {
-      'Authorization' : 'ApiKey ' 
-        + sysImports.auth.issuer_token.username 
+      'Authorization' : 'ApiKey '
+        + sysImports.auth.issuer_token.username
         + ':'
         + sysImports.auth.issuer_token.password
     }
-  );  
+  );
 }
 
 Unbabel.requestGET = function(method, args, sysImports, next) {
   var config = this.getConfig(),
     getReq = '?';
-  
+
   for (var a in args) {
     if (args.hasOwnProperty(a)) {
       getReq += a + '=' + args[a] + '&';
@@ -71,12 +71,12 @@ console.log(sysImports);
     config.url + '/tapi/v2/' + method + '/' + getReq,
     next,
     {
-      'Authorization' : 'ApiKey ' 
-        + sysImports.auth.issuer_token.username 
+      'Authorization' : 'ApiKey '
+        + sysImports.auth.issuer_token.username
         + ':'
         + sysImports.auth.issuer_token.password
     }
-  );  
+  );
 }
 
 // Include any actions

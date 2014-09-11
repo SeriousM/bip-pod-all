@@ -22,8 +22,8 @@
 
 function GetDeliveredTranslations(podConfig) {
   this.name = 'get_delivered'; // action name (channel action suffix - "action: unbabel.simple")
-  this.description = 'Get Newly Delivered Translation', // short description
-  this.description_long = 'Distribute a newly delivered translation', // long description
+  this.title = 'Get Newly Delivered Translation', // short description
+  this.description = 'Distribute a newly delivered translation', // long description
   this.trigger = true; // this action can trigger
   this.singleton = true; // 1 instance per account (can auto install)
   this.auto = true; // automatically install this action
@@ -90,15 +90,15 @@ GetDeliveredTranslations.prototype.setup = function(channel, accountInfo, next) 
 
   // get all current transactions
   this.pod.requestGET(
-    'translation', 
-    { 
+    'translation',
+    {
       status : 'delivered'
     },
-    { 
-      auth : accountInfo._setupAuth 
-    }, 
+    {
+      auth : accountInfo._setupAuth
+    },
     function(err, result) {
-      next(err, 'channel', channel); // ok      
+      next(err, 'channel', channel); // ok
     }
   );
 }
@@ -115,22 +115,20 @@ GetDeliveredTranslations.prototype.teardown = function(channel, accountInfo, nex
 }
 
 GetDeliveredTranslations.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
-  console.log(sysImports);
-  
   // get all current transactions
   this.pod.requestGET(
-    'translation', 
-    { 
+    'translation',
+    {
       status : 'delivered'
     },
-    { 
+    {
       auth : sysImports.auth.issuer_token.password
-    }, 
+    },
     function(err, result) {
       console.log(arguments);
-      next(err, 'channel', channel); // ok      
+      next(err, 'channel', channel); // ok
     }
-  );  
+  );
 }
 
 // -----------------------------------------------------------------------------
