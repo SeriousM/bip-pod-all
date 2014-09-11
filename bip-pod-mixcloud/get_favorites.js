@@ -22,8 +22,8 @@
 
 function GetFavorites(podConfig) {
   this.name = 'get_favorites';
-  this.description = 'Get MixCloud Favorites',
-  this.description_long = 'Retrieves MixCloud Favorites',
+  this.title = 'Get MixCloud Favorites',
+  this.description = 'Retrieves MixCloud Favorites',
   this.trigger = true; // this action can trigger
   this.singleton = true; // only 1 instance per account (can auto install)
   this.auto = true; // no config, not a singleton but can auto-install anyhow
@@ -86,11 +86,11 @@ GetFavorites.prototype.getSchema = function() {
 }
 
 GetFavorites.prototype.setup = function(channel, accountInfo, next) {
-  this.pod.trackingStart(channel, accountInfo, true, next);  
+  this.pod.trackingStart(channel, accountInfo, true, next);
 }
 
 GetFavorites.prototype.teardown = function(channel, accountInfo, next) {
-  this.pod.trackingRemove(channel, accountInfo, next);  
+  this.pod.trackingRemove(channel, accountInfo, next);
 }
 
 /**
@@ -99,13 +99,13 @@ GetFavorites.prototype.teardown = function(channel, accountInfo, next) {
 GetFavorites.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
   var log = this.$resource.log,
     pod = this.pod;
-  
+
   (function(channel, sysImports, next) {
     pod.trackingGet(channel, function(err, since) {
       if (!err) {
         pod.trackingUpdate(channel, function(err, until) {
           if (!err) {
-            var url = pod._apiURL + '/' + sysImports.auth.oauth.profile.username 
+            var url = pod._apiURL + '/' + sysImports.auth.oauth.profile.username
                 + '/favorites?access_token=' + sysImports.auth.oauth.token
                 + '&since=' + since
                 + '&until=' + until;
@@ -116,25 +116,25 @@ GetFavorites.prototype.invoke = function(imports, channel, sysImports, contentPa
                 for (var i = 0; i < bodyJSON.data.length; i++) {
                   tags = [];
                   exports = bodyJSON.data[i];
-                  
+
                   for (var t = 0; t < exports.tags.length; t++) {
                     tags.push(exports.tags[t].name);
                   }
                   exports.tags = tags;
-                  
+
                   exports.pictures_xl = exports.pictures.extra_large;
-                  exports.pictures_thumbnail = exports.pictures.thumbnail;                 
-                  
+                  exports.pictures_thumbnail = exports.pictures.thumbnail;
+
                   exports.user_username = exports.user.username;
                   exports.user_name = exports.user.name;
                   exports.user_url = exports.user.url;
 
                   next(false, exports);
-                }              
+                }
               }
             });
           }
-        });      
+        });
       }
     });
   })(channel, sysImports, next);

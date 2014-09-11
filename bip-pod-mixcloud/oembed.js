@@ -22,8 +22,8 @@
 
 function OEmbed(podConfig) {
   this.name = 'oembed';
-  this.description = "MixCloud oEmbed";
-  this.description_long = "Converts any MixCloud entity to its oEmbed representation";
+  this.title = "MixCloud oEmbed";
+  this.description = "Converts any MixCloud entity to its oEmbed representation";
   this.trigger = false;
   this.singleton = true;
   this.auto = true;
@@ -64,7 +64,8 @@ OEmbed.prototype.getSchema = function() {
           type : 'string',
           description : 'Primary Color Value (hex)'
         }
-      }
+      },
+      "required" : [ "url" ]
     },
     'exports' : {
       properties : {
@@ -99,13 +100,13 @@ OEmbed.prototype.invoke = function(imports, channel, sysImports, contentParts, n
     opts = {}
 
   if (imports.url && '' !== imports.url) {
-    
+
     opts.url = imports.url;
     pod._testAndSet(imports, opts, 'maxwidth');
     pod._testAndSet(imports, opts, 'maxheight');
     pod._testAndSet(imports, opts, 'autoplay');
-    pod._testAndSet(imports, opts, 'words');        
-    
+    pod._testAndSet(imports, opts, 'words');
+
     var getStr = '';
     for (var k in opts) {
       if (opts.hasOwnProperty(k)) {
@@ -116,7 +117,7 @@ OEmbed.prototype.invoke = function(imports, channel, sysImports, contentParts, n
     pod._httpGet('http://www.mixcloud.com' + uri + getStr, function(err, bodyJSON) {
       next(err, bodyJSON);
     });
-  }    
+  }
 }
 
 // -----------------------------------------------------------------------------
