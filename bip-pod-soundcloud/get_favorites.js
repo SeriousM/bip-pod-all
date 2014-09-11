@@ -25,8 +25,8 @@ var moment = require('moment');
 
 function GetFavorites(podConfig) {
   this.name = 'get_favorites';
-  this.description = "Get Favorites";
-  this.description_long = "Retrieves the sounds you've favorited, exporting track data and (optionally) the track itself";
+  this.title = "Get Favorites";
+  this.description = "Retrieves the sounds you've favorited, exporting track data and (optionally) the track itself";
   this.trigger = true;
   this.singleton = false;
   this.auto = true;
@@ -89,7 +89,7 @@ GetFavorites.prototype.getSchema = function() {
  * Invokes (runs) the action.
  */
 GetFavorites.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
-  var uri = '/me/favorites', 
+  var uri = '/me/favorites',
     self = this,
     token = sysImports.auth.oauth.token,
     modelName = this.$resource.getDataSourceName('track_favorite'),
@@ -99,10 +99,10 @@ GetFavorites.prototype.invoke = function(imports, channel, sysImports, contentPa
   this.pod.getDataDir(channel, 'get_favorites', function(err, dataDir) {
     if (!err) {
       self.pod._httpGet(self.pod._apiURL + uri + '.json?oauth_token=' + token, function(err, data) {
-        var numTracks = 0, 
-          exports = {}, 
-          track, 
-          outfile, 
+        var numTracks = 0,
+          exports = {},
+          track,
+          outfile,
           fName;
 
         if (!err) {
@@ -111,7 +111,7 @@ GetFavorites.prototype.invoke = function(imports, channel, sysImports, contentPa
             track = data[i];
             (function(track, channel, next) {
               var nowTime = moment().unix();
-              
+
               // push to tracking
               dao.find(
                 modelName,
@@ -126,7 +126,7 @@ GetFavorites.prototype.invoke = function(imports, channel, sysImports, contentPa
 
                   if (err) {
                     log(err, channel, 'error');
-                    
+
                   // already tracked favorites get skipped
                   } else if (!result) {
                     var model = dao.modelFactory(modelName, {
@@ -139,7 +139,7 @@ GetFavorites.prototype.invoke = function(imports, channel, sysImports, contentPa
                     dao.create(model);
 
                     if (channel.config.download) {
-                      if (track.downloadable) {                
+                      if (track.downloadable) {
                         fName = track.title + '.mp3';
                         outfile = dataDir + fName;
                         self.pod._httpStreamToFile(
@@ -169,7 +169,7 @@ GetFavorites.prototype.invoke = function(imports, channel, sysImports, contentPa
                       }
                     } else {
                       next(false, track);
-                    }                    
+                    }
                   }
                 }
               );

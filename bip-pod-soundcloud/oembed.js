@@ -21,8 +21,8 @@
 var request = require('request');
 function OEmbed(podConfig) {
   this.name = 'oembed';
-  this.description = "SoundCloud oEmbed";
-  this.description_long = "Converts any SoundCloud entity to its oEmbed representation";
+  this.title = "SoundCloud oEmbed";
+  this.description = "Converts any SoundCloud entity to its oEmbed representation";
   this.trigger = false;
   this.singleton = true;
   this.auto = true;
@@ -63,7 +63,8 @@ OEmbed.prototype.getSchema = function() {
           type : 'string',
           description : 'Primary Color Value (hex)'
         }
-      }
+      },
+      "required" : [ "url" ]
     },
     'exports' : {
       properties : {

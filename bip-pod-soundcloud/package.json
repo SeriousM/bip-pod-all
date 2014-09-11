@@ -1,6 +1,6 @@
 {
     "name": "bip-pod-soundcloud",
-    "version": "0.0.9",
+    "version": "0.0.10",
     "author" : "Michael Pearson",
     "description": "SoundCloud Pod for Bipio",
     "keywords": [
@@ -26,9 +26,9 @@
     "dependencies": {
         "pkginfo": "0.2.x",
         "moment" : ">=2.4.0",
-        "bip-pod" : ">=0.0.1",        
+        "bip-pod" : ">=0.0.1",
         "passport-soundcloud" : ">=0.1.2",
-        "request" : ">=2.29.1"         
+        "request" : ">=2.29.1"
     },
     "engines": {
         "node": ">= 0.10.0"
