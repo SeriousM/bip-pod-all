@@ -1,6 +1,6 @@
 {
     "name": "bip-pod-stacklead",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "author" : "Michael Pearson",
     "description": "StackLead Pod for Bipio",
     "keywords": [

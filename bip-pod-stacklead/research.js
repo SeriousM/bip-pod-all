@@ -18,8 +18,8 @@
 
 function Research(podConfig) {
   this.name = 'research';
-  this.description = 'Research A Lead',
-  this.description_long = 'Delivers lead research results to your inbox or configured webhook',
+  this.title = 'Research A Lead',
+  this.description = 'Delivers lead research results to your inbox or configured webhook',
   this.trigger = false;
   this.singleton = true;
   this.podConfig = podConfig;
@@ -54,7 +54,8 @@ Research.prototype.getSchema = function() {
           "type" :  "string",
           "description" : "Email Address"
         }
-      }
+      },
+      "required" : [ "email_address" ]
     },
     "exports": {
       "properties" : {
@@ -70,13 +71,13 @@ Research.prototype.getSchema = function() {
 Research.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
   var httpGet = this.$resource._httpGet,
     deliveryMethod = channel.config.delivery_method || this.getSchema().config.definitions.delivery_method['default'];
-  
+
   if (imports.email_address) {
     httpGet(
-      'https://stacklead.com/api/leads?email=' 
-        + imports.email_address 
+      'https://stacklead.com/api/leads?email='
+        + imports.email_address
         + '&delivery_method=' + deliveryMethod
-        + '&api_key=' 
+        + '&api_key='
         + sysImports.auth.issuer_token.username,
       function(err, resp) {
         next(err, resp);
