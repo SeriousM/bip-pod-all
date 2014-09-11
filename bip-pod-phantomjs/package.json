@@ -1,6 +1,6 @@
 {
   "name": "bip-pod-phantomjs",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author" : "Michael Pearson",
   "description": "PhantomJS Pod for Bipio",
   "keywords": [

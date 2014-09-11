@@ -24,8 +24,8 @@ var webshot = require('webshot'),
 
 function ScreenShot(podConfig) {
   this.name = 'screen_shot'; // action name (channel action suffix - "action: boilerplate.simple")
-  this.description = 'Screen Shot a Web Page', // short description
-  this.description_long = 'Takes a screen shot of a given URL in a browser', // long description
+  this.title = 'Screen Shot a Web Page', // short description
+  this.description = 'Takes a screen shot of a given URL in a browser', // long description
   this.trigger = false; // this action can trigger
   this.singleton = false; // 1 instance per account (can auto install)
   this.auto = false; // automatically install this action
@@ -56,7 +56,8 @@ ScreenShot.prototype.getSchema = function() {
           "type" :  "string",
           "description" : "Viewport size pixels, eg 800x1128"
         }
-      }
+      },
+      "required" : [ "url" ]
     }
   }
 }
@@ -68,8 +69,8 @@ ScreenShot.prototype.invoke = function(imports, channel, sysImports, contentPart
     pod.getDataDir(channel, this.name, function(err, dataDir) {
       var md5Hash = crypto.createHash('md5').update(imports.url).digest('hex'),
         options = {};
-      
-      if (channel.config && channel.config.viewport) {        
+
+      if (channel.config && channel.config.viewport) {
         var tokens = channel.config.viewport.split('x');
         md5Hash += channel.config.viewport.replace(/[^x0-9]/g, '');
         if (tokens.length === 2) {
@@ -77,14 +78,14 @@ ScreenShot.prototype.invoke = function(imports, channel, sysImports, contentPart
             width : Number(tokens[0].trim()),
             height : Number(tokens[1].trim()),
           };
-          
+
           options.shotSize = {
             width : options.screenSize.width,
             height : 'all'
           }
         }
       }
-      
+
       var fileName = md5Hash + '.png',
         outPath = path.normalize(dataDir + fileName);
 
@@ -112,9 +113,9 @@ ScreenShot.prototype.invoke = function(imports, channel, sysImports, contentPart
                   _files : [ fStruct ]
                 }
               }
-              
+
               next(err, {}, contentParts, fStruct.size);
-            }            
+            }
           });
         }
       });
