@@ -19,8 +19,8 @@
 
 function TriggerEvent(podConfig) {
   this.name = 'trigger_event';
-  this.description = 'Trigger an Event',
-  this.description_long = 'Triggers an event on one or more Pusher channels.',
+  this.title = 'Trigger an Event',
+  this.description = 'Triggers an event on one or more Pusher channels.',
   this.trigger = false;
   this.singleton = false;
   this.auto = false;
@@ -53,7 +53,8 @@ TriggerEvent.prototype.getSchema = function() {
           "type" :  "string",
           "description" : "Event Data"
         }
-      }
+      },
+      "required" : [ "data" ]
     }
   }
 }
@@ -61,7 +62,7 @@ TriggerEvent.prototype.getSchema = function() {
 TriggerEvent.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
   var client,
     eventName = imports.name || channel.config.name;
-  
+
   if (imports.data && eventName) {
     client = this.pod.getClient(sysImports);
     try {
@@ -81,7 +82,7 @@ TriggerEvent.prototype.invoke = function(imports, channel, sysImports, contentPa
     } catch (e) {
       next(e.message);
     }
-  }  
+  }
 }
 
 // -----------------------------------------------------------------------------
