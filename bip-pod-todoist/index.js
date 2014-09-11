@@ -21,8 +21,8 @@
 var Pod = require('bip-pod'),
 Todoist = new Pod({
   name : 'todoist', // pod name (action prefix)
-  description : 'Todoist', // short description
-  description_long : 'Trusted by over 1 million people, Todoist is the best online task management app and to-do list.', // long description
+  title : 'Todoist', // short description
+  description : 'Trusted by over 1 million people, Todoist is the best online task management app and to-do list.', // long description
   authType : 'issuer_token',
   authMap : {
     password : 'API Token'

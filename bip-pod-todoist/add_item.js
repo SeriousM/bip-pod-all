@@ -22,8 +22,8 @@
 
 function AddItem(podConfig) {
   this.name = 'add_item'; // action name (channel action suffix - "action: boilerplate.simple")
-  this.description = 'Add a Task', // short description
-  this.description_long = 'Adds a Todoist Task', // long description
+  this.title = 'Add a Task', // short description
+  this.description = 'Adds a Todoist Task', // long description
   this.trigger = false; // this action can trigger
   this.singleton = false; // 1 instance per account (can auto install)
   this.auto = false; // automatically install this action
@@ -48,7 +48,8 @@ AddItem.prototype.getSchema = function() {
             }
           ]*/
         }
-      }
+      },
+      "required" : [ "project_id"]
     },
     "imports": {
       "properties" : {
@@ -64,7 +65,8 @@ AddItem.prototype.getSchema = function() {
           "type" :  "string",
           "description" : "Task Content"
         }
-      }
+      },
+      "required" : [ "content" ]
     },
     "exports": {
       "properties" : {
@@ -91,14 +93,14 @@ AddItem.prototype.getSchema = function() {
         description : 'Retrieve Projects',
         description_long : 'Retrieves all projects for your account',
         contentType : DEFS.CONTENTTYPE_JSON,
-        properties : {          
+        properties : {
         }
       }
     }
   };
-  
+
   //schema.renderers.get_projects.properties = this.pod.getProjectSchema().properties;
-  
+
   return schema;
 }
 
@@ -129,15 +131,15 @@ AddItem.prototype.invoke = function(imports, channel, sysImports, contentParts, 
       project_id : channel.config.project_id,
       content : imports.content
     };
-    
+
     if (imports.due_date) {
       params.due_date = imports.due_date;
     }
-    
+
     if (imports.date_string) {
       params.date_string = imports.date_string;
     }
-    
+
     this.pod.getRequest('addItem', sysImports, params, function(err, result, headers, statusCode) {
       if (!err && statusCode !== 200) {
         err = result;
