@@ -59,7 +59,7 @@ SetTopic.prototype.getSchema = function() {
           "type" :  "string",
           "description" : "New topic"
         }
-      }
+      },
       "required" : [ "topic" ]
     },
     "exports": {
