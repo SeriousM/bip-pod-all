@@ -22,7 +22,7 @@ var Pod = require('bip-pod'),
     Twilio = new Pod({
         name : 'twilio',
         title : 'Twilio',
-        description : 'Build the next generation of communications with <a href="https://www.twilio.com/"></a>'
+        description : 'Build the next generation of communications with <a href="https://www.twilio.com/"></a>',
         // users can override accountsid/authtoken
         authType : 'issuer_token',
         authMap : {

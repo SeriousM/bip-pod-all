@@ -1,6 +1,6 @@
 {
     "name": "bip-pod-twilio",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "author" : "Michael Pearson",
     "description": "Twilio Pod for Bipio",
     "keywords": [
