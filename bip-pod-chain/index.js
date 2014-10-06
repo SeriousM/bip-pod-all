@@ -16,24 +16,26 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+var ChainNode = require('chain-node');
+
 var Pod = require('bip-pod'),
-ChainNode = require('chain-node'),
-Chain = new Pod({
+    Chain = new Pod({
     name : 'chain', // pod name (action prefix)
     title : 'Chain',
-    description : '<a  href="https://chain.com">Chain</a> enables developers to Build bitcoin apps, not block chain infrastructure.',    
+    description : '<a href="https://chain.com">Chain</a> enables developers to Build bitcoin apps, not block chain infrastructure.',    
     authType : 'issuer_token',
     authMap : {
         username : 'API Key',
         password : 'Secret Key'
     }
-});
+    });
 
 // Include any actions
 Chain.add(require('./address.js'));
-Chain.add(require('./transaction.js'));
-Chain.add(require('./unspent.js'));
-Chain.add(require('./opreturn.js'));
+//Chain.add(require('./transaction.js'));
+//Chain.add(require('./unspent.js'));
+//Chain.add(require('./opreturn.js'));
 
 // -----------------------------------------------------------------------------
 module.exports = Chain;
