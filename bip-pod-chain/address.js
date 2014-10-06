@@ -78,6 +78,15 @@ Address.prototype.getSchema = function() {
 
 Address.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
 
+    if (imports.address) {
+
+        ChainNode.getAddress(imports.address, function(err, resp) {
+            console.log(resp);
+            next(err || resp.status_code !== 200, resp.data, contentParts, 0);
+        });
+
+    };
+
 }
 // -----------------------------------------------------------------------------
 module.exports = Address;

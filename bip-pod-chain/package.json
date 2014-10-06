@@ -24,7 +24,7 @@
     "main": ".",
     "dependencies": {
         "bip-pod" : ">=0.0.1",
-        "chain-node" : ">=0.0.15"
+        "chain-node" : ">=0.0.17"
     },
     "engines": {
         "node": ">= 0.10.0"
