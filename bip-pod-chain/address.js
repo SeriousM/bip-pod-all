@@ -27,6 +27,7 @@ function Address(podConfig) {
   this.trigger = false;
   this.singleton = false;
   this.podConfig = podConfig;
+}
 
 Address.prototype = {};
 
