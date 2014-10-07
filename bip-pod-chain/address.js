@@ -1,6 +1,6 @@
 /**
  *
- * @author Scott Tuddman <scott@wot.io>
+ * @author Scott Tuddenhman <scott@wot.io>
  * Copyright (c) 2010-2014 WoT.IO Inc http://wot.io
  *
  * This program is free software: you can redistribute it and/or modify
