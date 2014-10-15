@@ -3,7 +3,7 @@
  * mongodb Actions and Content Emitters
  * 
  * @author Scott Tuddenham <scott@bip.io>
- * Copyright (c) 2010-2014 Michael Pearson https://github.com/mjpearson
+ * Copyright (c) 2014 WoT.IO http://wot.io
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -31,7 +31,7 @@ var Pod = require('bip-pod'),
     });
 
 // Include any actions
-mongodb.add(require('./simple.js'));
+mongodb.add(require('./crud.js'));
 
 // -----------------------------------------------------------------------------
 module.exports = mongodb;
