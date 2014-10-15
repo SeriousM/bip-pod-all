@@ -26,6 +26,12 @@ var Pod = require('bip-pod'),
         authType : 'issuer_token',
         authMap : {
             username : 'MONGODB_CONNECTION_STRING_GOES_HERE',
+        },
+        'renderers' : {
+            'test_connection' : {
+                description : 'test connection to MongoDB datastore',
+                contentType : DEFS.CONTENTTYPE_JSON
+            }
         }
     
     });

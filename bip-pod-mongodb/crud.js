@@ -3,8 +3,8 @@
  * The Bipio Crud Pod.  mongodb sample action definition
  * ---------------------------------------------------------------
  *
- * @author Michael Pearson <github@m.bip.io>
- * Copyright (c) 2010-2014 Michael Pearson https://github.com/mjpearson
+ * @author Scott Tuddenham <scott@bip.io>
+ * Copyright (c) 2014 WoT.IO http://wot.io
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,9 +21,9 @@
  */
 
 function Crud(podConfig) {
-  this.name = 'simple'; // action name (channel action suffix - "action: mongodb.simple")
-  this.title = 'short description', // short description
-  this.description = 'the long description', // long description
+  this.name = 'crud'; 
+  this.title = 'crud', 
+  this.description = 'CRUD operations for MongoDB datastore',
   this.trigger = false; // this action can trigger
   this.singleton = false; // 1 instance per account (can auto install)
   this.auto = false; // automatically install this action
