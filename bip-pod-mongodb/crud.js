@@ -1,6 +1,6 @@
 /**
  *
- * The Bipio Simple Pod.  mongodb sample action definition
+ * The Bipio Crud Pod.  mongodb sample action definition
  * ---------------------------------------------------------------
  *
  * @author Michael Pearson <github@m.bip.io>
@@ -20,7 +20,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-function Simple(podConfig) {
+function Crud(podConfig) {
   this.name = 'simple'; // action name (channel action suffix - "action: mongodb.simple")
   this.title = 'short description', // short description
   this.description = 'the long description', // long description
@@ -30,11 +30,11 @@ function Simple(podConfig) {
   this.podConfig = podConfig; // general system level config for this pod (transports etc)
 }
 
-Simple.prototype = {};
+Crud.prototype = {};
 
-// Simple schema definition
+// Crud schema definition
 // @see http://json-schema.org/
-Simple.prototype.getSchema = function() {
+Crud.prototype.getSchema = function() {
   return {
     "config": {
       "properties" : {
@@ -71,7 +71,7 @@ Simple.prototype.getSchema = function() {
 }
 
 // RPC/Renderer accessor - /rpc/render/channel/{channel id}/hello
-Simple.prototype.rpc = function(method, sysImports, options, channel, req, res) {
+Crud.prototype.rpc = function(method, sysImports, options, channel, req, res) {
   if (method === 'hello') {
     res.contentType(this.getSchema().renderers[method].contentType);
     res.send('world');
@@ -82,13 +82,13 @@ Simple.prototype.rpc = function(method, sysImports, options, channel, req, res) 
 
 // channel presave setup
 // setup data sources
-Simple.prototype.setup = function(channel, accountInfo, next) {
+Crud.prototype.setup = function(channel, accountInfo, next) {
   next(false, 'channel', channel);
 }
 
 // channel destroy/teardown
 // you can remove any stored data here
-Simple.prototype.teardown = function(channel, accountInfo, next) {
+Crud.prototype.teardown = function(channel, accountInfo, next) {
   next(false, 'channel', channel);
 }
 
@@ -105,7 +105,7 @@ Simple.prototype.teardown = function(channel, accountInfo, next) {
  * @param Function next callback(error, exports, contentParts, transferredBytes)
  * 
  */
-Simple.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
+Crud.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
   next(
     false,
     {
@@ -115,4 +115,4 @@ Simple.prototype.invoke = function(imports, channel, sysImports, contentParts, n
 }
 
 // -----------------------------------------------------------------------------
-module.exports = Simple;
+module.exports = Crud;
