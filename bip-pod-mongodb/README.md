@@ -29,4 +29,4 @@ If you'd like to integrate BipIO with your proprietary system, GPLv3 is likely i
 please [reach us](mailto:support@beta.bip.io)
 
 
-Copyright (c) 2010-2014  [Michael Pearson](https://github.com/mjpearson)
+Copyright (c) 2014  [WoT.IO Inc](http://wot.io)
