@@ -1,7 +1,7 @@
 ![mongodb](mongodb.png) bip-pod-mongodb
 =======
 
-<a href="http://en.wikipedia.org/wiki/mongodb_(text)">mongodb</a> pod for [bipio](https://bip.io).  
+<a href="http://en.wikipedia.org/wiki/mongodb">mongodb</a> pod for [bipio](https://bip.io).  
 
 ## Installation
 

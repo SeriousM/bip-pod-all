@@ -1,6 +1,6 @@
 /**
  *
- * The Bipio Crud Pod.  mongodb sample action definition
+ * The Bipio MongoDB Pod.  mongodb Create definition
  * ---------------------------------------------------------------
  *
  * @author Scott Tuddenham <scott@bip.io>
@@ -20,21 +20,21 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-function Crud(podConfig) {
-  this.name = 'crud'; 
-  this.title = 'crud', 
-  this.description = 'CRUD operations for MongoDB datastore',
-  this.trigger = false; // this action can trigger
-  this.singleton = false; // 1 instance per account (can auto install)
-  this.auto = false; // automatically install this action
-  this.podConfig = podConfig; // general system level config for this pod (transports etc)
+function Create(podConfig) {
+  this.name = 'create'; 
+  this.title = 'create', 
+  this.description = 'Create a MongoDB document',
+  this.trigger = false; 
+  this.singleton = false; 
+  this.auto = false; 
+  this.podConfig = podConfig; 
 }
 
-Crud.prototype = {};
+Create.prototype = {};
 
-// Crud schema definition
+// Create schema definition
 // @see http://json-schema.org/
-Crud.prototype.getSchema = function() {
+Create.prototype.getSchema = function() {
   return {
     "config": {
       "properties" : {
@@ -71,7 +71,7 @@ Crud.prototype.getSchema = function() {
 }
 
 // RPC/Renderer accessor - /rpc/render/channel/{channel id}/hello
-Crud.prototype.rpc = function(method, sysImports, options, channel, req, res) {
+Create.prototype.rpc = function(method, sysImports, options, channel, req, res) {
   if (method === 'hello') {
     res.contentType(this.getSchema().renderers[method].contentType);
     res.send('world');
@@ -82,13 +82,13 @@ Crud.prototype.rpc = function(method, sysImports, options, channel, req, res) {
 
 // channel presave setup
 // setup data sources
-Crud.prototype.setup = function(channel, accountInfo, next) {
+Create.prototype.setup = function(channel, accountInfo, next) {
   next(false, 'channel', channel);
 }
 
 // channel destroy/teardown
 // you can remove any stored data here
-Crud.prototype.teardown = function(channel, accountInfo, next) {
+Create.prototype.teardown = function(channel, accountInfo, next) {
   next(false, 'channel', channel);
 }
 
@@ -105,7 +105,7 @@ Crud.prototype.teardown = function(channel, accountInfo, next) {
  * @param Function next callback(error, exports, contentParts, transferredBytes)
  * 
  */
-Crud.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
+Create.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
   next(
     false,
     {
@@ -115,4 +115,4 @@ Crud.prototype.invoke = function(imports, channel, sysImports, contentParts, nex
 }
 
 // -----------------------------------------------------------------------------
-module.exports = Crud;
+module.exports = Create;
