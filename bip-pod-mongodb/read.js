@@ -80,17 +80,6 @@ Read.prototype.rpc = function(method, sysImports, options, channel, req, res) {
   }
 }
 
-// channel presave setup
-// setup data sources
-Read.prototype.setup = function(channel, accountInfo, next) {
-  next(false, 'channel', channel);
-}
-
-// channel destroy/teardown
-// you can remove any stored data here
-Read.prototype.teardown = function(channel, accountInfo, next) {
-  next(false, 'channel', channel);
-}
 
 /**
  * Action Invoker - the primary function of a channel

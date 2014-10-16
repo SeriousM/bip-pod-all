@@ -23,7 +23,9 @@
     ],
     "main": ".",
     "dependencies": {
-        "bip-pod" : ">=0.0.1"
+        "bip-pod" : ">=0.0.1",
+        "mongodb" : "~2.0",
+        "assert" : "*"
     },
     "engines": {
         "node": ">= 0.10.0"

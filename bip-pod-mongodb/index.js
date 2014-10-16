@@ -22,24 +22,24 @@ var Pod = require('bip-pod'),
     mongodb = new Pod({
         name : 'mongodb', // pod name (action prefix)
         title : 'mongodb', // short description
-        description : 'A pod to connect with a mongodb datastore'
+        description : 'A pod to connect with a mongodb datastore',
         authType : 'issuer_token',
         authMap : {
-            username : 'MONGODB_CONNECTION_STRING_GOES_HERE',
-        },
+            username : 'CONNECTION_STRING'
+        } /*,
         'renderers' : {
             'test_connection' : {
                 description : 'test connection to MongoDB datastore',
                 contentType : DEFS.CONTENTTYPE_JSON
             }
-        }
+        }  */
     
     });
 
 // Include any actions
 mongodb.add(require('./create.js'));
-mongodb.add(require('./read.js'));
-mongodb.add(require('./update.js'));
-mongodb.add(require('./delete.js'));
+//mongodb.add(require('./read.js'));
+//mongodb.add(require('./update.js'));
+//mongodb.add(require('./delete.js'));
 // -----------------------------------------------------------------------------
 module.exports = mongodb;

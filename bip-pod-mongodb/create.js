@@ -20,6 +20,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+var MongoClient = require('mongodb').MongoClient
+  , assert = require('assert');
+
+
 function Create(podConfig) {
   this.name = 'create'; 
   this.title = 'create', 
@@ -32,64 +36,39 @@ function Create(podConfig) {
 
 Create.prototype = {};
 
-// Create schema definition
-// @see http://json-schema.org/
 Create.prototype.getSchema = function() {
   return {
-    "config": {
-      "properties" : {
-        "instring_override" : {
-          "type" :  "string",
-          "description" : "String goes in"
-        }
-      }
-    },
     "imports": {
       "properties" : {
-        "instring" : {
-          "type" :  "string",
-          "description" : "String goes in"
+        "document_json" : {
+          "type" :  "object",
+          "description" : "Document (JSON) to Insert"
+        },
+        "collection" : {
+          "type" : "string",
+          "description" : "Name of the Collection"
         }
       }
     },
     "exports": {
       "properties" : {
-        "outstring" : {
+        "status" : {
           "type" : "string",
-          "description" : "String goes out"
+          "description" : "Status: Error or ok"
         }
       }
-    },
-    'renderers' : {
-      'hello' : {
-        description : 'Hello World',
-        description_long : 'Hello World',
-        contentType : DEFS.CONTENTTYPE_XML
-      }     
     }
   }
 }
 
-// RPC/Renderer accessor - /rpc/render/channel/{channel id}/hello
+// RPC/Renderer accessor - /rpc/render/channel/{channel id}/insert
 Create.prototype.rpc = function(method, sysImports, options, channel, req, res) {
-  if (method === 'hello') {
+  if (method === 'insert') {
     res.contentType(this.getSchema().renderers[method].contentType);
-    res.send('world');
+    res.send('document inserted');
   } else {
     res.send(404);
   }
-}
-
-// channel presave setup
-// setup data sources
-Create.prototype.setup = function(channel, accountInfo, next) {
-  next(false, 'channel', channel);
-}
-
-// channel destroy/teardown
-// you can remove any stored data here
-Create.prototype.teardown = function(channel, accountInfo, next) {
-  next(false, 'channel', channel);
 }
 
 /**
@@ -106,13 +85,27 @@ Create.prototype.teardown = function(channel, accountInfo, next) {
  * 
  */
 Create.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
-  next(
-    false,
-    {
-      "outstring" : channel.config.instring_override || imports.instring
-    }
-    );
-}
+    
 
+    if (imports.document_json && imports.collection) {
+    
+        var url = sysImports.auth.issuer_token.username;
+        console.log(url);
+        
+        MongoClient.connect(url, { auto_reconnect: true }, function(err, db) {
+            assert.equal(null, err);
+            console.log("Connected correctly to server");
+            var collection = db.collection(imports.collection);
+            collection.insert(imports.document_json, function(err, result) {
+                assert.equal(err, null);
+                console.log("Inserted " + result + " into collection");
+
+            });
+            db.close();
+        });
+    }
+
+
+}
 // -----------------------------------------------------------------------------
 module.exports = Create;

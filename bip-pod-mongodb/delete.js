@@ -36,36 +36,21 @@ Delete.prototype = {};
 // @see http://json-schema.org/
 Delete.prototype.getSchema = function() {
   return {
-    "config": {
+   "imports": {
       "properties" : {
-        "instring_override" : {
-          "type" :  "string",
-          "description" : "String goes in"
-        }
-      }
-    },
-    "imports": {
-      "properties" : {
-        "instring" : {
-          "type" :  "string",
-          "description" : "String goes in"
+        "query_json" : {
+          "type" :  "object",
+          "description" : "The json object (document) to remove"
         }
       }
     },
     "exports": {
       "properties" : {
-        "outstring" : {
+        "status" : {
           "type" : "string",
-          "description" : "String goes out"
+          "description" : "Error or OK for successful removal"
         }
       }
-    },
-    'renderers' : {
-      'hello' : {
-        description : 'Hello World',
-        description_long : 'Hello World',
-        contentType : DEFS.CONTENTTYPE_XML
-      }     
     }
   }
 }
@@ -80,17 +65,6 @@ Delete.prototype.rpc = function(method, sysImports, options, channel, req, res) 
   }
 }
 
-// channel presave setup
-// setup data sources
-Delete.prototype.setup = function(channel, accountInfo, next) {
-  next(false, 'channel', channel);
-}
-
-// channel destroy/teardown
-// you can remove any stored data here
-Delete.prototype.teardown = function(channel, accountInfo, next) {
-  next(false, 'channel', channel);
-}
 
 /**
  * Action Invoker - the primary function of a channel
