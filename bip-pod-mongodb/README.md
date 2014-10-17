@@ -19,6 +19,11 @@ Manually restart the bipio server at your convenience.
 
 [Bipio Docs](https://bip.io/docs/pods/mongodb)
 
+
+## Usage
+
+ 
+
 ## License
 
 BipIO is free for non-commercial use - [GPLv3](http://www.gnu.org/copyleft/gpl.html)
