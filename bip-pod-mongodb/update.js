@@ -32,39 +32,34 @@ function Update(podConfig) {
 
 Update.prototype = {};
 
-// Update schema definition
-// @see http://json-schema.org/
 Update.prototype.getSchema = function() {
   return {
-    "imports": {
-      "properties" : {
-        "document_json" : {
-          "type" :  "object",
-          "description" : "JSON object to insert"
+    'imports': {
+      'properties' : {
+         'collection' : {
+          'type' : 'string',
+          'description' : 'Name of the Collection'
+        },
+        'match' : {
+            'type' : 'object',
+            'description' : 'Pattern to Match'
+        },
+        'document_json' : {
+          'type' :  'object',
+          'description' : 'Data to Update'
         }
       }
     },
-    "exports": {
-      "properties" : {
-        "status" : {
-          "type" : "string",
-          "description" : "Status: Error or ok"
+    'exports': {
+      'properties' : {
+        'status' : {
+          'type' : 'string',
+          'description' : 'Status: Error or ok'
         }
       }
     }
   }
 }
-
-// RPC/Renderer accessor - /rpc/render/channel/{channel id}/hello
-Update.prototype.rpc = function(method, sysImports, options, channel, req, res) {
-  if (method === 'hello') {
-    res.contentType(this.getSchema().renderers[method].contentType);
-    res.send('world');
-  } else {
-    res.send(404);
-  }
-}
-
 
 /**
  * Action Invoker - the primary function of a channel
@@ -80,12 +75,24 @@ Update.prototype.rpc = function(method, sysImports, options, channel, req, res) 
  * 
  */
 Update.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
-  next(
-    false,
-    {
-      "outstring" : channel.config.instring_override || imports.instring
-    }
-    );
+    
+    if (imports.document_json && imports.collection) {
+   
+    var url = sysImports.auth.issuer_token.username;
+
+    MongoClient.connect(url, { auto_reconnect: true }, function(err, db) {
+            assert.equal(null, err);
+            console.log('Connected correctly to server');
+            db.collection(imports.collection, function(err, collection) {
+                console.log(collection);
+                collection.update(imports.match, { $set : imports.document_json  } , function(err, result) {
+                    assert.equal(err, null);
+                    callbakck(result);
+                });
+            });
+        });
+
+    });
 }
 
 // -----------------------------------------------------------------------------

@@ -36,13 +36,17 @@ Delete.prototype = {};
 // @see http://json-schema.org/
 Delete.prototype.getSchema = function() {
   return {
-   "imports": {
-      "properties" : {
-        "query_json" : {
-          "type" :  "object",
-          "description" : "The json object (document) to remove"
+    'imports': {
+      'properties' : {
+         'collection' : {
+          'type' : 'string',
+          'description' : 'Name of the Collection'
+        },
+        'match' : {
+            'type' : 'object',
+            'description' : 'Pattern to Match for Removal'
         }
-      }
+     }
     },
     "exports": {
       "properties" : {
@@ -80,12 +84,25 @@ Delete.prototype.rpc = function(method, sysImports, options, channel, req, res) 
  * 
  */
 Delete.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
-  next(
-    false,
-    {
-      "outstring" : channel.config.instring_override || imports.instring
-    }
-    );
+
+    if (imports.document_json && imports.collection) {
+   
+    var url = sysImports.auth.issuer_token.username;
+
+    MongoClient.connect(url, { auto_reconnect: true }, function(err, db) {
+            assert.equal(null, err);
+            console.log('Connected correctly to server');
+            db.collection(imports.collection, function(err, collection) {
+                console.log(collection);
+                collection.remove(imports.match, function(err, result) {
+                    assert.equal(err, null);
+                    callbakck(result);
+                });
+            });
+        });
+
+    });
+
 }
 
 // -----------------------------------------------------------------------------

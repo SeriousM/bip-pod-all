@@ -38,23 +38,23 @@ Create.prototype = {};
 
 Create.prototype.getSchema = function() {
   return {
-    "imports": {
-      "properties" : {
-        "document_json" : {
-          "type" :  "object",
-          "description" : "Document (JSON) to Insert"
+    'imports': {
+      'properties' : {
+         'collection' : {
+          'type' : 'string',
+          'description' : 'Name of the Collection'
         },
-        "collection" : {
-          "type" : "string",
-          "description" : "Name of the Collection"
+        'document_json' : {
+          'type' :  'object',
+          'description' : 'Document to Insert'
         }
       }
     },
-    "exports": {
-      "properties" : {
-        "status" : {
-          "type" : "string",
-          "description" : "Status: Error or ok"
+    'exports': {
+      'properties' : {
+        'status' : {
+          'type' : 'string',
+          'description' : 'Status: Error or ok'
         }
       }
     }
@@ -91,17 +91,38 @@ Create.prototype.invoke = function(imports, channel, sysImports, contentParts, n
     
         var url = sysImports.auth.issuer_token.username;
         console.log(url);
+        console.log(imports.document_json);
+        
+        MongoClient.connect(url, function(err, db) {
+            if (err) { return console.dir(err); }
+
+        var collection = db.collection(imports.collection);
+        var doc1 = {'hello':'Iamdoc1'};
+        var doc2 = JSON.stringify(imports.document_json);
+        var doc3 = { hey: 'Iamdoc3' };
+        var doc4 = imports.document_json.valueOf();
+        var doc5 = JSON.parse(doc4);
+        console.log(doc1, typeof doc1);
+        console.log(doc2, typeof doc2);
+        console.log(doc3, typeof doc3);
+        console.log(doc4, typeof doc4);
+        console.log(typeof imports.document_json);
+        console.log(doc5, typeof doc5);
+        collection.insert(doc5, function(err, result) {});
+
+        });
+        
         
         MongoClient.connect(url, { auto_reconnect: true }, function(err, db) {
             assert.equal(null, err);
-            console.log("Connected correctly to server");
-            var collection = db.collection(imports.collection);
-            collection.insert(imports.document_json, function(err, result) {
-                assert.equal(err, null);
-                console.log("Inserted " + result + " into collection");
-
+            console.log('Connected correctly to server');
+            db.collection(imports.collection, function(err, collection) {
+                console.log(collection);
+                collection.insert(imports.document_json, function(err, result) {
+                    assert.equal(err, null);
+                    console.log('Inserted ' + result + ' into collection');
+                });
             });
-            db.close();
         });
     }
 
