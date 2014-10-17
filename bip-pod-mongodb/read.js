@@ -32,54 +32,39 @@ function Read(podConfig) {
 
 Read.prototype = {};
 
-// Read schema definition
-// @see http://json-schema.org/
 Read.prototype.getSchema = function() {
   return {
-    "config": {
-      "properties" : {
-        "instring_override" : {
-          "type" :  "string",
-          "description" : "String goes in"
+    'config': {
+      'properties' : {
+        'instring_override' : {
+          'type' :  'string',
+          'description' : 'String goes in'
         }
       }
     },
-    "imports": {
-      "properties" : {
-        "instring" : {
-          "type" :  "string",
-          "description" : "String goes in"
+    'imports': {
+      'properties' : {
+         'collection' : {
+          'type' : 'string',
+          'description' : 'Name of the Collection'
+        },
+        'match' : {
+            'type' : 'object',
+            'description' : 'Pattern to Match'
         }
       }
     },
-    "exports": {
-      "properties" : {
-        "outstring" : {
-          "type" : "string",
-          "description" : "String goes out"
+
+    'exports': {
+      'properties' : {
+        'outstring' : {
+          'type' : 'object',
+          'description' : 'Document(s) to be returned'
         }
       }
-    },
-    'renderers' : {
-      'hello' : {
-        description : 'Hello World',
-        description_long : 'Hello World',
-        contentType : DEFS.CONTENTTYPE_XML
-      }     
     }
   }
 }
-
-// RPC/Renderer accessor - /rpc/render/channel/{channel id}/hello
-Read.prototype.rpc = function(method, sysImports, options, channel, req, res) {
-  if (method === 'hello') {
-    res.contentType(this.getSchema().renderers[method].contentType);
-    res.send('world');
-  } else {
-    res.send(404);
-  }
-}
-
 
 /**
  * Action Invoker - the primary function of a channel
@@ -95,12 +80,24 @@ Read.prototype.rpc = function(method, sysImports, options, channel, req, res) {
  * 
  */
 Read.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
-  next(
-    false,
-    {
-      "outstring" : channel.config.instring_override || imports.instring
-    }
-    );
+    
+    if (imports.document_json && imports.collection) {
+   
+    var url = sysImports.auth.issuer_token.username;
+
+    MongoClient.connect(url, { auto_reconnect: true }, function(err, db) {
+            assert.equal(null, err);
+            console.log('Connected correctly to server');
+            db.collection(imports.collection, function(err, collection) {
+                console.log(collection);
+                collection.find(imports.match).toArray( function(err, results) {
+                    assert.equal(err, null);
+                    callbakck(results);
+                });
+            });
+        });
+
+    });
 }
 
 // -----------------------------------------------------------------------------

@@ -38,8 +38,8 @@ var Pod = require('bip-pod'),
 
 // Include any actions
 mongodb.add(require('./create.js'));
-//mongodb.add(require('./read.js'));
-//mongodb.add(require('./update.js'));
-//mongodb.add(require('./delete.js'));
+mongodb.add(require('./read.js'));
+mongodb.add(require('./update.js'));
+mongodb.add(require('./delete.js'));
 // -----------------------------------------------------------------------------
 module.exports = mongodb;
