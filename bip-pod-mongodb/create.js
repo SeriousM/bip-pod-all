@@ -74,15 +74,6 @@ Create.prototype.rpc = function(method, sysImports, options, channel, req, res) 
 /**
  * Action Invoker - the primary function of a channel
  * 
- * @param Object imports transformed key/value input pairs
- * @param Channel channel invoking channel model
- * @param Object sysImports
- * @param Array contentParts array of File Objects, key/value objects
- * with attributes txId (transaction ID), size (bytes size), localpath (local tmp file path)
- * name (file name), type (content-type), encoding ('binary') 
- * 
- * @param Function next callback(error, exports, contentParts, transferredBytes)
- * 
  */
 Create.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
     
@@ -92,7 +83,7 @@ Create.prototype.invoke = function(imports, channel, sysImports, contentParts, n
         var url = sysImports.auth.issuer_token.username;
         console.log(url);
         console.log(imports.document_json);
-        
+ /*       
         MongoClient.connect(url, function(err, db) {
             if (err) { return console.dir(err); }
 
@@ -111,7 +102,7 @@ Create.prototype.invoke = function(imports, channel, sysImports, contentParts, n
         collection.insert(doc5, function(err, result) {});
 
         });
-        
+*/        
         
         MongoClient.connect(url, { auto_reconnect: true }, function(err, db) {
             assert.equal(null, err);
@@ -125,8 +116,6 @@ Create.prototype.invoke = function(imports, channel, sysImports, contentParts, n
             });
         });
     }
-
-
 }
 // -----------------------------------------------------------------------------
 module.exports = Create;

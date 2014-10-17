@@ -80,19 +80,18 @@ Update.prototype.invoke = function(imports, channel, sysImports, contentParts, n
    
     var url = sysImports.auth.issuer_token.username;
 
-    MongoClient.connect(url, { auto_reconnect: true }, function(err, db) {
-            assert.equal(null, err);
-            console.log('Connected correctly to server');
-            db.collection(imports.collection, function(err, collection) {
-                console.log(collection);
-                collection.update(imports.match, { $set : imports.document_json  } , function(err, result) {
-                    assert.equal(err, null);
-                    callbakck(result);
+        MongoClient.connect(url, { auto_reconnect: true }, function(err, db) {
+                assert.equal(null, err);
+                console.log('Connected correctly to server');
+                db.collection(imports.collection, function(err, collection) {
+                    console.log(collection);
+                    collection.update(imports.match, { $set : imports.document_json  } , function(err, result) {
+                        assert.equal(err, null);
+                        callbakck(result);
+                    });
                 });
-            });
         });
-
-    });
+    }
 }
 
 // -----------------------------------------------------------------------------

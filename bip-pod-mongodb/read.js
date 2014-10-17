@@ -65,22 +65,21 @@ Read.prototype.getSchema = function() {
 Read.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
     
     if (imports.match && imports.collection) {
-   
-    var url = sysImports.auth.issuer_token.username;
+    
+        var url = sysImports.auth.issuer_token.username;
 
-    MongoClient.connect(url, { auto_reconnect: true }, function(err, db) {
-            assert.equal(null, err);
-            console.log('Connected correctly to server');
-            db.collection(imports.collection, function(err, collection) {
-                console.log(collection);
-                collection.find(imports.match).toArray( function(err, results) {
-                    assert.equal(err, null);
-                    callbakck(results);
+        MongoClient.connect(url, { auto_reconnect: true }, function(err, db) {
+                assert.equal(null, err);
+                console.log('Connected correctly to server');
+                db.collection(imports.collection, function(err, collection) {
+                    console.log(collection);
+                    collection.find(imports.match).toArray( function(err, results) {
+                        assert.equal(err, null);
+                        callbakck(results);
+                    });
                 });
-            });
         });
-
-    });
+    }
 }
 
 // -----------------------------------------------------------------------------

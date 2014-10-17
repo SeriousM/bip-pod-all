@@ -32,8 +32,6 @@ function Delete(podConfig) {
 
 Delete.prototype = {};
 
-// Delete schema definition
-// @see http://json-schema.org/
 Delete.prototype.getSchema = function() {
   return {
     'imports': {
@@ -79,9 +77,9 @@ Delete.prototype.invoke = function(imports, channel, sysImports, contentParts, n
                     callbakck(result);
                 });
             });
-        });
-
     });
+
+    }
 
 }
 
