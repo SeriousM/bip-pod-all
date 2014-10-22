@@ -69,7 +69,8 @@ AddEvent.prototype.invoke = function(imports, channel, sysImports, contentParts,
 
   if (imports.collection_name && imports.event) {
     try {
-      client.addEvent(imports.collection_name, JSON.parse(imports.event), function(err, res) {
+      var evData = app.helper.isObject(imports.event) ? imports.event : JSON.parse(imports.event);
+      client.addEvent(imports.collection_name, evData, function(err, res) {
         next(err, res)
       });
     } catch (e) {
