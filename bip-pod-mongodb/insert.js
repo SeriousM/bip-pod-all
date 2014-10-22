@@ -24,13 +24,13 @@ var MongoClient = require('mongodb').MongoClient
   , assert = require('assert');
 
 function Insert(podConfig) {
-  this.name = 'insert'; 
-  this.title = 'Insert', 
+  this.name = 'insert';
+  this.title = 'Insert',
   this.description = 'Insert a MongoDB document',
-  this.trigger = false; 
-  this.singleton = false; 
-  this.auto = false; 
-  this.podConfig = podConfig; 
+  this.trigger = false;
+  this.singleton = false;
+  this.auto = false;
+  this.podConfig = podConfig;
 }
 
 Insert.prototype = {};
@@ -43,8 +43,8 @@ Insert.prototype.getSchema = function() {
           'type' : 'string',
           'description' : 'Name of the Collection'
         },
-        'document_json' : {
-          'type' :  'object',
+        'document' : {
+          'type' :  'mixed',
           'description' : 'Document to Insert'
         }
       }
@@ -72,17 +72,30 @@ Insert.prototype.rpc = function(method, sysImports, options, channel, req, res) 
 
 /**
  * Action Invoker - the primary function of a channel
- * 
+ *
  */
 Insert.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
-    
 
-    if (imports.document_json && imports.collection) {
-    
-        var url = sysImports.auth.issuer_token.username;
+console.log(imports);
+    if (imports.document && imports.collection) {
+
+        var url = sysImports.auth.issuer_token.username,
+          document;
+
+        if (app.helper.isObject(imports.document)) {
+          document = imports.document;
+        } else {
+          try {
+            document = JSON.parse(imports.document);
+          } catch (e) {
+            next(e);
+            return;
+          }
+        }
+
         console.log(url);
-        console.log(imports.document_json);
- /*       
+        console.log(imports.document);
+ /*
         MongoClient.connect(url, function(err, db) {
             if (err) { return console.dir(err); }
 
@@ -101,14 +114,14 @@ Insert.prototype.invoke = function(imports, channel, sysImports, contentParts, n
         collection.insert(doc5, function(err, result) {});
 
         });
-*/        
-        
+*/
+
         MongoClient.connect(url, { auto_reconnect: true }, function(err, db) {
             assert.equal(null, err);
             console.log('Connected correctly to server');
             db.collection(imports.collection, function(err, collection) {
                 console.log(collection);
-                collection.insert(imports.document_json, function(err, result) {
+                collection.insert(imports.document, function(err, result) {
                     assert.equal(err, null);
                     console.log('Inserted ' + result + ' into collection');
                 });
