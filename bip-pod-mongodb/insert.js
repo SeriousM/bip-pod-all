@@ -43,7 +43,7 @@ Insert.prototype.getSchema = function() {
           'type' : 'string',
           'description' : 'Name of the Collection'
         },
-        'document_json' : {
+        'document' : {
           'type' :  'object',
           'description' : 'Document to Insert'
         }
