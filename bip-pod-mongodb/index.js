@@ -68,9 +68,9 @@ mongodb.testCredentials = function(struct, next) {
 }
 
 // Include any actions
-mongodb.add(require('./create.js'));
+mongodb.add(require('./insert.js'));
 mongodb.add(require('./find.js'));
 mongodb.add(require('./update.js'));
-mongodb.add(require('./delete.js'));
+mongodb.add(require('./remove.js'));
 // -----------------------------------------------------------------------------
 module.exports = mongodb;
