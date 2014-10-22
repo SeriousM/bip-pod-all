@@ -23,10 +23,9 @@
 var MongoClient = require('mongodb').MongoClient
   , assert = require('assert');
 
-
 function Create(podConfig) {
   this.name = 'create'; 
-  this.title = 'create', 
+  this.title = 'Create', 
   this.description = 'Create a MongoDB document',
   this.trigger = false; 
   this.singleton = false; 

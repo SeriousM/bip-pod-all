@@ -20,9 +20,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+var MongoClient = require('mongodb').MongoClient
+  , assert = require('assert');
+
 function Read(podConfig) {
   this.name = 'read'; 
-  this.title = 'read', 
+  this.title = 'Read', 
   this.description = 'Read a MongoDB document',
   this.trigger = false; 
   this.singleton = false; 
@@ -51,7 +54,7 @@ Read.prototype.getSchema = function() {
       'properties' : {
         'found_documents' : {
           'type' : 'object',
-          'description' : 'Document(s) to be returned'
+          'description' : 'Array of Document(s)'
         }
       }
     }

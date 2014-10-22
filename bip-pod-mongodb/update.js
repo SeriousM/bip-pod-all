@@ -20,9 +20,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+var MongoClient = require('mongodb').MongoClient
+  , assert = require('assert');
+
 function Update(podConfig) {
   this.name = 'update'; 
-  this.title = 'update', 
+  this.title = 'Update', 
   this.description = 'Update a MongoDB document',
   this.trigger = false; 
   this.singleton = false; 
@@ -63,15 +66,6 @@ Update.prototype.getSchema = function() {
 
 /**
  * Action Invoker - the primary function of a channel
- * 
- * @param Object imports transformed key/value input pairs
- * @param Channel channel invoking channel model
- * @param Object sysImports
- * @param Array contentParts array of File Objects, key/value objects
- * with attributes txId (transaction ID), size (bytes size), localpath (local tmp file path)
- * name (file name), type (content-type), encoding ('binary') 
- * 
- * @param Function next callback(error, exports, contentParts, transferredBytes)
  * 
  */
 Update.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {

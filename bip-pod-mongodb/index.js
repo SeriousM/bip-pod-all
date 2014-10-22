@@ -18,27 +18,59 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+var MongoClient = require('mongodb').MongoClient;
+
 var Pod = require('bip-pod'),
     mongodb = new Pod({
         name : 'mongodb', // pod name (action prefix)
         title : 'mongodb', // short description
-        description : 'A pod to connect with a mongodb datastore',
+        description : 'A pod to connect to mongodb',
         authType : 'issuer_token',
         authMap : {
-            username : 'CONNECTION_STRING'
-        } /*,
-        'renderers' : {
-            'test_connection' : {
-                description : 'test connection to MongoDB datastore',
-                contentType : DEFS.CONTENTTYPE_JSON
-            }
-        }  */
-    
+            username : 'MongoDB Connection URI'
+        } 
     });
 
+
+/*
+mongodb.hostCheck = function(host, channel, next) {
+  this.$resource._isVisibleHost(host, function(err, blacklisted) {
+    next(err, blacklisted.length !== 0);
+  }, channel, this.podConfig.whitelist);
+}
+
+
+var struct = {
+          owner_id : accountId,
+          username : req.query.username,
+          key : req.query.key,
+          password : req.query.password,
+          type : this._authType,
+          auth_provider : podName
+        };
+*/
+
+mongodb.testCredentials = function(struct, next) {
+    console.log(struct);
+
+    MongoClient.connect(struct.username, function(err, db) {
+            if ( err === null ) {
+                next("OK",200);
+            } else if (err.match(/authenticate/g).length) {
+                next("Unauthorized", 401);
+              } else if (err.match(/connection/g).length) {
+                next("Not Found",404);
+              } else {
+                next("DNS Failure",502); // that or its a replicaset failure.
+              }
+    });
+
+}
+
 // Include any actions
-mongodb.add(require('./create.js'));
-mongodb.add(require('./read.js'));
+mongodb.add(require('./insert.js'));
+mongodb.add(require('./find.js'));
 mongodb.add(require('./update.js'));
 mongodb.add(require('./delete.js'));
 // -----------------------------------------------------------------------------

@@ -20,9 +20,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+var MongoClient = require('mongodb').MongoClient
+  , assert = require('assert');
+
 function Delete(podConfig) {
   this.name = 'delete'; 
-  this.title = 'delete', 
+  this.title = 'Delete', 
   this.description = 'Delete a MongoDB document',
   this.trigger = false; 
   this.singleton = false; 
