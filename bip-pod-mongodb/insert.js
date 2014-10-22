@@ -60,15 +60,6 @@ Insert.prototype.getSchema = function() {
   }
 }
 
-// RPC/Renderer accessor - /rpc/render/channel/{channel id}/insert
-Insert.prototype.rpc = function(method, sysImports, options, channel, req, res) {
-  if (method === 'insert') {
-    res.contentType(this.getSchema().renderers[method].contentType);
-    res.send('document inserted');
-  } else {
-    res.send(404);
-  }
-}
 
 /**
  * Action Invoker - the primary function of a channel
@@ -77,38 +68,16 @@ Insert.prototype.rpc = function(method, sysImports, options, channel, req, res) 
 Insert.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
     
 
-    if (imports.document_json && imports.collection) {
+    if (imports.document && imports.collection) {
     
         var url = sysImports.auth.issuer_token.username;
-        console.log(url);
-        console.log(imports.document_json);
- /*       
-        MongoClient.connect(url, function(err, db) {
-            if (err) { return console.dir(err); }
-
-        var collection = db.collection(imports.collection);
-        var doc1 = {'hello':'Iamdoc1'};
-        var doc2 = JSON.stringify(imports.document_json);
-        var doc3 = { hey: 'Iamdoc3' };
-        var doc4 = imports.document_json.valueOf();
-        var doc5 = JSON.parse(doc4);
-        console.log(doc1, typeof doc1);
-        console.log(doc2, typeof doc2);
-        console.log(doc3, typeof doc3);
-        console.log(doc4, typeof doc4);
-        console.log(typeof imports.document_json);
-        console.log(doc5, typeof doc5);
-        collection.insert(doc5, function(err, result) {});
-
-        });
-*/        
         
         MongoClient.connect(url, { auto_reconnect: true }, function(err, db) {
             assert.equal(null, err);
             console.log('Connected correctly to server');
             db.collection(imports.collection, function(err, collection) {
                 console.log(collection);
-                collection.insert(imports.document_json, function(err, result) {
+                collection.insert(imports.document, function(err, result) {
                     assert.equal(err, null);
                     console.log('Inserted ' + result + ' into collection');
                 });
