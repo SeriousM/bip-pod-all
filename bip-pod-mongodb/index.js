@@ -34,25 +34,34 @@ var Pod = require('bip-pod'),
 
 
 /*
-mongodb.hostCheck = function(host, channel, next) {
-  this.$resource._isVisibleHost(host, function(err, blacklisted) {
+mongodb.hostCheck = function(sysImports.auth.issuer_token.username, channel, next) {
+  this.$resource._isVisibleHost(sysImports.auth.issuer_token.username, function(err, blacklisted) {
     next(err, blacklisted.length !== 0);
   }, channel, this.podConfig.whitelist);
 }
 
-
-var struct = {
-          owner_id : accountId,
-          username : req.query.username,
-          key : req.query.key,
-          password : req.query.password,
-          type : this._authType,
-          auth_provider : podName
-        };
+mongodb.checkHost = function() {
+    if (sysImports.auth.issuer_token.username) {
+        this.hostCheck(url, channel, function(err, blacklisted) {
+        if (err) {
+            next('Server Error',500);
+        } else if (blacklisted) {
+            next('Requested host [' + url + '] is blacklisted', 403);
+        } else if (!url) {
+            next('Host Not Found',404);
+        } else {
+            next();
+        }
+        }
+    } 
+}
 */
 
-mongodb.testCredentials = function(struct, next) {
-    MongoClient.connect(struct.username, function(err, db) {
+mongodb.testCredentials = function(creds, next) {
+    var url = sysImports.auth.issuer_token.username;
+    // assumes previously non-Authed url has been set.
+    var authedUrl = url.substr(0, 10)  + creds.username + ':' + creds.password + '@'  + url.substr(10);
+    MongoClient.connect(authedUrl,{ uri_decode_auth = true; }function(err, db) {
       console.log(arguments);
       if ( err === null ) {
         next();
@@ -64,6 +73,52 @@ mongodb.testCredentials = function(struct, next) {
         next("DNS Failure",502); // that or its a replicaset failure.
       }
     });
+}
+
+
+mongodb.getClient = function(connectionString, connection) {
+
+    var channelKeepAlive = 6000;
+    var options = {};
+
+    options.socketOptions = { keepAlive: 1 };
+    options.auto_reconnect = true;
+
+    var clientConnections = {
+    _connection : {},
+    dropConnection : function() {
+        if (clientConnections._connection) {
+        clientConnections._connection.close();
+        delete clientConnections._connection;
+        }
+    },
+    resetTimer : function(_connection) {
+        var self = clientConnections._connection;
+
+        if (self) {
+        if (self.timer) {
+            clearTimeout(self.timer);
+            self.timer = null;
+        }
+
+        self.timer = setTimeout(function() {
+            connections.dropConnection(self._connection);
+        }, channelKeepAlive);
+        }
+    },
+    getConnection : function() {
+        if (clientConnections._connection) {
+            return _connection;
+        } else {
+            MongoClient.connect(connectionString, options, function(err, db) {
+                assert.equal(null, err);
+                console.log('Connected correctly to server');
+                clientConnections.resetTimer(this._connection);
+                clientConnections._connection = db;
+            });
+        } 
+    }
+    }
 
 }
 
