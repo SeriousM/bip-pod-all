@@ -27,7 +27,7 @@ var Pod = require('bip-pod'),
     	// refresh prices every 60 seconds
     	setInterval(function() {
     		self.refreshPrice.call(self);
-    	}, 10000);
+    	}, 60000);
   });
 
 var lastPrice,
