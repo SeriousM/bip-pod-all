@@ -5,6 +5,8 @@
 
 ## Installation
 
+This pod requires BipIO 0.2.68 or above
+
 From bipio server root directory
 
     npm install bip-pod-coindesk
