@@ -1,6 +1,6 @@
 {
     "name": "bip-pod-coindesk",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "CoinDesk Pod for Bipio",
     "keywords": [
     "bip",

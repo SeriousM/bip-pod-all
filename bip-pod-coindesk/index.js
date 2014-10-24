@@ -31,6 +31,7 @@ var Pod = require('bip-pod'),
   });
 
 var lastPrice,
+	lastPriceUSD,
 	lastTime,
 	url = "http://api.coindesk.com/v1/bpi/currentprice.json",
 	channelInfo = {
@@ -64,11 +65,15 @@ CoinDesk._setLastPrice = function(err, respBody) {
 
 			lastPrice = respBody;
 
-			// fire off triggers
-			if (app.isMaster) {
-				self._dao.triggerByChannelAction('coindesk.current_price', function(err, msg) {
-					self.log(err || msg, channelInfo, err ? 'error' : 'info');
-				});
+			// trigger bips on price change
+			if (lastPriceUSD != respBody.usd_float) {
+				lastPriceUSD = respBody.usd_float;
+
+				if (app.isMaster) {
+					self._dao.triggerByChannelAction('coindesk.current_price', function(err, msg) {
+						self.log(err || msg, channelInfo, err ? 'error' : 'info');
+					});
+				}
 			}
 		}
 	}
