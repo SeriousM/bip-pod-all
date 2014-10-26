@@ -1,0 +1,32 @@
+{
+  "name": "bip-pod-craigslist",
+  "version": "0.0.1",
+  "description": "craigslist Pod for Bipio",
+  "keywords": [
+    "bip",
+    "bipio",
+    "pod",
+    "craigslist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bipio-server/bip-pod-craigslist.git"
+  },
+  "bugs": {
+    "url": "http://github.com/bipio-server/bip-pod-craigslist/issues"
+  },
+  "licenses": [
+    {
+      "type": "GNU GPLv3",
+      "url": "http://www.gnu.org/copyleft/gpl.html"
+    }
+  ],
+  "main": ".",
+  "dependencies": {
+    "bip-pod": ">=0.0.1",
+    "node-craigslist": "^0.1.7"
+  },
+  "engines": {
+    "node": ">= 0.10.0"
+  }
+}
