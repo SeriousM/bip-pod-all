@@ -17,7 +17,7 @@
 function Search(podConfig) {
   this.name = 'search';
   this.title = 'Listing Search',
-  this.description = 'Export any new listings which match your search query',
+  this.description = 'Exports the first 100 listings matching your search criteria',
   this.trigger = false;
   this.singleton = false;
   this.auto = false;
