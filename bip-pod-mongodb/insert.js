@@ -20,12 +20,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-var MongoClient = require('mongodb').MongoClient
-  , assert = require('assert');
+var MongoClient = require('mongodb').MongoClient;
 
 function Insert(podConfig) {
   this.name = 'insert';
-  this.title = 'Insert',
+  this.title = 'Insert a document into MongoDB',
   this.description = 'Insert a MongoDB document',
   this.trigger = false;
   this.singleton = false;
@@ -76,7 +75,6 @@ Insert.prototype.rpc = function(method, sysImports, options, channel, req, res) 
  */
 Insert.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
 
-console.log(imports);
     if (imports.document && imports.collection) {
 
         var url = sysImports.auth.issuer_token.username,
@@ -93,21 +91,19 @@ console.log(imports);
           }
         }
 
-        console.log(url);
-        console.log(imports.document);
- 
-
         MongoClient.connect(url, { auto_reconnect: true }, function(err, db) {
-            assert.equal(null, err);
-            console.log('Connected correctly to server');
+//        this.pod.getClient(url, "insert", function(err, db) {
+            if (err) { console.log(err); }
             db.collection(imports.collection, function(err, collection) {
-                console.log(collection);
-                collection.insert(imports.document, function(err, result) {
-                    assert.equal(err, null);
+                collection.insert(document, function(err, result) {
+                    if (err) { 
+                        return err; 
+                    }
                     console.log('Inserted ' + result.result + ' into collection');
                 });
             });
         });
+
     }
 }
 // -----------------------------------------------------------------------------

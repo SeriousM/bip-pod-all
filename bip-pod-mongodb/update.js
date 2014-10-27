@@ -20,8 +20,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-var MongoClient = require('mongodb').MongoClient
-  , assert = require('assert');
+var MongoClient = require('mongodb').MongoClient;
 
 function Update(podConfig) {
   this.name = 'update'; 
@@ -44,11 +43,11 @@ Update.prototype.getSchema = function() {
           'description' : 'Name of the Collection'
         },
         'match' : {
-            'type' : 'object',
+            'type' : 'mixed',
             'description' : 'Pattern to Match'
         },
-        'document_json' : {
-          'type' :  'object',
+        'document' : {
+          'type' :  'mixed',
           'description' : 'Data to Update'
         }
       }
@@ -70,18 +69,47 @@ Update.prototype.getSchema = function() {
  */
 Update.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
     
-    if (imports.document_json && imports.collection) {
+    if (imports.document && imports.collection) {
    
-    var url = sysImports.auth.issuer_token.username;
+        var url = sysImports.auth.issuer_token.username,
+          document, match;
+
+        if (app.helper.isObject(imports.document)) {
+          document = imports.document;
+        } else {
+          try {
+            document = JSON.parse(imports.document);
+          } catch (e) {
+            next(e);
+            return;
+          }
+        }
+
+        if (app.helper.isObject(imports.match)) {
+          match = imports.match;
+        } else {
+          try {
+            match = JSON.parse(imports.match);
+          } catch (e) {
+            next(e);
+            return;
+          }
+        }
+
+
 
         MongoClient.connect(url, { auto_reconnect: true }, function(err, db) {
                 assert.equal(null, err);
                 console.log('Connected correctly to server');
                 db.collection(imports.collection, function(err, collection) {
-                    console.log(collection);
-                    collection.update(imports.match, { $set : imports.document_json  } , function(err, result) {
-                        assert.equal(err, null);
-                        callbakck(result);
+
+                    collection.update(match, { $set : document  } , function(err, result) {
+                        if (err) {
+                            console.log(err);
+                            return err;
+                        }
+                        console.log('updated to ' + result.result);
+                        return result;
                     });
                 });
         });

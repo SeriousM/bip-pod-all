@@ -1,6 +1,6 @@
 /**
  *
- * The Bipio MongoDB Pod.  mongodb Read definition
+ * The Bipio MongoDB Pod.  mongodb Find definition
  * ---------------------------------------------------------------
  *
  * @author Scott Tuddenham <scott@bip.io>
@@ -20,22 +20,21 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-var MongoClient = require('mongodb').MongoClient
-  , assert = require('assert');
+var MongoClient = require('mongodb').MongoClient;
 
-function Read(podConfig) {
-  this.name = 'read'; 
-  this.title = 'Read', 
-  this.description = 'Read a MongoDB document',
+function Find(podConfig) {
+  this.name = 'find'; 
+  this.title = 'Find a MongoDB Collection of Documents', 
+  this.description = 'Find a MongoDB Collection of Documents',
   this.trigger = false; 
   this.singleton = false; 
   this.auto = false; 
   this.podConfig = podConfig; 
 }
 
-Read.prototype = {};
+Find.prototype = {};
 
-Read.prototype.getSchema = function() {
+Find.prototype.getSchema = function() {
   return {
     'imports': {
       'properties' : {
@@ -43,9 +42,9 @@ Read.prototype.getSchema = function() {
           'type' : 'string',
           'description' : 'Name of the Collection'
         },
-        'match' : {
+        'query' : {
             'type' : 'object',
-            'description' : 'Pattern to Match'
+            'description' : 'Query to Search On'
         }
       }
     },
@@ -65,25 +64,39 @@ Read.prototype.getSchema = function() {
  * Action Invoker - the primary function of a channel
  * 
  */
-Read.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
+Find.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
     
-    if (imports.match && imports.collection) {
-    
-        var url = sysImports.auth.issuer_token.username;
+    if (imports.query && imports.collection) {
+   
+        var url = sysImports.auth.issuer_token.username,
+            query;
+
+            if (app.helper.isObject(imports.query)) {
+            query = imports.query;
+            } else {
+            try {
+                query = JSON.parse(imports.query);
+            } catch (e) {
+                next(e);
+                return;
+            }
+            }
+
 
         MongoClient.connect(url, { auto_reconnect: true }, function(err, db) {
-                assert.equal(null, err);
-                console.log('Connected correctly to server');
-                db.collection(imports.collection, function(err, collection) {
-                    console.log(collection);
-                    collection.find(imports.match).toArray( function(err, results) {
-                        assert.equal(err, null);
-                        callbakck(results);
-                    });
+            console.log('Connected correctly to server');
+            db.collection(imports.collection, function(err, collection) {
+                collection.find(query).toArray( function(err, results) {
+                    if (err) {
+                        return err;
+                    }
+                    console.log(results);
+                    return results;
                 });
+            });
         });
     }
 }
 
 // -----------------------------------------------------------------------------
-module.exports = Read;
+module.exports = Find;

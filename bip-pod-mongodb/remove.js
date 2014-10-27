@@ -20,8 +20,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-var MongoClient = require('mongodb').MongoClient
-  , assert = require('assert');
+var MongoClient = require('mongodb').MongoClient;
 
 function Remove(podConfig) {
   this.name = 'remove'; 
@@ -44,7 +43,7 @@ Remove.prototype.getSchema = function() {
           'description' : 'Name of the Collection'
         },
         'match' : {
-            'type' : 'object',
+            'type' : 'mixed',
             'description' : 'Pattern to Match for Removal'
         }
      }
@@ -68,16 +67,30 @@ Remove.prototype.invoke = function(imports, channel, sysImports, contentParts, n
 
     if (imports.match && imports.collection) {
    
-    var url = sysImports.auth.issuer_token.username;
+    var url = sysImports.auth.issuer_token.username,
+      match;
+        
+        if (app.helper.isObject(imports.match)) {
+          match = imports.match;
+        } else {
+          try {
+            match = JSON.parse(imports.match);
+          } catch (e) {
+            next(e);
+            return;
+          }
+        }
+
+
 
     MongoClient.connect(url, { auto_reconnect: true }, function(err, db) {
-            assert.equal(null, err);
             console.log('Connected correctly to server');
             db.collection(imports.collection, function(err, collection) {
-                console.log(collection);
-                collection.remove(imports.match, function(err, result) {
-                    assert.equal(err, null);
-                    callbakck(result);
+                collection.remove(match, function(err, result) {
+                    if (err) {
+                        return err;
+                    }
+                    return result;
                 });
             });
     });
