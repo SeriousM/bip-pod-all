@@ -32,10 +32,9 @@ var Pod = require('bip-pod'),
         }
     });
 
-
 /*
-mongodb.hostCheck = function(sysImports.auth.issuer_token.username, channel, next) {
-  this.$resource._isVisibleHost(sysImports.auth.issuer_token.username, function(err, blacklisted) {
+mongodb.hostCheck = function(url, channel, next) {
+  this.$resource._isVisibleHost(url, function(err, blacklisted) {
     next(err, blacklisted.length !== 0);
   }, channel, this.podConfig.whitelist);
 }
@@ -56,12 +55,11 @@ mongodb.checkHost = function() {
     } 
 }
 */
-
-mongodb.testCredentials = function(creds, next) {
+mongodb.testCredentials = function(struct, next) {
     var url = sysImports.auth.issuer_token.username;
     // assumes previously non-Authed url has been set.
-    var authedUrl = url.substr(0, 10)  + creds.username + ':' + creds.password + '@'  + url.substr(10);
-    MongoClient.connect(authedUrl,{ uri_decode_auth = true; }function(err, db) {
+    // var authedUrl = url.substr(0, 10)  + creds.username + ':' + creds.password + '@'  + url.substr(10);
+    MongoClient.connect(url, { uri_decode_auth : true }, function(err, db) {
       console.log(arguments);
       if ( err === null ) {
         next();
@@ -76,7 +74,7 @@ mongodb.testCredentials = function(creds, next) {
 }
 
 
-mongodb.getClient = function(connectionString, connection) {
+mongodb.getClient = function(connectionString, key, connection) {
 
     var channelKeepAlive = 6000;
     var options = {};
@@ -85,41 +83,40 @@ mongodb.getClient = function(connectionString, connection) {
     options.auto_reconnect = true;
 
     var clientConnections = {
-    _connection : {},
-    dropConnection : function() {
-        if (clientConnections._connection) {
-        clientConnections._connection.close();
-        delete clientConnections._connection;
-        }
-    },
-    resetTimer : function(_connection) {
-        var self = clientConnections._connection;
+        _channels : {},
+        dropConnection : function(key) {
+            if (clientConnections._channels[key]) {
+            clientConnections._channels[key].connection.close();
+            delete clientConnections._channels[key].connection;
+            }
+        },
+        resetTimer : function(key) {
+            var self = clientConnections._channels[key];
 
-        if (self) {
-        if (self.timer) {
-            clearTimeout(self.timer);
-            self.timer = null;
-        }
+            if (self) {
+            if (self.timer) {
+                clearTimeout(self.timer);
+                self.timer = null;
+            }
 
-        self.timer = setTimeout(function() {
-            connections.dropConnection(self._connection);
-        }, channelKeepAlive);
-        }
-    },
-    getConnection : function() {
-        if (clientConnections._connection) {
-            return _connection;
-        } else {
-            MongoClient.connect(connectionString, options, function(err, db) {
-                assert.equal(null, err);
-                console.log('Connected correctly to server');
-                clientConnections.resetTimer(this._connection);
-                clientConnections._connection = db;
-            });
-        } 
-    }
-    }
-
+            self.timer = setTimeout(function() {
+                clientConnections.dropConnection(self.key);
+            }, channelKeepAlive);
+            }
+        },
+        getConnection : function(key) {
+            var channels = clientConnections._channels;
+            if (channels[key] && channels[key].connection) {
+                return channels[key].connection;
+            } else {
+                MongoClient.connect(connectionString, options, function(err, db) {
+                    console.log('Connected correctly to server');
+                    clientConnections.resetTimer(this.key);
+                    clientConnections._channels[key].connection = db;
+                });
+            } 
+        }()
+    };
 }
 
 // Include any actions
