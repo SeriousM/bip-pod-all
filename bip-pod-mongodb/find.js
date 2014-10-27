@@ -48,7 +48,6 @@ Find.prototype.getSchema = function() {
         }
       }
     },
-
     'exports': {
       'properties' : {
         'found_documents' : {
@@ -68,32 +67,31 @@ Find.prototype.invoke = function(imports, channel, sysImports, contentParts, nex
     
     if (imports.query && imports.collection) {
    
-        var url = sysImports.auth.issuer_token.username,
-            query;
+        var query;
 
-            if (app.helper.isObject(imports.query)) {
+        if (app.helper.isObject(imports.query)) {
             query = imports.query;
-            } else {
+        } else {
             try {
-                query = JSON.parse(imports.query);
+              query = JSON.parse(imports.query);
             } catch (e) {
-                next(e);
-                return;
+              next(e);
+              return;
             }
-            }
+        }
 
-
-        MongoClient.connect(url, { auto_reconnect: true }, function(err, db) {
-            console.log('Connected correctly to server');
-            db.collection(imports.collection, function(err, collection) {
+        this.pod.getClient(sysImports, function(err, db) {
+            if (err) {
+                next(err);
+            } else {
+              db.collection(imports.collection, function(err, collection) {
                 collection.find(query).toArray( function(err, results) {
-                    if (err) {
-                        return err;
+                    for (var i = 0; i < results.length; i++) {
+                        next(false, results[i]);
                     }
-                    console.log(results);
-                    return results;
                 });
-            });
+              });
+            }
         });
     }
 }

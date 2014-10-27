@@ -51,14 +51,6 @@ Update.prototype.getSchema = function() {
           'description' : 'Data to Update'
         }
       }
-    },
-    'exports': {
-      'properties' : {
-        'status' : {
-          'type' : 'string',
-          'description' : 'Status: Error or ok'
-        }
-      }
     }
   }
 }
@@ -71,8 +63,7 @@ Update.prototype.invoke = function(imports, channel, sysImports, contentParts, n
     
     if (imports.document && imports.collection) {
    
-        var url = sysImports.auth.issuer_token.username,
-          document, match;
+        var document, match;
 
         if (app.helper.isObject(imports.document)) {
           document = imports.document;
@@ -95,25 +86,21 @@ Update.prototype.invoke = function(imports, channel, sysImports, contentParts, n
             return;
           }
         }
-
-
-
-        MongoClient.connect(url, { auto_reconnect: true }, function(err, db) {
-                assert.equal(null, err);
-                console.log('Connected correctly to server');
-                db.collection(imports.collection, function(err, collection) {
-
-                    collection.update(match, { $set : document  } , function(err, result) {
-                        if (err) {
-                            console.log(err);
-                            return err;
-                        }
-                        console.log('updated to ' + result.result);
-                        return result;
-                    });
-                });
-        });
     }
+
+
+
+    this.pod.getClient(sysImports, function(err, db) {
+        if (err) {
+            next(err);
+        } else {
+            db.collection(imports.collection, function(err, collection) {
+                collection.update(match, { $set : document } , function(err, result) {
+                    next(err, {});
+                });
+            });
+        }
+    });
 }
 
 // -----------------------------------------------------------------------------

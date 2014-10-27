@@ -46,15 +46,8 @@ Remove.prototype.getSchema = function() {
             'type' : 'mixed',
             'description' : 'Pattern to Match for Removal'
         }
-     }
-    },
-    "exports": {
-      "properties" : {
-        "status" : {
-          "type" : "string",
-          "description" : "Error or OK for successful removal"
-        }
-      }
+     },
+    'required' : ['collection']
     }
   }
 }
@@ -65,7 +58,7 @@ Remove.prototype.getSchema = function() {
  */
 Remove.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
 
-    if (imports.match && imports.collection) {
+  if (imports.match && imports.collection) {
    
     var url = sysImports.auth.issuer_token.username,
       match;
@@ -83,20 +76,18 @@ Remove.prototype.invoke = function(imports, channel, sysImports, contentParts, n
 
 
 
-    MongoClient.connect(url, { auto_reconnect: true }, function(err, db) {
-            console.log('Connected correctly to server');
+    this.pod.getClient(sysImports, function(err, db) {
+        if (err) {
+            next(err);
+        } else {
             db.collection(imports.collection, function(err, collection) {
                 collection.remove(match, function(err, result) {
-                    if (err) {
-                        return err;
-                    }
-                    return result;
+                   next(err, {});
                 });
             });
+        }
     });
-
-    }
-
+  }
 }
 
 // -----------------------------------------------------------------------------
