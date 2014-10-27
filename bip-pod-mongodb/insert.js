@@ -46,26 +46,9 @@ Insert.prototype.getSchema = function() {
           'type' :  'mixed',
           'description' : 'Document to Insert'
         }
-      }
-    },
-    'exports': {
-      'properties' : {
-        'status' : {
-          'type' : 'string',
-          'description' : 'Status: Error or ok'
-        }
-      }
+      },
+      "required" : [ "document", "collection" ]
     }
-  }
-}
-
-// RPC/Renderer accessor - /rpc/render/channel/{channel id}/insert
-Insert.prototype.rpc = function(method, sysImports, options, channel, req, res) {
-  if (method === 'insert') {
-    res.contentType(this.getSchema().renderers[method].contentType);
-    res.send('document inserted');
-  } else {
-    res.send(404);
   }
 }
 
@@ -75,36 +58,34 @@ Insert.prototype.rpc = function(method, sysImports, options, channel, req, res) 
  */
 Insert.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
 
-    if (imports.document && imports.collection) {
+  if (imports.document && imports.collection) {
 
-        var url = sysImports.auth.issuer_token.username,
-          document;
+    var document;
 
-        if (app.helper.isObject(imports.document)) {
-          document = imports.document;
-        } else {
-          try {
-            document = JSON.parse(imports.document);
-          } catch (e) {
-            next(e);
-            return;
-          }
-        }
+    if (app.helper.isObject(imports.document)) {
+      document = imports.document;
+    } else {
+      try {
+        document = JSON.parse(imports.document);
+      } catch (e) {
+        next(e);
+        return;
+      }
+    }
 
-        MongoClient.connect(url, { auto_reconnect: true }, function(err, db) {
-//        this.pod.getClient(url, "insert", function(err, db) {
-            if (err) { console.log(err); }
-            db.collection(imports.collection, function(err, collection) {
-                collection.insert(document, function(err, result) {
-                    if (err) { 
-                        return err; 
-                    }
-                    console.log('Inserted ' + result.result + ' into collection');
-                });
+    this.pod.getClient(sysImports, function(err, db) {
+      if (err) {
+        next(err);
+      } else {
+        db.collection(imports.collection, function(err, collection) {
+            collection.insert(document, function(err, result) {
+              next(err, {});
             });
         });
+      }
+    });
 
-    }
+  }
 }
 // -----------------------------------------------------------------------------
 module.exports = Insert;

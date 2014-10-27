@@ -29,71 +29,56 @@ var Pod = require('bip-pod'),
         authType : 'issuer_token',
         authMap : {
             username : 'MongoDB Connection URI'
+        },
+        config : {
+          "whitelist": [] // host & ip whitelist
         }
     });
 
-/*
-mongodb.hostCheck = function(url, channel, next) {
-  this.$resource._isVisibleHost(url, function(err, blacklisted) {
-    next(err, blacklisted.length !== 0);
-  }, channel, this.podConfig.whitelist);
-}
-
-mongodb.checkHost = function() {
-    if (sysImports.auth.issuer_token.username) {
-        this.hostCheck(url, channel, function(err, blacklisted) {
-        if (err) {
-            next('Server Error',500);
-        } else if (blacklisted) {
-            next('Requested host [' + url + '] is blacklisted', 403);
-        } else if (!url) {
-            next('Host Not Found',404);
-        } else {
-            next();
-        }
-        }
-    } 
-}
-*/
 mongodb.testCredentials = function(struct, next) {
-    var url = sysImports.auth.issuer_token.username;
-    // assumes previously non-Authed url has been set.
-    // var authedUrl = url.substr(0, 10)  + creds.username + ':' + creds.password + '@'  + url.substr(10);
-    MongoClient.connect(url, { uri_decode_auth : true }, function(err, db) {
-      console.log(arguments);
-      if ( err === null ) {
-        next();
-      } else if (err.match(/authenticate/g).length) {
-        next("Unauthorized", 401);
-      } else if (err.match(/connection/g).length) {
-        next("Not Found",404);
-      } else {
-        next("DNS Failure",502); // that or its a replicaset failure.
-      }
-    });
+    var url = struct.username,
+        config = this.getConfig();
+
+    // host blacklisted
+    this.$resource._isVisibleHost(url, function(err, blacklisted) {
+
+        if (err) {
+            next(err, 500);
+
+        } else if (blacklisted.length !== 0) {
+            next("Not Authorized", 401);
+
+        } else {
+            // assumes previously non-Authed url has been set.
+            // var authedUrl = url.substr(0, 10)  + creds.username + ':' + creds.password + '@'  + url.substr(10);
+            MongoClient.connect(url, { uri_decode_auth : true }, function(err, db) {
+              if ( err === null ) {
+                next();
+              } else if (err.match(/authenticate/g).length) {
+                next("Not Authorized", 401);
+              } else if (err.match(/connection/g).length) {
+                next("Not Found", 404);
+              } else {
+                next("DNS Failure", 502);
+              }
+            });
+        }
+    }, null, config.whitelist);
 }
 
-
-mongodb.getClient = function(connectionString, key, connection) {
-
-    var channelKeepAlive = 6000;
-    var options = {};
-
-    options.socketOptions = { keepAlive: 1 };
-    options.auto_reconnect = true;
-
-    var clientConnections = {
-        _channels : {},
-        dropConnection : function(key) {
-            if (clientConnections._channels[key]) {
+var channelKeepAlive = 10000,
+    clientConnections = {
+    _channels : {},
+    dropConnection : function(key) {
+        if (clientConnections._channels[key]) {
             clientConnections._channels[key].connection.close();
             delete clientConnections._channels[key].connection;
-            }
-        },
-        resetTimer : function(key) {
-            var self = clientConnections._channels[key];
+        }
+    },
+    resetTimer : function(key) {
+        var self = clientConnections._channels[key];
 
-            if (self) {
+        if (self) {
             if (self.timer) {
                 clearTimeout(self.timer);
                 self.timer = null;
@@ -102,21 +87,42 @@ mongodb.getClient = function(connectionString, key, connection) {
             self.timer = setTimeout(function() {
                 clientConnections.dropConnection(self.key);
             }, channelKeepAlive);
-            }
-        },
-        getConnection : function(key) {
-            var channels = clientConnections._channels;
-            if (channels[key] && channels[key].connection) {
-                return channels[key].connection;
-            } else {
-                MongoClient.connect(connectionString, options, function(err, db) {
-                    console.log('Connected correctly to server');
-                    clientConnections.resetTimer(this.key);
-                    clientConnections._channels[key].connection = db;
-                });
-            } 
-        }()
-    };
+        }
+    },
+    getConnection : function(key, next) {
+        var channels = clientConnections._channels;
+
+        if (channels[key] && channels[key].connection) {
+            next(false, channels[key].connection);
+        } else {
+            var options = {
+                    socketOptions : {
+                        keepAlive : 1
+                    },
+                    auto_reconnect : true
+                };
+
+            MongoClient.connect(key, options, function(err, db) {
+                if (err) {
+                    next(err);
+                } else {
+                    clientConnections._channels[key] = {
+                        key : key,
+                        connection : db
+                    };
+
+                    clientConnections.resetTimer(key);
+
+                    next(false, db);
+                }
+            });
+        }
+    }
+};
+
+
+mongodb.getClient = function(sysImports, next) {
+    clientConnections.getConnection(sysImports.auth.issuer_token.username, next);
 }
 
 // Include any actions
