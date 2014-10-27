@@ -18,7 +18,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-var weather = require 'openweathermap';
+var weather = require('openweathermap');
 
 weather.defaults =  {
     units:'metric', 
@@ -48,7 +48,7 @@ Forecast.prototype.getSchema = function() {
     "imports": {
       "properties" : {
         "id" : {
-          "type" :  "string",
+          "type" : "string",
           "description" : "ID for City"
         }
       }
@@ -80,7 +80,13 @@ Forecast.prototype.teardown = function(channel, accountInfo, next) {
  
 Forecast.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
     if (imports.id) {
-        weather.forecast({id : imports.id}); 
+        weather.forecast({id : imports.id}, function(err, cb) {
+            if (err) {
+              next(err);
+            } else {
+              next(false, cb);
+            }
+        }); 
     }
 }
 

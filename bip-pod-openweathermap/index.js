@@ -16,13 +16,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-var weather = require 'openweathermap'
+var weather = require('openweathermap');
 
 var Pod = require('bip-pod'),
     openweathermap = new Pod({
         name : 'openweathermap', 
         title : 'OpenWeatherMap', 
-        description : '<a href="http://openweathermap.org">OpenWeatherMap</a> service provides open weather data for more than 200,000 cities'
+        description : '<a href="http://openweathermap.org">OpenWeatherMap</a> service provides open weather data for more than 200,000 cities',
         authType : 'issuer_token',
         authMap : {
             username : 'OpenWeatherMap API Key'
