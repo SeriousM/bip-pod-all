@@ -74,17 +74,18 @@ Insert.prototype.invoke = function(imports, channel, sysImports, contentParts, n
     }
 
     this.pod.getClient(sysImports, function(err, db) {
-      if (err) {
-        next(err);
-      } else {
+      if (err) { next(err); } else {
         db.collection(imports.collection, function(err, collection) {
-            collection.insert(document, function(err, result) {
-              next(err, {});
-            });
+            if (err) { next(err); } else {
+                collection.insert(document, function(err, result) {
+                    if (err) { next(err); } else {
+                        next(err, {});
+                    }
+                });   
+            }
         });
       }
     });
-
   }
 }
 // -----------------------------------------------------------------------------

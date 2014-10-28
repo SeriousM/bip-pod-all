@@ -81,15 +81,17 @@ Find.prototype.invoke = function(imports, channel, sysImports, contentParts, nex
         }
 
         this.pod.getClient(sysImports, function(err, db) {
-            if (err) {
-                next(err);
-            } else {
+            if (err) { next(err); } else {
               db.collection(imports.collection, function(err, collection) {
-                collection.find(query).toArray( function(err, results) {
-                    for (var i = 0; i < results.length; i++) {
-                        next(false, results[i]);
-                    }
-                });
+                if (err) { next(err); } else {
+                    collection.find(query).toArray( function(err, results) {
+                        if (err) { next(err); } else {
+                            for (var i = 0; i < results.length; i++) {
+                                next(false, results[i]);
+                            }
+                        }
+                    });
+                }
               });
             }
         });

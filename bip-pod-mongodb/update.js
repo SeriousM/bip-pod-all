@@ -86,21 +86,22 @@ Update.prototype.invoke = function(imports, channel, sysImports, contentParts, n
             return;
           }
         }
-    }
 
 
-
-    this.pod.getClient(sysImports, function(err, db) {
-        if (err) {
-            next(err);
-        } else {
-            db.collection(imports.collection, function(err, collection) {
-                collection.update(match, { $set : document } , function(err, result) {
-                    next(err, {});
+        this.pod.getClient(sysImports, function(err, db) {
+            if (err) {
+                next(err);
+            } else {
+                db.collection(imports.collection, function(err, collection) {
+                    if (err) { next(err); } else {
+                        collection.update(match, { $set : document } , function(err, result) {
+                            next(err, {});
+                        });
+                    }
                 });
-            });
-        }
-    });
+            }
+        });
+    }
 }
 
 // -----------------------------------------------------------------------------

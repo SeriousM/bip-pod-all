@@ -75,15 +75,16 @@ Remove.prototype.invoke = function(imports, channel, sysImports, contentParts, n
         }
 
 
-
     this.pod.getClient(sysImports, function(err, db) {
-        if (err) {
-            next(err);
-        } else {
+        if (err) { next(err); } else {
             db.collection(imports.collection, function(err, collection) {
-                collection.remove(match, function(err, result) {
-                   next(err, {});
-                });
+                if (err) { next(err); }  else {
+                    collection.remove(match, function(err, result) {
+                        if (err) { next(err); } else {
+                            next(err, {});
+                        }
+                    });
+                }
             });
         }
     });
