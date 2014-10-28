@@ -1,7 +1,7 @@
 ![filter](filter.png) bip-pod-filter
 =======
 
-<a href="http://en.wikipedia.org/wiki/filter_code">filter</a> pod for [bipio](https://bip.io).  
+filter pod for [bipio](https://bip.io).  
 
 ## Installation
 
