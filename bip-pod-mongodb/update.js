@@ -23,13 +23,13 @@
 var MongoClient = require('mongodb').MongoClient;
 
 function Update(podConfig) {
-  this.name = 'update'; 
-  this.title = 'Update', 
+  this.name = 'update';
+  this.title = 'Update',
   this.description = 'Update a MongoDB document',
-  this.trigger = false; 
-  this.singleton = false; 
-  this.auto = false; 
-  this.podConfig = podConfig; 
+  this.trigger = false;
+  this.singleton = false;
+  this.auto = false;
+  this.podConfig = podConfig;
 }
 
 Update.prototype = {};
@@ -57,12 +57,12 @@ Update.prototype.getSchema = function() {
 
 /**
  * Action Invoker - the primary function of a channel
- * 
+ *
  */
 Update.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
-    
+
     if (imports.document && imports.collection) {
-   
+
         var document, match;
 
         if (app.helper.isObject(imports.document)) {
@@ -89,17 +89,19 @@ Update.prototype.invoke = function(imports, channel, sysImports, contentParts, n
 
 
         this.pod.getClient(sysImports, function(err, db) {
-            if (err) {
+          if (err) {
+              next(err);
+          } else {
+            db.collection(imports.collection, function(err, collection) {
+              if (err) {
                 next(err);
-            } else {
-                db.collection(imports.collection, function(err, collection) {
-                    if (err) { next(err); } else {
-                        collection.update(match, { $set : document } , function(err, result) {
-                            next(err, {});
-                        });
-                    }
+              } else {
+                collection.update(match, { $set : document } , function(err, result) {
+                    next(err, {});
                 });
-            }
+              }
+            });
+          }
         });
     }
 }

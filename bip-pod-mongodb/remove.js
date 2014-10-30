@@ -23,13 +23,13 @@
 var MongoClient = require('mongodb').MongoClient;
 
 function Remove(podConfig) {
-  this.name = 'remove'; 
-  this.title = 'Remove', 
+  this.name = 'remove';
+  this.title = 'Remove',
   this.description = 'Remove a MongoDB document',
-  this.trigger = false; 
-  this.singleton = false; 
-  this.auto = false; 
-  this.podConfig = podConfig; 
+  this.trigger = false;
+  this.singleton = false;
+  this.auto = false;
+  this.podConfig = podConfig;
 }
 
 Remove.prototype = {};
@@ -54,15 +54,15 @@ Remove.prototype.getSchema = function() {
 
 /**
  * Action Invoker - the primary function of a channel
- * 
+ *
  */
 Remove.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
 
   if (imports.match && imports.collection) {
-   
+
     var url = sysImports.auth.issuer_token.username,
       match;
-        
+
         if (app.helper.isObject(imports.match)) {
           match = imports.match;
         } else {
@@ -76,17 +76,19 @@ Remove.prototype.invoke = function(imports, channel, sysImports, contentParts, n
 
 
     this.pod.getClient(sysImports, function(err, db) {
-        if (err) { next(err); } else {
-            db.collection(imports.collection, function(err, collection) {
-                if (err) { next(err); }  else {
-                    collection.remove(match, function(err, result) {
-                        if (err) { next(err); } else {
-                            next(err, {});
-                        }
-                    });
-                }
+      if (err) {
+        next(err);
+      } else {
+        db.collection(imports.collection, function(err, collection) {
+          if (err) {
+            next(err);
+          }  else {
+            collection.remove(match, function(err, result) {
+              next(err, {});
             });
-        }
+          }
+        });
+      }
     });
   }
 }

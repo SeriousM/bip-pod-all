@@ -23,13 +23,13 @@
 var MongoClient = require('mongodb').MongoClient;
 
 function Find(podConfig) {
-  this.name = 'find'; 
-  this.title = 'Find a MongoDB Collection of Documents', 
+  this.name = 'find';
+  this.title = 'Find a MongoDB Collection of Documents',
   this.description = 'Find a MongoDB Collection of Documents',
-  this.trigger = false; 
-  this.singleton = false; 
-  this.auto = false; 
-  this.podConfig = podConfig; 
+  this.trigger = false;
+  this.singleton = false;
+  this.auto = false;
+  this.podConfig = podConfig;
 }
 
 Find.prototype = {};
@@ -61,12 +61,12 @@ Find.prototype.getSchema = function() {
 
 /**
  * Action Invoker - the primary function of a channel
- * 
+ *
  */
 Find.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
-    
+
     if (imports.query && imports.collection) {
-   
+
         var query;
 
         if (app.helper.isObject(imports.query)) {
@@ -81,19 +81,25 @@ Find.prototype.invoke = function(imports, channel, sysImports, contentParts, nex
         }
 
         this.pod.getClient(sysImports, function(err, db) {
-            if (err) { next(err); } else {
-              db.collection(imports.collection, function(err, collection) {
-                if (err) { next(err); } else {
-                    collection.find(query).toArray( function(err, results) {
-                        if (err) { next(err); } else {
-                            for (var i = 0; i < results.length; i++) {
-                                next(false, results[i]);
-                            }
-                        }
-                    });
-                }
-              });
-            }
+          if (err) {
+            next(err);
+          } else {
+            db.collection(imports.collection, function(err, collection) {
+              if (err) {
+                next(err);
+              } else {
+                collection.find(query).toArray( function(err, results) {
+                  if (err) {
+                    next(err);
+                  } else {
+                    for (var i = 0; i < results.length; i++) {
+                      next(false, results[i]);
+                    }
+                  }
+                });
+              }
+            });
+          }
         });
     }
 }
