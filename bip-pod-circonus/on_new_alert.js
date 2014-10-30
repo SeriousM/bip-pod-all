@@ -21,7 +21,7 @@ function OnNewAlert(podConfig) {
   this.name = 'on_new_alert';
   this.title = 'On a New Alert';
   this.description = 'Triggers On a New Alert';
-  this.trigger = false;
+  this.trigger = true;
   this.singleton = false;
   this.auto = false;
   this.podConfig = podConfig;
