@@ -1,6 +1,6 @@
 {
     "name": "bip-pod-circonus",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "circonus Pod for Bipio",
     "keywords": [
     "bip",
