@@ -75,6 +75,7 @@ Circonus.testCredentials = function(struct, next) {
 
 // Include any actions
 Circonus.add(require('./on_new_alert.js'));
+Circonus.add(require('./http_trap.js'));
 
 // -----------------------------------------------------------------------------
 module.exports = Circonus;
