@@ -29,39 +29,39 @@ var Pod = require('bip-pod'),
         username : 'App Name',
         password : 'API Token'
     },
-	  trackDuplicates : true
-	});
+    trackDuplicates : true
+  });
 
 var apiBaseURL = 'https://api.circonus.com/v2'
 
 Circonus.apiGetRequest = function(path, sysImports, next) {
   this.$resource._httpGet(
-  	apiBaseURL + path,
-  	next,
-		{
-			"Accept" : "application/json",
+    apiBaseURL + path,
+    next,
+    {
+      "Accept" : "application/json",
       "Authorization" : 'Basic '
-      	+ new Buffer(
-      		sysImports.auth.issuer_token.username
-      		+ ':'
-      		+ sysImports.auth.issuer_token.password
-    		).toString('base64')
+        + new Buffer(
+          sysImports.auth.issuer_token.username
+          + ':'
+          + sysImports.auth.issuer_token.password
+        ).toString('base64')
     }
 	);
 }
 
 Circonus.testCredentials = function(struct, next) {
   this.apiGetRequest(
-  	'/user/current',
-  	{
-  		auth : {
-  			issuer_token : {
-  				username : struct.username,
-  				password : struct.password
-  			}
-  		}
-  	},
-  	function(err, resp, headers, statusCode) {
+    '/user/current',
+    {
+      auth : {
+        issuer_token : {
+          username : struct.username,
+          password : struct.password
+        }
+      }
+    },
+    function(err, resp, headers, statusCode) {
     	if (err) {
     		next(err, 500);
     	} else if (200 !== statusCode) {
