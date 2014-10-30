@@ -1,7 +1,7 @@
-![circonus](circonus.png) bip-pod-circonus
+![Circonus](circonus.png) bip-pod-circonus
 =======
 
-<a href="http://en.wikipedia.org/wiki/circonus_code">circonus</a> pod for [bipio](https://bip.io).  
+<a href="https://circonus.com">Circonus</a> Pod for [BipIO](https://bip.io).
 
 ## Installation
 
@@ -23,7 +23,7 @@ Manually restart the bipio server at your convenience.
 
 BipIO is free for non-commercial use - [GPLv3](http://www.gnu.org/copyleft/gpl.html)
 
-Our open source license is the appropriate option if you are creating an open source application under a license compatible with the GNU GPL license v3. 
+Our open source license is the appropriate option if you are creating an open source application under a license compatible with the GNU GPL license v3.
 
 If you'd like to integrate BipIO with your proprietary system, GPLv3 is likely incompatible.  To secure a Commercial OEM License for Bipio,
 please [reach us](mailto:hello@bip.io)
