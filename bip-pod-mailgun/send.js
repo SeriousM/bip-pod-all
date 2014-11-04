@@ -1,8 +1,7 @@
 /**
  *
- * The Bipio Send Pod.  mailgun sample action definition
- * ---------------------------------------------------------------
- *
+ * @author Michael Pearson <michael@bip.io>
+ * Copyright (c) 2010-2014 WoT.IO
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
