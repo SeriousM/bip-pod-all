@@ -46,10 +46,7 @@ Send.prototype.getSchema = function() {
             {
               "$ref" : '/renderers/get_domains#items/{name}'
             }
-          ],
-          "label" : {
-            "$ref" : "/renderers/get_domains#items/{name}"
-          }
+          ]
         }
       }
     },

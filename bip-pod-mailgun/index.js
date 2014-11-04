@@ -36,8 +36,6 @@ var Pod = require('bip-pod'),
     }
   });
 
-var apiBaseURL = 'https://api.mailgun.net/v2';
-
 MailGun.getClient = function(sysImports, domain) {
   return new Client({
     apiKey : sysImports.auth.issuer_token.password,
