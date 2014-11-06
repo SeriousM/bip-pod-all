@@ -1,6 +1,4 @@
 /**
- *
- * @author Michael Pearson <michael@bip.io>
  * Copyright (c) 2010-2014 WoT.IO
  *
  * This program is free software: you can redistribute it and/or modify
@@ -17,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-// @see http://documentation.mailgun.com/api-sending.html#sending
+// @see http://documentation.mailgun.com/api-bounces.html#bounces
 
 function Bounced(podConfig) {
   this.name = 'bounced';
@@ -35,10 +33,6 @@ Bounced.prototype.getSchema = function() {
   return {
     "config": {
       "properties" : {
-        "from" : {
-          "type" :  "string",
-          "description" : "Default From Address"
-        },
         "domain" : {
           "type" : "string",
           "description" : "Domain",
