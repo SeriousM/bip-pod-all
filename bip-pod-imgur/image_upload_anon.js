@@ -23,7 +23,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 var request = require('request'),
-    fs = require('fs'),
     https = require('https');
 
 function ImageUploadAnon(podConfig) {
@@ -58,13 +57,37 @@ ImageUploadAnon.prototype.getSchema = function() {
         },
         "imports": {
             properties : {
+                "id" : {
+                    "type" : "string",
+                    "description" : "ID"
+                },
                 "title" : {
                     type : "string",
-                    description : "Image Title"
+                    description : "Title"
                 },
                 "description" : {
                     type : "string",
-                    description : "Image Description"
+                    description : "Description"
+                },
+                "link" : {
+                    type : "string",
+                    description : "Link"
+                },
+                "width" : {
+                    type : "number",
+                    description : "Width"
+                },
+                "height" : {
+                    type : "number",
+                    description : "Height"
+                },
+                "type" : {
+                    type : "string",
+                    description : "Type"
+                },
+                "size" : {
+                    type : "number",
+                    description : "Size"
                 }
             }
         }
@@ -75,30 +98,39 @@ ImageUploadAnon.prototype.getSchema = function() {
  * Invokes (runs) the action.
  */
 ImageUploadAnon.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
-    var log = this.$resource.log, exports = {},  numFiles = contentParts._files.length, dirPfx = '';
+    var log = this.$resource.log,
+        self = this,
+        exports = {},
+        numFiles = contentParts._files.length, dirPfx = '',
+        $resource = this.$resource;
 
     if (contentParts._files && numFiles > 0) {
         for (var i = 0; i < numFiles; i++) {
             if (/(png|jpg|gif|jpeg|apng|tiff|bmp|pdf|xcf)$/gi.test(contentParts._files[i].type)) {
-                var options = {
-                    url: 'https://api.imgur.com/3/upload',
-                    headers: {
-                        'Authorization': 'Client-ID ' + this.podConfig.oauth.clientID
-                    }
-                };
 
-                var post = request.post(options, function(err, req, body){
-                    try{
-                        next(err, JSON.parse(body).data);
-                    } catch(e){
-                        log(body, channel, 'error');
-                        next(err, body);
-                    }
-                });
+                (function(fileStruct) {
+                    $resource.file.get(contentParts._files[i], function(err, fileStruct, stream) {
+                        var options = {
+                            url: 'https://api.imgur.com/3/upload',
+                            headers: {
+                                'Authorization': 'Client-ID ' + self.podConfig.oauth.clientID
+                            }
+                        };
 
-                var upload = post.form();
-                upload.append('type', 'file');
-                upload.append('image', fs.createReadStream(contentParts._files[i].localpath));
+                        var post = request.post(options, function(err, req, body){
+                            try{
+                                next(err, JSON.parse(body).data);
+                            } catch(e){
+                                log(body, channel, 'error');
+                                next(err, body);
+                            }
+                        });
+
+                        var upload = post.form();
+                        upload.append('type', 'file');
+                        upload.append('image', stream);
+                    });
+                })(contentParts._files[i]);
             } else {
                 next(false, exports);
             }

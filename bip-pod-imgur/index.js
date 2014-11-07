@@ -22,15 +22,14 @@ var Pod = require('bip-pod'),
     Imgur = new Pod({
         name : 'imgur',
         title : 'Imgur',
-        description : 'Imgur is used to share photos with social networks and online communities, and has the funniest pictures from all over the Internet.',
+        description : '<a href="http://imgur.com/" target="_blank">Imgur</a> is used to share photos with social networks and online communities, and has the funniest pictures from all over the Internet.',
         authType : 'none', // @todo hybrid auth types. Action level auth schemas
         passportStrategy : require('passport-imgur').Strategy,
         config : {
             // application outh
             "oauth" : {
                 "clientID" : "",
-                "clientSecret" : "",
-                "callbackURL" : ""
+                "clientSecret" : ""
             }
         }
     });
