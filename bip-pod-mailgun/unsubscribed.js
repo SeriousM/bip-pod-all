@@ -19,7 +19,7 @@
 
 function Unsubscribed(podConfig) {
   this.name = 'unsubscribed';
-  this.title = 'Triggers when an email is unsubscribed';
+  this.title = 'On An Unsubscribe';
   this.description = 'Triggers when an email is unsubscribed';
   this.trigger = true;
   this.singleton = false;
@@ -42,19 +42,12 @@ Unsubscribed.prototype.getSchema = function() {
             }
           ]
         }
-      }
+      },
+      "required" : [ "domain" ]
     },
     "imports": {
       "properties" : {
-        "limit" : {
-          "type" :  "number",
-          "description" : "max number of addressess to return (100 by default)"
-        },
-        "skip" : {
-          "type" :  "number",
-          "description" : "number of addresses to skip (0 by default)"
-        }
-      },
+      }
     },
     "exports": {
       "properties" : {
@@ -74,7 +67,6 @@ Unsubscribed.prototype.getSchema = function() {
 Unsubscribed.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
   var self = this,
   $resource = this.$resource;
-
 
   this.pod.getClient(sysImports, channel.config.domain)
     .unsubscribes()

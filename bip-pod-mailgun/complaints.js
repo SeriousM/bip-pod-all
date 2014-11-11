@@ -18,8 +18,8 @@
 // @see http://documentation.mailgun.com/api-complaints.html#spam-complaints
 
 function Complaints(podConfig) {
-  this.name = 'complaintd';
-  this.title = 'Triggers when an someone complains an email messages is spam';
+  this.name = 'complaints';
+  this.title = 'On A Complaint';
   this.description = 'Triggers when an someone complains that an email messages is spam';
   this.trigger = true;
   this.singleton = false;
@@ -42,18 +42,11 @@ Complaints.prototype.getSchema = function() {
             }
           ]
         }
-      }
+      },
+      "required" : [ "domain" ]
     },
     "imports": {
       "properties" : {
-        "limit" : {
-          "type" :  "number",
-          "description" : "max number of addressess to return (100 by default)"
-        },
-        "skip" : {
-          "type" :  "number",
-          "description" : "number of addresses to skip (0 by default)"
-        }
       },
     },
     "exports": {
@@ -75,17 +68,15 @@ Complaints.prototype.invoke = function(imports, channel, sysImports, contentPart
   var self = this,
   $resource = this.$resource;
 
-
   this.pod.getClient(sysImports, channel.config.domain)
     .complaints()
     .list(imports, function (err, addrs) {
-      var a;
       if (err) {
         next(err);
       } else {
         for (var i = 0; i < addrs.items[i].length; i++) {
             $resource.dupFilter(addrs.items[i], 'address', channel, sysImports, function(err, addr) {
-                  next(err, addr);
+              next(err, addr);
             });
         }
       }

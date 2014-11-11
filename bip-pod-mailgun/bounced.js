@@ -19,7 +19,7 @@
 
 function Bounced(podConfig) {
   this.name = 'bounced';
-  this.title = 'Triggers when an email is bounced';
+  this.title = 'On A Bounce';
   this.description = 'Triggers when an email is bounced';
   this.trigger = true;
   this.singleton = false;
@@ -42,18 +42,11 @@ Bounced.prototype.getSchema = function() {
             }
           ]
         }
-      }
+      },
+      "required" : [ "domain" ]
     },
     "imports": {
       "properties" : {
-        "limit" : {
-          "type" :  "number",
-          "description" : "max number of records to return (100 by default)"
-        },
-        "skip" : {
-          "type" :  "number",
-          "description" : "number of records to skip (0 by default)"
-        }
       },
     },
     "exports": {
@@ -74,7 +67,6 @@ Bounced.prototype.getSchema = function() {
 Bounced.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
   var self = this,
   $resource = this.$resource;
-
 
   this.pod.getClient(sysImports, channel.config.domain)
     .bounces()
