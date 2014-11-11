@@ -15,21 +15,21 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-// @see http://documentation.mailgun.com/api-bounces.html#bounces
+// @see http://documentation.mailgun.com/api-complaints.html#spam-complaints
 
-function Bounced(podConfig) {
-  this.name = 'bounced';
-  this.title = 'Triggers when an email is bounced';
-  this.description = 'Triggers when an email is bounced';
+function Complaints(podConfig) {
+  this.name = 'complaintd';
+  this.title = 'Triggers when an someone complains an email messages is spam';
+  this.description = 'Triggers when an someone complains that an email messages is spam';
   this.trigger = true;
   this.singleton = false;
   this.auto = false;
   this.podConfig = podConfig;
 }
 
-Bounced.prototype = {};
+Complaints.prototype = {};
 
-Bounced.prototype.getSchema = function() {
+Complaints.prototype.getSchema = function() {
   return {
     "config": {
       "properties" : {
@@ -48,36 +48,36 @@ Bounced.prototype.getSchema = function() {
       "properties" : {
         "limit" : {
           "type" :  "number",
-          "description" : "max number of records to return (100 by default)"
+          "description" : "max number of addressess to return (100 by default)"
         },
         "skip" : {
           "type" :  "number",
-          "description" : "number of records to skip (0 by default)"
+          "description" : "number of addresses to skip (0 by default)"
         }
       },
     },
     "exports": {
       "properties" : {
-        "code" : {
-          "type" :  "number",
-          "description" : "bounce code"
+        "created_at" : {
+          "type" :  "string",
+          "description" : "time complaint was registered"
         },
         "address" : {
           "type" :  "string",
-          "description" : "bounced email address"
+          "description" : "complaint email address"
         }
       }
     }
   }
 }
 
-Bounced.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
+Complaints.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
   var self = this,
   $resource = this.$resource;
 
   
   this.pod.getClient(sysImports, channel.config.domain)
-    .bounces()
+    .complaints()
     .list(imports, function (err, addrs) {
       var a;
       if (err) {
@@ -96,4 +96,4 @@ Bounced.prototype.invoke = function(imports, channel, sysImports, contentParts, 
 }
 
 // -----------------------------------------------------------------------------
-module.exports = Bounced;
+module.exports = Complaints;

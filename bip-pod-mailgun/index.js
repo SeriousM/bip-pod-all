@@ -45,8 +45,11 @@ MailGun.getClient = function(sysImports, domain) {
 }
 
 // Include any actions
-MailGun.add(require('./send.js'));
 MailGun.add(require('./bounced.js'));
+MailGun.add(require('./complaints.js'));
+MailGun.add(require('./send.js'));
+MailGun.add(require('./unsubscribed.js'));
+MailGun.add(require('./validate.js'));
 
 MailGun.rpc = function(action, method, sysImports, options, channel, req, res) {
   if (method == 'get_domains') {
