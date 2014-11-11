@@ -75,7 +75,7 @@ Unsubscribed.prototype.invoke = function(imports, channel, sysImports, contentPa
   var self = this,
   $resource = this.$resource;
 
-  
+
   this.pod.getClient(sysImports, channel.config.domain)
     .unsubscribes()
     .list(imports, function (err, addrs) {
@@ -83,11 +83,8 @@ Unsubscribed.prototype.invoke = function(imports, channel, sysImports, contentPa
       if (err) {
         next(err);
       } else {
-        for (var i = 0; i < addrs.total_count; i++) {
-            a = addrs.items[i];
-            
-            a['items'] = a['address'];
-            $resource.dupFilter(a, 'address', channel, sysImports, function(err, addr) {
+        for (var i = 0; i < addrs.items[i].length; i++) {
+            $resource.dupFilter(addrs.items[i], 'address', channel, sysImports, function(err, addr) {
                   next(err, addr);
             });
         }

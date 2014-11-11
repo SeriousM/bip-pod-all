@@ -75,7 +75,7 @@ Bounced.prototype.invoke = function(imports, channel, sysImports, contentParts, 
   var self = this,
   $resource = this.$resource;
 
-  
+
   this.pod.getClient(sysImports, channel.config.domain)
     .bounces()
     .list(imports, function (err, addrs) {
@@ -83,11 +83,10 @@ Bounced.prototype.invoke = function(imports, channel, sysImports, contentParts, 
       if (err) {
         next(err);
       } else {
-        for (var i = 0; i < addrs.total_count; i++) {
+        for (var i = 0; i < addrs.items[i].length; i++) {
             a = addrs.items[i];
-            
-            a['items'] = a['address'];
-            $resource.dupFilter(a, 'address', channel, sysImports, function(err, addr) {
+            a['addr_code'] = a['address'] + '_' + a['code'];
+            $resource.dupFilter(a, 'addr_code', channel, sysImports, function(err, addr) {
                   next(err, addr);
             });
         }

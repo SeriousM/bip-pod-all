@@ -26,7 +26,8 @@ var Pod = require('bip-pod'),
     description : '<a href="https://mailgun.com" target="_blank">MailGun</a> - Powerful APIs that allow you to send, receive and track email effortlessly. Send 10,000 emails for free every month',
     authType : 'issuer_token',
     authMap : {
-      password : 'API Key'
+      password : 'API Key',
+      username : 'Public API Key'
     },
     "renderers" : {
       'get_domains' : {
@@ -36,12 +37,16 @@ var Pod = require('bip-pod'),
     }
   });
 
-MailGun.getClient = function(sysImports, domain) {
-  return new Client({
-    apiKey : sysImports.auth.issuer_token.password,
-    domain : domain
-  });
+MailGun.getClient = function(sysImports, domain, publicKey) {
+  var struct = {
+    apiKey : sysImports.auth.issuer_token[publicKey ? 'username' : 'password']
+  };
 
+  if (domain) {
+    struct.domain = domain;
+  }
+
+  return new Client(struct);
 }
 
 // Include any actions

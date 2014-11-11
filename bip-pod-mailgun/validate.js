@@ -21,7 +21,7 @@ function Validate(podConfig) {
   this.name = 'validate';
   this.title = 'Validate an Email Address';
   this.description = 'Validate an Email Address';
-  this.trigger = true;
+  this.trigger = false;
   this.singleton = false;
   this.auto = false;
   this.podConfig = podConfig;
@@ -33,38 +33,42 @@ Validate.prototype.getSchema = function() {
   return {
     "config": {
       "properties" : {
-        "domain" : {
-          "type" : "string",
-          "description" : "Domain",
-          "oneOf" : [
-            {
-              "$ref" : '/renderers/get_domains#items/{name}'
-            }
-          ]
-        }
       }
     },
     "imports": {
       "properties" : {
         "address" : {
           "type" :  "string",
-          "description" : "An email address to validate"
-        },
-        "api_key" : {
-          "type" :  "string",
-          "description" : "If you can not use HTTP Basic Authentication (preferred), you can pass your api_key in as a parameter"
+          "description" : "Email Address"
         }
       },
+      "required" : [ "address" ]
     },
     "exports": {
       "properties" : {
         "is_valid" : {
           "type" :  "boolean",
-          "description" : "is the address a valid email address"
+          "description" : "Email Is Valid"
         },
         "address" : {
           "type" :  "string",
-          "description" : "email address"
+          "description" : "Email Address"
+        },
+        "did_you_mean" : {
+          "type" : "string",
+          "description" : "Did You Mean Address"
+        },
+        "domain" : {
+          "type" : "string",
+          "description" : "Address Domain"
+        },
+        "local_part" : {
+          "type" : "string",
+          "description" : "Address Local Part"
+        },
+        "parts" : {
+          "type" : "object",
+          "description" : "Address Parts"
         }
       }
     }
@@ -72,18 +76,13 @@ Validate.prototype.getSchema = function() {
 }
 
 Validate.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
-  var self = this,
-  $resource = this.$resource;
-
-  
-  this.pod.getClient(sysImports, channel.config.domain)
-    .address()
-    .validate(imports, function (err, resp) {
-      if (err) {
-        next(err);
-      } else {
-        next(err, resp); 
+  this.pod.getClient(sysImports, null, true)
+    .request('GET', '/address/validate', { address : imports.address }, function(err, result) {
+      if (!err) {
+        result.local_part = result.parts.local_part;
+        result.domain = result.parts.domain
       }
+      next(err, result);
     });
 }
 
