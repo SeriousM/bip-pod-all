@@ -22,8 +22,8 @@ var Pod = require('bip-pod'),
 tumblr = require('tumblr.js'),
 Tumblr = new Pod({
   name : 'tumblr',
-  description : 'Tumblr',
-  description_long : 'Tumblr is a microblogging platform and social networking website. The service allows users to post multimedia and other content to a short-form blog.',
+  title : 'Tumblr',
+  description : 'Tumblr is a microblogging platform and social networking website. The service allows users to post multimedia and other content to a short-form blog.',
   authType : 'oauth',
   passportStrategy : require('passport-tumblr').Strategy,
   config : {
@@ -65,14 +65,14 @@ Tumblr = new Pod({
 Tumblr.rpc = function(action, method, sysImports, options, channel, req, res) {
   var podConfig = this.getConfig();
   if (method == 'user_info') {
-    
+
     var client = new tumblr.Client({
       consumer_key : podConfig.oauth.consumerKey,
       consumer_secret : podConfig.oauth.consumerSecret,
       token : sysImports.auth.oauth.token,
       token_secret : sysImports.auth.oauth.secret
     });
-    
+
     client.userInfo(function(err, resp) {
       if (err) {
         res.send(err, 500);
@@ -107,7 +107,7 @@ Tumblr._decoratePostSchema = function(schema) {
     oneOf : [
         {
           '$ref' : '/renderers/user_info#user/blogs/{name}'
-        }            
+        }
       ]
   };
 
@@ -171,11 +171,11 @@ Tumblr._createPost = function(type, imports, channel, sysImports, contentParts, 
   channel.config.format :
   user.default_post_format;
   var url = channel.config.url;
-  
+
   if (-1 === url.indexOf('.')) {
     url += '.tumblr.com';
   }
-  
+
   client[type](url, imports, function(err, response) {
     if (err) {
       log(err, channel, 'error');
