@@ -49,6 +49,7 @@ CoinDesk._setLastPrice = function(err, respBody) {
 		try {
 			respBody = JSON.parse(respBody);
 		} catch (err) {
+console.log(arguments);
 			this.log(err, channelInfo, 'error');
 			return;
 		}

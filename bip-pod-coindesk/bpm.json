@@ -1,0 +1,141 @@
+{
+  "name": "coindesk",
+  "title": "CoinDesk",
+  "description": "Realtime Bitcoin prices Powered by <a href=\"http://www.coindesk.com/price\">CoinDesk</a>",
+  "url": "",
+  "trackDuplicates": false,
+  "config": {},
+  "auth": {
+    "strategy": "none"
+  },
+  "rpcs": {},
+  "actions": {
+    "current_price": {
+      "title": "Current Price",
+      "description": "Triggers whenever the BitCoin Price is Updated",
+      "trigger": "realtime",
+      "config": {
+        "properties": {}
+      },
+      "exports": {
+        "properties": {
+          "time": {
+            "type": "object",
+            "description": "Time Formats",
+            "properties": {
+              "updated": {
+                "type": "string",
+                "description": "Last Updated"
+              },
+              "updatedISO": {
+                "type": "string",
+                "description": "Last Updated (ISO)"
+              },
+              "updateduk": {
+                "type": "string",
+                "description": "Last Updated (UK)"
+              }
+            }
+          },
+          "disclaimer": {
+            "type": "string",
+            "description": "Disclaimer"
+          },
+          "bpi": {
+            "type": "object",
+            "description": "BPI Object",
+            "properties": {
+              "USD": {
+                "properties": {
+                  "code": {
+                    "type": "string",
+                    "description": "Currency Code"
+                  },
+                  "symbol": {
+                    "type": "string",
+                    "description": "Symbol"
+                  },
+                  "rate": {
+                    "type": "string",
+                    "description": "Rate"
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "Description"
+                  },
+                  "rate_float": {
+                    "type": "number",
+                    "description": "Rate Float"
+                  }
+                }
+              },
+              "GBP": {
+                "properties": {
+                  "code": {
+                    "type": "string",
+                    "description": "Currency Code"
+                  },
+                  "symbol": {
+                    "type": "string",
+                    "description": "Symbol"
+                  },
+                  "rate": {
+                    "type": "string",
+                    "description": "Rate"
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "Description"
+                  },
+                  "rate_float": {
+                    "type": "number",
+                    "description": "Rate Float"
+                  }
+                }
+              },
+              "EUR": {
+                "properties": {
+                  "code": {
+                    "type": "string",
+                    "description": "Currency Code"
+                  },
+                  "symbol": {
+                    "type": "string",
+                    "description": "Symbol"
+                  },
+                  "rate": {
+                    "type": "string",
+                    "description": "Rate"
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "Description"
+                  },
+                  "rate_float": {
+                    "type": "number",
+                    "description": "Rate Float"
+                  }
+                }
+              }
+            }
+          },
+          "usd_float": {
+            "type": "number",
+            "description": "USD Rate"
+          },
+          "gbp_float": {
+            "type": "number",
+            "description": "GBP Rate"
+          },
+          "eur_float": {
+            "type": "number",
+            "description": "EUR Rate"
+          }
+        }
+      },
+      "imports": {
+        "properties": {}
+      }
+    }
+  }
+}
