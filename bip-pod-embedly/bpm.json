@@ -1,0 +1,162 @@
+{
+  "name": "embedly",
+  "title": "Embedly",
+  "description": "With Embedly you can embed media from over 250 providers, and surface popular content with analytics. You can gain deeper insights on the articles shared on your site, and improve load times with image optimization.",
+  "url": "",
+  "trackDuplicates": false,
+  "config": {},
+  "auth": {
+    "strategy": "issuer_token"
+  },
+  "rpcs": {},
+  "actions": {
+    "oembed": {
+      "title": "Create oEmbed",
+      "description": "Create oEmbed",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Resource Type"
+          },
+          "author_name": {
+            "type": "string",
+            "description": "Author Name"
+          },
+          "author_url": {
+            "type": "string",
+            "description": "Author URL"
+          },
+          "provider_name": {
+            "type": "string",
+            "description": "Provider Name"
+          },
+          "provider_url": {
+            "type": "string",
+            "description": "Provider URL"
+          },
+          "thumbnail_url": {
+            "type": "string",
+            "description": "Thumbnail URL"
+          },
+          "description": {
+            "type": "string",
+            "description": "URL Description"
+          },
+          "html": {
+            "type": "string",
+            "description": "HTML (Rich/Video Types)"
+          },
+          "width": {
+            "type": "string",
+            "description": "Width (Rich/Video Types)"
+          },
+          "height": {
+            "type": "string",
+            "description": "Height (Rich/Video Types)"
+          },
+          "url": {
+            "type": "string",
+            "description": "URL (Photo Types)"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "URL"
+          },
+          "maxwidth": {
+            "type": "integer",
+            "description": "Max Width"
+          },
+          "maxheight": {
+            "type": "integer",
+            "description": "Max Height"
+          },
+          "autoplay": {
+            "type": "boolean",
+            "description": "Autoplay Video"
+          },
+          "words": {
+            "type": "integer",
+            "description": "Max Description Words"
+          }
+        },
+        "required": [
+          "url"
+        ],
+        "disposition": [
+          "url",
+          "maxwidth",
+          "maxheight",
+          "autoplay",
+          "words"
+        ]
+      }
+    },
+    "extract": {
+      "title": "Extract Page",
+      "description": "The Extract endpoint is designed to provide users with important information from each link including the article text, keywords, related links, and even video embeds.",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "URL"
+          },
+          "title": {
+            "type": "string",
+            "description": "Title"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description"
+          },
+          "favicon_url": {
+            "type": "string",
+            "description": "Favicon URL"
+          },
+          "content": {
+            "type": "string",
+            "description": "Extracted Content"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "URL"
+          },
+          "maxwidth": {
+            "type": "integer",
+            "description": "Max Width"
+          },
+          "maxheight": {
+            "type": "integer",
+            "description": "Max Height"
+          }
+        },
+        "required": [
+          "url"
+        ],
+        "disposition": [
+          "url",
+          "maxwidth",
+          "maxheight"
+        ]
+      }
+    }
+  }
+}
