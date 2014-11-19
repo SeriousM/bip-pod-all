@@ -1,36 +1,35 @@
 {
-    "name": "bip-pod-soundcloud",
-    "version": "0.0.10",
-    "author" : "Michael Pearson",
-    "description": "SoundCloud Pod for Bipio",
-    "keywords": [
+  "name": "bip-pod-soundcloud",
+  "version": "0.0.11",
+  "author": "Michael Pearson",
+  "description": "SoundCloud Pod for Bipio",
+  "keywords": [
     "bip",
     "bipio",
     "pod",
     "soundcloud"
-    ],
-    "repository": {
-        "type": "git",
-        "url": "git://github.com/bipio-server/bip-pod-soundcloud.git"
-    },
-    "bugs": {
-        "url": "http://github.com/bipio-server/bip-pod-soundcloud/issues"
-    },
-    "licenses": [
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bipio-server/bip-pod-soundcloud.git"
+  },
+  "bugs": {
+    "url": "http://github.com/bipio-server/bip-pod-soundcloud/issues"
+  },
+  "licenses": [
     {
-        "type": "GNU GPLv3",
-        "url": "http://www.gnu.org/copyleft/gpl.html"
+      "type": "GNU GPLv3",
+      "url": "http://www.gnu.org/copyleft/gpl.html"
     }
-    ],
-    "main": ".",
-    "dependencies": {
-        "pkginfo": "0.2.x",
-        "moment" : ">=2.4.0",
-        "bip-pod" : ">=0.0.1",
-        "passport-soundcloud" : ">=0.1.2",
-        "request" : ">=2.29.1"
-    },
-    "engines": {
-        "node": ">= 0.10.0"
-    }
+  ],
+  "main": ".",
+  "dependencies": {
+    "pkginfo": "0.2.x",
+    "moment": ">=2.4.0",
+    "passport-soundcloud": ">=0.1.2",
+    "request": ">=2.29.1"
+  },
+  "engines": {
+    "node": ">= 0.10.0"
+  }
 }
