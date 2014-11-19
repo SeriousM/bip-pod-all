@@ -1,0 +1,91 @@
+{
+  "name": "imgur",
+  "title": "Imgur",
+  "description": "<a href=\"http://imgur.com/\" target=\"_blank\">Imgur</a> is used to share photos with social networks and online communities, and has the funniest pictures from all over the Internet.",
+  "url": "",
+  "trackDuplicates": false,
+  "config": {
+    "oauth": {
+      "clientID": "123e0485a7f8aa9",
+      "clientSecret": "6ea03024583131e259395869462bf713fcc937eb",
+      "callbackURL": ""
+    }
+  },
+  "auth": {
+    "strategy": "none"
+  },
+  "rpcs": {},
+  "actions": {
+    "image_upload_anon": {
+      "title": "Anon Image Upload",
+      "description": "Upload an image to Imgur Anonymously (meaning, not tied to your account)",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Image ID"
+          },
+          "deletehash": {
+            "type": "string",
+            "description": "Unique Deletion Hash"
+          },
+          "link": {
+            "type": "string",
+            "description": "Link to Image"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "ID"
+          },
+          "title": {
+            "type": "string",
+            "description": "Title"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description"
+          },
+          "link": {
+            "type": "string",
+            "description": "Link"
+          },
+          "width": {
+            "type": "number",
+            "description": "Width"
+          },
+          "height": {
+            "type": "number",
+            "description": "Height"
+          },
+          "type": {
+            "type": "string",
+            "description": "Type"
+          },
+          "size": {
+            "type": "number",
+            "description": "Size"
+          }
+        },
+        "disposition": [
+          "id",
+          "title",
+          "description",
+          "link",
+          "width",
+          "height",
+          "type",
+          "size"
+        ]
+      }
+    }
+  }
+}
