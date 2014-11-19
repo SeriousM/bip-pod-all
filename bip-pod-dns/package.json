@@ -1,7 +1,7 @@
 {
   "name": "bip-pod-dns",
-  "author" : "Michael Pearson",
-  "version": "0.0.6",
+  "author": "Michael Pearson",
+  "version": "0.0.7",
   "description": "DNS Pod for Bipio",
   "keywords": [
     "bip",
@@ -24,9 +24,8 @@
   ],
   "main": ".",
   "dependencies": {
-    "bip-pod": ">=0.0.1",
     "tldtools": "0.0.9",
-    "ipaddr.js" : ">=0.1.2"
+    "ipaddr.js": ">=0.1.2"
   },
   "engines": {
     "node": ">= 0.10.0"
