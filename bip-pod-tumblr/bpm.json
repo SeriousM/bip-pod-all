@@ -1,0 +1,582 @@
+{
+  "name": "tumblr",
+  "title": "Tumblr",
+  "description": "Tumblr is a microblogging platform and social networking website. The service allows users to post multimedia and other content to a short-form blog.",
+  "url": "",
+  "trackDuplicates": false,
+  "config": {
+    "oauth": {
+      "consumerKey": "",
+      "consumerSecret": ""
+    }
+  },
+  "auth": {
+    "strategy": "oauth"
+  },
+  "rpcs": {
+    "user_info": {
+      "contentType": "application/json",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name"
+        },
+        "likes": {
+          "type": "integer",
+          "description": "Likes"
+        },
+        "following": {
+          "type": "integer",
+          "description": "Following"
+        },
+        "default_post_format": {
+          "type": "string",
+          "description": "Default Post Format"
+        },
+        "blogs": {
+          "type": "array",
+          "description": "List of Blogs"
+        }
+      },
+      "title": "Get User Info"
+    }
+  },
+  "actions": {
+    "post_text": {
+      "title": "New Text Post",
+      "description": "New Text Post",
+      "trigger": "invoke",
+      "config": {
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "Blog URL eg: blog.tumblr.com",
+            "optional": false,
+            "unique": true,
+            "oneOf": [
+              {
+                "$ref": "/renderers/user_info#user/blogs/{name}"
+              }
+            ]
+          },
+          "state": {
+            "type": "string",
+            "description": "Default State",
+            "oneOf": [
+              {
+                "$ref": "#/config/definitions/state"
+              }
+            ]
+          }
+        },
+        "definitions": {
+          "state": {
+            "description": "Post State",
+            "enum": [
+              "published",
+              "draft",
+              "queue",
+              "private"
+            ],
+            "enum_label": [
+              "Published",
+              "Draft",
+              "Queued",
+              "Private"
+            ],
+            "default": "draft"
+          }
+        },
+        "disposition": [
+          "url",
+          "state"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Post ID"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Post Title"
+          },
+          "body": {
+            "type": "string",
+            "description": "Post Body"
+          }
+        },
+        "disposition": [
+          "title",
+          "body"
+        ]
+      }
+    },
+    "post_photo": {
+      "title": "New Photo Post",
+      "description": "New Photo Post",
+      "trigger": "invoke",
+      "config": {
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "Blog URL eg: blog.tumblr.com",
+            "optional": false,
+            "unique": true,
+            "oneOf": [
+              {
+                "$ref": "/renderers/user_info#user/blogs/{name}"
+              }
+            ]
+          },
+          "state": {
+            "type": "string",
+            "description": "Default State",
+            "oneOf": [
+              {
+                "$ref": "#/config/definitions/state"
+              }
+            ]
+          }
+        },
+        "definitions": {
+          "state": {
+            "description": "Post State",
+            "enum": [
+              "published",
+              "draft",
+              "queue",
+              "private"
+            ],
+            "enum_label": [
+              "Published",
+              "Draft",
+              "Queued",
+              "Private"
+            ],
+            "default": "draft"
+          }
+        },
+        "disposition": [
+          "url",
+          "state"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Post ID"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "caption": {
+            "type": "string",
+            "description": "Caption"
+          },
+          "link": {
+            "type": "string",
+            "description": "Link"
+          },
+          "source": {
+            "type": "string",
+            "description": "Image Source URL"
+          }
+        },
+        "disposition": [
+          "caption",
+          "link",
+          "source"
+        ]
+      }
+    },
+    "post_quote": {
+      "title": "New Quote Post",
+      "description": "New Quote Post",
+      "trigger": "invoke",
+      "config": {
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "Blog URL eg: blog.tumblr.com",
+            "optional": false,
+            "unique": true,
+            "oneOf": [
+              {
+                "$ref": "/renderers/user_info#user/blogs/{name}"
+              }
+            ]
+          },
+          "state": {
+            "type": "string",
+            "description": "Default State",
+            "oneOf": [
+              {
+                "$ref": "#/config/definitions/state"
+              }
+            ]
+          }
+        },
+        "definitions": {
+          "state": {
+            "description": "Post State",
+            "enum": [
+              "published",
+              "draft",
+              "queue",
+              "private"
+            ],
+            "enum_label": [
+              "Published",
+              "Draft",
+              "Queued",
+              "Private"
+            ],
+            "default": "draft"
+          }
+        },
+        "disposition": [
+          "url",
+          "state"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Post ID"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "quote": {
+            "type": "string",
+            "description": "Quote"
+          },
+          "source": {
+            "type": "string",
+            "description": "Cited Source"
+          }
+        },
+        "disposition": [
+          "quote",
+          "source"
+        ]
+      }
+    },
+    "post_link": {
+      "title": "New Link Post",
+      "description": "New Link Post",
+      "trigger": "invoke",
+      "config": {
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "Blog URL eg: blog.tumblr.com",
+            "optional": false,
+            "unique": true,
+            "oneOf": [
+              {
+                "$ref": "/renderers/user_info#user/blogs/{name}"
+              }
+            ]
+          },
+          "state": {
+            "type": "string",
+            "description": "Default State",
+            "oneOf": [
+              {
+                "$ref": "#/config/definitions/state"
+              }
+            ]
+          }
+        },
+        "definitions": {
+          "state": {
+            "description": "Post State",
+            "enum": [
+              "published",
+              "draft",
+              "queue",
+              "private"
+            ],
+            "enum_label": [
+              "Published",
+              "Draft",
+              "Queued",
+              "Private"
+            ],
+            "default": "draft"
+          }
+        },
+        "disposition": [
+          "url",
+          "state"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Post ID"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Link Title"
+          },
+          "url": {
+            "type": "string",
+            "description": "URL"
+          },
+          "description": {
+            "type": "string",
+            "description": "Link Summary"
+          }
+        },
+        "disposition": [
+          "title",
+          "url",
+          "description"
+        ]
+      }
+    },
+    "post_chat": {
+      "title": "New Chat Post",
+      "description": "New Chat Post",
+      "trigger": "invoke",
+      "config": {
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "Blog URL eg: blog.tumblr.com",
+            "optional": false,
+            "unique": true,
+            "oneOf": [
+              {
+                "$ref": "/renderers/user_info#user/blogs/{name}"
+              }
+            ]
+          },
+          "state": {
+            "type": "string",
+            "description": "Default State",
+            "oneOf": [
+              {
+                "$ref": "#/config/definitions/state"
+              }
+            ]
+          }
+        },
+        "definitions": {
+          "state": {
+            "description": "Post State",
+            "enum": [
+              "published",
+              "draft",
+              "queue",
+              "private"
+            ],
+            "enum_label": [
+              "Published",
+              "Draft",
+              "Queued",
+              "Private"
+            ],
+            "default": "draft"
+          }
+        },
+        "disposition": [
+          "url",
+          "state"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Post ID"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Chat Title"
+          },
+          "conversation": {
+            "type": "string",
+            "description": "Chat Transcript",
+            "optional": false
+          }
+        },
+        "disposition": [
+          "title",
+          "conversation"
+        ]
+      }
+    },
+    "post_audio": {
+      "title": "New Audio Post",
+      "description": "New Audio Post",
+      "trigger": "invoke",
+      "config": {
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "Blog URL eg: blog.tumblr.com",
+            "optional": false,
+            "unique": true,
+            "oneOf": [
+              {
+                "$ref": "/renderers/user_info#user/blogs/{name}"
+              }
+            ]
+          },
+          "state": {
+            "type": "string",
+            "description": "Default State",
+            "oneOf": [
+              {
+                "$ref": "#/config/definitions/state"
+              }
+            ]
+          }
+        },
+        "definitions": {
+          "state": {
+            "description": "Post State",
+            "enum": [
+              "published",
+              "draft",
+              "queue",
+              "private"
+            ],
+            "enum_label": [
+              "Published",
+              "Draft",
+              "Queued",
+              "Private"
+            ],
+            "default": "draft"
+          }
+        },
+        "disposition": [
+          "url",
+          "state"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Post ID"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "caption": {
+            "type": "string",
+            "description": "Caption"
+          },
+          "external_url": {
+            "type": "string",
+            "description": "Source URL (not Tumblr)"
+          }
+        },
+        "disposition": [
+          "caption",
+          "external_url"
+        ]
+      }
+    },
+    "post_video": {
+      "title": "New Video Post",
+      "description": "New Video Post",
+      "trigger": "invoke",
+      "config": {
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "Blog URL eg: blog.tumblr.com",
+            "optional": false,
+            "unique": true,
+            "oneOf": [
+              {
+                "$ref": "/renderers/user_info#user/blogs/{name}"
+              }
+            ]
+          },
+          "state": {
+            "type": "string",
+            "description": "Default State",
+            "oneOf": [
+              {
+                "$ref": "#/config/definitions/state"
+              }
+            ]
+          }
+        },
+        "definitions": {
+          "state": {
+            "description": "Post State",
+            "enum": [
+              "published",
+              "draft",
+              "queue",
+              "private"
+            ],
+            "enum_label": [
+              "Published",
+              "Draft",
+              "Queued",
+              "Private"
+            ],
+            "default": "draft"
+          }
+        },
+        "disposition": [
+          "url",
+          "state"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Post ID"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "caption": {
+            "type": "string",
+            "description": "Caption"
+          },
+          "embed": {
+            "type": "string",
+            "description": "HTML embed code"
+          }
+        },
+        "disposition": [
+          "caption",
+          "embed"
+        ]
+      }
+    }
+  }
+}
