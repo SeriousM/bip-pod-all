@@ -1,32 +1,30 @@
 {
-    "name": "bip-pod-stacklead",
-    "version": "0.0.5",
-    "author" : "Michael Pearson",
-    "description": "StackLead Pod for Bipio",
-    "keywords": [
+  "name": "bip-pod-stacklead",
+  "version": "0.0.6",
+  "author": "Michael Pearson",
+  "description": "StackLead Pod for Bipio",
+  "keywords": [
     "bip",
     "bipio",
     "pod",
     "stacklead"
-    ],
-    "repository": {
-        "type": "git",
-        "url": "git://github.com/bipio-server/bip-pod-stacklead.git"
-    },
-    "bugs": {
-        "url": "http://github.com/bipio-server/bip-pod-stacklead/issues"
-    },
-    "licenses": [
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bipio-server/bip-pod-stacklead.git"
+  },
+  "bugs": {
+    "url": "http://github.com/bipio-server/bip-pod-stacklead/issues"
+  },
+  "licenses": [
     {
-        "type": "GNU GPLv3",
-        "url": "http://www.gnu.org/copyleft/gpl.html"
+      "type": "GNU GPLv3",
+      "url": "http://www.gnu.org/copyleft/gpl.html"
     }
-    ],
-    "main": ".",
-    "dependencies": {
-        "bip-pod" : ">=0.0.1"
-    },
-    "engines": {
-        "node": ">= 0.10.0"
-    }
+  ],
+  "main": ".",
+  "dependencies": {},
+  "engines": {
+    "node": ">= 0.10.0"
+  }
 }

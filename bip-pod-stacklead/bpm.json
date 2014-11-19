@@ -1,0 +1,71 @@
+{
+  "name": "stacklead",
+  "title": "StackLead",
+  "description": "Spend your time making calls and closing deals, not researching prospects online with <a href=\"https://stacklead.com/\">StackLead</a>",
+  "url": "",
+  "trackDuplicates": false,
+  "config": {},
+  "auth": {
+    "strategy": "issuer_token"
+  },
+  "rpcs": {},
+  "actions": {
+    "research": {
+      "title": "Research A Lead",
+      "description": "Delivers lead research results to your inbox or configured webhook",
+      "trigger": "invoke",
+      "config": {
+        "properties": {
+          "delivery_method": {
+            "type": "string",
+            "description": "Delivery Method",
+            "oneOf": [
+              {
+                "$ref": "#/config/definitions/delivery_method"
+              }
+            ]
+          }
+        },
+        "definitions": {
+          "delivery_method": {
+            "description": "Delivery Method",
+            "enum": [
+              "email",
+              "webhook"
+            ],
+            "enum_label": [
+              "Email",
+              "Web Hook"
+            ],
+            "default": "email"
+          }
+        },
+        "disposition": [
+          "delivery_method"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "Response Message"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "email_address": {
+            "type": "string",
+            "description": "Email Address"
+          }
+        },
+        "required": [
+          "email_address"
+        ],
+        "disposition": [
+          "email_address"
+        ]
+      }
+    }
+  }
+}
