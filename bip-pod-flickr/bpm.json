@@ -1,0 +1,56 @@
+{
+  "name": "flickr",
+  "title": "Flickr",
+  "description": "Picture galleries available with social networking, chat, groups, and photo ratings",
+  "url": "",
+  "trackDuplicates": false,
+  "config": {
+    "oauth": {
+      "consumerKey": "",
+      "consumerSecret": "",
+      "method": "authenticate"
+    }
+  },
+  "auth": {
+    "strategy": "oauth"
+  },
+  "rpcs": {},
+  "actions": {
+    "get_recent": {
+      "title": "Get Recent Photos",
+      "description": "Returns a list of your latest public photos uploaded to flickr.",
+      "trigger": "poll",
+      "config": {
+        "properties": {
+          "download": {
+            "type": "boolean",
+            "description": "Download File",
+            "default": false
+          }
+        },
+        "disposition": [
+          "download"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Title"
+          },
+          "media_original_url": {
+            "type": "string",
+            "description": "Media Original Res URL"
+          },
+          "tags": {
+            "type": "string",
+            "description": "Tags"
+          }
+        }
+      },
+      "imports": {
+        "properties": {}
+      }
+    }
+  }
+}

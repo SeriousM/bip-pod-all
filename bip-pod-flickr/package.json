@@ -1,34 +1,33 @@
 {
-    "name": "bip-pod-flickr",
-    "version": "0.0.5",
-    "author" : "Michael Pearson",
-    "description": "Flickr Pod for Bipio",
-    "keywords": [
+  "name": "bip-pod-flickr",
+  "version": "0.0.6",
+  "author": "Michael Pearson",
+  "description": "Flickr Pod for Bipio",
+  "keywords": [
     "bip",
     "bipio",
     "pod",
     "flickr"
-    ],
-    "repository": {
-        "type": "git",
-        "url": "git://github.com/bipio-server/bip-pod-flickr.git"
-    },
-    "bugs": {
-        "url": "http://github.com/bipio-server/bip-pod-flickr/issues"
-    },
-    "licenses": [
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bipio-server/bip-pod-flickr.git"
+  },
+  "bugs": {
+    "url": "http://github.com/bipio-server/bip-pod-flickr/issues"
+  },
+  "licenses": [
     {
-        "type": "GNU GPLv3",
-        "url": "http://www.gnu.org/copyleft/gpl.html"
+      "type": "GNU GPLv3",
+      "url": "http://www.gnu.org/copyleft/gpl.html"
     }
-    ],
-    "main": ".",
-    "dependencies": {
-        "bip-pod" : ">=0.0.1",
-        "passport-flickr" : ">=0.1.1",
-        "flickrapi" : ">=0.3.12"
-    },
-    "engines": {
-        "node": ">= 0.10.0"
-    }
+  ],
+  "main": ".",
+  "dependencies": {
+    "passport-flickr": ">=0.1.1",
+    "flickrapi": ">=0.3.12"
+  },
+  "engines": {
+    "node": ">= 0.10.0"
+  }
 }
