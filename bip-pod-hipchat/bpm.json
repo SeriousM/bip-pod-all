@@ -1,0 +1,200 @@
+{
+  "name": "hipchat",
+  "title": "HipChat",
+  "description": "HipChat is hosted group chat and IM for companies and teams. Supercharge real-time collaboration with persistent chat rooms, file sharing, and chat history",
+  "url": "",
+  "trackDuplicates": false,
+  "config": {},
+  "auth": {
+    "strategy": "issuer_token"
+  },
+  "rpcs": {
+    "room_list": {
+      "contentType": "application/json",
+      "title": "Get Rooms"
+    }
+  },
+  "actions": {
+    "room_notify": {
+      "title": "Send a message to a room",
+      "description": "Send a message to a room",
+      "trigger": "invoke",
+      "config": {
+        "properties": {
+          "room_id": {
+            "type": "string",
+            "description": "Room ID",
+            "oneOf": [
+              {
+                "$ref": "/renderers/room_list/{id}"
+              }
+            ],
+            "label": {
+              "$ref": "/renderers/my_pages/{name}"
+            }
+          },
+          "room_token": {
+            "type": "string",
+            "description": "Room Notification Token"
+          }
+        },
+        "required": [
+          "room_id",
+          "room_token"
+        ],
+        "disposition": [
+          "room_id",
+          "room_token"
+        ]
+      },
+      "exports": {
+        "properties": {}
+      },
+      "imports": {
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "Message"
+          }
+        },
+        "required": [
+          "message"
+        ],
+        "disposition": [
+          "message"
+        ]
+      }
+    },
+    "create_webhook": {
+      "title": "Create Webhook",
+      "description": "Creates a new webhook",
+      "trigger": "invoke",
+      "config": {
+        "properties": {
+          "room_id": {
+            "type": "string",
+            "description": "Room ID",
+            "oneOf": [
+              {
+                "$ref": "/renderers/room_list/{id}"
+              }
+            ],
+            "label": {
+              "$ref": "/renderers/my_pages/{name}"
+            }
+          }
+        },
+        "disposition": [
+          "room_id"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "hook_id": {
+            "type": "integer",
+            "description": "Webhook ID"
+          },
+          "link_self": {
+            "type": "string",
+            "description": "HipChat webhook URL"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "Hook URL"
+          },
+          "pattern": {
+            "type": "string",
+            "description": "pattern"
+          },
+          "event": {
+            "type": "string",
+            "description": "Event Type",
+            "oneOf": [
+              {
+                "$ref": "#/imports/definitions/room_events"
+              }
+            ]
+          },
+          "name": {
+            "type": "string",
+            "description": "Hook Name"
+          }
+        },
+        "definitions": {
+          "room_events": {
+            "description": "Room Event Types",
+            "enum": [
+              "room_message",
+              "room_notification",
+              "room_exit",
+              "room_enter",
+              "room_topic_change"
+            ],
+            "enum_label": [
+              "Message",
+              "Notification",
+              "Exit",
+              "Enter",
+              "Change Topic"
+            ],
+            "default": "room_message"
+          }
+        },
+        "disposition": [
+          "url",
+          "pattern",
+          "event",
+          "name"
+        ]
+      }
+    },
+    "set_topic": {
+      "title": "Set Room Topic",
+      "description": "Set Room Topic",
+      "trigger": "invoke",
+      "config": {
+        "properties": {
+          "room_id": {
+            "type": "string",
+            "description": "Room ID",
+            "oneOf": [
+              {
+                "$ref": "/renderers/room_list/{id}"
+              }
+            ],
+            "label": {
+              "$ref": "/renderers/my_pages/{name}"
+            }
+          }
+        },
+        "required": [
+          "room_id"
+        ],
+        "disposition": [
+          "room_id"
+        ]
+      },
+      "exports": {
+        "properties": {}
+      },
+      "imports": {
+        "properties": {
+          "topic": {
+            "type": "string",
+            "description": "New topic"
+          }
+        },
+        "required": [
+          "topic"
+        ],
+        "disposition": [
+          "topic"
+        ]
+      }
+    }
+  }
+}

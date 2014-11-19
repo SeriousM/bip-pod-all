@@ -1,33 +1,32 @@
 {
-    "name": "bip-pod-hipchat",
-    "version": "0.0.6",
-    "author" : "Michael Pearson",
-    "description": "HipChat Pod for Bipio",
-    "keywords": [
+  "name": "bip-pod-hipchat",
+  "version": "0.0.7",
+  "author": "Michael Pearson",
+  "description": "HipChat Pod for Bipio",
+  "keywords": [
     "bip",
     "bipio",
     "pod",
     "hipchat"
-    ],
-    "repository": {
-        "type": "git",
-        "url": "git://github.com/bipio-server/bip-pod-hipchat.git"
-    },
-    "bugs": {
-        "url": "http://github.com/bipio-server/bip-pod-hipchat/issues"
-    },
-    "licenses": [
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bipio-server/bip-pod-hipchat.git"
+  },
+  "bugs": {
+    "url": "http://github.com/bipio-server/bip-pod-hipchat/issues"
+  },
+  "licenses": [
     {
-        "type": "GNU GPLv3",
-        "url": "http://www.gnu.org/copyleft/gpl.html"
+      "type": "GNU GPLv3",
+      "url": "http://www.gnu.org/copyleft/gpl.html"
     }
-    ],
-    "main": ".",
-    "dependencies": {
-        "bip-pod" : ">=0.0.1",
-        "hipchatter" : ">=0.1.1"
-    },
-    "engines": {
-        "node": ">= 0.10.0"
-    }
+  ],
+  "main": ".",
+  "dependencies": {
+    "hipchatter": ">=0.1.1"
+  },
+  "engines": {
+    "node": ">= 0.10.0"
+  }
 }
