@@ -1,0 +1,134 @@
+{
+  "name": "html",
+  "title": "HTML",
+  "description": "HTML Actions",
+  "url": "",
+  "trackDuplicates": false,
+  "config": {},
+  "auth": {
+    "strategy": "none"
+  },
+  "rpcs": {},
+  "actions": {
+    "validate": {
+      "title": "W3C Validate",
+      "description": "Validates HTML with the W3C Validation Service, exporting the results",
+      "trigger": "invoke",
+      "config": {
+        "properties": {
+          "aggregate": {
+            "type": "string",
+            "description": "Error Aggregation Type",
+            "oneOf": [
+              {
+                "$ref": "#/config/definitions/aggregate_type"
+              }
+            ]
+          }
+        },
+        "definitions": {
+          "aggregate_type": {
+            "description": "Error Aggregation Type",
+            "enum": [
+              "none",
+              "json",
+              "text"
+            ],
+            "enum_label": [
+              "None (Export each message)",
+              "Raw JSON",
+              "Text Normalized"
+            ],
+            "default": "json"
+          }
+        },
+        "disposition": [
+          "aggregate"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "Validation Message"
+          },
+          "lastLine": {
+            "type": "integer",
+            "description": "Last Line"
+          },
+          "lastColumn": {
+            "type": "integer",
+            "description": "Column Number"
+          },
+          "explanation": {
+            "type": "string",
+            "description": "Explanation"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "URL"
+          }
+        },
+        "required": [
+          "url"
+        ],
+        "disposition": [
+          "url"
+        ]
+      }
+    },
+    "dom_select": {
+      "title": "DOM Selector",
+      "description": "Select portions of DOM for export from a URL or raw HTML data using jQuery syntax",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "attr": {
+            "type": "string",
+            "description": "Attribute Value"
+          },
+          "html": {
+            "type": "string",
+            "description": "Inner HTML"
+          },
+          "text": {
+            "type": "string",
+            "description": "Text"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "selector": {
+            "type": "string",
+            "description": "jQuery Selector"
+          },
+          "attr": {
+            "type": "string",
+            "description": "Export Attribute"
+          },
+          "source": {
+            "type": "string",
+            "description": "URL or HTML"
+          }
+        },
+        "required": [
+          "source"
+        ],
+        "disposition": [
+          "source",
+          "selector",
+          "attr"
+        ]
+      }
+    }
+  }
+}
