@@ -22,8 +22,8 @@
 
 function NewPost(podConfig) {
     this.name = 'new_post';
-    this.description = 'Create a Post',
-    this.description_long = 'Creates a new Post.  Any GIF/JPEG/PNG files present will be added to the post',
+    this.title = 'Create a Post',
+    this.description = 'Creates a new Post.  Any GIF/JPEG/PNG files present will be added to the post',
     this.trigger = false; // this action can trigger
     this.singleton = false; // only 1 instance per account (can auto install)
     this.auto = false; // no config, not a singleton but can auto-install anyhow
@@ -63,7 +63,7 @@ NewPost.prototype.getSchema = function() {
                         }
                     ]
                 },
-                'site' : { 
+                'site' : {
                     type : 'string',
                     description : 'Site ID or Site domain'
                 }
