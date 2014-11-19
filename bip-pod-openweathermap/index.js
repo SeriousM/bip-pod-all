@@ -30,7 +30,7 @@ var Pod = require('bip-pod'),
     });
 
 openweathermap.add(require('./forecast.js'));
-//openweathermap.add(require('./now.js'));
+openweathermap.add(require('./now.js'));
 //openweathermap.add(require('./daily.js'));
 
 

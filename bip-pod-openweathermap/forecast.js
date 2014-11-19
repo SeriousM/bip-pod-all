@@ -1,6 +1,6 @@
 /**
  *
- * The Bipio Forecast Pod.  openweathermap sample action definition
+ * The Bipio OpenWeatherMap Pod. 
  * ---------------------------------------------------------------
  * 
  *
@@ -31,10 +31,10 @@ function Forecast(podConfig) {
   this.name = 'forecast'; 
   this.title = 'Forecast';
   this.description = 'Forecast for a Given City';
-  this.trigger = false; // this action can trigger
-  this.singleton = false; // 1 instance per account (can auto install)
-  this.auto = false; // automatically install this action
-  this.podConfig = podConfig; // general system level config for this pod (transports etc)
+  this.trigger = false; 
+  this.singleton = false; 
+  this.auto = false; 
+  this.podConfig = podConfig; 
 }
 
 Forecast.prototype = {};
@@ -72,12 +72,6 @@ Forecast.prototype.teardown = function(channel, accountInfo, next) {
   next(false, 'channel', channel);
 }
 
-/**
- * Action Invoker - the primary function of a channel
- * 
- * e.g. New York City's id is 5128581
- */
- 
 Forecast.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
     if (imports.id) {
         weather.forecast({id : imports.id}, function(err, cb) {
