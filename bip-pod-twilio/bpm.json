@@ -1,0 +1,77 @@
+{
+  "name": "twilio",
+  "title": "Twilio",
+  "description": "Build the next generation of communications with <a href=\"https://www.twilio.com/\"></a>",
+  "url": "",
+  "trackDuplicates": false,
+  "config": {},
+  "auth": {
+    "strategy": "issuer_token"
+  },
+  "rpcs": {},
+  "actions": {
+    "send_sms": {
+      "title": "Send an SMS message",
+      "description": "Sends a new outgoing SMS Message. If you are sending SMS while your Twilio account is in Trial mode, the \"To\" phone number must be verified with Twilio.",
+      "trigger": "invoke",
+      "config": {
+        "properties": {
+          "body": {
+            "type": "string",
+            "description": "Default SMS Body"
+          },
+          "to_phone": {
+            "type": "string",
+            "description": "Default destination phone #"
+          },
+          "from_phone": {
+            "type": "string",
+            "description": "From Phone Number",
+            "required": true
+          }
+        },
+        "disposition": [
+          "body",
+          "to_phone",
+          "from_phone"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "SMS Status"
+          },
+          "sid": {
+            "type": "string",
+            "description": "SMS Message Id"
+          },
+          "body": {
+            "type": "string",
+            "description": "SMS Message Body or Error Response Body"
+          },
+          "uri": {
+            "type": "string",
+            "description": "Twilio SMS URI"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "body": {
+            "type": "string",
+            "description": "SMS Body.  Uses channel default if empty"
+          },
+          "to_phone": {
+            "type": "string",
+            "description": "Recipient Phone #.  Uses channel default if empty"
+          }
+        },
+        "disposition": [
+          "body",
+          "to_phone"
+        ]
+      }
+    }
+  }
+}
