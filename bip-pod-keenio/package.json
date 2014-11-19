@@ -1,7 +1,7 @@
 {
   "name": "bip-pod-keenio",
-  "version": "0.0.6",
-  "author" : "Michael Pearson",
+  "version": "0.0.7",
+  "author": "Michael Pearson",
   "description": "KeenIO Pod for Bipio",
   "keywords": [
     "bip",
@@ -24,7 +24,6 @@
   ],
   "main": ".",
   "dependencies": {
-    "bip-pod": ">=0.0.1",
     "keen.io": "^0.1.2"
   },
   "engines": {

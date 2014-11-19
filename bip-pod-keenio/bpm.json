@@ -1,0 +1,61 @@
+{
+  "name": "keenio",
+  "title": "KeenIO",
+  "description": "<a href=\"https://keen.io\">Keen IO</a> - Analytics for Developers",
+  "url": "",
+  "trackDuplicates": false,
+  "config": {},
+  "auth": {
+    "strategy": "issuer_token"
+  },
+  "rpcs": {},
+  "actions": {
+    "add_event": {
+      "title": "Add an Event",
+      "description": "Adds KeenIO Event data to a Project Id",
+      "trigger": "invoke",
+      "config": {
+        "properties": {
+          "project_id": {
+            "type": "string",
+            "description": "Project ID"
+          }
+        },
+        "required": [
+          "project_id"
+        ],
+        "disposition": [
+          "project_id"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "created": {
+            "type": "boolean",
+            "description": "Event Created"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "collection_name": {
+            "type": "string",
+            "description": "Collection Name"
+          },
+          "event": {
+            "type": "object",
+            "description": "Event Object"
+          }
+        },
+        "required": [
+          "collection_name",
+          "event"
+        ],
+        "disposition": [
+          "collection_name",
+          "event"
+        ]
+      }
+    }
+  }
+}
