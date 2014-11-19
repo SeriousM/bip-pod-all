@@ -1,7 +1,7 @@
 {
   "name": "bip-pod-time",
-  "version": "0.0.4",
-  "author" : "Michael Pearson",
+  "version": "0.0.5",
+  "author": "Michael Pearson",
   "description": "Time Pod for Bipio",
   "keywords": [
     "bip",
@@ -24,7 +24,6 @@
   ],
   "main": ".",
   "dependencies": {
-    "bip-pod": ">=0.0.1",
     "moment": "~2.5.1",
     "moment-timezone": "0.0.3",
     "sugar": "^1.4.1"
