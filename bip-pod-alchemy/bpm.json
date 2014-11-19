@@ -1,0 +1,378 @@
+{
+  "name": "alchemy",
+  "title": "AlchemyAPI",
+  "description": "Text Analysis by <a href=\"http://www.alchemyapi.com/\" target=\"_blank\">AlchemyAPI</a>. The World's Most Popular Natural Language Processing Service.",
+  "url": "",
+  "trackDuplicates": false,
+  "config": {},
+  "auth": {
+    "strategy": "issuer_token"
+  },
+  "rpcs": {},
+  "actions": {
+    "scrape_nlp_url": {
+      "title": "Scrape a URL using natural language",
+      "description": "Extract structured data from a URL using natural language.",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "resultText": {
+            "type": "string",
+            "description": "Result Text"
+          },
+          "resultURL": {
+            "type": "string",
+            "description": "Result URL"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "Source URL"
+          },
+          "query": {
+            "type": "string",
+            "description": "NLP Query"
+          }
+        },
+        "required": [
+          "url",
+          "query"
+        ],
+        "disposition": [
+          "url",
+          "query"
+        ]
+      }
+    },
+    "scrape_nlp_html": {
+      "title": "Scrape HTML using natural language",
+      "description": "Extract structured data for uploaded HTML using natural language",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "resultText": {
+            "type": "string",
+            "description": "Result Text"
+          },
+          "resultURL": {
+            "type": "string",
+            "description": "Result URL"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "html": {
+            "type": "string",
+            "description": "Source HTML"
+          },
+          "query": {
+            "type": "string",
+            "description": "NLP Query"
+          }
+        },
+        "required": [
+          "html",
+          "query"
+        ],
+        "disposition": [
+          "html",
+          "query"
+        ]
+      }
+    },
+    "taxonomize_url": {
+      "title": "Classify by URL",
+      "description": "Classifies web content by URL",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "language": {
+            "type": "string",
+            "description": "Detected Language"
+          },
+          "label_highest": {
+            "type": "string",
+            "description": "Category Label"
+          },
+          "label_highest_score": {
+            "type": "string",
+            "description": "Highest Category Score"
+          },
+          "taxonomy": {
+            "type": "array",
+            "description": "List of all taxonomies"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "Source URL"
+          },
+          "query": {
+            "type": "string",
+            "description": "NLP Query (optional)"
+          }
+        },
+        "disposition": [
+          "url",
+          "query"
+        ]
+      }
+    },
+    "taxonomize_text": {
+      "title": "Classify Text",
+      "description": "Classifies Text Content",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "language": {
+            "type": "string",
+            "description": "Detected Language"
+          },
+          "label_highest": {
+            "type": "string",
+            "description": "Category Label"
+          },
+          "label_highest_score": {
+            "type": "string",
+            "description": "Highest Category Score"
+          },
+          "taxonomy": {
+            "type": "array",
+            "description": "List of all taxonomies"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "text": {
+            "type": "string",
+            "description": "Source Text"
+          }
+        },
+        "disposition": [
+          "text"
+        ]
+      }
+    },
+    "taxonomize_html": {
+      "title": "Classify by HTML",
+      "description": "Classifies HTML Content",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "language": {
+            "type": "string",
+            "description": "Detected Language"
+          },
+          "label_highest": {
+            "type": "string",
+            "description": "Category Label"
+          },
+          "label_highest_score": {
+            "type": "string",
+            "description": "Highest Category Score"
+          },
+          "taxonomy": {
+            "type": "array",
+            "description": "List of all taxonomies"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "html": {
+            "type": "string",
+            "description": "Source HTML"
+          },
+          "url": {
+            "type": "string",
+            "description": "Source URL of HTML"
+          },
+          "query": {
+            "type": "string",
+            "description": "NLP Query (optional)"
+          }
+        },
+        "disposition": [
+          "html",
+          "url",
+          "query"
+        ]
+      }
+    },
+    "image_tag_url": {
+      "title": "Tag an image by URL",
+      "description": "Tags an image by URL",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "tag_highest_text": {
+            "type": "string",
+            "description": "Highest Ranked Tag Text"
+          },
+          "tag_highest_score": {
+            "type": "string",
+            "description": "Highest Ranked Tag"
+          },
+          "tags": {
+            "type": "array",
+            "description": "List of all tags"
+          },
+          "tags_csv": {
+            "type": "string",
+            "description": "Comma Separated List of all tags"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "Source URL"
+          }
+        },
+        "required": [
+          "url"
+        ],
+        "disposition": [
+          "url"
+        ]
+      }
+    },
+    "sentiment_text": {
+      "title": "Get Sentiment from Text",
+      "description": "Analyses the sentiment (positive, neutral, negative, mixed) of the given text",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "language": {
+            "type": "string",
+            "description": "Text Language"
+          },
+          "type": {
+            "type": "string",
+            "description": "Sentiment Type"
+          },
+          "score": {
+            "type": "string",
+            "description": "Type Score"
+          },
+          "mixed": {
+            "type": "string",
+            "description": "Is Mixed"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "text": {
+            "type": "string",
+            "description": "Source Text"
+          },
+          "url": {
+            "type": "string",
+            "description": "Source URL (optional)",
+            "required": false
+          }
+        },
+        "required": [
+          "text"
+        ],
+        "disposition": [
+          "text",
+          "url"
+        ]
+      }
+    },
+    "sentiment_text_target": {
+      "title": "Get Target Sentiment from Text",
+      "description": "Analyses the sentiment (positive, neutral, negative, mixed) of the given text for a keyword target",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "language": {
+            "type": "string",
+            "description": "Text Language"
+          },
+          "type": {
+            "type": "string",
+            "description": "Sentiment Type"
+          },
+          "score": {
+            "type": "string",
+            "description": "Type Score"
+          },
+          "mixed": {
+            "type": "string",
+            "description": "Is Mixed"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "text": {
+            "type": "string",
+            "description": "Source Text"
+          },
+          "target": {
+            "type": "string",
+            "description": "Target Phrase"
+          },
+          "url": {
+            "type": "string",
+            "description": "Source URL (optional)",
+            "required": false
+          }
+        },
+        "required": [
+          "text",
+          "target"
+        ],
+        "disposition": [
+          "text",
+          "target",
+          "url"
+        ]
+      }
+    }
+  }
+}
