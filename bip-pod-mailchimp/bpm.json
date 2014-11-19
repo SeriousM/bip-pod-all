@@ -1,0 +1,154 @@
+{
+  "name": "mailchimp",
+  "title": "MailChimp",
+  "description": "MailChimp is an email marketing service provider. It is a web-based application, although data can be downloaded and for some features there is an offline application.",
+  "url": "",
+  "trackDuplicates": false,
+  "config": {
+    "oauth": {
+      "clientID": "",
+      "clientSecret": ""
+    }
+  },
+  "auth": {
+    "strategy": "oauth"
+  },
+  "rpcs": {
+    "get_lists": {
+      "contentType": "application/json",
+      "properties": {
+        "total": {
+          "type": "integer",
+          "description": "Name"
+        },
+        "data": {
+          "type": "array",
+          "description": "Array of Lists"
+        }
+      },
+      "title": "Get Lists"
+    }
+  },
+  "actions": {
+    "add_subscriber": {
+      "title": "Add a Subscriber",
+      "description": "Any Email address this channel receives will be added as a subscriber to an existing list",
+      "trigger": "invoke",
+      "config": {
+        "properties": {
+          "list_id": {
+            "type": "string",
+            "description": "List ID",
+            "oneOf": [
+              {
+                "$ref": "/renderers/get_lists#data/{id}"
+              }
+            ],
+            "label": {
+              "$ref": "/renderers/get_lists#data/{name}"
+            }
+          }
+        },
+        "required": [
+          "list_id"
+        ],
+        "disposition": [
+          "list_id"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "Added Email Address"
+          },
+          "euid": {
+            "type": "string",
+            "description": "Email Unique ID"
+          },
+          "leid": {
+            "type": "string",
+            "description": "List Email Unique ID"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "Email Address"
+          }
+        },
+        "required": [
+          "email"
+        ],
+        "disposition": [
+          "email"
+        ]
+      },
+      "rpcs": {
+        "get_lists": {
+          "description": "Retrieves all lists for your account",
+          "contentType": "application/json",
+          "title": "Retrieve Lists"
+        }
+      }
+    },
+    "add_static_segment": {
+      "title": "Add Static Segment",
+      "description": "Adds a Static Segment to an existing List",
+      "trigger": "invoke",
+      "config": {
+        "properties": {
+          "list_id": {
+            "type": "string",
+            "description": "List ID",
+            "oneOf": [
+              {
+                "$ref": "/renderers/get_lists#data/{id}"
+              }
+            ],
+            "label": {
+              "$ref": "/renderers/get_lists#data/{name}"
+            }
+          }
+        },
+        "required": [
+          "list_id"
+        ],
+        "disposition": [
+          "list_id"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Segment ID"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "segment_name": {
+            "type": "string",
+            "description": "Segment Name"
+          }
+        },
+        "required": [
+          "segment_name"
+        ],
+        "disposition": [
+          "segment_name"
+        ]
+      },
+      "rpcs": {
+        "get_lists": {
+          "description": "Retrieves all lists for your account",
+          "contentType": "application/json",
+          "title": "Retrieve Lists"
+        }
+      }
+    }
+  }
+}
