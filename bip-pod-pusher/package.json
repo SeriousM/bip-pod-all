@@ -1,7 +1,7 @@
 {
   "name": "bip-pod-pusher",
-  "version": "0.0.3",
-  "author" : "Michael Pearson",
+  "version": "0.0.4",
+  "author": "Michael Pearson",
   "description": "Pusher Pod for Bipio",
   "keywords": [
     "bip",
@@ -24,7 +24,6 @@
   ],
   "main": ".",
   "dependencies": {
-    "bip-pod": ">=0.0.1",
     "pusher": "^1.0.0"
   },
   "engines": {

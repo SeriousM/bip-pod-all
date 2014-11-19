@@ -1,0 +1,57 @@
+{
+  "name": "pusher",
+  "title": "Pusher",
+  "description": "<a href=\"http://pusher.com\">Pusher</a> is a hosted API for quickly, easily and securely adding scalable realtime functionality to web and mobile apps.",
+  "url": "",
+  "trackDuplicates": false,
+  "config": {},
+  "auth": {
+    "strategy": "issuer_token"
+  },
+  "rpcs": {},
+  "actions": {
+    "trigger_event": {
+      "title": "Trigger an Event",
+      "description": "Triggers an event on one or more Pusher channels.",
+      "trigger": "invoke",
+      "config": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Default Event Name"
+          }
+        },
+        "disposition": [
+          "name"
+        ]
+      },
+      "exports": {
+        "properties": {}
+      },
+      "imports": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Event Name"
+          },
+          "channels": {
+            "type": "string",
+            "description": "List of Channels (',' delimiter)"
+          },
+          "data": {
+            "type": "string",
+            "description": "Event Data"
+          }
+        },
+        "required": [
+          "data"
+        ],
+        "disposition": [
+          "data",
+          "name",
+          "channels"
+        ]
+      }
+    }
+  }
+}
