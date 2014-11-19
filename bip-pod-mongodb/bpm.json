@@ -1,0 +1,147 @@
+{
+  "name": "mongodb",
+  "title": "MongoDB",
+  "description": "<a href=\"http://www.mongodb.org\" target=\"_blank\">MongoDB</a> (from \"humongous\") is an open-source document database, and the leading NoSQL database.",
+  "url": "",
+  "trackDuplicates": false,
+  "config": {
+    "whitelist": [
+      "127.0.0.1"
+    ]
+  },
+  "auth": {
+    "strategy": "issuer_token"
+  },
+  "rpcs": {},
+  "actions": {
+    "insert": {
+      "title": "Insert a document into MongoDB",
+      "description": "Insert a MongoDB document",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {}
+      },
+      "imports": {
+        "properties": {
+          "collection": {
+            "type": "string",
+            "description": "Name of the Collection"
+          },
+          "document": {
+            "type": "mixed",
+            "description": "Document to Insert"
+          }
+        },
+        "required": [
+          "document",
+          "collection"
+        ],
+        "disposition": [
+          "document",
+          "collection"
+        ]
+      }
+    },
+    "find": {
+      "title": "Find a MongoDB Collection of Documents",
+      "description": "Find a MongoDB Collection of Documents",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "found_documents": {
+            "type": "object",
+            "description": "Array of Document(s)"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "collection": {
+            "type": "string",
+            "description": "Name of the Collection"
+          },
+          "query": {
+            "type": "object",
+            "description": "Query to Search On"
+          }
+        },
+        "disposition": [
+          "collection",
+          "query"
+        ]
+      }
+    },
+    "update": {
+      "title": "Update",
+      "description": "Update a MongoDB document",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {}
+      },
+      "imports": {
+        "properties": {
+          "collection": {
+            "type": "string",
+            "description": "Name of the Collection"
+          },
+          "match": {
+            "type": "mixed",
+            "description": "Pattern to Match"
+          },
+          "document": {
+            "type": "mixed",
+            "description": "Data to Update"
+          }
+        },
+        "disposition": [
+          "collection",
+          "match",
+          "document"
+        ]
+      }
+    },
+    "remove": {
+      "title": "Remove",
+      "description": "Remove a MongoDB document",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {}
+      },
+      "imports": {
+        "properties": {
+          "collection": {
+            "type": "string",
+            "description": "Name of the Collection"
+          },
+          "match": {
+            "type": "mixed",
+            "description": "Pattern to Match for Removal"
+          }
+        },
+        "required": [
+          "collection"
+        ],
+        "disposition": [
+          "collection",
+          "match"
+        ]
+      }
+    }
+  }
+}

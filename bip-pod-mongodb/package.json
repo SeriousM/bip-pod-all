@@ -1,33 +1,32 @@
 {
-    "name": "bip-pod-mongodb",
-    "version": "0.0.1",
-    "description": "mongodb Pod for Bipio",
-    "keywords": [
+  "name": "bip-pod-mongodb",
+  "version": "0.0.2",
+  "description": "mongodb Pod for Bipio",
+  "keywords": [
     "bip",
     "bipio",
     "pod",
     "mongodb"
-    ],
-    "repository": {
-        "type": "git",
-        "url": "git://github.com/bipio-server/bip-pod-mongodb.git"
-    },
-    "bugs": {
-        "url": "http://github.com/bipio-server/bip-pod-mongodb/issues"
-    },
-    "licenses": [
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bipio-server/bip-pod-mongodb.git"
+  },
+  "bugs": {
+    "url": "http://github.com/bipio-server/bip-pod-mongodb/issues"
+  },
+  "licenses": [
     {
-        "type": "GNU GPLv3",
-        "url": "http://www.gnu.org/copyleft/gpl.html"
+      "type": "GNU GPLv3",
+      "url": "http://www.gnu.org/copyleft/gpl.html"
     }
-    ],
-    "main": ".",
-    "dependencies": {
-        "bip-pod" : ">=0.0.1",
-        "mongodb" : "~2.0",
-        "assert" : "*"
-    },
-    "engines": {
-        "node": ">= 0.10.0"
-    }
+  ],
+  "main": ".",
+  "dependencies": {
+    "mongodb": "~2.0",
+    "assert": "*"
+  },
+  "engines": {
+    "node": ">= 0.10.0"
+  }
 }
