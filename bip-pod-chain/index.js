@@ -23,13 +23,17 @@ var Pod = require('bip-pod'),
     Chain = new Pod({
     name : 'chain', // pod name (action prefix)
     title : 'Chain',
-    description : '<a href="https://chain.com">Chain</a> enables developers to Build bitcoin apps, not block chain infrastructure.',    
+    description : '<a href="https://chain.com">Chain</a> enables developers to Build bitcoin apps, not block chain infrastructure.',
     authType : 'issuer_token',
     authMap : {
         username : 'API Key',
         password : 'Secret Key'
     }
     });
+
+Chain.testCredentials = function(struct, next) {
+    next('Connection failed', 401)
+}
 
 // Include any actions
 Chain.add(require('./address.js'));

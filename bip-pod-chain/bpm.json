@@ -1,0 +1,69 @@
+{
+  "name": "chain",
+  "title": "Chain",
+  "description": "<a href=\"https://chain.com\">Chain</a> enables developers to Build bitcoin apps, not block chain infrastructure.",
+  "url": "",
+  "trackDuplicates": false,
+  "config": {},
+  "auth": {
+    "strategy": "issuer_token"
+  },
+  "rpcs": {},
+  "actions": {
+    "address": {
+      "title": "Address",
+      "description": "Returns the associated data for a given Bitcoin Address",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "hash": {
+            "type": "string",
+            "description": "Address ID"
+          },
+          "balance": {
+            "type": "number",
+            "description": "Address Balance"
+          },
+          "received": {
+            "type": "number",
+            "description": "Received"
+          },
+          "sent": {
+            "type": "number",
+            "description": "Sent"
+          },
+          "unconfirmed_received": {
+            "type": "number",
+            "description": "Unconfirmed Received"
+          },
+          "unconfirmed_sent": {
+            "type": "number",
+            "description": "Unconfirmed Sent"
+          },
+          "unconfirmed_balance": {
+            "type": "number",
+            "description": "Unconfirmed Balance"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "address": {
+            "type": "string",
+            "description": "Bitcoin Address"
+          }
+        },
+        "required": [
+          "address"
+        ],
+        "disposition": [
+          "address"
+        ]
+      }
+    }
+  }
+}
