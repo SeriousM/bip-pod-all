@@ -1,0 +1,123 @@
+{
+  "name": "bitly",
+  "title": "Bitly",
+  "description": "Offers URL redirection service with real-time link tracking.",
+  "url": "",
+  "trackDuplicates": false,
+  "config": {
+    "oauth": {
+      "clientID": "",
+      "clientSecret": "",
+      "callbackURL": ""
+    }
+  },
+  "auth": {
+    "strategy": "oauth"
+  },
+  "rpcs": {},
+  "actions": {
+    "shorten": {
+      "title": "Shortens a URL",
+      "description": "Given a long URL, returns a bitly short URL",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "new_hash": {
+            "type": "string",
+            "description": "1 if new hash"
+          },
+          "url": {
+            "type": "string",
+            "description": "Bitly URL"
+          },
+          "hash": {
+            "type": "string",
+            "description": "Account URL Hash"
+          },
+          "global_hash": {
+            "type": "string",
+            "description": "Global Hash"
+          },
+          "long_url": {
+            "type": "string",
+            "description": "Source URL"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "URL"
+          }
+        },
+        "required": [
+          "url"
+        ],
+        "disposition": [
+          "url"
+        ]
+      }
+    },
+    "expand": {
+      "title": "Expands a URL",
+      "description": "Given a bitly URL or hash (or multiple), returns the target (long) URL",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "new_hash": {
+            "type": "string",
+            "description": "1 if new hash"
+          },
+          "url": {
+            "type": "string",
+            "description": "Bitly URL"
+          },
+          "hash": {
+            "type": "string",
+            "description": "Account URL Hash"
+          },
+          "global_hash": {
+            "type": "string",
+            "description": "Global Hash"
+          },
+          "short_url": {
+            "type": "string",
+            "description": "Bitly URL"
+          },
+          "long_url": {
+            "type": "string",
+            "description": "Original URL"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "short_url": {
+            "type": "string",
+            "description": "Bitly Short URL"
+          },
+          "hash": {
+            "type": "string",
+            "description": "Bitly URL Hash (optional)"
+          }
+        },
+        "required": [
+          "short_url"
+        ],
+        "disposition": [
+          "short_url",
+          "hash"
+        ]
+      }
+    }
+  }
+}
