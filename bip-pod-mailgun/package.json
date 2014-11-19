@@ -1,6 +1,6 @@
 {
   "name": "bip-pod-mailgun",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "mailgun Pod for Bipio",
   "keywords": [
     "bip",
@@ -23,7 +23,6 @@
   ],
   "main": ".",
   "dependencies": {
-    "bip-pod": ">=0.0.1",
     "mailgun-js": "^0.6.7"
   },
   "engines": {

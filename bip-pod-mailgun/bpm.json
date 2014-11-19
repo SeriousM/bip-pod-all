@@ -1,0 +1,269 @@
+{
+  "name": "mailgun",
+  "title": "MailGun",
+  "description": "<a href=\"https://mailgun.com\" target=\"_blank\">MailGun</a> - Powerful APIs that allow you to send, receive and track email effortlessly. Send 10,000 emails for free every month",
+  "url": "",
+  "trackDuplicates": false,
+  "config": {},
+  "auth": {
+    "strategy": "issuer_token"
+  },
+  "rpcs": {
+    "get_domains": {
+      "contentType": "application/json",
+      "title": "Get Domains"
+    }
+  },
+  "actions": {
+    "bounced": {
+      "title": "On A Bounce",
+      "description": "Triggers when an email is bounced",
+      "trigger": "poll",
+      "config": {
+        "properties": {
+          "domain": {
+            "type": "string",
+            "description": "Domain",
+            "oneOf": [
+              {
+                "$ref": "/renderers/get_domains#items/{name}"
+              }
+            ]
+          }
+        },
+        "required": [
+          "domain"
+        ],
+        "disposition": [
+          "domain"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "code": {
+            "type": "number",
+            "description": "bounce code"
+          },
+          "address": {
+            "type": "string",
+            "description": "bounced email address"
+          }
+        }
+      },
+      "imports": {
+        "properties": {}
+      }
+    },
+    "complaints": {
+      "title": "On A Complaint",
+      "description": "Triggers when an someone complains that an email messages is spam",
+      "trigger": "poll",
+      "config": {
+        "properties": {
+          "domain": {
+            "type": "string",
+            "description": "Domain",
+            "oneOf": [
+              {
+                "$ref": "/renderers/get_domains#items/{name}"
+              }
+            ]
+          }
+        },
+        "required": [
+          "domain"
+        ],
+        "disposition": [
+          "domain"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "created_at": {
+            "type": "string",
+            "description": "time complaint was registered"
+          },
+          "address": {
+            "type": "string",
+            "description": "complaint email address"
+          }
+        }
+      },
+      "imports": {
+        "properties": {}
+      }
+    },
+    "send": {
+      "title": "Send an Email",
+      "description": "Send an Email",
+      "trigger": "invoke",
+      "config": {
+        "properties": {
+          "from": {
+            "type": "string",
+            "description": "Default From Address"
+          },
+          "domain": {
+            "type": "string",
+            "description": "Domain",
+            "oneOf": [
+              {
+                "$ref": "/renderers/get_domains#items/{name}"
+              }
+            ]
+          }
+        },
+        "disposition": [
+          "from",
+          "domain"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "Queue Message"
+          },
+          "id": {
+            "type": "string",
+            "description": "Message ID"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "from": {
+            "type": "string",
+            "description": "From Address"
+          },
+          "to": {
+            "type": "string",
+            "description": "To Address"
+          },
+          "cc": {
+            "type": "string",
+            "description": "Cc"
+          },
+          "bcc": {
+            "type": "string",
+            "description": "Bcc"
+          },
+          "subject": {
+            "type": "string",
+            "description": "Subject"
+          },
+          "text": {
+            "type": "string",
+            "description": "Text"
+          },
+          "html": {
+            "type": "string",
+            "description": "HTML"
+          }
+        },
+        "required": [
+          "from",
+          "to"
+        ],
+        "disposition": [
+          "from",
+          "to",
+          "cc",
+          "bcc",
+          "subject",
+          "text",
+          "html"
+        ]
+      }
+    },
+    "unsubscribed": {
+      "title": "On An Unsubscribe",
+      "description": "Triggers when an email is unsubscribed",
+      "trigger": "poll",
+      "config": {
+        "properties": {
+          "domain": {
+            "type": "string",
+            "description": "Domain",
+            "oneOf": [
+              {
+                "$ref": "/renderers/get_domains#items/{name}"
+              }
+            ]
+          }
+        },
+        "required": [
+          "domain"
+        ],
+        "disposition": [
+          "domain"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "tag": {
+            "type": "string",
+            "description": "tag for unsubscribe list"
+          },
+          "address": {
+            "type": "string",
+            "description": "unsubscribed email address"
+          }
+        }
+      },
+      "imports": {
+        "properties": {}
+      }
+    },
+    "validate": {
+      "title": "Validate an Email Address",
+      "description": "Validate an Email Address",
+      "trigger": "invoke",
+      "config": {
+        "properties": {}
+      },
+      "exports": {
+        "properties": {
+          "is_valid": {
+            "type": "boolean",
+            "description": "Email Is Valid"
+          },
+          "address": {
+            "type": "string",
+            "description": "Email Address"
+          },
+          "did_you_mean": {
+            "type": "string",
+            "description": "Did You Mean Address"
+          },
+          "domain": {
+            "type": "string",
+            "description": "Address Domain"
+          },
+          "local_part": {
+            "type": "string",
+            "description": "Address Local Part"
+          },
+          "parts": {
+            "type": "object",
+            "description": "Address Parts"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "address": {
+            "type": "string",
+            "description": "Email Address"
+          }
+        },
+        "required": [
+          "address"
+        ],
+        "disposition": [
+          "address"
+        ]
+      }
+    }
+  }
+}
