@@ -1,0 +1,49 @@
+{
+  "name": "vimeo",
+  "title": "Vimeo",
+  "description": "<a href=\"https://vimeo.com\">Vimeo</a>.  Your videos will love it here",
+  "url": "",
+  "trackDuplicates": false,
+  "config": {
+    "oauth": {
+      "clientID": "",
+      "clientSecret": "",
+      "scopes": [
+        "public",
+        "private",
+        "create",
+        "interact",
+        "upload"
+      ]
+    }
+  },
+  "auth": {
+    "strategy": "oauth",
+    "passport" : {
+      "provider" : "vimeo-oauth2"
+    }
+  },
+  "rpcs": {},
+  "actions": {
+    "upload": {
+      "title": "Upload Video",
+      "description": "Uploads a File to Vimeo.",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "status": {
+            "type": "boolean",
+            "description": "Upload Complete"
+          }
+        }
+      },
+      "imports": {
+        "properties": {}
+      }
+    }
+  }
+}
