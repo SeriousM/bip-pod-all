@@ -1,0 +1,45 @@
+{
+  "name": "crypto",
+  "title": "Crypto",
+  "description": "Simple Crypto Functions",
+  "url": "",
+  "trackDuplicates": false,
+  "config": {},
+  "auth": {
+    "strategy": "none"
+  },
+  "rpcs": {},
+  "actions": {
+    "hash": {
+      "title": "Generates a MD5 Hash",
+      "description": "Generates a MD5 Hash of the supplied content",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "hash": {
+            "type": "string",
+            "description": "MD5 String"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "funnel": {
+            "type": "string",
+            "description": "Content Funnel"
+          }
+        },
+        "required": [
+          "funnel"
+        ],
+        "disposition": [
+          "funnel"
+        ]
+      }
+    }
+  }
+}

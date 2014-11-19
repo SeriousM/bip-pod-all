@@ -1,32 +1,30 @@
 {
-    "name": "bip-pod-crypto",
-    "version": "0.0.3",
-    "author" : "Michael Pearson",
-    "description": "Crypto Pod for Bipio",
-    "keywords": [
+  "name": "bip-pod-crypto",
+  "version": "0.0.4",
+  "author": "Michael Pearson",
+  "description": "Crypto Pod for Bipio",
+  "keywords": [
     "bip",
     "bipio",
     "pod",
     "crypto"
-    ],
-    "repository": {
-        "type": "git",
-        "url": "git://github.com/bipio-server/bip-pod-crypto.git"
-    },
-    "bugs": {
-        "url": "http://github.com/bipio-server/bip-pod-crypto/issues"
-    },
-    "licenses": [
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bipio-server/bip-pod-crypto.git"
+  },
+  "bugs": {
+    "url": "http://github.com/bipio-server/bip-pod-crypto/issues"
+  },
+  "licenses": [
     {
-        "type": "GNU GPLv3",
-        "url": "http://www.gnu.org/copyleft/gpl.html"
+      "type": "GNU GPLv3",
+      "url": "http://www.gnu.org/copyleft/gpl.html"
     }
-    ],
-    "main": ".",
-    "dependencies": {
-        "bip-pod" : ">=0.0.1"
-    },
-    "engines": {
-        "node": ">= 0.10.0"
-    }
+  ],
+  "main": ".",
+  "dependencies": {},
+  "engines": {
+    "node": ">= 0.10.0"
+  }
 }
