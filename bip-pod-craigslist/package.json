@@ -1,6 +1,6 @@
 {
   "name": "bip-pod-craigslist",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "craigslist Pod for Bipio",
   "keywords": [
     "bip",
@@ -23,7 +23,6 @@
   ],
   "main": ".",
   "dependencies": {
-    "bip-pod": ">=0.0.1",
     "node-craigslist": "^0.1.7"
   },
   "engines": {

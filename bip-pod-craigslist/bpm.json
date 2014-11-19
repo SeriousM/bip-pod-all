@@ -1,0 +1,88 @@
+{
+  "name": "craigslist",
+  "title": "CraigsList",
+  "description": "<a href=\"http://craigslist.org\">Craigslist</a> provides local classifieds and forums for jobs, housing, for sale, personals, services, local community, and events",
+  "url": "",
+  "trackDuplicates": false,
+  "config": {},
+  "auth": {
+    "strategy": "none"
+  },
+  "rpcs": {},
+  "actions": {
+    "search": {
+      "title": "Listing Search",
+      "description": "Exports the first 100 listings matching your search criteria",
+      "trigger": "invoke",
+      "config": {
+        "properties": {}
+      },
+      "exports": {
+        "properties": {
+          "pid": {
+            "type": "string",
+            "description": "PID"
+          },
+          "category": {
+            "type": "string",
+            "description": "Category"
+          },
+          "date": {
+            "type": "string",
+            "description": "Date"
+          },
+          "hasPic": {
+            "type": "boolean",
+            "description": "Has Picture"
+          },
+          "location": {
+            "type": "string",
+            "description": "Location"
+          },
+          "price": {
+            "type": "string",
+            "description": "Price"
+          },
+          "title": {
+            "type": "string",
+            "description": "Title"
+          },
+          "url": {
+            "type": "string",
+            "description": "Listing URL"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "city": {
+            "type": "string",
+            "description": "City"
+          },
+          "query": {
+            "type": "string",
+            "description": "Search"
+          },
+          "min": {
+            "type": "string",
+            "description": "Min Ask Price"
+          },
+          "max": {
+            "type": "string",
+            "description": "Max Ask Price"
+          }
+        },
+        "required": [
+          "city",
+          "query"
+        ],
+        "disposition": [
+          "city",
+          "query",
+          "min",
+          "max"
+        ]
+      }
+    }
+  }
+}
