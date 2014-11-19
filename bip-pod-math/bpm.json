@@ -1,0 +1,45 @@
+{
+  "name": "math",
+  "title": "Math",
+  "description": "Math Functions and Evaluations",
+  "url": "",
+  "trackDuplicates": false,
+  "config": {},
+  "auth": {
+    "strategy": "none"
+  },
+  "rpcs": {},
+  "actions": {
+    "eval": {
+      "title": "Eval",
+      "description": "Evaluates a Math expression, exporting the result",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "result": {
+            "type": "string",
+            "description": "Expression Result"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "expression": {
+            "type": "string",
+            "description": "Math Expression"
+          }
+        },
+        "required": [
+          "expression"
+        ],
+        "disposition": [
+          "expression"
+        ]
+      }
+    }
+  }
+}
