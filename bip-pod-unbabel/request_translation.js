@@ -20,120 +20,20 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-function RequestTranslation(podConfig) {
-  this.name = 'request_translation'; // action name (channel action suffix - "action: unbabel.simple")
-  this.title = 'Request Translation', // short description
-  this.description = 'Requests a Translation from Unbabel', // long description
-  this.trigger = false; // this action can trigger
-  this.singleton = false; // 1 instance per account (can auto install)
-  this.auto = false; // automatically install this action
-  this.podConfig = podConfig; // general system level config for this pod (transports etc)
+function RequestTranslation() {
 }
 
 RequestTranslation.prototype = {};
 
-// RequestTranslation schema definition
-// @see http://json-schema.org/
-RequestTranslation.prototype.getSchema = function() {
-  return {
-    "config": {
-      "properties" : {
-        "target_language" : {
-          "type" :  "string",
-          "description" : "Target Language"
-        },
-        "instructions" : {
-          "type" :  "string",
-          "description" : "Client instructions for the translator"
-        }
-      }
-    },
-    "imports": {
-      "properties" : {
-        "text" : {
-          "type" :  "string",
-          "description" : "Text to Translate"
-        },
-        "source_language" : {
-          "type" :  "string",
-          "description" : "Source Language"
-        },
-        "formality" : {
-          "type" :  "string",
-          "description" : "The tone that should be used in the translation"
-        },
-        "topics" : {
-          "type" :  "string",
-          "description" : "List of Topics for the text"
-        }
-      }
-    },
-    "exports": {
-      "properties" : {
-        "status" : {
-          "type" : "string",
-          "description" : "Status"
-        },
-        "formality" : {
-          "type" :  "string",
-          "description" : "The tone that should be used in the translation"
-        },
-        "text" : {
-          "type" : "string",
-          "description" : "Original Text"
-        },
-        "target_language" : {
-          "type" : "string",
-          "description" : "Target Language"
-        },
-        "source_language" : {
-          "type" : "string",
-          "description" : "Source Language"
-        },
-        "uid" : {
-          "type" : "string",
-          "description" : "Transaction ID"
-        },
-        "price_euro" : {
-          "type" : "string",
-          "description" : "Price &euro;EUR"
-        }                ,
-        "topics" : {
-          "type" :  "string",
-          "description" : "List of Topics for the text"
-        }
-      }
-    },
-    'renderers' : {
-      'update_status' : {
-        description : 'Update Tracking Status',
-        description_long : 'Updates the internally tracked status for a translation UID to something new',
-        contentType : DEFS.CONTENTTYPE_JSONL
-      }
-    }
-  }
-}
-
 // RPC/Renderer accessor - /rpc/render/channel/{channel id}/hello
 RequestTranslation.prototype.rpc = function(method, sysImports, options, channel, req, res) {
+  var self = this;
   if (method === 'update_status') {
-    res.contentType(this.getSchema().renderers[method].contentType);
+    res.contentType(self.pod.getActionRPC(self.name, method).contentType);
     res.send('world');
   } else {
     res.send(404);
   }
-}
-
-// channel presave setup
-// setup data sources
-RequestTranslation.prototype.setup = function(channel, accountInfo, next) {
-  next(false, 'channel', channel);
-}
-
-// channel destroy/teardown
-// you can remove any stored data here
-RequestTranslation.prototype.teardown = function(channel, accountInfo, next) {
-  next(false, 'channel', channel);
 }
 
 RequestTranslation.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {

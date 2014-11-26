@@ -19,22 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 var Pod = require('bip-pod'),
-  Unbabel = new Pod({
-    name : 'unbabel',
-    title : 'Unbabel', // short description
-    description : '<a href="https://www.unbabel.com">Unbabel</a> is helping the world communicate through machine translation + crowd editing', // long description
-    authType : 'issuer_token',
-    authMap : {
-      username : 'Username',
-      password : 'API Key'
-    },
-    dataSources : [
-      require('./models/track_translation'),
-    ],
-    config : {
-      url : 'http://sandbox.unbabel.com'
-    }
-  });
+  Unbabel = new Pod();
 
 Unbabel.requestPOST = function(method, payload, sysImports, next) {
   var config = this.getConfig();
@@ -65,8 +50,6 @@ Unbabel.requestGET = function(method, args, sysImports, next) {
     }
   }
 
-console.log(sysImports);
-
   this._httpGet(
     config.url + '/tapi/v2/' + method + '/' + getReq,
     next,
@@ -78,10 +61,6 @@ console.log(sysImports);
     }
   );
 }
-
-// Include any actions
-Unbabel.add(require('./request_translation.js'));
-Unbabel.add(require('./get_delivered.js'));
 
 // -----------------------------------------------------------------------------
 module.exports = Unbabel;

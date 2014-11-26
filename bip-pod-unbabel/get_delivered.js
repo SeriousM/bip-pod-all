@@ -20,67 +20,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-function GetDeliveredTranslations(podConfig) {
-  this.name = 'get_delivered'; // action name (channel action suffix - "action: unbabel.simple")
-  this.title = 'Get Newly Delivered Translation', // short description
-  this.description = 'Distribute a newly delivered translation', // long description
-  this.trigger = true; // this action can trigger
-  this.singleton = true; // 1 instance per account (can auto install)
-  this.auto = true; // automatically install this action
-  this.podConfig = podConfig; // general system level config for this pod (transports etc)
+function GetDeliveredTranslations() {
 }
 
 GetDeliveredTranslations.prototype = {};
-
-// GetDeliveredTranslations schema definition
-// @see http://json-schema.org/
-GetDeliveredTranslations.prototype.getSchema = function() {
-  return {
-    "config": {
-      "properties" : {
-    }
-    },
-    "imports": {
-      "properties" : {
-    }
-    },
-    "exports": {
-      "properties" : {
-        "status" : {
-          "type" : "string",
-          "description" : "Status"
-        },
-        "text" : {
-          "type" : "string",
-          "description" : "Translated Text"
-        },
-        "target_language" : {
-          "type" : "string",
-          "description" : "Target Language"
-        },
-        "source_language" : {
-          "type" : "string",
-          "description" : "Source Language"
-        },
-        "uid" : {
-          "type" : "string",
-          "description" : "Transaction ID"
-        },
-        "price_euro" : {
-          "type" : "string",
-          "description" : "Price &euro;EUR"
-        }
-      }
-    },
-    'renderers' : {
-      'update_status' : {
-        description : 'Update Tracking Status',
-        description_long : 'Updates the internally tracked status for a translation UID to something new',
-        contentType : DEFS.CONTENTTYPE_JSONL
-      }
-    }
-  }
-}
 
 // retrieves current translations
 GetDeliveredTranslations.prototype.setup = function(channel, accountInfo, next) {
