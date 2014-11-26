@@ -21,68 +21,15 @@
  */
 
 function AddSegmentStatic(podConfig) {
-  this.name = 'add_static_segment'; // action name (channel action suffix - "action: boilerplate.simple")
-  this.title = 'Add Static Segment', // short description
-  this.description = 'Adds a Static Segment to an existing List', // long description
-  this.trigger = false; // this action can trigger
-  this.singleton = false; // 1 instance per account (can auto install)
-  this.auto = false; // automatically install this action
   this.podConfig = podConfig; // general system level config for this pod (transports etc)
 }
 
 AddSegmentStatic.prototype = {};
 
-// AddSegmentStatic schema definition
-// @see http://json-schema.org/
-AddSegmentStatic.prototype.getSchema = function() {
-  return {
-    "config": {
-      "properties" : {
-        "list_id" : {
-          "type" :  "string",
-          "description" : "List ID",
-          oneOf : [
-            {
-              '$ref' : '/renderers/get_lists#data/{id}'
-            }
-          ],
-          label : {
-            '$ref' : '/renderers/get_lists#data/{name}'
-          }
-        }
-      },
-      "required" :  [ "list_id" ]
-    },
-    "imports": {
-      "properties" : {
-        "segment_name" : {
-          "type" :  "string",
-          "description" : "Segment Name"
-        }
-      },
-      "required" :  [ "segment_name" ]
-    },
-    "exports": {
-      "properties" : {
-        "id" : {
-          "type" : "string",
-          "description" : "Segment ID"
-        }
-      }
-    },
-    'renderers' : {
-      'get_lists' : {
-        description : 'Retrieve Lists',
-        description_long : 'Retrieves all lists for your account',
-        contentType : DEFS.CONTENTTYPE_JSON
-      }
-    }
-  }
-}
-
 AddSegmentStatic.prototype.rpc = function(method, sysImports, options, channel, req, res) {
+  var self = this;
   if (method === 'get_lists') {
-    res.contentType(this.getSchema().renderers[method].contentType);
+    res.contentType(self.pod.getActionRPC(self.name, method).contentType);
     this.pod.getList(sysImports, function(err, result) {
       if (err) {
         res.send(err, 500);

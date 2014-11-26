@@ -21,76 +21,15 @@
  */
 
 function AddSubscriber(podConfig) {
-  this.name = 'add_subscriber'; // action name (channel action suffix - "action: boilerplate.simple")
-  this.title = 'Add a Subscriber', // short description
-  this.description = 'Any Email address this channel receives will be added as a subscriber to an existing list', // long description
-  this.trigger = false; // this action can trigger
-  this.singleton = false; // 1 instance per account (can auto install)
-  this.auto = false; // automatically install this action
   this.podConfig = podConfig; // general system level config for this pod (transports etc)
 }
 
 AddSubscriber.prototype = {};
 
-// AddSubscriber schema definition
-// @see http://json-schema.org/
-AddSubscriber.prototype.getSchema = function() {
-  return {
-    "config": {
-      "properties" : {
-        "list_id" : {
-          "type" :  "string",
-          "description" : "List ID",
-          oneOf : [
-            {
-              '$ref' : '/renderers/get_lists#data/{id}'
-            }
-          ],
-          label : {
-            '$ref' : '/renderers/get_lists#data/{name}'
-          }
-        }
-      },
-      "required" : [ "list_id" ]
-    },
-    "imports": {
-      "properties" : {
-        "email" : {
-          "type" :  "string",
-          "description" : "Email Address"
-        }
-      },
-      "required" : [ "email" ]
-    },
-    "exports": {
-      "properties" : {
-        "email" : {
-          "type" : "string",
-          "description" : "Added Email Address"
-        },
-        "euid" : {
-          "type" : "string",
-          "description" : "Email Unique ID"
-        },
-        "leid" : {
-          "type" : "string",
-          "description" : "List Email Unique ID"
-        }
-      }
-    },
-    'renderers' : {
-      'get_lists' : {
-        description : 'Retrieve Lists',
-        description_long : 'Retrieves all lists for your account',
-        contentType : DEFS.CONTENTTYPE_JSON
-      }
-    }
-  }
-}
-
 AddSubscriber.prototype.rpc = function(method, sysImports, options, channel, req, res) {
+  var self = this;
   if (method === 'get_lists') {
-    res.contentType(this.getSchema().renderers[method].contentType);
+    res.contentType(self.pod.getActionRPC(self.name, method).contentType);
     this.pod.getList(sysImports, function(err, result) {
       if (err) {
         res.send(err, 500);
