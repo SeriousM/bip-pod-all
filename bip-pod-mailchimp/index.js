@@ -23,7 +23,6 @@ MailChimpAPI = require('mailchimp').MailChimpAPI,
 MailChimp = new Pod();
 
 MailChimp.rpc = function(action, method, sysImports, options, channel, req, res) {
-
   if (method == 'get_lists') {
     this.getList(sysImports, function(err, results) {
       if (err) {
