@@ -65,8 +65,5 @@ Alchemy.post = function(method, params, sysImports, next) {
   );
 }
 
-// http://www.alchemyapi.com/api/image-tagging
-Alchemy.add(require('./image_tag_url.js'));
-
 // -----------------------------------------------------------------------------
 module.exports = Alchemy;
