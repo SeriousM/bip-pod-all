@@ -2,11 +2,14 @@
   "name": "todoist",
   "title": "Todoist",
   "description": "Trusted by over 1 million people, Todoist is the best online task management app and to-do list.",
-  "url": "",
+  "url": "https://todoist.com",
   "trackDuplicates": false,
   "config": {},
   "auth": {
-    "strategy": "issuer_token"
+    "strategy": "issuer_token",
+    "authMap" : {
+      "password" : "API Token"
+    }
   },
   "rpcs": {},
   "actions": {

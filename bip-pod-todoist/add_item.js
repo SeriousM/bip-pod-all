@@ -20,89 +20,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-function AddItem(podConfig) {
-  this.name = 'add_item'; // action name (channel action suffix - "action: boilerplate.simple")
-  this.title = 'Add a Task', // short description
-  this.description = 'Adds a Todoist Task', // long description
-  this.trigger = false; // this action can trigger
-  this.singleton = false; // 1 instance per account (can auto install)
-  this.auto = false; // automatically install this action
-  this.podConfig = podConfig; // general system level config for this pod (transports etc)
-}
+function AddItem() {}
 
 AddItem.prototype = {};
-
-// AddItem schema definition
-// @see http://json-schema.org/
-AddItem.prototype.getSchema = function() {
-  var schema = {
-    "config": {
-      "properties" : {
-        "project_id" : {
-          "type" :  "string",
-          "description" : "Project ID"/*,
-          "oneOf" : [
-            {
-              "$ref" : "#/renderers/get_projects/{id}",
-              "label" : "{name}"
-            }
-          ]*/
-        }
-      },
-      "required" : [ "project_id"]
-    },
-    "imports": {
-      "properties" : {
-        "due_date" : {
-          "type" :  "string",
-          "description" : "Due Date (literal)"
-        },
-        "date_string" : {
-          "type" :  "string",
-          "description" : "Due Date (natural language)"
-        },
-        "content" : {
-          "type" :  "string",
-          "description" : "Task Content"
-        }
-      },
-      "required" : [ "content" ]
-    },
-    "exports": {
-      "properties" : {
-        "id" : {
-          "type" :  "string",
-          "description" : "Task ID"
-        },
-        "due_date" : {
-          "type" :  "string",
-          "description" : "Due Date (literal)"
-        },
-        "date_string" : {
-          "type" :  "string",
-          "description" : "Due Date (natural language)"
-        },
-        "content" : {
-          "type" :  "string",
-          "description" : "Task Content"
-        }
-      }
-    },
-    'renderers' : {
-      'get_projects' : {
-        description : 'Retrieve Projects',
-        description_long : 'Retrieves all projects for your account',
-        contentType : DEFS.CONTENTTYPE_JSON,
-        properties : {
-        }
-      }
-    }
-  };
-
-  //schema.renderers.get_projects.properties = this.pod.getProjectSchema().properties;
-
-  return schema;
-}
 
 // RPC/Renderer accessor - /rpc/render/channel/{channel id}/hello
 AddItem.prototype.rpc = function(method, sysImports, options, channel, req, res) {
@@ -126,27 +46,26 @@ AddItem.prototype.invoke = function(imports, channel, sysImports, contentParts, 
   var log = this.$resource.log,
     args;
 
-  if (channel.config.project_id && imports.content) {
-    var params = {
-      project_id : channel.config.project_id,
-      content : imports.content
-    };
+  var params = {
+    project_id : channel.config.project_id,
+    content : imports.content
+  };
 
-    if (imports.due_date) {
-      params.due_date = imports.due_date;
-    }
-
-    if (imports.date_string) {
-      params.date_string = imports.date_string;
-    }
-
-    this.pod.getRequest('addItem', sysImports, params, function(err, result, headers, statusCode) {
-      if (!err && statusCode !== 200) {
-        err = result;
-      }
-      next(err, result);
-    });
+  if (imports.due_date) {
+    params.due_date = imports.due_date;
   }
+
+  if (imports.date_string) {
+    params.date_string = imports.date_string;
+  }
+
+  this.pod.getRequest('addItem', sysImports, params, function(err, result, headers, statusCode) {
+    if (!err && statusCode !== 200) {
+      err = result;
+    }
+    next(err, result);
+  });
+
 }
 
 // -----------------------------------------------------------------------------

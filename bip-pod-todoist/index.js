@@ -19,51 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 var Pod = require('bip-pod'),
-Todoist = new Pod({
-  name : 'todoist', // pod name (action prefix)
-  title : 'Todoist', // short description
-  description : 'Trusted by over 1 million people, Todoist is the best online task management app and to-do list.', // long description
-  authType : 'issuer_token',
-  authMap : {
-    password : 'API Token'
-  }
-});
-
-
-Todoist.getProjectSchema = function() {
-  return {
-    "properties" : {
-      "id" : {
-        "type" :  "integer",
-        "description" : "ID"
-      },
-      "name" : {
-        "type" :  "string",
-        "description" : "Name"
-      },
-      "color" : {
-        "type" :  "string",
-        "description" : "Label Color"
-      },
-      "is_archived" : {
-        "type" :  "integer",
-        "description" : "Is Archived"
-      },
-      "is_deleted" : {
-        "type" :  "integer",
-        "description" : "Is Archived"
-      },
-      "inbox_project" : {
-        "type" :  "boolean",
-        "description" : "Is InBox"
-      },
-      "last_updated" : {
-        "type" :  "string",
-        "description" : ""
-      }
-    }
-  }
-}
+Todoist = new Pod();
 
 //
 Todoist.getRequest = function(method, sysImports, params, next) {
@@ -79,9 +35,6 @@ Todoist.getRequest = function(method, sysImports, params, next) {
     next
     );
 }
-
-// Include any actions
-Todoist.add(require('./add_item.js'));
 
 // -----------------------------------------------------------------------------
 module.exports = Todoist;
