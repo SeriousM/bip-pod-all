@@ -6,7 +6,11 @@
   "trackDuplicates": true,
   "config": {},
   "auth": {
-    "strategy": "issuer_token"
+    "strategy": "issuer_token",
+    "authMap" : {
+      "username" : "App Name",
+      "password" : "API Token"
+    }
   },
   "rpcs": {},
   "actions": {
