@@ -20,21 +20,7 @@
  */
 var Pod = require('bip-pod'),
 Hipchatter = require('hipchatter'),
-HipChat = new Pod({
-  name : 'hipchat', // pod name (action prefix)
-  title : 'HipChat', // short description
-  description : 'HipChat is hosted group chat and IM for companies and teams. Supercharge real-time collaboration with persistent chat rooms, file sharing, and chat history', // long description
-  authType : 'issuer_token',
-  authMap : {
-    password : 'API Access Token'
-  },
-  'renderers' : {
-    'room_list' : {
-      description : 'Get Rooms',
-      contentType : DEFS.CONTENTTYPE_JSON
-    }
-  }
-});
+HipChat = new Pod();
 
 HipChat.getClient = function(sysImports) {
   return new Hipchatter(sysImports.auth.issuer_token.password);
@@ -43,7 +29,6 @@ HipChat.getClient = function(sysImports) {
 HipChat.rpc = function(action, method, sysImports, options, channel, req, res) {
   var self = this;
   if (method == 'room_list') {
-
     var client = self.getClient(sysImports);
     client.rooms(function(err, rooms) {
       if (err) {
@@ -57,11 +42,6 @@ HipChat.rpc = function(action, method, sysImports, options, channel, req, res) {
     this.__proto__.rpc.apply(this, arguments);
   }
 }
-
-// Include any actions
-HipChat.add(require('./room_notify.js'));
-HipChat.add(require('./create_webhook.js'));
-HipChat.add(require('./set_topic.js'));
 
 // -----------------------------------------------------------------------------
 module.exports = HipChat;

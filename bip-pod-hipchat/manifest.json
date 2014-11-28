@@ -2,7 +2,7 @@
   "name": "hipchat",
   "title": "HipChat",
   "description": "HipChat is hosted group chat and IM for companies and teams. Supercharge real-time collaboration with persistent chat rooms, file sharing, and chat history",
-  "url": "",
+  "url": "https://www.hipchat.com",
   "trackDuplicates": false,
   "config": {},
   "auth": {

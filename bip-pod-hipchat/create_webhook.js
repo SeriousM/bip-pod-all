@@ -20,85 +20,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-function CreateWebHook(podConfig) {
-  this.name = 'create_webhook'; // action name (channel action suffix - "action: boilerplate.simple")
-  this.title = 'Create Webhook', // short description
-  this.description = 'Creates a new webhook', // long description
-  this.trigger = false; // this action can trigger
-  this.singleton = false; // 1 instance per account (can auto install)
-  this.auto = false; // automatically install this action
-  this.podConfig = podConfig; // general system level config for this pod (transports etc)
-}
+function CreateWebHook() {}
 
 CreateWebHook.prototype = {};
-
-// CreateWebHook schema definition
-// @see http://json-schema.org/
-CreateWebHook.prototype.getSchema = function() {
-  return {
-    "config": {
-      "properties" : {
-        'room_id' : {
-          type : 'string',
-          description : 'Room ID',
-          oneOf : [
-          {
-            '$ref' : '/renderers/room_list/{id}'
-          }
-          ],
-          label : {
-            '$ref' : '/renderers/my_pages/{name}'
-          }
-        }
-      }
-    },
-    "imports": {
-      "properties" : {
-        "url" : {
-          "type" :  "string",
-          "description" : "Hook URL"
-        },
-        "pattern" : {
-          "type" :  "string",
-          "description" : "pattern"
-        },
-        "event" : {
-          "type" :  "string",
-          "description" : "Event Type",
-          oneOf : [
-          {
-            "$ref" : "#/imports/definitions/room_events"
-          }
-          ]
-        },
-        "name" : {
-          "type" :  "string",
-          "description" : "Hook Name"
-        }
-      },
-      "definitions" : {
-        "room_events" : {
-          "description" : "Room Event Types",
-          "enum" : [ "room_message" , "room_notification", "room_exit", "room_enter", "room_topic_change" ],
-          "enum_label" : ["Message", "Notification", "Exit", "Enter", "Change Topic"],
-          "default" : "room_message"
-        }
-      }
-    },
-    "exports": {
-      "properties" : {
-        "hook_id" : {
-          "type" :  "integer",
-          "description" : "Webhook ID"
-        },
-        "link_self" : {
-          "type" :  "string",
-          "description" : "HipChat webhook URL"
-        }
-      }
-    }
-  }
-}
 
 CreateWebHook.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
   var client = this.pod.getClient(sysImports);
