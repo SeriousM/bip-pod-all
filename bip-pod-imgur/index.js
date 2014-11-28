@@ -19,22 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 var Pod = require('bip-pod'),
-    Imgur = new Pod({
-        name : 'imgur',
-        title : 'Imgur',
-        description : '<a href="http://imgur.com/" target="_blank">Imgur</a> is used to share photos with social networks and online communities, and has the funniest pictures from all over the Internet.',
-        authType : 'none', // @todo hybrid auth types. Action level auth schemas
-        passportStrategy : require('passport-imgur').Strategy,
-        config : {
-            // application outh
-            "oauth" : {
-                "clientID" : "",
-                "clientSecret" : ""
-            }
-        }
-    });
-
-Imgur.add(require('./image_upload_anon.js'));
+    Imgur = new Pod();
 
 // -----------------------------------------------------------------------------
 module.exports = Imgur;

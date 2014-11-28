@@ -25,74 +25,9 @@
 var request = require('request'),
     https = require('https');
 
-function ImageUploadAnon(podConfig) {
-    this.name = 'image_upload_anon';
-    this.title = 'Anon Image Upload',
-    this.description = 'Upload an image to Imgur Anonymously (meaning, not tied to your account)',
-    this.trigger = false;
-    this.singleton = true;
-    this.auto = true; // can auto-install with empty config
-    this.podConfig = podConfig;
-}
+function ImageUploadAnon() {}
 
 ImageUploadAnon.prototype = {};
-
-ImageUploadAnon.prototype.getSchema = function() {
-    return {
-        'exports' : {
-            properties : {
-                'id' : {
-                    type : 'string',
-                    description : 'Image ID'
-                },
-                'deletehash' : {
-                    type : 'string',
-                    description : 'Unique Deletion Hash'
-                },
-                'link' : {
-                    type : 'string',
-                    description : 'Link to Image'
-                }
-            }
-        },
-        "imports": {
-            properties : {
-                "id" : {
-                    "type" : "string",
-                    "description" : "ID"
-                },
-                "title" : {
-                    type : "string",
-                    description : "Title"
-                },
-                "description" : {
-                    type : "string",
-                    description : "Description"
-                },
-                "link" : {
-                    type : "string",
-                    description : "Link"
-                },
-                "width" : {
-                    type : "number",
-                    description : "Width"
-                },
-                "height" : {
-                    type : "number",
-                    description : "Height"
-                },
-                "type" : {
-                    type : "string",
-                    description : "Type"
-                },
-                "size" : {
-                    type : "number",
-                    description : "Size"
-                }
-            }
-        }
-    }
-}
 
 /**
  * Invokes (runs) the action.
@@ -102,7 +37,8 @@ ImageUploadAnon.prototype.invoke = function(imports, channel, sysImports, conten
         self = this,
         exports = {},
         numFiles = contentParts._files.length, dirPfx = '',
-        $resource = this.$resource;
+        $resource = this.$resource,
+        clientID = sysImports.auth.oauth.clientID || self.pod.getConfig().oauth.clientID;
 
     if (contentParts._files && numFiles > 0) {
         for (var i = 0; i < numFiles; i++) {
@@ -113,7 +49,7 @@ ImageUploadAnon.prototype.invoke = function(imports, channel, sysImports, conten
                         var options = {
                             url: 'https://api.imgur.com/3/upload',
                             headers: {
-                                'Authorization': 'Client-ID ' + self.podConfig.oauth.clientID
+                                'Authorization': 'Client-ID ' + clientID
                             }
                         };
 

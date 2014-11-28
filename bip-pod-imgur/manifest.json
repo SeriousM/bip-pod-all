@@ -1,13 +1,13 @@
 {
   "name": "imgur",
   "title": "Imgur",
-  "description": "<a href=\"http://imgur.com/\" target=\"_blank\">Imgur</a> is used to share photos with social networks and online communities, and has the funniest pictures from all over the Internet.",
-  "url": "",
+  "description": "Imgur is used to share photos with social networks and online communities, and has the funniest pictures from all over the Internet.",
+  "url": "http://imgur.com",
   "trackDuplicates": false,
   "config": {
     "oauth": {
-      "clientID": "123e0485a7f8aa9",
-      "clientSecret": "6ea03024583131e259395869462bf713fcc937eb",
+      "clientID": "",
+      "clientSecret": "",
       "callbackURL": ""
     }
   },
