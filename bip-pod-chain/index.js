@@ -17,29 +17,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-var ChainNode = require('chain-node');
-
 var Pod = require('bip-pod'),
-    Chain = new Pod({
-    name : 'chain', // pod name (action prefix)
-    title : 'Chain',
-    description : '<a href="https://chain.com">Chain</a> enables developers to Build bitcoin apps, not block chain infrastructure.',
-    authType : 'issuer_token',
-    authMap : {
-        username : 'API Key',
-        password : 'Secret Key'
-    }
-    });
+    Chain = new Pod(),
+    ChainNode = require('chain-node');
 
-Chain.testCredentials = function(struct, next) {
-    next('Connection failed', 401)
-}
-
-// Include any actions
-Chain.add(require('./address.js'));
-//Chain.add(require('./transaction.js'));
-//Chain.add(require('./unspent.js'));
-//Chain.add(require('./opreturn.js'));
+Chain.client = ChainNode;
 
 // -----------------------------------------------------------------------------
 module.exports = Chain;

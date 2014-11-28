@@ -1,8 +1,8 @@
 {
   "name": "chain",
   "title": "Chain",
-  "description": "<a href=\"https://chain.com\">Chain</a> enables developers to Build bitcoin apps, not block chain infrastructure.",
-  "url": "",
+  "description": "Chain enables developers to Build bitcoin apps, not block chain infrastructure.",
+  "url": "https://chain.com",
   "trackDuplicates": false,
   "config": {},
   "auth": {
@@ -13,6 +13,7 @@
     "address": {
       "title": "Address",
       "description": "Returns the associated data for a given Bitcoin Address",
+      "doc_ref" : "https://chain.com/docs#object-bitcoin-address",
       "trigger": "invoke",
       "config": {
         "properties": {},
