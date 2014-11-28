@@ -20,52 +20,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-function GetRecent(podConfig) {
-  this.name = 'get_recent';
-  this.title = "Get Recent Photos";
-  this.description = "Returns a list of your latest public photos uploaded to flickr.";
-  this.trigger = true;
-  this.singleton = true;
-  this.auto = true;
-  this.podConfig = podConfig;
-}
+function GetRecent() {}
 
 GetRecent.prototype = {};
-
-GetRecent.prototype.getSchema = function() {
-  return {
-    'config' : {
-      properties : {
-        download : {
-          type : 'boolean',
-          description : 'Download File',
-          'default' : false
-        }
-
-      }
-    },
-    'imports' : {
-      properties : {
-    }
-    },
-    'exports' : {
-      properties : {
-        'title' : {
-          type : 'string',
-          description : 'Title'
-        },
-        'media_original_url' : {
-          type : 'string',
-          description : 'Media Original Res URL'
-        },
-        'tags' : {
-          type : 'string',
-          description : 'Tags'
-        }
-      }
-    }
-  }
-}
 
 GetRecent.prototype.setup = function(channel, accountInfo, next) {
   this.pod.trackingStart(channel, accountInfo, true, next);

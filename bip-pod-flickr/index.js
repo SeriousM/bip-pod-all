@@ -19,36 +19,17 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 var Pod = require('bip-pod'),
-crypto = require('crypto'),
-Flickr = require('flickrapi'),
-request = require('request');
+  Flickr = require('flickrapi');
 
-FlickrPod = new Pod({
-  name : 'flickr',
-  title : 'Flickr',
-  description : 'Picture galleries available with social networking, chat, groups, and photo ratings',
-  /*
-  dataSources : [
-    require('./models/my_media'),
-  ],*/
-  authType : 'oauth',
-  passportStrategy : require('passport-flickr').Strategy,
-  config : {
-    "oauth": {
-      "consumerKey" : "",
-      "consumerSecret" : "",
-      "method" : "authenticate"
-    }
-  }
-});
+FlickrPod = new Pod();
 
 FlickrPod.getClient = function(sysImports, next) {
   var podConfig = this.getConfig(),
     profile = JSON.parse(sysImports.auth.oauth.profile)
     options = {
-      api_key : podConfig.oauth.consumerKey,
-      secret : podConfig.oauth.consumerSecret,
       user_id : profile.id,
+      api_key : sysImports.auth.oauth.consumerKey || podConfig.oauth.consumerKey,
+      secret : sysImports.auth.oauth.consumerSecret || podConfig.oauth.consumerSecret,
       access_token : sysImports.auth.oauth.token,
       access_token_secret : sysImports.auth.oauth.secret,
       nobrowser : true
@@ -56,8 +37,6 @@ FlickrPod.getClient = function(sysImports, next) {
 
   Flickr.authenticate(options, next);
 };
-
-FlickrPod.add(require('./get_recent.js'));
 
 // -----------------------------------------------------------------------------
 module.exports = FlickrPod;
