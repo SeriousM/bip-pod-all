@@ -1,8 +1,8 @@
 {
   "name": "mixcloud",
   "title": "MixCloud",
-  "description": "Great radio, for everyone. Listen to the best DJs and radio presenters in the world.",
-  "url": "",
+  "description": "Great radio, for everyone, with MixCloud. Listen to the best DJs and radio presenters in the world.",
+  "url": "http://www.mixcloud.com/",
   "trackDuplicates": false,
   "config": {
     "oauth": {

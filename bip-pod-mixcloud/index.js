@@ -21,27 +21,9 @@
 var Pod = require('bip-pod'),
   request = require('request');
 
-MixCloud = new Pod({
-  name : 'mixcloud',
-  title : 'MixCloud',
-  description : 'Great radio, for everyone. Listen to the best DJs and radio presenters in the world.',
-  dataSources : [
-    require('./models/track_favorite'),
-  ],
-  authType : 'oauth',
-  passportStrategy : require('passport-mixcloud').Strategy,
-  config : {
-    "oauth": {
-      "clientID" : "",
-      "clientSecret" : ""
-    }
-  }
-});
+MixCloud = new Pod();
 
 MixCloud._apiURL = 'https://api.mixcloud.com';
-
-MixCloud.add(require('./get_favorites.js'));
-MixCloud.add(require('./oembed.js'));
 
 // -----------------------------------------------------------------------------
 module.exports = MixCloud;
