@@ -19,58 +19,24 @@
 
 var math = require('mathjs')();
 
-function Eval(podConfig) {
-  this.name = 'eval';
-  this.title = 'Eval',
-  this.description = 'Evaluates a Math expression, exporting the result',
-  this.trigger = false;
-  this.singleton = true;
-  this.auto = true;
-  this.podConfig = podConfig; // general system level config for this pod (transports etc)
-}
+function Eval(podConfig) {}
 
 Eval.prototype = {};
 
-Eval.prototype.getSchema = function() {
-  return {
-    "imports": {
-      "properties" : {
-        "expression" : {
-          "type" :  "string",
-          "description" : "Math Expression"
-        }
-      },
-      "required" : [ "expression" ]
-    },
-    "exports": {
-      "properties" : {
-        "result" : {
-          "type" : "string",
-          "description" : "Expression Result"
-        }
-      }
-    }
-  }
-}
-
 Eval.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
-  if (imports.expression) {
-    try {
-      // need a little utf8 BOM massaging for mathjs
-      var exp = new Buffer(
-        imports.expression.toString().trim(), 'utf8'
-        ).toString('ascii').replace(/B/g, '');
+  try {
+    // need a little utf8 BOM massaging for mathjs
+    var exp = new Buffer(
+      imports.expression.toString().trim(), 'utf8'
+      ).toString('ascii').replace(/B/g, '');
 
-      var result = math.eval(exp);
+    var result = math.eval(exp);
 
-      next(false, {
-        result : result
-      });
-    } catch (e) {
-      next(e.message);
-    }
-  } else {
-    next();
+    next(false, {
+      result : result
+    });
+  } catch (e) {
+    next(e.message);
   }
 }
 

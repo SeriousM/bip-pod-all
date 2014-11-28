@@ -19,13 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 var Pod = require('bip-pod'),
-    Math = new Pod({
-        name : 'math',
-        title : 'Math',
-        description : 'Math Functions and Evaluations' // long description
-    });
-
-Math.add(require('./eval.js'));
+  Math = new Pod();
 
 // -----------------------------------------------------------------------------
 module.exports = Math;
