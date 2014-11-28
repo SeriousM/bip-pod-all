@@ -1,8 +1,8 @@
 {
   "name": "alchemy",
   "title": "AlchemyAPI",
-  "description": "Text Analysis by <a href=\"http://www.alchemyapi.com/\" target=\"_blank\">AlchemyAPI</a>. The World's Most Popular Natural Language Processing Service.",
-  "url": "",
+  "description": "Text Analysis by AlchemyAPI. The World's Most Popular Natural Language Processing Service.",
+  "url": "http://www.alchemyapi.com",
   "trackDuplicates": false,
   "config": {},
   "auth": {
