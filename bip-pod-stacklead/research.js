@@ -16,74 +16,23 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-function Research(podConfig) {
-  this.name = 'research';
-  this.title = 'Research A Lead',
-  this.description = 'Delivers lead research results to your inbox or configured webhook',
-  this.trigger = false;
-  this.singleton = true;
-  this.podConfig = podConfig;
+function Research() {
 }
 
 Research.prototype = {};
 
-Research.prototype.getSchema = function() {
-  return {
-    "config": {
-      "properties" : {
-        "delivery_method" : {
-          "type" :  "string",
-          "description" : "Delivery Method",
-          oneOf : [ {
-            "$ref" : "#/config/definitions/delivery_method"
-          }]
-        }
-      },
-      definitions : {
-        delivery_method : {
-          "description" : "Delivery Method",
-          "enum" : [ "email" , "webhook" ],
-          "enum_label" : [ "Email" , "Web Hook" ],
-          'default' : "email"
-        }
-      }
-    },
-    "imports": {
-      "properties" : {
-        "email_address" : {
-          "type" :  "string",
-          "description" : "Email Address"
-        }
-      },
-      "required" : [ "email_address" ]
-    },
-    "exports": {
-      "properties" : {
-        "message" : {
-          "type" :  "string",
-          "description" : "Response Message"
-        }
-      }
-    }
-  }
-}
-
 Research.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
-  var httpGet = this.$resource._httpGet,
-    deliveryMethod = channel.config.delivery_method || this.getSchema().config.definitions.delivery_method['default'];
+  this.$resource._httpGet(
+    'https://stacklead.com/api/leads?email='
+      + imports.email_address
+      + '&delivery_method=' + channel.config.delivery_method
+      + '&api_key='
+      + sysImports.auth.issuer_token.username,
+    function(err, resp) {
+      next(err, resp);
+    }
+  );
 
-  if (imports.email_address) {
-    httpGet(
-      'https://stacklead.com/api/leads?email='
-        + imports.email_address
-        + '&delivery_method=' + deliveryMethod
-        + '&api_key='
-        + sysImports.auth.issuer_token.username,
-      function(err, resp) {
-        next(err, resp);
-      }
-    );
-  }
 }
 
 // -----------------------------------------------------------------------------

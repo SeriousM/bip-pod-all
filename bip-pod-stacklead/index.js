@@ -19,18 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 var Pod = require('bip-pod'),
-Stacklead = new Pod({
-  name : 'stacklead',
-  title : 'StackLead',
-  description : 'Spend your time making calls and closing deals, not researching prospects online with <a href="https://stacklead.com/">StackLead</a>',
-  authType : 'issuer_token',
-  authMap : {
-    username : 'API Token'
-  }
-});
-
-// Include any actions
-Stacklead.add(require('./research.js'));
+Stacklead = new Pod();
 
 // -----------------------------------------------------------------------------
 module.exports = Stacklead;

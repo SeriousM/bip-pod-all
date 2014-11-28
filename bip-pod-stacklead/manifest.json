@@ -1,8 +1,8 @@
 {
   "name": "stacklead",
   "title": "StackLead",
-  "description": "Spend your time making calls and closing deals, not researching prospects online with <a href=\"https://stacklead.com/\">StackLead</a>",
-  "url": "",
+  "description": "Spend your time making calls and closing deals, not researching prospects online with StackLead",
+  "url": "https://stacklead.com",
   "trackDuplicates": false,
   "config": {},
   "auth": {
