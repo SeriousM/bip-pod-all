@@ -19,19 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 var Pod = require('bip-pod'),
-    Twilio = new Pod({
-        name : 'twilio',
-        title : 'Twilio',
-        description : 'Build the next generation of communications with <a href="https://www.twilio.com/"></a>',
-        // users can override accountsid/authtoken
-        authType : 'issuer_token',
-        authMap : {
-            username : 'Account Sid',
-            password : 'Auth Token'
-        }
-    });
-
-Twilio.add(require('./send_sms.js'));
+    Twilio = new Pod();
 
 // -----------------------------------------------------------------------------
 module.exports = Twilio;

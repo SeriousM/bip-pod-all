@@ -24,83 +24,14 @@
  */
 var to = require('twilio');
 
-function SendSMS(podConfig) {
-    this.name = 'send_sms';
-    this.title = 'Send an SMS message',
-    this.description = 'Sends a new outgoing SMS Message. If you are sending SMS while your Twilio account is in Trial mode, the "To" phone number must be verified with Twilio.',
-    this.trigger = false;
-    this.singleton = false;
-    this.podConfig = podConfig;
-}
+function SendSMS() {}
 
 SendSMS.prototype = {};
-
-SendSMS.prototype.getSchema = function() {
-    return {
-        'config' : { // config schema
-            properties : {
-                'body' : {
-                    type : 'string',
-                    description : 'Default SMS Body'
-                },
-                'to_phone' : {
-                    type : 'string',
-                    description : 'Default destination phone #'
-                },
-                'from_phone' : {
-                    type : 'string',
-                    description : 'From Phone Number',
-                    required : true
-                }
-            }
-        },
-        'exports' : {
-            properties : {
-                'status' : {
-                    type : 'string',
-                    description : 'SMS Status'
-                },
-                'sid' : {
-                    type : 'string',
-                    description : 'SMS Message Id'
-                },
-                'body' : {
-                    type : 'string',
-                    description : 'SMS Message Body or Error Response Body'
-                },
-                'uri' : {
-                    type : 'string',
-                    description : 'Twilio SMS URI'
-                }
-            }
-        },
-        // todo validator 160 chars max
-        "imports": {
-            properties : {
-                'body' : {
-                    type : 'string',
-                    description : 'SMS Body.  Uses channel default if empty'
-                },
-                'to_phone' : {
-                    type : 'string',
-                    description : 'Recipient Phone #.  Uses channel default if empty'
-                }
-            }
-        }
-    }
-}
 
 /**
  * Invokes (runs) the action.
  */
 SendSMS.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
-    var $resource = this.$resource,
-        self = this,
-        log = $resource.log,
-        exports = {},
-        to_phone,
-        body;
-
     // @todo via sysimports auth config
     // should be migrated into
     var client = new to.RestClient(
@@ -108,38 +39,18 @@ SendSMS.prototype.invoke = function(imports, channel, sysImports, contentParts, 
         sysImports.auth.issuer_token.password
     );
 
-    if (imports.to_phone && '' !== imports.to_phone) {
-        to_phone = imports.to_phone;
-    } else {
-        to_phone = channel.config.to_phone;
-    }
+    client.sms.messages.create({
+        to: imports.to_phone,
+        from: channel.config.from_phone,
+        body: imports.body
+    }, function(error, message) {
+        if (error) {
+            next(error);
+        } else {
+            next(error, message);
+        }
+    });
 
-    if (imports.body && '' !== imports.body) {
-        body = imports.body;
-    } else {
-        body = channel.config.body;
-    }
-
-    if (body && '' !== body && to_phone && '' !== to_phone) {
-        client.sms.messages.create({
-            to:to_phone,
-            from: channel.config.from_phone,
-            body: body
-        }, function(error, message) {
-            if (error) {
-                log(error, channel, 'error');
-            } else {
-                exports.sid = message.sid;
-                exports.body = message.body;
-                exports.status = message.status;
-                exports.uri = message.uri;
-
-                next(error, exports);
-            }
-        });
-    } else {
-        next(false, exports);
-    }
 }
 
 // -----------------------------------------------------------------------------

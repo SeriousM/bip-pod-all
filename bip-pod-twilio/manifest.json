@@ -1,12 +1,16 @@
 {
   "name": "twilio",
   "title": "Twilio",
-  "description": "Build the next generation of communications with <a href=\"https://www.twilio.com/\"></a>",
-  "url": "",
+  "description": "Build the next generation of communications with Twilio",
+  "url": "https://www.twilio.com",
   "trackDuplicates": false,
   "config": {},
   "auth": {
-    "strategy": "issuer_token"
+    "strategy": "issuer_token",
+    "authMap" : {
+        "username" : "Account Sid",
+        "password" : "Auth Token"
+    }
   },
   "rpcs": {},
   "actions": {
