@@ -10,7 +10,10 @@
     ]
   },
   "auth": {
-    "strategy": "issuer_token"
+    "strategy": "issuer_token",
+    "authMap" : {
+      "username" : "Connection URI"
+    }
   },
   "rpcs": {},
   "actions": {
