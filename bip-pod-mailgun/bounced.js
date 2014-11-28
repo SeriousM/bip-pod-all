@@ -14,55 +14,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
-// @see http://documentation.mailgun.com/api-bounces.html#bounces
-
-function Bounced(podConfig) {
-  this.name = 'bounced';
-  this.title = 'On A Bounce';
-  this.description = 'Triggers when an email is bounced';
-  this.trigger = true;
-  this.singleton = false;
-  this.auto = false;
-  this.podConfig = podConfig;
-}
+function Bounced() {}
 
 Bounced.prototype = {};
-
-Bounced.prototype.getSchema = function() {
-  return {
-    "config": {
-      "properties" : {
-        "domain" : {
-          "type" : "string",
-          "description" : "Domain",
-          "oneOf" : [
-            {
-              "$ref" : '/renderers/get_domains#items/{name}'
-            }
-          ]
-        }
-      },
-      "required" : [ "domain" ]
-    },
-    "imports": {
-      "properties" : {
-      },
-    },
-    "exports": {
-      "properties" : {
-        "code" : {
-          "type" :  "number",
-          "description" : "bounce code"
-        },
-        "address" : {
-          "type" :  "string",
-          "description" : "bounced email address"
-        }
-      }
-    }
-  }
-}
 
 Bounced.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
   var self = this,

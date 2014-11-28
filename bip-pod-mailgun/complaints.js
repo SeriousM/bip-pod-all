@@ -15,54 +15,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-// @see http://documentation.mailgun.com/api-complaints.html#spam-complaints
-
-function Complaints(podConfig) {
-  this.name = 'complaints';
-  this.title = 'On A Complaint';
-  this.description = 'Triggers when an someone complains that an email messages is spam';
-  this.trigger = true;
-  this.singleton = false;
-  this.auto = false;
-  this.podConfig = podConfig;
-}
+function Complaints() {}
 
 Complaints.prototype = {};
-
-Complaints.prototype.getSchema = function() {
-  return {
-    "config": {
-      "properties" : {
-        "domain" : {
-          "type" : "string",
-          "description" : "Domain",
-          "oneOf" : [
-            {
-              "$ref" : '/renderers/get_domains#items/{name}'
-            }
-          ]
-        }
-      },
-      "required" : [ "domain" ]
-    },
-    "imports": {
-      "properties" : {
-      },
-    },
-    "exports": {
-      "properties" : {
-        "created_at" : {
-          "type" :  "string",
-          "description" : "time complaint was registered"
-        },
-        "address" : {
-          "type" :  "string",
-          "description" : "complaint email address"
-        }
-      }
-    }
-  }
-}
 
 Complaints.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
   var self = this,

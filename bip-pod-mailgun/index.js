@@ -20,22 +20,7 @@
  */
 var Pod = require('bip-pod'),
   Client = require('mailgun-js'),
-  MailGun = new Pod({
-    name : 'mailgun', // pod name (action prefix)
-    title : 'MailGun', // short description
-    description : '<a href="https://mailgun.com" target="_blank">MailGun</a> - Powerful APIs that allow you to send, receive and track email effortlessly. Send 10,000 emails for free every month',
-    authType : 'issuer_token',
-    authMap : {
-      password : 'API Key',
-      username : 'Public API Key'
-    },
-    "renderers" : {
-      'get_domains' : {
-        description : 'Get Domains',
-        contentType : DEFS.CONTENTTYPE_JSON
-      }
-    }
-  });
+  MailGun = new Pod();
 
 MailGun.getClient = function(sysImports, domain, publicKey) {
   var struct = {
@@ -48,13 +33,6 @@ MailGun.getClient = function(sysImports, domain, publicKey) {
 
   return new Client(struct);
 }
-
-// Include any actions
-MailGun.add(require('./bounced.js'));
-MailGun.add(require('./complaints.js'));
-MailGun.add(require('./send.js'));
-MailGun.add(require('./unsubscribed.js'));
-MailGun.add(require('./validate.js'));
 
 MailGun.rpc = function(action, method, sysImports, options, channel, req, res) {
   if (method == 'get_domains') {

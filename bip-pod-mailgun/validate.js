@@ -15,65 +15,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-// @see http://documentation.mailgun.com/api-complaints.html#complaints
-
-function Validate(podConfig) {
-  this.name = 'validate';
-  this.title = 'Validate an Email Address';
-  this.description = 'Validate an Email Address';
-  this.trigger = false;
-  this.singleton = false;
-  this.auto = false;
-  this.podConfig = podConfig;
-}
+function Validate() {}
 
 Validate.prototype = {};
-
-Validate.prototype.getSchema = function() {
-  return {
-    "config": {
-      "properties" : {
-      }
-    },
-    "imports": {
-      "properties" : {
-        "address" : {
-          "type" :  "string",
-          "description" : "Email Address"
-        }
-      },
-      "required" : [ "address" ]
-    },
-    "exports": {
-      "properties" : {
-        "is_valid" : {
-          "type" :  "boolean",
-          "description" : "Email Is Valid"
-        },
-        "address" : {
-          "type" :  "string",
-          "description" : "Email Address"
-        },
-        "did_you_mean" : {
-          "type" : "string",
-          "description" : "Did You Mean Address"
-        },
-        "domain" : {
-          "type" : "string",
-          "description" : "Address Domain"
-        },
-        "local_part" : {
-          "type" : "string",
-          "description" : "Address Local Part"
-        },
-        "parts" : {
-          "type" : "object",
-          "description" : "Address Parts"
-        }
-      }
-    }
-  }
-}
 
 Validate.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
   this.pod.getClient(sysImports, null, true)

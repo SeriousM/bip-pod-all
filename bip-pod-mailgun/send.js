@@ -19,84 +19,9 @@
 
 // @see http://documentation.mailgun.com/api-sending.html#sending
 
-function Send(podConfig) {
-  this.name = 'send';
-  this.title = 'Send an Email';
-  this.description = 'Send an Email';
-  this.trigger = false;
-  this.singleton = false;
-  this.auto = false;
-  this.podConfig = podConfig;
-}
+function Send(podConfig) {}
 
 Send.prototype = {};
-
-Send.prototype.getSchema = function() {
-  return {
-    "config": {
-      "properties" : {
-        "from" : {
-          "type" :  "string",
-          "description" : "Default From Address"
-        },
-        "domain" : {
-          "type" : "string",
-          "description" : "Domain",
-          "oneOf" : [
-            {
-              "$ref" : '/renderers/get_domains#items/{name}'
-            }
-          ]
-        }
-      }
-    },
-    "imports": {
-      "properties" : {
-        "from" : {
-          "type" :  "string",
-          "description" : "From Address"
-        },
-        "to" : {
-          "type" :  "string",
-          "description" : "To Address"
-        },
-        "cc" : {
-          "type" :  "string",
-          "description" : "Cc"
-        },
-        "bcc" : {
-          "type" :  "string",
-          "description" : "Bcc"
-        },
-        "subject" : {
-          "type" :  "string",
-          "description" : "Subject"
-        },
-        "text" : {
-          "type" :  "string",
-          "description" : "Text"
-        },
-        "html" : {
-          "type" :  "string",
-          "description" : "HTML"
-        }
-      },
-      "required" : [ "from", "to" ]
-    },
-    "exports": {
-      "properties" : {
-        "message" : {
-          "type" :  "string",
-          "description" : "Queue Message"
-        },
-        "id" : {
-          "type" :  "string",
-          "description" : "Message ID"
-        }
-      }
-    }
-  }
-}
 
 Send.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
   this.pod.getClient(sysImports, channel.config.domain)
