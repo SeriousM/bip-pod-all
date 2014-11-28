@@ -19,15 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 var Pod = require('bip-pod'),
-    HTML = new Pod({
-        name : 'html',
-        title : 'HTML',
-        description : 'HTML Actions' // long description
-    });
-
-// Include any actions
-HTML.add(require('./validate.js'));
-HTML.add(require('./dom_select.js'));
+    HTML = new Pod();
 
 // -----------------------------------------------------------------------------
 module.exports = HTML;
