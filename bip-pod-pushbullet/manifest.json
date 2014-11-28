@@ -1,8 +1,8 @@
 {
   "name": "pushbullet",
   "title": "PushBullet",
-  "description": "<a href=\"https://www.pushbullet.com\">Pushbullet</a> - Send files, links, and more to your phone and back, fast",
-  "url": "",
+  "description": "PushBullet - Send files, links, and more to your phone and back, fast",
+  "url": "https://www.pushbullet.com",
   "trackDuplicates": false,
   "config": {},
   "auth": {

@@ -20,22 +20,7 @@
  */
 var Pod = require('bip-pod'),
 https = require('https'),
-PushBullet = new Pod({
-  name : 'pushbullet',
-  title : 'PushBullet',
-  description : '<a href="https://www.pushbullet.com">Pushbullet</a> - Send files, links, and more to your phone and back, fast',
-  authType : 'issuer_token',
-  authMap : {
-    username : 'API Key'
-  },
-  'renderers' : {
-    'my_devices' : {
-      description : 'Get My Devices',
-      contentType : DEFS.CONTENTTYPE_JSON
-    }
-  }
-});
-
+PushBullet = new Pod();
 
 PushBullet.pushbulletRequest = function(path, params, sysImports, next, method) {
   var opts = {
@@ -96,9 +81,6 @@ PushBullet.rpc = function(action, method, sysImports, options, channel, req, res
     this.__proto__.rpc.apply(this, arguments);
   }
 }
-
-// Include any actions
-PushBullet.add(require('./push_note.js'));
 
 // -----------------------------------------------------------------------------
 module.exports = PushBullet;
