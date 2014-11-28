@@ -19,15 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 var Pod = require('bip-pod'),
-    Templater = new Pod({
-        name : 'templater',
-        title : 'Templater',
-        description : 'Text, Markdown and HTML Templates'
-    });
-
-Templater.add(require('./text_template.js'));
-Templater.add(require('./markdown2html.js'));
-Templater.add(require('./html2markdown.js'));
+  Templater = new Pod();
 
 // -----------------------------------------------------------------------------
 module.exports = Templater;

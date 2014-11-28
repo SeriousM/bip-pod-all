@@ -3,7 +3,7 @@
  * The Bipio Templater Pod.  text_template action definition
  *
  * @author Michael Pearson <github@m.bip.io>
- * Copyright (c) 2010-2013 Michael Pearson https://github.com/mjpearson
+ * Copyright (c) 2010-2014 Michael Pearson https://github.com/mjpearson
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,46 +19,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-function TextTemplate(podConfig) {
-  this.name = 'text_template';
-  this.title = 'Message Template';
-  this.description = 'Generic text message';
-  this.trigger = false; // @todo - create hybrid type
-  this.singleton = false;
-  this.auth_required = false;
-}
+function TextTemplate() {}
 
 TextTemplate.prototype = {};
-
-TextTemplate.prototype.getSchema = function() {
-  return {
-    'config' : { // config schema
-      properties : {
-        'message' : {
-          type  : 'text',
-          description : 'Default Message',
-          required : false
-        }
-      }
-    },
-    'exports' : {
-      properties : {
-        'message' : {
-          type : 'text',
-          description : 'Templated Message'
-        }
-      }
-    },
-    "imports": {
-      properties : {
-        'message' : {
-          type : 'text',
-          description : 'Templated Message'
-        }
-      }
-    }
-  };
-}
 
 /**
  * Invokes (runs) the action.

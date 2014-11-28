@@ -3,7 +3,7 @@
  * The Bipio Templater Pod.  text_template action definition
  *
  * @author Michael Pearson <github@m.bip.io>
- * Copyright (c) 2010-2013 Michael Pearson https://github.com/mjpearson
+ * Copyright (c) 2010-2014 Michael Pearson https://github.com/mjpearson
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,53 +20,14 @@
  */
 var marked = require('marked');
 
-function Markdown2HTML(podConfig) {
-    this.name = 'markdown2html';
-    this.title = 'Markdown to HTML';
-    this.description = 'Exports Markdown template parsed to HTML';
-    this.trigger = false; // @todo - create hybrid type
-    this.singleton = false;
-    this.auto = true;
-    this.auth_required = false;
-}
+function Markdown2HTML() {}
 
 Markdown2HTML.prototype = {};
-
-Markdown2HTML.prototype.getSchema = function() {
-    return {
-        'config' : { // config schema
-            properties : {
-                'message' : {
-                    type  : 'text',
-                    description : 'Default Message',
-                    required : false
-                }
-            }
-        },
-        'exports' : {
-            properties : {
-                'message' : {
-                    type : 'string',
-                    description : 'Templated Markdown Message'
-                }
-            }
-        },
-        "imports": {
-            properties : {
-                'message' : {
-                    type : 'string',
-                    description : 'Templated Markdown Message'
-                }
-            }
-        }
-    };
-}
 
 /**
  * Invokes (runs) the action.
  */
 Markdown2HTML.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
-    var exports = {};
     next(
         false,
         {
