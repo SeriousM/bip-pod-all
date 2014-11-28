@@ -1,8 +1,8 @@
 {
   "name": "unbabel",
   "title": "Unbabel",
-  "description": "<a href=\"https://www.unbabel.com\">Unbabel</a> is helping the world communicate through machine translation + crowd editing",
-  "url": "",
+  "description": "Unbabel is helping the world communicate through machine translation + crowd editing",
+  "url": "https://www.unbabel.com",
   "trackDuplicates": false,
   "config": {
     "url": "http://sandbox.unbabel.com"
