@@ -16,30 +16,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-function Upload(podConfig) {
-  this.name = 'upload';
-  this.title = 'Upload Video',
-  this.description = 'Uploads a File to Vimeo.',
-  this.trigger = false;
-  this.singleton = true;
-  this.auto = false;
-  this.podConfig = podConfig;
-}
+function Upload() {}
 
 Upload.prototype = {};
-
-Upload.prototype.getSchema = function() {
-  return {
-    "exports": {
-      "properties" : {
-        "status" : {
-          "type" : "boolean",
-          "description" : "Upload Complete"
-        }
-      }
-    }
-  }
-}
 
 Upload.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
   var client, pod = this.pod, f, transferredBytes = 0;

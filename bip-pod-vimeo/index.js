@@ -20,26 +20,7 @@
  */
 var Pod = require('bip-pod'),
 VimeoAPI = require('vimeo-api').Vimeo,
-Vimeo = new Pod({
-  name : 'vimeo',
-  title : 'Vimeo',
-  description : '<a href="https://vimeo.com">Vimeo</a>.  Your videos will love it here',
-  authType : 'oauth',
-  passportStrategy : require('passport-vimeo-oauth2').Strategy,
-  config : {
-    "oauth": {
-      "clientID" : "",
-      "clientSecret" : "",
-      "scopes": [
-        "public",
-        "private",
-        "create",
-        "interact",
-        "upload"
-      ]
-    }
-  }
-});
+Vimeo = new Pod();
 
 Vimeo._getClient = function(sysImports) {
   var podConfig = this.getConfig(),
@@ -49,10 +30,6 @@ Vimeo._getClient = function(sysImports) {
   client.scope = 'public private upload';
   return client;
 }
-
-
-// Include any actions
-Vimeo.add(require('./upload.js'));
 
 // -----------------------------------------------------------------------------
 module.exports = Vimeo;

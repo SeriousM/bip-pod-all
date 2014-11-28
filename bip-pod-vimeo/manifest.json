@@ -1,8 +1,8 @@
 {
   "name": "vimeo",
   "title": "Vimeo",
-  "description": "<a href=\"https://vimeo.com\">Vimeo</a>.  Your videos will love it here",
-  "url": "",
+  "description": "Vimeo.  Your videos will love it here",
+  "url": "https://vimeo.com",
   "trackDuplicates": false,
   "config": {
     "oauth": {
