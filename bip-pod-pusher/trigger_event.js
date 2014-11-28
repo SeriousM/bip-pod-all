@@ -17,72 +17,31 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-function TriggerEvent(podConfig) {
-  this.name = 'trigger_event';
-  this.title = 'Trigger an Event',
-  this.description = 'Triggers an event on one or more Pusher channels.',
-  this.trigger = false;
-  this.singleton = false;
-  this.auto = false;
-  this.podConfig = podConfig;
-}
+function TriggerEvent() {}
 
 TriggerEvent.prototype = {};
 
-TriggerEvent.prototype.getSchema = function() {
-  return {
-    "config": {
-      "properties" : {
-        "name" : {
-          "type" :  "string",
-          "description" : "Default Event Name"
+TriggerEvent.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
+  var client = this.pod.getClient(sysImports);
+
+  try {
+    client.trigger(
+      imports.channels.split(','),
+      imports.name,
+      'string' === typeof imports.data ? (JSON.parse(imports.data) ) : imports.data,
+      null,
+      function(err, req, res) {
+        if (res.statusCode !== 200) {
+          next(res.body);
+        } else {
+          next(false, {});
         }
       }
-    },
-    "imports": {
-      "properties" : {
-        "name" : {
-          "type" :  "string",
-          "description" : "Event Name"
-        },
-         "channels" : {
-          "type" :  "string",
-          "description" : "List of Channels (',' delimiter)"
-        },
-         "data" : {
-          "type" :  "string",
-          "description" : "Event Data"
-        }
-      },
-      "required" : [ "data" ]
-    }
+    );
+  } catch (e) {
+    next(e.message);
   }
-}
 
-TriggerEvent.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
-  var client,
-    eventName = imports.name || channel.config.name;
-
-  if (imports.data && eventName) {
-    client = this.pod.getClient(sysImports);
-    try {
-      client.trigger(
-        imports.channels.split(','),
-        eventName,
-        'string' === typeof imports.data ? (JSON.parse(imports.data) ) : imports.data,
-        null,
-        function(err, req, res) {
-          if (res.statusCode !== 200) {
-            next(res.body);
-          } else {
-            next(false, {});
-          }
-        }
-      );
-    } catch (e) {
-      next(e.message);
-    }
-  }
 }
 
 // -----------------------------------------------------------------------------

@@ -20,17 +20,7 @@
  */
 var Pod = require('bip-pod'),
     PusherClient = require( 'pusher' ),
-    Pusher = new Pod({
-        name : 'pusher',
-        title : 'Pusher',
-        description : '<a href="http://pusher.com">Pusher</a> is a hosted API for quickly, easily and securely adding scalable realtime functionality to web and mobile apps.',
-        authType : "issuer_token",
-        authMap : {
-          username : 'App ID',
-          key : "Key",
-          password : "Secret"
-        }
-    });
+    Pusher = new Pod();
 
 Pusher.getClient = function(sysImports) {
   return new PusherClient({
@@ -39,9 +29,6 @@ Pusher.getClient = function(sysImports) {
     secret : sysImports.auth.issuer_token.password
   });
 }
-
-// Include any actions
-Pusher.add(require('./trigger_event.js'));
 
 // -----------------------------------------------------------------------------
 module.exports = Pusher;
