@@ -20,17 +20,7 @@
  */
 var Pod = require('bip-pod'),
 	https = require('https'),
-  Circonus = new Pod({
-    name : 'circonus', // pod name (action prefix)
-    title : 'Circonus', // short description
-    description : '<a href="http://www.circonus.com/" target="_blank">Circonus</a> monitors and analyzes all your data, from any source',
-    authType : 'issuer_token',
-    authMap : {
-        username : 'App Name',
-        password : 'API Token'
-    },
-    trackDuplicates : true
-  });
+  Circonus = new Pod();
 
 var apiBaseURL = 'https://api.circonus.com/v2'
 
@@ -72,10 +62,6 @@ Circonus.testCredentials = function(struct, next) {
     }
   );
 }
-
-// Include any actions
-Circonus.add(require('./on_new_alert.js'));
-Circonus.add(require('./http_trap.js'));
 
 // -----------------------------------------------------------------------------
 module.exports = Circonus;

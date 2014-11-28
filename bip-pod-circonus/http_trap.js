@@ -17,64 +17,26 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-function HTTPTrap(podConfig) {
-  this.name = 'http_trap';
-  this.title = 'HTTP Trap';
-  this.description = 'Sends JSON object data to a HTTP Trap';
-  this.trigger = false;
-  this.singleton = false;
-  this.auto = false;
-  this.podConfig = podConfig;
-}
+function HTTPTrap() {}
 
 HTTPTrap.prototype = {};
 
-HTTPTrap.prototype.getSchema = function() {
-  return {
-    "config": {
-      "properties" : {
-        "trap_url" : {
-          "type" : "string",
-          "description" : "Trap URL"
-        }
-      },
-      "required" : [ "trap_url"]
-    },
-    "imports": {
-      "properties" : {
-        "data" : {
-          "type" : "mixed",
-          "description" : "JSON Data Object"
-        }
-      },
-      "required" : [ "data"]
-    },
-    "exports": {
-      "properties" : {
-      }
-    }
-  }
-}
-
 HTTPTrap.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
   var $resource = this.$resource;
-
-  if (imports.data && channel.config.trap_url) {
-    try {
-      this.$resource._httpPut(
-        channel.config.trap_url,
-        app.helper.deriveObject(imports.data),
-        function(err, resp) {
-          next(err, resp);
-        },
-        {},
-        {
-          strictSSL : false
-        }
-      );
-    } catch (e) {
-      next(e);
-    }
+  try {
+    this.$resource._httpPut(
+      channel.config.trap_url,
+      app.helper.deriveObject(imports.data),
+      function(err, resp) {
+        next(err, resp);
+      },
+      {},
+      {
+        strictSSL : false
+      }
+    );
+  } catch (e) {
+    next(e);
   }
 }
 

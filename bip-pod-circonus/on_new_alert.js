@@ -17,66 +17,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-function OnNewAlert(podConfig) {
-  this.name = 'on_new_alert';
-  this.title = 'On a New Alert';
-  this.description = 'Triggers On a New Alert';
-  this.trigger = true;
-  this.singleton = false;
-  this.auto = false;
-  this.podConfig = podConfig;
-}
+function OnNewAlert() {}
 
 OnNewAlert.prototype = {};
-
-OnNewAlert.prototype.getSchema = function() {
-  return {
-    "config": {
-      "properties" : {
-      }
-    },
-    "imports": {
-      "properties" : {
-      }
-    },
-    "exports": {
-      "properties" : {
-        "_value" : {
-          "type" : "string",
-          "description" : "Alert Value"
-        },
-        "_alert_url" : {
-          "type" : "string",
-          "description" : "Alert URL"
-        },
-        "_metric_name" : {
-          "type" : "string",
-          "description" : "Metric Name"
-        },
-        "_metric_notes" : {
-          "type" : "string",
-          "description" : "Metric Notes"
-        },
-        "_metric_link" : {
-          "type" : "string",
-          "description" : "Metric Link"
-        },
-        "_severity" : {
-          "type" : "string",
-          "description" : "Severity"
-        },
-        "_cid" : {
-          "type" : "string",
-          "description" : "Alert ID"
-        },
-        "_occurred_on" : {
-          "type" : "string",
-          "description" : "UTC Unix Time"
-        }
-      }
-    }
-  }
-}
 
 OnNewAlert.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
   var $resource = this.$resource;
@@ -90,7 +33,6 @@ OnNewAlert.prototype.invoke = function(imports, channel, sysImports, contentPart
           if (err) {
             next(err);
           } else {
-            console.log(alert);
             next(false, alert);
           }
         });
