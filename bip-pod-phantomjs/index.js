@@ -19,14 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 var Pod = require('bip-pod'),
-PhantomJS = new Pod({
-  name : 'phantomjs',
-  title : 'PhantomJS', // short description
-  description : 'PhantomJS is a headless WebKit scriptable with a JavaScript API. It has fast and native support for various web standards: DOM handling, CSS selector, JSON, Canvas, and SVG.'
-});
-
-// Include any actions
-PhantomJS.add(require('./screen_shot.js'));
+  PhantomJS = new Pod();
 
 // -----------------------------------------------------------------------------
 module.exports = PhantomJS;

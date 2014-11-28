@@ -22,107 +22,67 @@ var webshot = require('webshot'),
   path = require('path'),
   fs = require('fs');
 
-function ScreenShot(podConfig) {
-  this.name = 'screen_shot'; // action name (channel action suffix - "action: boilerplate.simple")
-  this.title = 'Screen Shot a Web Page', // short description
-  this.description = 'Takes a screen shot of a given URL in a browser', // long description
-  this.trigger = false; // this action can trigger
-  this.singleton = false; // 1 instance per account (can auto install)
-  this.auto = false; // automatically install this action
-  this.podConfig = podConfig; // general system level config for this pod (transports etc)
-}
+function ScreenShot(podConfig) {}
 
 ScreenShot.prototype = {};
-
-// ScreenShot schema definition
-// @see http://json-schema.org/
-ScreenShot.prototype.getSchema = function() {
-  return {
-    "config": {
-      "properties" : {
-        "viewport" : {
-          "type" :  "string",
-          "description" : "Viewport size pixels, eg 800x1128"
-        }
-      }
-    },
-    "imports": {
-      "properties" : {
-        "url" : {
-          "type" :  "string",
-          "description" : "Target URL"
-        },
-        "viewport" : {
-          "type" :  "string",
-          "description" : "Viewport size pixels, eg 800x1128"
-        }
-      },
-      "required" : [ "url" ]
-    }
-  }
-}
 
 ScreenShot.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
   var pod = this.pod;
 
-  if (imports.url) {
-    pod.getDataDir(channel, this.name, function(err, dataDir) {
-      var md5Hash = crypto.createHash('md5').update(imports.url).digest('hex'),
-        options = {};
+  pod.getDataDir(channel, this.name, function(err, dataDir) {
+    var md5Hash = crypto.createHash('md5').update(imports.url).digest('hex'),
+      options = {};
 
-      if (channel.config && channel.config.viewport) {
-        var tokens = channel.config.viewport.split('x');
-        md5Hash += channel.config.viewport.replace(/[^x0-9]/g, '');
-        if (tokens.length === 2) {
-          options.screenSize = {
-            width : Number(tokens[0].trim()),
-            height : Number(tokens[1].trim()),
-          };
+    if (channel.config && channel.config.viewport) {
+      var tokens = channel.config.viewport.split('x');
+      md5Hash += channel.config.viewport.replace(/[^x0-9]/g, '');
+      if (tokens.length === 2) {
+        options.screenSize = {
+          width : Number(tokens[0].trim()),
+          height : Number(tokens[1].trim()),
+        };
 
-          options.shotSize = {
-            width : options.screenSize.width,
-            height : 'all'
-          }
+        options.shotSize = {
+          width : options.screenSize.width,
+          height : 'all'
         }
       }
+    }
 
-      var fileName = md5Hash + '.png',
-        outPath = path.normalize(dataDir + fileName);
+    var fileName = md5Hash + '.png',
+      outPath = path.normalize(dataDir + fileName);
 
-      webshot(imports.url, outPath, options, function(err) {
-        if (err) {
-          next(err);
-        } else {
-          fs.stat(outPath, function(err, stats) {
-            if (err) {
-              next(err);
-            } else {
-              var fStruct = {
-                txId : sysImports.id,
-                localpath : outPath,
-                name : fileName,
-                type : 'image/png',
-                encoding : 'binary',
-                size : stats.size
-              }
-
-              if (contentParts && contentParts._files) {
-                contentParts._files.push(fStruct)
-              } else {
-                contentParts = {
-                  _files : [ fStruct ]
-                }
-              }
-
-              next(err, {}, contentParts, fStruct.size);
+    webshot(imports.url, outPath, options, function(err) {
+      if (err) {
+        next(err);
+      } else {
+        fs.stat(outPath, function(err, stats) {
+          if (err) {
+            next(err);
+          } else {
+            var fStruct = {
+              txId : sysImports.id,
+              localpath : outPath,
+              name : fileName,
+              type : 'image/png',
+              encoding : 'binary',
+              size : stats.size
             }
-          });
-        }
-      });
+
+            if (contentParts && contentParts._files) {
+              contentParts._files.push(fStruct)
+            } else {
+              contentParts = {
+                _files : [ fStruct ]
+              }
+            }
+
+            next(err, {}, contentParts, fStruct.size);
+          }
+        });
+      }
     });
-  } else {
-    next();
-  }
+  });
 }
 
 // -----------------------------------------------------------------------------
