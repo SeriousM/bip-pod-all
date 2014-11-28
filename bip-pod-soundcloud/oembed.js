@@ -19,79 +19,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 var request = require('request');
-function OEmbed(podConfig) {
-  this.name = 'oembed';
-  this.title = "SoundCloud oEmbed";
-  this.description = "Converts any SoundCloud entity to its oEmbed representation";
-  this.trigger = false;
-  this.singleton = true;
-  this.auto = true;
-  this.podConfig = podConfig;
-}
+function OEmbed(podConfig) {}
 
 OEmbed.prototype = {};
-
-OEmbed.prototype.getSchema = function() {
-  return {
-    'config' : {
-      properties : {
-    }
-    },
-    'imports' : {
-      properties : {
-        'url' : {
-          type : 'string',
-          description : 'URL'
-        },
-        'maxwidth' : {
-          type : 'string',
-          description : 'Max Width'
-        },
-        'maxheight' : {
-          type : 'string',
-          description : 'Max Height'
-        },
-        'auto_play' : {
-          type : 'boolean',
-          description : 'Auto Play'
-        },
-        'show_comments' : {
-          type : 'boolean',
-          description : 'Show Comments'
-        },
-        'color' : {
-          type : 'string',
-          description : 'Primary Color Value (hex)'
-        }
-      },
-      "required" : [ "url" ]
-    },
-    'exports' : {
-      properties : {
-        'type' : {
-          type : 'string',
-          description : 'oEmbed Type'
-        },
-        'provider_name' : {
-          type : 'string',
-          description : 'Provider Name (soundcloud)'
-        },
-        'provider_url' : {
-          type : 'string',
-          description : 'Provider URL'
-        },
-        'title' : {
-          type : 'string',
-          description : 'Title'
-        },
-        'html' : {
-          type : 'string',
-          description : 'oEmbed HTML'
-        }
-      }
-    }
-  }
-}
 
 /**
  * Invokes (runs) the action.
@@ -100,16 +30,15 @@ OEmbed.prototype.invoke = function(imports, channel, sysImports, contentParts, n
   var uri = '/oembed?format=json',
   log = this.$resource.log;
 
-  if (imports.url && '' !== imports.url) {
-    request.get(
-      this.pod._apiURL + uri + '&url=' + imports.url,
-      function(error, res, res) {
-        if (error) {
-          log(res, channel, 'error');
-        }
-        next(error, JSON.parse(res));
-      });
-  }
+  request.get(
+    this.pod._apiURL + uri + '&url=' + imports.url,
+    function(error, res, res) {
+      if (error) {
+        log(res, channel, 'error');
+      }
+      next(error, JSON.parse(res));
+    });
+
 }
 
 // -----------------------------------------------------------------------------

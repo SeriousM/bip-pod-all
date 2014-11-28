@@ -23,67 +23,9 @@
  */
 var moment = require('moment');
 
-function GetFavorites(podConfig) {
-  this.name = 'get_favorites';
-  this.title = "Get Favorites";
-  this.description = "Retrieves the sounds you've favorited, exporting track data and (optionally) the track itself";
-  this.trigger = true;
-  this.singleton = false;
-  this.auto = true;
-  this.podConfig = podConfig;
-}
+function GetFavorites() {}
 
 GetFavorites.prototype = {};
-
-GetFavorites.prototype.getSchema = function() {
-  return {
-    'config' : {
-      properties : {
-        'download' : {
-          type : 'boolean',
-          description : "Download Files",
-          "default" : false
-        }
-      }
-    },
-    'exports' : {
-      properties : {
-        'title' : {
-          type : 'string',
-          description : 'Track Title'
-        },
-        'artist' : {
-          type : 'string',
-          description : 'Artist Name'
-        },
-        'genre' : {
-          type : 'string',
-          description : 'Music Genre'
-        },
-        'download_url' : {
-          type : 'string',
-          description : 'Direct Download URL'
-        },
-        'label_name' : {
-          type : 'string',
-          description : 'Releasing Label Name'
-        },
-        'permalink_url' : {
-          type : 'string',
-          description : 'Track Permalink URL'
-        },
-        'artwork_url' : {
-          type : 'string',
-          description : 'Track Artwork URL (JPEG)'
-        },
-        'description' : {
-          type : 'string',
-          description : 'Track Description'
-        }
-      }
-    }
-  }
-}
 
 /**
  * Invokes (runs) the action.

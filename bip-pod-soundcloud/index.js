@@ -19,30 +19,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 var Pod = require('bip-pod'),
-    SoundCloud = new Pod({
-        name : 'soundcloud',
-        title : 'SoundCloud',
-        description : '<a href="https://soundcloud.com">SoundCloud</a> is an audio platform that enables sound creators to upload, record, promote and share their originally-created sounds',
-        dataSources : [
-            require('./models/track_favorite'),
-        ],
-        authType : 'oauth',
-        passportStrategy : require('passport-soundcloud').Strategy,
-        config : {
-            "oauth": {
-               "clientID" : "",
-               "clientSecret" : "",
-               "scopes" : [
-                    "non-expiring"
-               ],
-               "method" : "authenticate"
-            }
-        }
-    });
+  SoundCloud = new Pod();
 
 SoundCloud._apiURL = 'https://api.soundcloud.com';
-SoundCloud.add(require('./get_favorites.js'));
-SoundCloud.add(require('./oembed.js'));
 
 // -----------------------------------------------------------------------------
 module.exports = SoundCloud;
