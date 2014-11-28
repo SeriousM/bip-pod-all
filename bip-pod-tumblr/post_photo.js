@@ -19,52 +19,22 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-function PostPhoto(podConfig) {
-  this.name = 'post_photo';
-  this.description = 'New Photo Post';
-  this.description_long = 'Create a new Photo Post';
-  this.trigger = false;
-  this.singleton = false;
-  this.podConfig = podConfig;
-}
+function PostPhoto() {}
 
 PostPhoto.prototype = {};
-
-PostPhoto.prototype.getSchema = function() {
-  var schema = {
-    imports: {
-      properties : {
-        caption : {
-          type : "string",
-          description : "Caption"
-        },
-        link : {
-          type : "string",
-          description : "Link"
-        },
-        source : {
-          type : "string",
-          description : "Image Source URL"
-        }        
-      }
-    }
-  };  
-  return this.pod._decoratePostSchema(schema);
-}
 
 /**
  * Invokes (runs) the action.
  *
  */
-PostPhoto.prototype.invoke = function(imports, channel, sysImports, contentParts, next) { 
-  
+PostPhoto.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
   if (contentParts._files) {
-    for (var i = 0; i < contentParts._files.length; i++) {     
+    for (var i = 0; i < contentParts._files.length; i++) {
       var localImports = app._.clone(imports);
       delete localImports.source;
       delete localImports.link;
-      
-      localImports.data = contentParts._files[i].localpath;     
+
+      localImports.data = contentParts._files[i].localpath;
       this.pod._createPost('photo', localImports, channel, sysImports, contentParts, next);
     }
   } else {

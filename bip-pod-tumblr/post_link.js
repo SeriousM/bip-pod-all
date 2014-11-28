@@ -19,38 +19,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-function PostLink(podConfig) {
-  this.name = 'post_link';
-  this.description = 'New Link Post';
-  this.description_long = 'Create a new Link Post';
-  this.trigger = false;
-  this.singleton = false;
-  this.podConfig = podConfig;
-}
+function PostLink() {}
 
 PostLink.prototype = {};
-
-PostLink.prototype.getSchema = function() {
-  var schema = {
-    imports: {
-      properties : {
-        title : {
-          type : "string",
-          description : "Link Title"
-        },
-        url : {
-          type : "string",
-          description : "URL"
-        },
-        description : {
-          type : "string",
-          description : "Link Summary"
-        }        
-      }
-    }
-  };
-  return this.pod._decoratePostSchema(schema);
-}
 
 /**
  * Invokes (runs) the action.

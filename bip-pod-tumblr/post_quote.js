@@ -19,40 +19,15 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-function PostQuote(podConfig) {
-  this.name = 'post_quote';
-  this.description = 'New Quote Post';
-  this.description_long = 'Create a new Quote Post';
-  this.trigger = false;
-  this.singleton = false;
-  this.podConfig = podConfig;
-}
+function PostQuote() {}
 
 PostQuote.prototype = {};
-
-PostQuote.prototype.getSchema = function() {
-  var schema = {
-    imports: {
-      properties : {
-        quote : {
-          type : "string",
-          description : "Quote"
-        },
-        source : {
-          type : "string",
-          description : "Cited Source"
-        }        
-      }
-    }
-  };  
-  return this.pod._decoratePostSchema(schema);
-}
 
 /**
  * Invokes (runs) the action.
  *
  */
-PostQuote.prototype.invoke = function(imports, channel, sysImports, contentParts, next) { 
+PostQuote.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
   this.pod._createPost('quote', imports, channel, sysImports, contentParts, next);
 }
 

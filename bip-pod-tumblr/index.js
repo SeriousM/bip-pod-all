@@ -20,47 +20,7 @@
  */
 var Pod = require('bip-pod'),
 tumblr = require('tumblr.js'),
-Tumblr = new Pod({
-  name : 'tumblr',
-  title : 'Tumblr',
-  description : 'Tumblr is a microblogging platform and social networking website. The service allows users to post multimedia and other content to a short-form blog.',
-  authType : 'oauth',
-  passportStrategy : require('passport-tumblr').Strategy,
-  config : {
-    "oauth": {
-      "consumerKey" : "",
-      "consumerSecret" : ""
-    }
-  },
-  'renderers' : {
-    'user_info' : {
-      description : 'Get User Info',
-      contentType : DEFS.CONTENTTYPE_JSON,
-      properties : {
-        'name' : {
-          type : "string",
-          description: 'Name'
-        },
-        'likes' : {
-          type : "integer",
-          description: 'Likes'
-        },
-        'following' : {
-          type : "integer",
-          description: 'Following'
-        },
-        'default_post_format' : {
-          type : "string",
-          description: 'Default Post Format'
-        },
-        'blogs' : {
-          type : "array",
-          description: 'List of Blogs'
-        }
-      }
-    }
-  }
-});
+Tumblr = new Pod();
 
 Tumblr.rpc = function(action, method, sysImports, options, channel, req, res) {
   var podConfig = this.getConfig();
@@ -86,79 +46,14 @@ Tumblr.rpc = function(action, method, sysImports, options, channel, req, res) {
   }
 }
 
-//
-Tumblr._decoratePostSchema = function(schema) {
-
-  if (!schema.config) {
-    schema.config = {
-      properties : {}
-    }
-  }
-
-  if (!schema.config.properties) {
-    schema.config.properties = {};
-  }
-
-  schema.config.properties.url = {
-    type: "string",
-    description: 'Blog URL eg: blog.tumblr.com',
-    optional: false,
-    unique : true,
-    oneOf : [
-        {
-          '$ref' : '/renderers/user_info#user/blogs/{name}'
-        }
-      ]
-  };
-
-  schema.config.properties.state = {
-    type : 'string',
-    description : 'Default State',
-    oneOf : [
-    {
-      "$ref" : "#/config/definitions/state"
-    }
-    ]
-  };
-
-  if (!schema.config.definitions) {
-    schema.config.definitions = {};
-  }
-
-  schema.config.definitions.state = {
-    "description" : "Post State",
-    "enum" : [ "published" , "draft", "queue", "private" ],
-    "enum_label" : ["Published", "Draft", "Queued", "Private"],
-    "default" : "draft"
-  };
-
-  if (!schema.exports) {
-    schema.exports = {
-      properties : {}
-    }
-  }
-
-  if (!schema.exports.properties) {
-    schema.exports.properties = {};
-  }
-
-  schema.exports.properties.id = {
-    type : "integer",
-    description : "Post ID"
-  };
-
-  return schema;
-}
-
 Tumblr._createPost = function(type, imports, channel, sysImports, contentParts, next) {
-
   var log = this.log,
-  user = JSON.parse(sysImports.auth.oauth.profile).response.user,
-  podConfig = this.getConfig();
+    user = JSON.parse(sysImports.auth.oauth.profile).response.user,
+    podConfig = this.getConfig();
 
   var client = new tumblr.Client({
-    consumer_key : podConfig.oauth.consumerKey,
-    consumer_secret : podConfig.oauth.consumerSecret,
+    consumer_key : sysImports.auth.oauth.consumerKey || podConfig.oauth.consumerKey,
+    consumer_secret : sysImports.auth.oauth.consumerSecret ||  podConfig.oauth.consumerSecret,
     token : sysImports.auth.oauth.token,
     token_secret : sysImports.auth.oauth.secret
   });
@@ -183,14 +78,6 @@ Tumblr._createPost = function(type, imports, channel, sysImports, contentParts, 
     next(err, response);
   });
 }
-
-Tumblr.add(require('./post_text.js'));
-Tumblr.add(require('./post_photo.js'));
-Tumblr.add(require('./post_quote.js'));
-Tumblr.add(require('./post_link.js'));
-Tumblr.add(require('./post_chat.js'));
-Tumblr.add(require('./post_audio.js'));
-Tumblr.add(require('./post_video.js'));
 
 // -----------------------------------------------------------------------------
 module.exports = Tumblr;

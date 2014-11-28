@@ -19,34 +19,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-function PostVideo(podConfig) {
-  this.name = 'post_video';
-  this.description = 'New Video Post';
-  this.description_long = 'Create a new Video Post';
-  this.trigger = false;
-  this.singleton = false;
-  this.podConfig = podConfig;
-}
+function PostVideo() {}
 
 PostVideo.prototype = {};
 
-PostVideo.prototype.getSchema = function() {
-  var schema = {
-    imports: {
-      properties : {
-        caption : {
-          type : "string",
-          description : "Caption"
-        },
-        embed : {
-          type : "string",
-          description : "HTML embed code"
-        }
-      }
-    }
-  };  
-  return this.pod._decoratePostSchema(schema);
-}
 
 /**
  * Invokes (runs) the action.

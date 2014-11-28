@@ -2,7 +2,7 @@
   "name": "tumblr",
   "title": "Tumblr",
   "description": "Tumblr is a microblogging platform and social networking website. The service allows users to post multimedia and other content to a short-form blog.",
-  "url": "",
+  "url": "https://www.tumblr.com",
   "trackDuplicates": false,
   "config": {
     "oauth": {

@@ -19,34 +19,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-function PostAudio(podConfig) {
-  this.name = 'post_audio';
-  this.description = 'New Audio Post';
-  this.description_long = 'Create a new Audio Post';
-  this.trigger = false;
-  this.singleton = false;
-  this.podConfig = podConfig;
-}
+function PostAudio(podConfig) {}
 
 PostAudio.prototype = {};
-
-PostAudio.prototype.getSchema = function() {
-  var schema = {
-    imports: {
-      properties : {
-        caption : {
-          type : "string",
-          description : "Caption"
-        },
-        external_url : {
-          type : "string",
-          description : "Source URL (not Tumblr)"
-        }
-      }
-    }
-  };  
-  return this.pod._decoratePostSchema(schema);
-}
 
 /**
  * Invokes (runs) the action.

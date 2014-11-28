@@ -19,35 +19,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-function PostChat(podConfig) {
-  this.name = 'post_chat';
-  this.description = 'New Chat Post';
-  this.description_long = 'Create a new Chat Post';
-  this.trigger = false;
-  this.singleton = false;
-  this.podConfig = podConfig;
-}
+function PostChat(podConfig) {}
 
 PostChat.prototype = {};
-
-PostChat.prototype.getSchema = function() {
-  var schema = {
-    imports: {
-      properties : {
-        title : {
-          type : "string",
-          description : "Chat Title"
-        },
-        conversation : {
-          type : "string",
-          description : "Chat Transcript",
-          optional : false
-        }        
-      }
-    }
-  };
-  return this.pod._decoratePostSchema(schema);
-}
 
 /**
  * Invokes (runs) the action.

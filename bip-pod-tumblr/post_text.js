@@ -19,34 +19,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-function PostText(podConfig) {
-  this.name = 'post_text';
-  this.description = 'New Text Post';
-  this.description_long = 'Create a new Text Post';
-  this.trigger = false;
-  this.singleton = false;
-  this.podConfig = podConfig;
-}
+function PostText() {}
 
 PostText.prototype = {};
-
-PostText.prototype.getSchema = function() {
-  var schema = {
-    imports: {
-      properties : {
-        title : {
-          type : "string",
-          description : "Post Title"
-        },
-        body : {
-          type : "string",
-          description : "Post Body"
-        }
-      }
-    }
-  };  
-  return this.pod._decoratePostSchema(schema);
-}
 
 /**
  * Invokes (runs) the action.
