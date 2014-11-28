@@ -18,26 +18,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-var Pod = require('bip-pod');
-
-Bitly = new Pod({
-  name : 'bitly',
-  title : 'Bitly',
-  description : 'Offers URL redirection service with real-time link tracking.',
-  authType : 'oauth',
-  passportStrategy : require('passport-bitly').Strategy,
-  config : {
-      "oauth": {
-         "clientID" : "",
-         "clientSecret" : "",
-         "callbackURL" : ""
-      }
-  }
-});
-
-
-Bitly.add(require('./shorten.js'));
-Bitly.add(require('./expand.js'));
+var Pod = require('bip-pod'),
+  Bitly = new Pod();
 
 // -----------------------------------------------------------------------------
 module.exports = Bitly;

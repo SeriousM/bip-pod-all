@@ -2,7 +2,7 @@
   "name": "bitly",
   "title": "Bitly",
   "description": "Offers URL redirection service with real-time link tracking.",
-  "url": "",
+  "url": "https://bitly.com",
   "trackDuplicates": false,
   "config": {
     "oauth": {
@@ -19,6 +19,7 @@
     "shorten": {
       "title": "Shortens a URL",
       "description": "Given a long URL, returns a bitly short URL",
+      "doc_ref" : "http://dev.bitly.com/links.html#v3_shorten",
       "trigger": "invoke",
       "config": {
         "properties": {},
@@ -66,6 +67,7 @@
     "expand": {
       "title": "Expands a URL",
       "description": "Given a bitly URL or hash (or multiple), returns the target (long) URL",
+      "doc_ref" : "http://dev.bitly.com/links.html#v3_expand",
       "trigger": "invoke",
       "config": {
         "properties": {},

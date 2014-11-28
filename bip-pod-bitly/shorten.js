@@ -20,65 +20,16 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-function Shorten(podConfig) {
-  this.name = 'shorten';
-  this.title = "Shortens a URL";
-  this.description = "Given a long URL, returns a bitly short URL";
-  this.trigger = false;
-  this.singleton = true;
-  this.auto = true;
-  this.podConfig = podConfig;
-}
+function Shorten() {}
 
 Shorten.prototype = {};
 
-Shorten.prototype.getSchema = function() {
-  return {
-    'imports' : {
-      properties : {
-        'url' : {
-          type : 'string',
-          description : 'URL'
-        }
-      },
-      "required" : [ 'url' ]
-    },
-    'exports' : {
-      properties : {
-        'new_hash' : {
-          type : 'string',
-          description : '1 if new hash'
-        },
-        'url' : {
-          type : 'string',
-          description : 'Bitly URL'
-        },
-        'hash' : {
-          type : 'string',
-          description : 'Account URL Hash'
-        },
-        'global_hash' : {
-          type : 'string',
-          description : 'Global Hash'
-        },
-        'long_url' : {
-          type : 'string',
-          description : 'Source URL'
-        }
-      }
-    }
-  }
-}
-
 Shorten.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
   var uri = 'https://api-ssl.bitly.com/v3/link/lookup?url=';
-
-  if (imports.url && '' !== imports.url) {
-    uri += imports.url + '&access_token=' + sysImports.auth.oauth.token;
-    pod._httpGet(uri, function(err, bodyJSON) {
-      next(err || bodyJSON.status_code !== 200, bodyJSON.data, contentParts, 0);
-    });
-  }
+  uri += imports.url + '&access_token=' + sysImports.auth.oauth.token;
+  pod._httpGet(uri, function(err, bodyJSON) {
+    next(err || bodyJSON.status_code !== 200, bodyJSON.data, contentParts, 0);
+  });
 }
 
 // -----------------------------------------------------------------------------
