@@ -3,8 +3,8 @@
  * The Bipio Flow Pod.  nonce action definition
  * ---------------------------------------------------------------
  *
- * @author Michael Pearson <github@m.bip.io>
- * Copyright (c) 2010-2013 Michael Pearson https://github.com/mjpearson
+ * @author Michael Pearson <michael@bip.io>
+ * Copyright (c) 2010-2014 WoT.IO
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,45 +20,15 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 var crypto = require('crypto');
-function Hash(podConfig) {
-  this.name = 'hash';
-  this.title = 'Generates a MD5 Hash',
-  this.description = 'Generates a MD5 Hash of the supplied content',
-  this.trigger = false;
-  this.singleton = true;
-  this.podConfig = podConfig;
-}
+
+function Hash() {}
 
 Hash.prototype = {};
 
-Hash.prototype.getSchema = function() {
-  return {
-    'imports' : {
-      properties : {
-        'funnel' : {
-          type : "string",
-          description : "Content Funnel"
-        }
-      },
-      'required' : [ 'funnel' ]
-    },
-    'exports' : {
-      properties : {
-        'hash' : {
-          type : "string",
-          description : "MD5 String"
-        }
-      }
-    }
-  }
-}
-
 Hash.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
-  if (imports.funnel) {
-    next(false, {
-      hash : crypto.createHash('md5').update(imports.funnel).digest('hex')
-    });
-  }
+  next(false, {
+    hash : crypto.createHash('md5').update(imports.funnel).digest('hex')
+  });
 }
 
 // -----------------------------------------------------------------------------

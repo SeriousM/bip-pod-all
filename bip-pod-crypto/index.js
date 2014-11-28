@@ -1,7 +1,7 @@
 /**
  *
- * @author Michael Pearson <github@m.bip.io>
- * Copyright (c) 2010-2014 Michael Pearson https://github.com/mjpearson
+ * @author Michael Pearson <michael@bip.io>
+ * Copyright (c) 2010-2014 WoT.IO
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,14 +17,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 var Pod = require('bip-pod'),
-    Crypto = new Pod({
-        name : 'crypto',
-        title : 'Crypto',
-        description : 'Simple Crypto Functions'
-    });
-
-// Include any actions
-Crypto.add(require('./hash.js'));
+    Crypto = new Pod();
 
 // -----------------------------------------------------------------------------
 module.exports = Crypto;
