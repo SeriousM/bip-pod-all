@@ -22,75 +22,44 @@
 
 var MongoClient = require('mongodb').MongoClient;
 
-function Remove(podConfig) {
-  this.name = 'remove';
-  this.title = 'Remove',
-  this.description = 'Remove a MongoDB document',
-  this.trigger = false;
-  this.singleton = false;
-  this.auto = false;
-  this.podConfig = podConfig;
-}
+function Remove() {}
 
 Remove.prototype = {};
-
-Remove.prototype.getSchema = function() {
-  return {
-    'imports': {
-      'properties' : {
-         'collection' : {
-          'type' : 'string',
-          'description' : 'Name of the Collection'
-        },
-        'match' : {
-            'type' : 'mixed',
-            'description' : 'Pattern to Match for Removal'
-        }
-     },
-    'required' : ['collection']
-    }
-  }
-}
 
 /**
  * Action Invoker - the primary function of a channel
  *
  */
 Remove.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
+  var url = sysImports.auth.issuer_token.username,
+    match;
 
-  if (imports.match && imports.collection) {
-
-    var url = sysImports.auth.issuer_token.username,
-      match;
-
-        if (app.helper.isObject(imports.match)) {
-          match = imports.match;
-        } else {
-          try {
-            match = JSON.parse(imports.match);
-          } catch (e) {
-            next(e);
-            return;
-          }
-        }
-
-
-    this.pod.getClient(sysImports, function(err, db) {
-      if (err) {
-        next(err);
-      } else {
-        db.collection(imports.collection, function(err, collection) {
-          if (err) {
-            next(err);
-          }  else {
-            collection.remove(match, function(err, result) {
-              next(err, {});
-            });
-          }
-        });
-      }
-    });
+  if (app.helper.isObject(imports.match)) {
+    match = imports.match;
+  } else {
+    try {
+      match = JSON.parse(imports.match);
+    } catch (e) {
+      next(e);
+      return;
+    }
   }
+
+  this.pod.getClient(sysImports, function(err, db) {
+    if (err) {
+      next(err);
+    } else {
+      db.collection(imports.collection, function(err, collection) {
+        if (err) {
+          next(err);
+        }  else {
+          collection.remove(match, function(err, result) {
+            next(err, {});
+          });
+        }
+      });
+    }
+  });
 }
 
 // -----------------------------------------------------------------------------

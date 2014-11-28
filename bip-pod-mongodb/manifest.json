@@ -1,8 +1,8 @@
 {
   "name": "mongodb",
   "title": "MongoDB",
-  "description": "<a href=\"http://www.mongodb.org\" target=\"_blank\">MongoDB</a> (from \"humongous\") is an open-source document database, and the leading NoSQL database.",
-  "url": "",
+  "description": "MongoDB (from \"humongous\") is an open-source document database, and the leading NoSQL database.",
+  "url": "http://www.mongodb.org",
   "trackDuplicates": false,
   "config": {
     "whitelist": [
@@ -73,6 +73,10 @@
             "description": "Query to Search On"
           }
         },
+        "required": [
+          "collection",
+          "query"
+        ],
         "disposition": [
           "collection",
           "query"
@@ -105,6 +109,11 @@
             "description": "Data to Update"
           }
         },
+        "required": [
+          "collection",
+          "match",
+          "document"
+        ],
         "disposition": [
           "collection",
           "match",
@@ -135,7 +144,8 @@
           }
         },
         "required": [
-          "collection"
+          "collection",
+          "match"
         ],
         "disposition": [
           "collection",

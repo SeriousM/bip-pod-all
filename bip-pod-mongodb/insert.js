@@ -22,73 +22,43 @@
 
 var MongoClient = require('mongodb').MongoClient;
 
-function Insert(podConfig) {
-  this.name = 'insert';
-  this.title = 'Insert a document into MongoDB',
-  this.description = 'Insert a MongoDB document',
-  this.trigger = false;
-  this.singleton = false;
-  this.auto = false;
-  this.podConfig = podConfig;
-}
+function Insert(podConfig) {}
 
 Insert.prototype = {};
-
-Insert.prototype.getSchema = function() {
-  return {
-    'imports': {
-      'properties' : {
-         'collection' : {
-          'type' : 'string',
-          'description' : 'Name of the Collection'
-        },
-        'document' : {
-          'type' :  'mixed',
-          'description' : 'Document to Insert'
-        }
-      },
-      "required" : [ "document", "collection" ]
-    }
-  }
-}
 
 /**
  * Action Invoker - the primary function of a channel
  *
  */
 Insert.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
-
-  if (imports.document && imports.collection) {
-
-    var document;
-
-    if (app.helper.isObject(imports.document)) {
-      document = imports.document;
-    } else {
-      try {
-        document = JSON.parse(imports.document);
-      } catch (e) {
-        next(e);
-        return;
-      }
+  var document;
+  if (app.helper.isObject(imports.document)) {
+    document = imports.document;
+  } else {
+    try {
+      document = JSON.parse(imports.document);
+    } catch (e) {
+      next(e);
+      return;
     }
-
-    this.pod.getClient(sysImports, function(err, db) {
-      if (err) {
-        next(err);
-      } else {
-        db.collection(imports.collection, function(err, collection) {
-          if (err) {
-            next(err);
-          } else {
-            collection.insert(document, function(err, result) {
-              next(err, {});
-            });
-          }
-        });
-      }
-    });
   }
+
+  this.pod.getClient(sysImports, function(err, db) {
+    if (err) {
+      next(err);
+    } else {
+      db.collection(imports.collection, function(err, collection) {
+        if (err) {
+          next(err);
+        } else {
+          collection.insert(document, function(err, result) {
+            next(err, {});
+          });
+        }
+      });
+    }
+  });
+
 }
 // -----------------------------------------------------------------------------
 module.exports = Insert;

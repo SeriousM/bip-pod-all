@@ -22,88 +22,55 @@
 
 var MongoClient = require('mongodb').MongoClient;
 
-function Update(podConfig) {
-  this.name = 'update';
-  this.title = 'Update',
-  this.description = 'Update a MongoDB document',
-  this.trigger = false;
-  this.singleton = false;
-  this.auto = false;
-  this.podConfig = podConfig;
-}
+function Update() {}
 
 Update.prototype = {};
 
-Update.prototype.getSchema = function() {
-  return {
-    'imports': {
-      'properties' : {
-         'collection' : {
-          'type' : 'string',
-          'description' : 'Name of the Collection'
-        },
-        'match' : {
-            'type' : 'mixed',
-            'description' : 'Pattern to Match'
-        },
-        'document' : {
-          'type' :  'mixed',
-          'description' : 'Data to Update'
-        }
-      }
-    }
-  }
-}
 
 /**
  * Action Invoker - the primary function of a channel
  *
  */
 Update.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
+  var document, match;
 
-    if (imports.document && imports.collection) {
-
-        var document, match;
-
-        if (app.helper.isObject(imports.document)) {
-          document = imports.document;
-        } else {
-          try {
-            document = JSON.parse(imports.document);
-          } catch (e) {
-            next(e);
-            return;
-          }
-        }
-
-        if (app.helper.isObject(imports.match)) {
-          match = imports.match;
-        } else {
-          try {
-            match = JSON.parse(imports.match);
-          } catch (e) {
-            next(e);
-            return;
-          }
-        }
-
-
-        this.pod.getClient(sysImports, function(err, db) {
-          if (err) {
-              next(err);
-          } else {
-            db.collection(imports.collection, function(err, collection) {
-              if (err) {
-                next(err);
-              } else {
-                collection.update(match, { $set : document } , function(err, result) {
-                    next(err, {});
-                });
-              }
-            });
-          }
-        });
+  if (app.helper.isObject(imports.document)) {
+    document = imports.document;
+  } else {
+    try {
+      document = JSON.parse(imports.document);
+    } catch (e) {
+      next(e);
+      return;
     }
+  }
+
+  if (app.helper.isObject(imports.match)) {
+    match = imports.match;
+  } else {
+    try {
+      match = JSON.parse(imports.match);
+    } catch (e) {
+      next(e);
+      return;
+    }
+  }
+
+  this.pod.getClient(sysImports, function(err, db) {
+    if (err) {
+        next(err);
+    } else {
+      db.collection(imports.collection, function(err, collection) {
+        if (err) {
+          next(err);
+        } else {
+          collection.update(match, { $set : document } , function(err, result) {
+              next(err, {});
+          });
+        }
+      });
+    }
+  });
 }
 
 // -----------------------------------------------------------------------------

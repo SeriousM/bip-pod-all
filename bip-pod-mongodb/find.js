@@ -22,86 +22,46 @@
 
 var MongoClient = require('mongodb').MongoClient;
 
-function Find(podConfig) {
-  this.name = 'find';
-  this.title = 'Find a MongoDB Collection of Documents',
-  this.description = 'Find a MongoDB Collection of Documents',
-  this.trigger = false;
-  this.singleton = false;
-  this.auto = false;
-  this.podConfig = podConfig;
-}
+function Find() {}
 
 Find.prototype = {};
 
-Find.prototype.getSchema = function() {
-  return {
-    'imports': {
-      'properties' : {
-         'collection' : {
-          'type' : 'string',
-          'description' : 'Name of the Collection'
-        },
-        'query' : {
-            'type' : 'object',
-            'description' : 'Query to Search On'
-        }
-      }
-    },
-    'exports': {
-      'properties' : {
-        'found_documents' : {
-          'type' : 'object',
-          'description' : 'Array of Document(s)'
-        }
-      }
+Find.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
+  var query;
+
+  if (app.helper.isObject(imports.query)) {
+    query = imports.query;
+  } else {
+    try {
+      query = JSON.parse(imports.query);
+    } catch (e) {
+      next(e);
+      return;
     }
   }
-}
 
-/**
- * Action Invoker - the primary function of a channel
- *
- */
-Find.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
-
-    if (imports.query && imports.collection) {
-
-        var query;
-
-        if (app.helper.isObject(imports.query)) {
-            query = imports.query;
+  this.pod.getClient(sysImports, function(err, db) {
+    if (err) {
+      next(err);
+    } else {
+      db.collection(imports.collection, function(err, collection) {
+        if (err) {
+          next(err);
         } else {
-            try {
-              query = JSON.parse(imports.query);
-            } catch (e) {
-              next(e);
-              return;
-            }
-        }
-
-        this.pod.getClient(sysImports, function(err, db) {
-          if (err) {
-            next(err);
-          } else {
-            db.collection(imports.collection, function(err, collection) {
-              if (err) {
-                next(err);
-              } else {
-                collection.find(query).toArray( function(err, results) {
-                  if (err) {
-                    next(err);
-                  } else {
-                    for (var i = 0; i < results.length; i++) {
-                      next(false, results[i]);
-                    }
-                  }
-                });
+          collection.find(query).toArray( function(err, results) {
+            if (err) {
+              next(err);
+            } else {
+              for (var i = 0; i < results.length; i++) {
+                next(false, results[i]);
               }
-            });
-          }
-        });
+            }
+          });
+        }
+      });
     }
+  });
+
 }
 
 // -----------------------------------------------------------------------------

@@ -22,18 +22,7 @@
 var MongoClient = require('mongodb').MongoClient;
 
 var Pod = require('bip-pod'),
-    mongodb = new Pod({
-        name : 'mongodb', // pod name (action prefix)
-        title : 'MongoDB', // short description
-        description : '<a href="http://www.mongodb.org" target="_blank">MongoDB</a> (from "humongous") is an open-source document database, and the leading NoSQL database.',
-        authType : 'issuer_token',
-        authMap : {
-            username : 'MongoDB Connection URI'
-        },
-        config : {
-          "whitelist": [] // host & ip whitelist
-        }
-    });
+    mongodb = new Pod();
 
 mongodb.testCredentials = function(struct, next) {
     var url = struct.username,
@@ -125,10 +114,5 @@ mongodb.getClient = function(sysImports, next) {
     clientConnections.getConnection(sysImports.auth.issuer_token.username, next);
 }
 
-// Include any actions
-mongodb.add(require('./insert.js'));
-mongodb.add(require('./find.js'));
-mongodb.add(require('./update.js'));
-mongodb.add(require('./remove.js'));
 // -----------------------------------------------------------------------------
 module.exports = mongodb;
