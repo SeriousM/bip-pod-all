@@ -17,78 +17,41 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-function ResolveMX(podConfig) {
-  this.name = 'resolve_mx';
-  this.title = 'Resolve MX',
-  this.description = 'Resolves the MX (Mail Exchange) for a URL',
-  this.trigger = false; // this action can trigger
-  this.singleton = true; // 1 instance per account (can auto install)
-  this.podConfig = podConfig; // general system level config for this pod (transports etc)
-}
+function ResolveMX() {}
 
 ResolveMX.prototype = {};
 
-// ResolveMX schema definition
-// @see http://json-schema.org/
-ResolveMX.prototype.getSchema = function() {
-  return {
-    "imports": {
-      "properties" : {
-        "url" : {
-          "type" :  "string",
-          "description" : "URL"
-        }
-      },
-      "required" : [ "url" ]
-    },
-    "exports": {
-      "properties" : {
-        "mx" : {
-          "type" : "array",
-          "description" : "MX Hosts"
-        },
-        "mx_first" : {
-          "type" : "string",
-          "description" : "Lowest Priority MX"
-        }
-      }
-    }
-  }
-}
-
 ResolveMX.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
   var tldTools = this.pod.tldTools();
-  if (imports.url) {
-    var tokens = tldTools.extract(imports.url),
-    domain = tokens.inspect.getDomain();
+  var tokens = tldTools.extract(imports.url),
+  domain = tokens.inspect.getDomain();
 
-    if (!domain) {
-      next('Could not extract domain for ' + imports.url);
-    } else {
-      this.pod.get().resolveMx(domain, function(err, records) {
-        if (err) {
-          next(err);
-        } else {
-          var exports = {
-            mx : [],
-            mx_first : null
-          },
-          mx;
+  if (!domain) {
+    next('Could not extract domain for ' + imports.url);
+  } else {
+    this.pod.get().resolveMx(domain, function(err, records) {
+      if (err) {
+        next(err);
+      } else {
+        var exports = {
+          mx : [],
+          mx_first : null
+        },
+        mx;
 
-          var p;
-          for (var i = 0; i < records.length; i++) {
-            mx = records[i];
-            exports.mx.push(mx);
+        var p;
+        for (var i = 0; i < records.length; i++) {
+          mx = records[i];
+          exports.mx.push(mx);
 
-            if (undefined === p || p <= mx.priority) {
-              exports.mx_first = mx;
-              p = mx.priority;
-            }
+          if (undefined === p || p <= mx.priority) {
+            exports.mx_first = mx;
+            p = mx.priority;
           }
-          next(false, exports);
         }
-      });
-    }
+        next(false, exports);
+      }
+    });
   }
 }
 

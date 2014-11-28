@@ -17,71 +17,22 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-function GetGTLD(podConfig) {
-  this.name = 'get_gtld';
-  this.title = 'Get GTLD',
-  this.description = 'Extracts GTLD and Subdomain tokens from a URL.  Works with any URI Scheme.',
-  this.trigger = false; // this action can trigger
-  this.singleton = true; // 1 instance per account (can auto install)
-  this.podConfig = podConfig; // general system level config for this pod (transports etc)
-}
+function GetGTLD() {}
 
 GetGTLD.prototype = {};
 
-// GetGTLD schema definition
-// @see http://json-schema.org/
-GetGTLD.prototype.getSchema = function() {
-  return {
-    "imports": {
-      "properties" : {
-        "url" : {
-          "type" :  "string",
-          "description" : "URL"
-        }
-      },
-      "required" : [ "url" ]
-    },
-    "exports": {
-      "properties" : {
-        "gtld" : {
-          "type" : "string",
-          "description" : "Generic Top Level Domain"
-        },
-        "domain" : {
-          "type" : "string",
-          "description" : "Domain"
-        },
-        "subdomain" : {
-          "type" : "string",
-          "description" : "Sub-Domain"
-        },
-        "protocol" : {
-          "type" : "string",
-          "description" : "URI Scheme"
-        },
-        "host" : {
-          "type" : "string",
-          "description" : "Host Name"
-        }
-      }
-    }
-  }
-}
-
 GetGTLD.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
   var tldTools = this.pod.tldTools();
-  if (imports.url) {
-    var tokens = tldTools.extract(imports.url);
-    var exports = {
-      gtld : tokens.tld ? tokens.tld : tokens.domain,
-      domain : tokens.domain,
-      subdomain : tokens.subdomain,
-      protocol : tokens.url_tokens.protocol.replace(':', ''),
-      host : tokens.url_tokens.hostname
-    };
+  var tokens = tldTools.extract(imports.url);
+  var exports = {
+    gtld : tokens.tld ? tokens.tld : tokens.domain,
+    domain : tokens.domain,
+    subdomain : tokens.subdomain,
+    protocol : tokens.url_tokens.protocol.replace(':', ''),
+    host : tokens.url_tokens.hostname
+  };
 
-    next(false, exports);
-  }
+  next(false, exports);
 }
 
 // -----------------------------------------------------------------------------

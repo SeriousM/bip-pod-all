@@ -20,11 +20,7 @@
 var Pod = require('bip-pod'),
   dns = require('dns'),
   tldtools = require('tldtools'),
-  DNS = new Pod({
-    name : 'dns', // pod name (action prefix)
-    title : 'DNS',
-    description : 'Host, whois and general discovery with the global Domain Name System'
-  });
+  DNS = new Pod();
 
 tldtools.init();
 
@@ -35,13 +31,6 @@ DNS.tldTools = function() {
 DNS.get = function() {
   return dns;
 }
-
-// Include any actions
-DNS.add(require('./get_gtld.js'));
-DNS.add(require('./whois.js'));
-DNS.add(require('./lookup.js'));
-DNS.add(require('./resolve_mx.js'));
-DNS.add(require('./reverse.js'));
 
 // -----------------------------------------------------------------------------
 module.exports = DNS;

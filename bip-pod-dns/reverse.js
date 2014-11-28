@@ -19,65 +19,28 @@
 
 var ipaddr = require('ipaddr.js');
 
-function Reverse(podConfig) {
-  this.name = 'reverse';
-  this.title = 'Reverse Lookup',
-  this.description = 'Reverse resolves an ip address to an array of domain names',
-  this.trigger = false; // this action can trigger
-  this.singleton = true; // 1 instance per account (can auto install)
-  this.podConfig = podConfig; // general system level config for this pod (transports etc)
-}
+function Reverse() {}
 
 Reverse.prototype = {};
 
-// Reverse schema definition
-// @see http://json-schema.org/
-Reverse.prototype.getSchema = function() {
-  return {
-    "imports": {
-      "properties" : {
-        "ip_addr" : {
-          "type" :  "string",
-          "description" : "IP Address"
-        }
-      },
-      "required" : [ "ip_addr" ]
-    },
-    "exports": {
-      "properties" : {
-        "ip_first" : {
-          "type" : "string",
-          "description" : "First IP"
-        },
-        "ip_all" : {
-          "type" : "array",
-          "description" : "All Reverse IP's"
-        }
-      }
-    }
-  }
-}
-
 Reverse.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
   var tldTools = this.pod.tldTools();
-  if (imports.ip_addr) {
-    if (!ipaddr.IPv4.isValid(imports.ip_addr) && !ipaddr.IPv6.isValid(imports.ip_addr) ) {
-      next('Invalid IP Address ' + imports.ip_addr);
-    } else {
-      this.pod.get().reverse(imports.ip_addr, function(err, ip_addrs) {
-        if (err) {
-          next(err);
-        } else {
-          next(
-            false,
-            {
-              ip_first : ip_addrs.length ? ip_addrs[0] : '',
-              ip_all : ip_addrs
-            }
-            );
-        }
-      });
-    }
+  if (!ipaddr.IPv4.isValid(imports.ip_addr) && !ipaddr.IPv6.isValid(imports.ip_addr) ) {
+    next('Invalid IP Address ' + imports.ip_addr);
+  } else {
+    this.pod.get().reverse(imports.ip_addr, function(err, ip_addrs) {
+      if (err) {
+        next(err);
+      } else {
+        next(
+          false,
+          {
+            ip_first : ip_addrs.length ? ip_addrs[0] : '',
+            ip_all : ip_addrs
+          }
+          );
+      }
+    });
   }
 }
 
