@@ -16,19 +16,15 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 var Pod = require('bip-pod'),
-    CoinDesk = new Pod({
-        name : 'coindesk', // pod name (action prefix)
-        title : 'CoinDesk', // short description
-        description : 'Realtime Bitcoin prices Powered by <a href="http://www.coindesk.com/price">CoinDesk</a>' // long description
-    },
-    function() {
-    	var self = this;
+    CoinDesk = new Pod({},
+      function() {
+      	var self = this;
 
-    	// refresh prices every 60 seconds
-    	setInterval(function() {
-    		self.refreshPrice.call(self);
-    	}, 60000);
-  });
+      	// refresh prices every 60 seconds
+      	setInterval(function() {
+      		self.refreshPrice.call(self);
+      	}, 60000);
+    });
 
 var lastPrice,
 	lastPriceUSD,
@@ -49,7 +45,6 @@ CoinDesk._setLastPrice = function(err, respBody) {
 		try {
 			respBody = JSON.parse(respBody);
 		} catch (err) {
-console.log(arguments);
 			this.log(err, channelInfo, 'error');
 			return;
 		}
@@ -90,9 +85,6 @@ CoinDesk.refreshPrice = function() {
 CoinDesk.getLastPrice = function(next) {
 	next(false, lastPrice || {});
 }
-
-// Include any actions
-CoinDesk.add(require('./current_price.js'));
 
 // -----------------------------------------------------------------------------
 module.exports = CoinDesk;

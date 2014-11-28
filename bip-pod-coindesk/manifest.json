@@ -1,8 +1,8 @@
 {
   "name": "coindesk",
   "title": "CoinDesk",
-  "description": "Realtime Bitcoin prices Powered by <a href=\"http://www.coindesk.com/price\">CoinDesk</a>",
-  "url": "",
+  "description": "Realtime Bitcoin prices Powered by CoinDesk",
+  "url": "http://www.coindesk.com/price",
   "trackDuplicates": false,
   "config": {},
   "auth": {
@@ -13,6 +13,7 @@
     "current_price": {
       "title": "Current Price",
       "description": "Triggers whenever the BitCoin Price is Updated",
+      "doc_ref" : "http://www.coindesk.com/api",
       "trigger": "realtime",
       "config": {
         "properties": {}
