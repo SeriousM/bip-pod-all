@@ -21,15 +21,7 @@
 var Pod = require('bip-pod'),
   em = require('embedly');
 
-Embedly = new Pod({
-  name : 'embedly',
-  title : 'Embedly',
-  description : 'With Embedly you can embed media from over 250 providers, and surface popular content with analytics. You can gain deeper insights on the articles shared on your site, and improve load times with image optimization.',
-  authType : 'issuer_token',
-    authMap : {
-      password : 'API Key'
-    }
-});
+Embedly = new Pod();
 
 Embedly.api = function(channel, sysImports, cb) {
   var self = this;
@@ -41,9 +33,6 @@ Embedly.api = function(channel, sysImports, cb) {
     cb(err, api);
   });
 }
-
-Embedly.add(require('./oembed.js'));
-Embedly.add(require('./extract.js'));
 
 // -----------------------------------------------------------------------------
 module.exports = Embedly;
