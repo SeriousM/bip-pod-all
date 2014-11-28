@@ -1,8 +1,8 @@
 {
   "name": "keenio",
-  "title": "KeenIO",
-  "description": "<a href=\"https://keen.io\">Keen IO</a> - Analytics for Developers",
-  "url": "",
+  "title": "Keen IO",
+  "description": "Keen IO - Analytics for Developers",
+  "url": "https://keen.io",
   "trackDuplicates": false,
   "config": {},
   "auth": {

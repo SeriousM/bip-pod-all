@@ -17,65 +17,19 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-function AddEvent(podConfig) {
-  this.name = 'add_event';
-  this.title = 'Add an Event',
-  this.description = 'Adds KeenIO Event data to a Project Id',
-  this.trigger = false;
-  this.singleton = false;
-  this.auto = false;
-  this.podConfig = podConfig;
-}
+function AddEvent() {}
 
 AddEvent.prototype = {};
 
-AddEvent.prototype.getSchema = function() {
-  return {
-    "config": {
-      "properties" : {
-        "project_id" : {
-          "type" :  "string",
-          "description" : "Project ID"
-        }
-      },
-      "required" : [ "project_id" ]
-    },
-    "imports": {
-      "properties" : {
-        "collection_name" : {
-          "type" :  "string",
-          "description" : "Collection Name"
-        },
-        "event" : {
-          "type" :  "object",
-          "description" : "Event Object"
-        }
-      },
-      "required" : [ "collection_name", "event" ]
-    },
-    "exports": {
-      "properties" : {
-        "created" : {
-          "type" : "boolean",
-          "description" : "Event Created"
-        }
-      }
-    }
-  }
-}
-
 AddEvent.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
   var client = this.pod.getClient(sysImports, channel.config.project_id);
-
-  if (imports.collection_name && imports.event) {
-    try {
-      var evData = app.helper.isObject(imports.event) ? imports.event : JSON.parse(imports.event);
-      client.addEvent(imports.collection_name, evData, function(err, res) {
-        next(err, res)
-      });
-    } catch (e) {
-      next(e);
-    }
+  try {
+    var evData = app.helper.isObject(imports.event) ? imports.event : JSON.parse(imports.event);
+    client.addEvent(imports.collection_name, evData, function(err, res) {
+      next(err, res)
+    });
+  } catch (e) {
+    next(e);
   }
 }
 

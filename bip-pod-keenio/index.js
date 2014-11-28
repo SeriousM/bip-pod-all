@@ -20,16 +20,7 @@
  */
 var Pod = require('bip-pod'),
   Keen = require('keen.io'),
-  KeenIO = new Pod({
-    name : 'keenio', // pod name (action prefix)
-    title : 'KeenIO', // short description
-    description : '<a href="https://keen.io">Keen IO</a> - Analytics for Developers', // long description
-    authType : 'issuer_token',
-    authMap : {
-      username : 'Read Key',
-      password : 'Write Key'
-    }
-  });
+  KeenIO = new Pod();
 
 KeenIO.getClient = function(sysImports, projectId) {
   return Keen.configure({
@@ -38,9 +29,6 @@ KeenIO.getClient = function(sysImports, projectId) {
     readKey : sysImports.auth.issuer_token.username,
   });
 }
-
-// Include any actions
-KeenIO.add(require('./add_event.js'));
 
 // -----------------------------------------------------------------------------
 module.exports = KeenIO;
