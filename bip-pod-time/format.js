@@ -17,64 +17,24 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-function Format(podConfig) {
-  this.name = 'format';
-  this.title = 'Format a Time',
-  this.description = 'Converts a UTC or string time representation into the given format',
-  this.trigger = false; // this action can trigger
-  this.singleton = true; // 1 instance per account (can auto install)
-  this.podConfig = podConfig; // general system level config for this pod (transports etc)
-}
+function Format() {}
 
 Format.prototype = {};
 
-// Format schema definition
-// @see http://json-schema.org/
-Format.prototype.getSchema = function() {
-  return {
-    "imports": {
-      "properties" : {
-        "time" : {
-          "type" :  "string",
-          "description" : "Time to Format"
-        },
-        "format" : {
-          "type" :  "string",
-          "description" : "Format to apply"
-        }
-      },
-      "required" : [ "time" ]
-    },
-    "exports": {
-      "properties" : {
-        "time_formatted" : {
-          "type" : "string",
-          "description" : "Formatted Time"
-        }
-      }
-    }
-  }
-}
-
 Format.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
-  if (imports.time) {
-    var time = this.pod.get(imports.time);
-    if (time.isValid()) {
-      var exports = {}
-      if (imports.format) {
-        exports.time_formatted = time.format(imports.format)
-      } else {
-        exports.time_formatted = time.toString();
-      }
-
-      next(false, exports);
-
+  var time = this.pod.get(imports.time);
+  if (time.isValid()) {
+    var exports = {}
+    if (imports.format) {
+      exports.time_formatted = time.format(imports.format)
     } else {
-      next('Invalid Date at ' + time.invalidAt());
+      exports.time_formatted = time.toString();
     }
+
+    next(false, exports);
+
   } else {
-    // silent passthrough
-    next(false, {});
+    next('Invalid Date at ' + time.invalidAt());
   }
 }
 

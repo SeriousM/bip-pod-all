@@ -17,68 +17,25 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-function Calculate(podConfig) {
-  this.name = 'calculate';
-  this.title = 'Calculate a Time',
-  this.description = 'Calculates a time from a simple natural language expression, eg: "in 2 days"',
-  this.trigger = false; // this action can trigger
-  this.singleton = true; // 1 instance per account (can auto install)
-  this.podConfig = podConfig; // general system level config for this pod (transports etc)
-}
+function Calculate() {}
 
 Calculate.prototype = {};
 
-// Calculate schema definition
-// @see http://json-schema.org/
-Calculate.prototype.getSchema = function() {
-  return {
-    "imports": {
-      "properties" : {
-        "expression" : {
-          "type" :  "string",
-          "description" : "Date Expression",
-          "example" : "in 3 days"
-        },
-        "format" : {
-          "type" :  "string",
-          "description" : "Date Format",
-          "example" : "DD/MM/YYYY"
-        }
-      },
-      "required" : [ "expression" ]
-    },
-    "exports": {
-      "properties" : {
-        "date_calculated" : {
-          "type" : "string",
-          "description" : "Calculated Time"
-        }
-      }
-    }
-  }
-}
-
 Calculate.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
   var pod = this.pod;
-  if (imports.expression) {
-    try {
-      var exports = {},
-        d = Date.create(imports.expression);
+  try {
+    var exports = {},
+      d = Date.create(imports.expression);
 
-      if (imports.format) {
-        exports.data_calculated = pod.format(d, imports.format);
-      } else {
-        exports.data_calculated = d.getTime();
-      }
-
-      next(false, exports);
-    } catch (e) {
-      next(e.message);
+    if (imports.format) {
+      exports.data_calculated = pod.format(d, imports.format);
+    } else {
+      exports.data_calculated = d.getTime();
     }
 
-  } else {
-    // silent passthrough
-    next(false, {});
+    next(false, exports);
+  } catch (e) {
+    next(e.message);
   }
 }
 

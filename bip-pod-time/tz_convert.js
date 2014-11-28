@@ -17,81 +17,26 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-function TZConvert(podConfig) {
-  this.name = 'tz_convert';
-  this.title = 'Convert a Time',
-  this.description = 'Converts a UTC or string time representation into the given TimeZone and Format',
-  this.trigger = false; // this action can trigger
-  this.singleton = false; // 1 instance per account (can auto install)
-  this.podConfig = podConfig; // general system level config for this pod (transports etc)
-}
+function TZConvert() {}
 
 TZConvert.prototype = {};
 
-// TZConvert schema definition
-// @see http://json-schema.org/
-TZConvert.prototype.getSchema = function() {
-  return {
-    "config": {
-      "properties" : {
-        "time_zone" : {
-          "type" :  "string",
-          "description" : "Timezone to Convert To"
-        }
-      }
-    },
-    "imports": {
-      "properties" : {
-        "time" : {
-          "type" :  "string",
-          "description" : "Time to Convert"
-        },
-        "time_zone" : {
-          "type" :  "string",
-          "description" : "Timezone to Convert To"
-        },
-        "format" : {
-          "type" :  "string",
-          "description" : "Format to Apply"
-        }
-      },
-      "required" : [ "time" ]
-    },
-    "exports": {
-      "properties" : {
-        "time_converted" : {
-          "type" : "string",
-          "description" : "Convertted Time"
-        }
-      }
-    }
-  }
-}
-
 TZConvert.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
-  var convertTo = imports.time_zone || channel.config.time_zone;
+  var time = this.pod.get(imports.time);
+  if (time.isValid()) {
+    var exports = {}
 
-  if (imports.time && convertTo) {
-    var time = this.pod.get(imports.time);
-
-    if (time.isValid()) {
-      var exports = {}
-
-      time = time.tz(convertTo);
-      if (imports.format) {
-        exports.time_formatted = time.format(imports.format)
-      } else {
-        exports.time_formatted = time.toString();
-      }
-
-      next(false, exports);
-
+    time = time.tz(imports.time_zone);
+    if (imports.format) {
+      exports.time_formatted = time.format(imports.format)
     } else {
-      next('Invalid Date at ' + time.invalidAt());
+      exports.time_formatted = time.toString();
     }
+
+    next(false, exports);
+
   } else {
-    // silent passthrough
-    next(false, {});
+    next('Invalid Date at ' + time.invalidAt());
   }
 }
 // -----------------------------------------------------------------------------

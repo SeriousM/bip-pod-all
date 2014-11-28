@@ -19,11 +19,7 @@
  */
 var Pod = require('bip-pod'),
   moment = require('moment-timezone'),
-  Time = new Pod({
-    name : 'time', // pod name (action prefix)
-    title : 'Time',
-    description : 'Time Manipulation, Formatting, Timezone Conversion + more'
-  });
+  Time = new Pod();
 
 Time.get = function(time) {
   var tNum = Number(time);
@@ -41,12 +37,6 @@ Time.get = function(time) {
 Time.format = function(date, format) {
   return moment(date).format(format);
 }
-
-
-// Include any actions
-Time.add(require('./format.js'));
-Time.add(require('./tz_convert.js'));
-Time.add(require('./calculate.js'));
 
 // -----------------------------------------------------------------------------
 module.exports = Time;
