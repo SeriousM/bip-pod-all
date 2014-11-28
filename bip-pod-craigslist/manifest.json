@@ -1,8 +1,8 @@
 {
   "name": "craigslist",
   "title": "CraigsList",
-  "description": "<a href=\"http://craigslist.org\">Craigslist</a> provides local classifieds and forums for jobs, housing, for sale, personals, services, local community, and events",
-  "url": "",
+  "description": "Craigslist provides local classifieds and forums for jobs, housing, for sale, personals, services, local community, and events",
+  "url": "http://craigslist.org",
   "trackDuplicates": false,
   "config": {},
   "auth": {
@@ -13,6 +13,7 @@
     "search": {
       "title": "Listing Search",
       "description": "Exports the first 100 listings matching your search criteria",
+      "doc_ref" : "http://craigslist.org/search/sss?query=SearchString",
       "trigger": "invoke",
       "config": {
         "properties": {}
