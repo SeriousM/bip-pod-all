@@ -17,91 +17,43 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-function ImageTagURL(podConfig) {
-  this.name = 'image_tag_url';
-  this.title = 'Tag an image by URL',
-  this.description = 'Tags an image by URL',
-  this.trigger = false;
-  this.singleton = true;
-  this.auto = true;
-  this.podConfig = podConfig;
-}
+function ImageTagURL() {}
 
 ImageTagURL.prototype = {};
 
-// ImageTagURL schema definition
-// @see http://json-schema.org/
-ImageTagURL.prototype.getSchema = function() {
-  return {   
-    "imports": {
-      "properties" : {
-        "url" : {
-          "type" :  "string",
-          "description" : "Source URL"
+ImageTagURL.prototype.invoke = function(imports, channel, sysImports, files, next) {
+  var params = {
+    url : imports.url
+  }
+
+  this.pod.post(
+    'url/URLGetRankedImageKeywords',
+    params,
+    sysImports,
+    function(err, body) {
+      var exports;
+      if (err) {
+        next(err);
+      } else {
+        exports = {
+          tags : body.imageKeywords,
+          tag_highest_text : body.imageKeywords[0].text,
+          tag_highest_score : body.imageKeywords[0].score,
+          tags_csv : ''
+        };
+
+        for (var i = 0; i < body.imageKeywords.length; i++) {
+          if (exports.tags_csv) {
+            exports.tags_csv += ',';
+          }
+          exports.tags_csv += body.imageKeywords[i].text;
         }
-      },
-      "required" : [ "url" ]
-    },
-    "exports": {
-      "properties" : {
-        "tag_highest_text" : {
-          "type" : "string",
-          "description" : "Highest Ranked Tag Text"
-        },
-        "tag_highest_score" : {
-          "type" : "string",
-          "description" : "Highest Ranked Tag"
-        },
-        "tags" : {
-          "type" : "array",
-          "description" : "List of all tags"
-        },
-        // until we can transform arrays + nested objects, flatten the matched tags
-        "tags_csv" : {
-          "type" : "string",
-          "description" : "Comma Separated List of all tags"
-        }
+
+        next(false, exports);
       }
     }
-  }
+  );
 }
-
-ImageTagURL.prototype.invoke = function(imports, channel, sysImports, contentParts, next) { 
-  if (imports.url) {
-    var params = {
-      url : imports.url
-    }    
-    
-    this.pod.post(
-      'url/URLGetRankedImageKeywords',
-      params,
-      sysImports,
-      function(err, body) {
-        var exports;
-        if (err) {
-          next(err);
-        } else {
-          exports = {
-            tags : body.imageKeywords,
-            tag_highest_text : body.imageKeywords[0].text,
-            tag_highest_score : body.imageKeywords[0].score,
-            tags_csv : ''
-          };
-
-          for (var i = 0; i < body.imageKeywords.length; i++) {
-            if (exports.tags_csv) {
-              exports.tags_csv += ',';
-            }
-            exports.tags_csv += body.imageKeywords[i].text;
-          }
-  
-          next(false, exports);             
-        }
-      }
-    );
-  }
-}
-
 
 // -----------------------------------------------------------------------------
 module.exports = ImageTagURL;

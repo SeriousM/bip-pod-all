@@ -17,86 +17,39 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-function TaxonomizeURL(podConfig) {
-  this.name = 'taxonomize_url';
-  this.title = 'Classify by URL',
-  this.description = 'Classifies web content by URL',
-  this.trigger = false;
-  this.singleton = true;
-  this.auto = true;
-  this.podConfig = podConfig;
-}
+function TaxonomizeURL() {}
 
 TaxonomizeURL.prototype = {};
 
-TaxonomizeURL.prototype.getSchema = function() {
-  return {   
-    "imports": {
-      "properties" : {
-        "url" : {
-          "type" :  "string",
-          "description" : "Source URL"
-        },
-        "query" : {
-          "type" :  "string",
-          "description" : "NLP Query (optional)"
-        }
-      }
-    },
-    "exports": {
-      "properties" : {
-        "language" : {
-          "type" : "string",
-          "description" : "Detected Language"
-        },
-        "label_highest" : {
-          "type" : "string",
-          "description" : "Category Label"
-        },
-        "label_highest_score" : {
-          "type" : "string",
-          "description" : "Highest Category Score"
-        },
-        "taxonomy" : {
-          "type" : "array",
-          "description" : "List of all taxonomies"
-        }
-      }
-    }
+TaxonomizeURL.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
+  var params = {
+    url : imports.url
   }
-}
+  if (imports.query) {
+    params.sourceText = 'cquery';
+    params.cquery = imports.query;
+  }
 
-TaxonomizeURL.prototype.invoke = function(imports, channel, sysImports, contentParts, next) { 
-  if (imports.url) {
-    var params = {
-      url : imports.url
-    }
-    if (imports.query) {
-      params.sourceText = 'cquery';
-      params.cquery = imports.query;
-    }
-    
-    this.pod.post(
-      'url/URLGetRankedTaxonomy',
-      params,
-      sysImports,
-      function(err, body) {
-        if (err) {
-          next(err);
-        } else {
-          next(
-            false,
-            {
-              language : body.language,
-              taxonomy : body.taxonomy,
-              label_highest : body.taxonomy[0].label,
-              label_highest_score : body.taxonomy[0].score
-            }
-          );             
-        }
+  this.pod.post(
+    'url/URLGetRankedTaxonomy',
+    params,
+    sysImports,
+    function(err, body) {
+      if (err) {
+        next(err);
+      } else {
+        next(
+          false,
+          {
+            language : body.language,
+            taxonomy : body.taxonomy,
+            label_highest : body.taxonomy[0].label,
+            label_highest_score : body.taxonomy[0].score
+          }
+        );
       }
-    );
-  }
+    }
+  );
 }
 
 // -----------------------------------------------------------------------------

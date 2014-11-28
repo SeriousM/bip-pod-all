@@ -17,78 +17,35 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-function TaxonomizeText(podConfig) {
-  this.name = 'taxonomize_text';
-  this.title = 'Classify Text',
-  this.description = 'Classifies Text Content',
-  this.trigger = false;
-  this.singleton = true;
-  this.auto = true;
-  this.podConfig = podConfig;
-}
+function TaxonomizeText() {}
 
 TaxonomizeText.prototype = {};
 
-TaxonomizeText.prototype.getSchema = function() {
-  return {   
-    "imports": {
-      "properties" : {
-        "text" : {
-          "type" :  "string",
-          "description" : "Source Text"
-        }
-      }
-    },
-    "exports": {
-      "properties" : {
-        "language" : {
-          "type" : "string",
-          "description" : "Detected Language"
-        },
-        "label_highest" : {
-          "type" : "string",
-          "description" : "Category Label"
-        },
-        "label_highest_score" : {
-          "type" : "string",
-          "description" : "Highest Category Score"
-        },
-        "taxonomy" : {
-          "type" : "array",
-          "description" : "List of all taxonomies"
-        }
-      }
-    }
+TaxonomizeText.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
+  var params = {
+    text : encodeURIComponent(imports.text)
   }
-}
 
-TaxonomizeText.prototype.invoke = function(imports, channel, sysImports, contentParts, next) { 
-  if (imports.text) {
-    var params = {
-      text : encodeURIComponent(imports.text)
-    }
-    
-    this.pod.post(
-      'text/TextGetRankedTaxonomy',
-      params,
-      sysImports,
-      function(err, body) {
-        if (err) {
-          next(err);
-        } else {
-          next(
-            false,
-            {
-              language : body.language,
-              taxonomy : body.taxonomy,
-              label_highest : body.taxonomy[0].label,
-              label_highest_score : body.taxonomy[0].score
-            }
-          );             
-        }
+  this.pod.post(
+    'text/TextGetRankedTaxonomy',
+    params,
+    sysImports,
+    function(err, body) {
+      if (err) {
+        next(err);
+      } else {
+        next(
+          false,
+          {
+            language : body.language,
+            taxonomy : body.taxonomy,
+            label_highest : body.taxonomy[0].label,
+            label_highest_score : body.taxonomy[0].score
+          }
+        );
       }
-    );
-  }
+    }
+  );
 }
 
 // -----------------------------------------------------------------------------

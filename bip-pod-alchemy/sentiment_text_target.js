@@ -17,88 +17,33 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-function SentimentTextTarget(podConfig) {
-  this.name = 'sentiment_text_target';
-  this.title = 'Get Target Sentiment from Text',
-  this.description = 'Analyses the sentiment (positive, neutral, negative, mixed) of the given text for a keyword target',
-  this.trigger = false;
-  this.singleton = true;
-  this.auto = true;
-  this.podConfig = podConfig;
-}
+function SentimentTextTarget() {}
 
 SentimentTextTarget.prototype = {};
 
-SentimentTextTarget.prototype.getSchema = function() {
-  return {   
-    "imports": {
-      "properties" : {
-        "text" : {
-          "type" :  "string",
-          "description" : "Source Text"
-        },
-        "target" : {
-          "type" :  "string",
-          "description" : "Target Phrase"
-        },
-        "url" : {
-          "type" :  "string",
-          "description" : "Source URL (optional)",
-          "required" : false
-        }
-      },
-      "required" : [ "text", "target" ]
-    },
-    "exports": {
-      "properties" : {
-        "language" : {
-          "type" : "string",
-          "description" : "Text Language"
-        },
-        "type" : {
-          "type" : "string",
-          "description" : "Sentiment Type"          
-        },
-        "score" : {
-          "type" : "string",
-          "description" : "Type Score"
-        },
-        "mixed" : {
-          "type" : "string",
-          "description" : "Is Mixed"
-        }
-      }
-    }
-  }
-}
-
-
 SentimentTextTarget.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
-  
-  if (imports.text && imports.target) {
-    var params = {
-      text : imports.text,
-      target : imports.target
-    };
-    
-    if (imports.url) {
-      params.url = imports.url;
-    }
-    
-    this.pod.post(
-      'text/TextGetTargetedSentiment',
-      params,
-      sysImports,
-      function(err, body) {
-        if (err) {
-          next(err);
-        } else {          
-          body.docSentiment.language = body.language;
-          next(false, body.docSentiment);
-        }
-      }
-    );
+  var params = {
+    text : imports.text,
+    target : imports.target
+  };
+
+  if (imports.url) {
+    params.url = imports.url;
   }
+
+  this.pod.post(
+    'text/TextGetTargetedSentiment',
+    params,
+    sysImports,
+    function(err, body) {
+      if (err) {
+        next(err);
+      } else {
+        body.docSentiment.language = body.language;
+        next(false, body.docSentiment);
+      }
+    }
+  );
 }
 
 // -----------------------------------------------------------------------------

@@ -17,74 +17,30 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-function ScrapeHTML(podConfig) {
-  this.name = 'scrape_nlp_html';
-  this.title = 'Scrape HTML using natural language',
-  this.description = 'Extract structured data for uploaded HTML using natural language',
-  this.trigger = false;
-  this.singleton = true;
-  this.auto = true;
-  this.podConfig = podConfig;
-}
+function ScrapeHTML() {}
 
 ScrapeHTML.prototype = {};
 
-// ScrapeHTML schema definition
-// @see http://json-schema.org/
-ScrapeHTML.prototype.getSchema = function() {
-  return {   
-    "imports": {
-      "properties" : {
-        "html" : {
-          "type" :  "string",
-          "description" : "Source HTML"
-        },
-        "query" : {
-          "type" :  "string",
-          "description" : "NLP Query"
-        }
-      },
-      "required" : [ "html", "query" ]
-    },
-    "exports": {
-      "properties" : {
-        "resultText" : {
-          "type" : "string",
-          "description" : "Result Text"
-        },
-        "resultURL" : {
-          "type" : "string",
-          "description" : "Result URL"
-        }
-      }
-    }
-  }
-}
-
-
 ScrapeHTML.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
-  
-  if (imports.html && imports.query) {
-    this.pod.post(
-      'html/HTMLGetConstraintQuery',
-      {
-        html : imports.html,
-        cquery : imports.query
-      },
-      sysImports,
-      function(err, body) {
-        if (err) {
-          next(err);
-        } else {
-          if (body.queryResults && body.queryResults.length) {
-            for (var i = 0; i < body.queryResults.length; i++) {
-              next(false, body.queryResults[i]);                
-            }            
+  this.pod.post(
+    'html/HTMLGetConstraintQuery',
+    {
+      html : imports.html,
+      cquery : imports.query
+    },
+    sysImports,
+    function(err, body) {
+      if (err) {
+        next(err);
+      } else {
+        if (body.queryResults && body.queryResults.length) {
+          for (var i = 0; i < body.queryResults.length; i++) {
+            next(false, body.queryResults[i]);
           }
         }
       }
-    );
-  }
+    }
+  );
 }
 
 // -----------------------------------------------------------------------------

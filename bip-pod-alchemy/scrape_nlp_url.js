@@ -17,74 +17,30 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-function ScrapeURL(podConfig) {
-  this.name = 'scrape_nlp_url';
-  this.title = 'Scrape a URL using natural language',
-  this.description = 'Extract structured data from a URL using natural language.',
-  this.trigger = false;
-  this.singleton = true;
-  this.auto = true;
-  this.podConfig = podConfig;
-}
+function ScrapeURL() {}
 
 ScrapeURL.prototype = {};
 
-// ScrapeURL schema definition
-// @see http://json-schema.org/
-ScrapeURL.prototype.getSchema = function() {
-  return {   
-    "imports": {
-      "properties" : {
-        "url" : {
-          "type" :  "string",
-          "description" : "Source URL"
-        },
-        "query" : {
-          "type" :  "string",
-          "description" : "NLP Query"
-        }
-      },
-      "required" : [ "url", "query" ]
-    },
-    "exports": {
-      "properties" : {
-        "resultText" : {
-          "type" : "string",
-          "description" : "Result Text"
-        },
-        "resultURL" : {
-          "type" : "string",
-          "description" : "Result URL"
-        }
-      }
-    }
-  }
-}
-
-
 ScrapeURL.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
-  
-  if (imports.url && imports.query) {
-    this.pod.post(
-      'url/URLGetConstraintQuery',
-      {
-        url : imports.url,
-        cquery : imports.query
-      },
-      sysImports,
-      function(err, body) {
-        if (err) {
-          next(err);
-        } else {
-          if (body.queryResults && body.queryResults.length) {
-            for (var i = 0; i < body.queryResults.length; i++) {
-              next(false, body.queryResults[i]);                
-            }            
+  this.pod.post(
+    'url/URLGetConstraintQuery',
+    {
+      url : imports.url,
+      cquery : imports.query
+    },
+    sysImports,
+    function(err, body) {
+      if (err) {
+        next(err);
+      } else {
+        if (body.queryResults && body.queryResults.length) {
+          for (var i = 0; i < body.queryResults.length; i++) {
+            next(false, body.queryResults[i]);
           }
         }
       }
-    );
-  }
+    }
+  );
 }
 
 // -----------------------------------------------------------------------------

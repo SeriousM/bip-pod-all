@@ -17,92 +17,41 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-function TaxonomizeHTML(podConfig) {
-  this.name = 'taxonomize_html';
-  this.title = 'Classify by HTML',
-  this.description = 'Classifies HTML Content',
-  this.trigger = false;
-  this.singleton = true;
-  this.auto = true;
-  this.podConfig = podConfig;
-}
+function TaxonomizeHTML() {}
 
 TaxonomizeHTML.prototype = {};
 
-TaxonomizeHTML.prototype.getSchema = function() {
-  return {   
-    "imports": {
-      "properties" : {
-        "html" : {
-          "type" :  "string",
-          "description" : "Source HTML"
-        },
-        "url" : {
-          "type" :  "string",
-          "description" : "Source URL of HTML"
-        },
-        "query" : {
-          "type" :  "string",
-          "description" : "NLP Query (optional)"
-        }
-      }
-    },
-    "exports": {
-      "properties" : {
-        "language" : {
-          "type" : "string",
-          "description" : "Detected Language"
-        },
-        "label_highest" : {
-          "type" : "string",
-          "description" : "Category Label"
-        },
-        "label_highest_score" : {
-          "type" : "string",
-          "description" : "Highest Category Score"
-        },
-        "taxonomy" : {
-          "type" : "array",
-          "description" : "List of all taxonomies"
-        }
-      }
-    }
+TaxonomizeHTML.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
+  var params = {
+    html : encodeURIComponent(imports.html),
+    url : encodeURIComponent(imports.url)
   }
-}
 
-TaxonomizeHTML.prototype.invoke = function(imports, channel, sysImports, contentParts, next) { 
-  if (imports.html && imports.url) {
-    var params = {
-      html : encodeURIComponent(imports.html),
-      url : encodeURIComponent(imports.url)
-    }
-    
-    if (imports.query) {
-      params.sourceText = 'cquery';
-      params.cquery = imports.query;
-    }
-    
-    this.pod.post(
-      'html/HTMLGetRankedTaxonomy',
-      params,
-      sysImports,
-      function(err, body) {
-        if (err) {
-          next(err);
-        } else {
-          next(
-            false,
-            {
-              language : body.language,
-              taxonomy : body.taxonomy,
-              label_highest : body.taxonomy[0].label,
-              label_highest_score : body.taxonomy[0].score
-            }
-          );             
-        }
-      }
-    );
+  if (imports.query) {
+    params.sourceText = 'cquery';
+    params.cquery = imports.query;
   }
+
+  this.pod.post(
+    'html/HTMLGetRankedTaxonomy',
+    params,
+    sysImports,
+    function(err, body) {
+      if (err) {
+        next(err);
+      } else {
+        next(
+          false,
+          {
+            language : body.language,
+            taxonomy : body.taxonomy,
+            label_highest : body.taxonomy[0].label,
+            label_highest_score : body.taxonomy[0].score
+          }
+        );
+      }
+    }
+  );
 }
 
 // -----------------------------------------------------------------------------
