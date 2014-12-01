@@ -7,17 +7,27 @@
   "config": {},
   "auth": {
     "strategy": "issuer_token",
-    "authMap" : {
-      "username" : "API Key",
-      "password" : "Secret Key"
-    }
+    "properties": {
+      "username": {
+        "title": "API Key",
+        "type": "string"
+      },
+      "password": {
+        "title": "Secret Key",
+        "type": "string"
+      }
+    },
+    "disposition": [
+      "username",
+      "password"
+    ]
   },
   "rpcs": {},
   "actions": {
     "address": {
       "title": "Address",
       "description": "Returns the associated data for a given Bitcoin Address",
-      "doc_ref" : "https://chain.com/docs#object-bitcoin-address",
+      "doc_ref": "https://chain.com/docs#object-bitcoin-address",
       "trigger": "invoke",
       "config": {
         "properties": {},
