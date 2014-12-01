@@ -7,10 +7,20 @@
   "config": {},
   "auth": {
     "strategy": "issuer_token",
-    "authMap" : {
-      "username" : "Public API Key",
-      "password" : "API Key"
-    }
+    "properties": {
+      "username": {
+        "title": "Public API Key",
+        "type": "string"
+      },
+      "password": {
+        "title": "API Key",
+        "type": "string"
+      }
+    },
+    "disposition": [
+      "username",
+      "password"
+    ]
   },
   "rpcs": {
     "get_domains": {
@@ -22,7 +32,7 @@
     "bounced": {
       "title": "On A Bounce",
       "description": "Triggers when an email is bounced",
-      "doc_ref" : "http://documentation.mailgun.com/api-bounces.html#bounces",
+      "doc_ref": "http://documentation.mailgun.com/api-bounces.html#bounces",
       "trigger": "poll",
       "config": {
         "properties": {
@@ -62,7 +72,7 @@
     "complaints": {
       "title": "On A Complaint",
       "description": "Triggers when an someone complains that an email messages is spam",
-      "doc_ref" : "http://documentation.mailgun.com/api-complaints.html#spam-complaints",
+      "doc_ref": "http://documentation.mailgun.com/api-complaints.html#spam-complaints",
       "trigger": "poll",
       "config": {
         "properties": {
@@ -102,7 +112,7 @@
     "send": {
       "title": "Send an Email",
       "description": "Send an Email",
-      "doc_ref" : "http://documentation.mailgun.com/api-sending.html#sending",
+      "doc_ref": "http://documentation.mailgun.com/api-sending.html#sending",
       "trigger": "invoke",
       "config": {
         "properties": {
@@ -186,7 +196,7 @@
     "unsubscribed": {
       "title": "On An Unsubscribe",
       "description": "Triggers when an email is unsubscribed",
-      "doc_ref" : "http://documentation.mailgun.com/api-unsubscribes.html#unsubscribes",
+      "doc_ref": "http://documentation.mailgun.com/api-unsubscribes.html#unsubscribes",
       "trigger": "poll",
       "config": {
         "properties": {
@@ -226,7 +236,7 @@
     "validate": {
       "title": "Validate an Email Address",
       "description": "Validate an Email Address",
-      "doc_ref" : "http://documentation.mailgun.com/api-complaints.html#complaints",
+      "doc_ref": "http://documentation.mailgun.com/api-complaints.html#complaints",
       "trigger": "invoke",
       "config": {
         "properties": {}
