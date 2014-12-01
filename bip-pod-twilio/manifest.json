@@ -7,10 +7,20 @@
   "config": {},
   "auth": {
     "strategy": "issuer_token",
-    "authMap" : {
-        "username" : "Account Sid",
-        "password" : "Auth Token"
-    }
+    "properties": {
+      "username": {
+        "title": "Account Sid",
+        "type": "string"
+      },
+      "password": {
+        "title": "Auth Token",
+        "type": "string"
+      }
+    },
+    "disposition": [
+      "username",
+      "password"
+    ]
   },
   "rpcs": {},
   "actions": {
