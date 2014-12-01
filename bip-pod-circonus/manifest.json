@@ -7,17 +7,27 @@
   "config": {},
   "auth": {
     "strategy": "issuer_token",
-    "authMap" : {
-      "username" : "App Name",
-      "password" : "API Token"
-    }
+    "properties": {
+      "username": {
+        "title": "App Name",
+        "type": "string"
+      },
+      "password": {
+        "title": "API Token",
+        "type": "string"
+      }
+    },
+    "disposition": [
+      "username",
+      "password"
+    ]
   },
   "rpcs": {},
   "actions": {
     "on_new_alert": {
       "title": "On a New Alert",
       "description": "Triggers On a New Alert",
-      "doc_ref" : "https://login.circonus.com/resources/api/calls/alert",
+      "doc_ref": "https://login.circonus.com/resources/api/calls/alert",
       "trigger": "poll",
       "config": {
         "properties": {}
@@ -65,7 +75,7 @@
     "http_trap": {
       "title": "HTTP Trap",
       "description": "Sends JSON object data to a HTTP Trap",
-      "doc_ref" : "http://www.circonus.com/json-over-http",
+      "doc_ref": "http://www.circonus.com/json-over-http",
       "trigger": "invoke",
       "config": {
         "properties": {
