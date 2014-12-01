@@ -11,9 +11,15 @@
   },
   "auth": {
     "strategy": "issuer_token",
-    "authMap" : {
-      "username" : "Connection URI"
-    }
+    "properties": {
+      "username": {
+        "title": "Connection URI",
+        "type": "string"
+      }
+    },
+    "disposition": [
+      "username"
+    ]
   },
   "rpcs": {},
   "actions": {
