@@ -7,11 +7,25 @@
   "config": {},
   "auth": {
     "strategy": "issuer_token",
-    "authMap" : {
-      "username" : "App ID",
-      "key" : "Key",
-      "password" : "Secret"
-    }
+    "properties": {
+      "username": {
+        "title": "App ID",
+        "type": "string"
+      },
+      "key": {
+        "title": "Key",
+        "type": "string"
+      },
+      "password": {
+        "title": "Secret",
+        "type": "string"
+      }
+    },
+    "disposition": [
+      "username",
+      "key",
+      "password"
+    ]
   },
   "rpcs": {},
   "actions": {
