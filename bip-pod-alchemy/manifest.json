@@ -7,16 +7,22 @@
   "config": {},
   "auth": {
     "strategy": "issuer_token",
-    "authMap" : {
-      "password" : "API Key"
-    }
+    "properties": {
+      "password": {
+        "title": "API Key",
+        "type": "string"
+      }
+    },
+    "disposition": [
+      "password"
+    ]
   },
   "rpcs": {},
   "actions": {
     "scrape_nlp_url": {
       "title": "Scrape a URL using natural language",
       "description": "Extract structured data from a URL using natural language.",
-      "doc_ref" : "http://www.alchemyapi.com/api/content-scraping",
+      "doc_ref": "http://www.alchemyapi.com/api/content-scraping",
       "trigger": "invoke",
       "config": {
         "properties": {},
@@ -58,7 +64,7 @@
     "scrape_nlp_html": {
       "title": "Scrape HTML using natural language",
       "description": "Extract structured data for uploaded HTML using natural language",
-      "doc_ref" : "http://www.alchemyapi.com/api/content-scraping",
+      "doc_ref": "http://www.alchemyapi.com/api/content-scraping",
       "trigger": "invoke",
       "config": {
         "properties": {},
@@ -100,7 +106,7 @@
     "taxonomize_url": {
       "title": "Classify by URL",
       "description": "Classifies web content by URL",
-      "doc_ref" : "http://www.alchemyapi.com/api/taxonomy",
+      "doc_ref": "http://www.alchemyapi.com/api/taxonomy",
       "trigger": "invoke",
       "config": {
         "properties": {},
@@ -146,7 +152,7 @@
     "taxonomize_text": {
       "title": "Classify Text",
       "description": "Classifies Text Content",
-      "doc_ref" : "http://www.alchemyapi.com/api/taxonomy",
+      "doc_ref": "http://www.alchemyapi.com/api/taxonomy",
       "trigger": "invoke",
       "config": {
         "properties": {},
@@ -187,7 +193,7 @@
     "taxonomize_html": {
       "title": "Classify by HTML",
       "description": "Classifies HTML Content",
-      "doc_ref" : "http://www.alchemyapi.com/api/taxonomy",
+      "doc_ref": "http://www.alchemyapi.com/api/taxonomy",
       "trigger": "invoke",
       "config": {
         "properties": {},
@@ -238,7 +244,7 @@
     "image_tag_url": {
       "title": "Tag an image by URL",
       "description": "Tags an image by URL",
-      "doc_ref" : "http://www.alchemyapi.com/api/image-tagging/urls.html",
+      "doc_ref": "http://www.alchemyapi.com/api/image-tagging/urls.html",
       "trigger": "invoke",
       "config": {
         "properties": {},
@@ -282,7 +288,7 @@
     "sentiment_text": {
       "title": "Get Sentiment from Text",
       "description": "Analyses the sentiment (positive, neutral, negative, mixed) of the given text",
-      "doc_ref" : "http://www.alchemyapi.com/api/sentiment",
+      "doc_ref": "http://www.alchemyapi.com/api/sentiment",
       "trigger": "invoke",
       "config": {
         "properties": {},
@@ -332,7 +338,7 @@
     "sentiment_text_target": {
       "title": "Get Target Sentiment from Text",
       "description": "Analyses the sentiment (positive, neutral, negative, mixed) of the given text for a keyword target",
-      "doc_ref" : "http://www.alchemyapi.com/api/sentiment",
+      "doc_ref": "http://www.alchemyapi.com/api/sentiment",
       "trigger": "invoke",
       "config": {
         "properties": {},
