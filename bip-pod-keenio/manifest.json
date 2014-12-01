@@ -7,10 +7,20 @@
   "config": {},
   "auth": {
     "strategy": "issuer_token",
-    "authMap" : {
-      "username" : "Read Key",
-      "password" : "Write Key"
-    }
+    "properties": {
+      "username": {
+        "title": "Read Key",
+        "type": "string"
+      },
+      "password": {
+        "title": "Write Key",
+        "type": "string"
+      }
+    },
+    "disposition": [
+      "username",
+      "password"
+    ]
   },
   "rpcs": {},
   "actions": {
