@@ -7,16 +7,22 @@
   "config": {},
   "auth": {
     "strategy": "issuer_token",
-    "authMap" : {
-      "password" : "API Key"
-    }
+    "properties": {
+      "password": {
+        "title": "API Key",
+        "type": "string"
+      }
+    },
+    "disposition": [
+      "password"
+    ]
   },
   "rpcs": {},
   "actions": {
     "oembed": {
       "title": "Create oEmbed",
       "description": "Create oEmbed",
-      "doc_ref" : "http://embed.ly/docs/api/embed/endpoints/1/oembed",
+      "doc_ref": "http://embed.ly/docs/api/embed/endpoints/1/oembed",
       "trigger": "invoke",
       "config": {
         "properties": {},
@@ -108,7 +114,7 @@
     "extract": {
       "title": "Extract Page",
       "description": "The Extract endpoint is designed to provide users with important information from each link including the article text, keywords, related links, and even video embeds.",
-      "doc_ref" : "http://embed.ly/docs/api/extract/endpoints/1/extract",
+      "doc_ref": "http://embed.ly/docs/api/extract/endpoints/1/extract",
       "trigger": "invoke",
       "config": {
         "properties": {},
