@@ -35,11 +35,11 @@
             "description": "Room ID",
             "oneOf": [
               {
-                "$ref": "/renderers/room_list/{id}"
+                "$ref": "/rpcs/room_list/{id}"
               }
             ],
             "label": {
-              "$ref": "/renderers/my_pages/{name}"
+              "$ref": "/rpcs/my_pages/{name}"
             }
           },
           "room_token": {
@@ -85,11 +85,11 @@
             "description": "Room ID",
             "oneOf": [
               {
-                "$ref": "/renderers/room_list/{id}"
+                "$ref": "/rpcs/room_list/{id}"
               }
             ],
             "label": {
-              "$ref": "/renderers/my_pages/{name}"
+              "$ref": "/rpcs/my_pages/{name}"
             }
           }
         },
@@ -172,11 +172,11 @@
             "description": "Room ID",
             "oneOf": [
               {
-                "$ref": "/renderers/room_list/{id}"
+                "$ref": "/rpcs/room_list/{id}"
               }
             ],
             "label": {
-              "$ref": "/renderers/my_pages/{name}"
+              "$ref": "/rpcs/my_pages/{name}"
             }
           }
         },
