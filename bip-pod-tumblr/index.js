@@ -22,16 +22,20 @@ var Pod = require('bip-pod'),
 tumblr = require('tumblr.js'),
 Tumblr = new Pod();
 
+Tumblr.getClient = function(sysImports) {
+  return new tumblr.Client({
+    consumer_key : sysImports.auth.oauth.consumerKey,
+    consumer_secret : sysImports.auth.oauth.consumerSecret,
+    token : sysImports.auth.oauth.access_token,
+    token_secret : sysImports.auth.oauth.secret
+  });
+}
+
 Tumblr.rpc = function(action, method, sysImports, options, channel, req, res) {
   var podConfig = this.getConfig();
   if (method == 'user_info') {
 
-    var client = new tumblr.Client({
-      consumer_key : podConfig.oauth.consumerKey,
-      consumer_secret : podConfig.oauth.consumerSecret,
-      token : sysImports.auth.oauth.token,
-      token_secret : sysImports.auth.oauth.secret
-    });
+    var client = this.getClient(sysImports);
 
     client.userInfo(function(err, resp) {
       if (err) {
@@ -48,23 +52,19 @@ Tumblr.rpc = function(action, method, sysImports, options, channel, req, res) {
 
 Tumblr._createPost = function(type, imports, channel, sysImports, contentParts, next) {
   var log = this.log,
-    user = JSON.parse(sysImports.auth.oauth.profile).response.user,
+    defaultFormat = sysImports.auth.oauth.default_post_format || JSON.parse(sysImports.auth.oauth.profile).response.user.default_post_format,
     podConfig = this.getConfig();
 
-  var client = new tumblr.Client({
-    consumer_key : sysImports.auth.oauth.consumerKey || podConfig.oauth.consumerKey,
-    consumer_secret : sysImports.auth.oauth.consumerSecret ||  podConfig.oauth.consumerSecret,
-    token : sysImports.auth.oauth.token,
-    token_secret : sysImports.auth.oauth.secret
-  });
+  var client = this.getClient(sysImports);
 
   imports.state = (channel.config.state && '' !== channel.config.state) ?
-  channel.config.state :
-  'draft';
+    channel.config.state :
+    'draft';
 
   imports.format = (channel.config.format && '' !== channel.config.format) ?
-  channel.config.format :
-  user.default_post_format;
+    channel.config.format :
+    defaultFormat;
+
   var url = channel.config.url;
 
   if (-1 === url.indexOf('.')) {

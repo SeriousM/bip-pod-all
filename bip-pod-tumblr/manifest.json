@@ -11,7 +11,37 @@
     }
   },
   "auth": {
-    "strategy": "oauth"
+    "strategy": "oauth",
+    "properties": {
+      "access_token": {
+        "type": "string",
+        "title": "Access Token"
+      },
+      "secret": {
+        "type": "string",
+        "title": "Token Secret"
+      },
+      "consumerKey": {
+        "type": "string",
+        "title": "Consumer Key"
+      },
+      "consumerSecret": {
+        "type": "string",
+        "title": "Consumer Secret"
+      },
+      "default_post_format": {
+        "type": "string",
+        "title": "Default Post Format",
+        "enum": [ "html", "markdown", "raw" ]
+      }
+    },
+    "disposition": [
+      "access_token",
+      "secret",
+      "consumerKey",
+      "consumerSecret",
+      "default_post_format"
+    ]
   },
   "rpcs": {
     "user_info": {
@@ -55,7 +85,7 @@
             "unique": true,
             "oneOf": [
               {
-                "$ref": "/renderers/user_info#user/blogs/{name}"
+                "$ref": "/rpcs/user_info#user/blogs/{name}"
               }
             ]
           },
@@ -130,7 +160,7 @@
             "unique": true,
             "oneOf": [
               {
-                "$ref": "/renderers/user_info#user/blogs/{name}"
+                "$ref": "/rpcs/user_info#user/blogs/{name}"
               }
             ]
           },
@@ -210,7 +240,7 @@
             "unique": true,
             "oneOf": [
               {
-                "$ref": "/renderers/user_info#user/blogs/{name}"
+                "$ref": "/rpcs/user_info#user/blogs/{name}"
               }
             ]
           },
@@ -285,7 +315,7 @@
             "unique": true,
             "oneOf": [
               {
-                "$ref": "/renderers/user_info#user/blogs/{name}"
+                "$ref": "/rpcs/user_info#user/blogs/{name}"
               }
             ]
           },
@@ -365,7 +395,7 @@
             "unique": true,
             "oneOf": [
               {
-                "$ref": "/renderers/user_info#user/blogs/{name}"
+                "$ref": "/rpcs/user_info#user/blogs/{name}"
               }
             ]
           },
@@ -441,7 +471,7 @@
             "unique": true,
             "oneOf": [
               {
-                "$ref": "/renderers/user_info#user/blogs/{name}"
+                "$ref": "/rpcs/user_info#user/blogs/{name}"
               }
             ]
           },
@@ -516,7 +546,7 @@
             "unique": true,
             "oneOf": [
               {
-                "$ref": "/renderers/user_info#user/blogs/{name}"
+                "$ref": "/rpcs/user_info#user/blogs/{name}"
               }
             ]
           },
