@@ -41,7 +41,7 @@
             "description": "Domain",
             "oneOf": [
               {
-                "$ref": "/renderers/get_domains#items/{name}"
+                "$ref": "/rpcs/get_domains#items/{name}"
               }
             ]
           }
@@ -81,7 +81,7 @@
             "description": "Domain",
             "oneOf": [
               {
-                "$ref": "/renderers/get_domains#items/{name}"
+                "$ref": "/rpcs/get_domains#items/{name}"
               }
             ]
           }
@@ -125,7 +125,7 @@
             "description": "Domain",
             "oneOf": [
               {
-                "$ref": "/renderers/get_domains#items/{name}"
+                "$ref": "/rpcs/get_domains#items/{name}"
               }
             ]
           }
@@ -205,7 +205,7 @@
             "description": "Domain",
             "oneOf": [
               {
-                "$ref": "/renderers/get_domains#items/{name}"
+                "$ref": "/rpcs/get_domains#items/{name}"
               }
             ]
           }
