@@ -12,7 +12,15 @@
     }
   },
   "auth": {
-    "strategy": "none"
+    "strategy": "none",
+    "properties" : {
+      "clientID" : {
+        "type" : "string",
+        "title" : "Client ID"
+      }
+    },
+    "disposition" : [ "clientID" ],
+    "_note" : "Pod does not require oauth right now but does require an oauth client id for anon upload"
   },
   "rpcs": {},
   "actions": {

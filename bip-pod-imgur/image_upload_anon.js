@@ -38,7 +38,7 @@ ImageUploadAnon.prototype.invoke = function(imports, channel, sysImports, conten
         exports = {},
         numFiles = contentParts._files.length, dirPfx = '',
         $resource = this.$resource,
-        clientID = sysImports.auth.oauth.clientID || self.pod.getConfig().oauth.clientID;
+        clientID = sysImports.auth.oauth.clientID;
 
     if (contentParts._files && numFiles > 0) {
         for (var i = 0; i < numFiles; i++) {
