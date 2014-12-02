@@ -55,11 +55,11 @@
             "description": "List ID",
             "oneOf": [
               {
-                "$ref": "/renderers/get_lists#data/{id}"
+                "$ref": "/rpcs/get_lists#data/{id}"
               }
             ],
             "label": {
-              "$ref": "/renderers/get_lists#data/{name}"
+              "$ref": "/rpcs/get_lists#data/{name}"
             }
           }
         },
@@ -119,11 +119,11 @@
             "description": "List ID",
             "oneOf": [
               {
-                "$ref": "/renderers/get_lists#data/{id}"
+                "$ref": "/rpcs/get_lists#data/{id}"
               }
             ],
             "label": {
-              "$ref": "/renderers/get_lists#data/{name}"
+              "$ref": "/rpcs/get_lists#data/{name}"
             }
           }
         },
