@@ -11,7 +11,21 @@
     }
   },
   "auth": {
-    "strategy": "oauth"
+    "strategy": "oauth",
+    "properties": {
+      "access_token": {
+        "type": "string",
+        "title": "Access Token"
+      },
+      "dc": {
+        "type": "string",
+        "title": "Data Center"
+      }
+    },
+    "disposition": [
+      "access_token",
+      "dc"
+    ]
   },
   "rpcs": {
     "get_lists": {

@@ -40,12 +40,12 @@ MailChimp.getAPI = function(sysImports) {
   // fudge the api key for the mailchimp package.
   // need to inject
   var api = new MailChimpAPI(
-      ' -' + JSON.parse(sysImports.auth.oauth.profile).dc,
+      ' -' + (sysImports.auth.oauth.dc || JSON.parse(sysImports.auth.oauth.profile).dc),
       {
         version : '2.0'
     }
   );
-  api.apiKey = sysImports.auth.oauth.token;
+  api.apiKey = sysImports.auth.oauth.access_token;
   return api;
 }
 
