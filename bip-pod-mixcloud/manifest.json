@@ -11,7 +11,21 @@
     }
   },
   "auth": {
-    "strategy": "oauth"
+    "strategy": "oauth",
+    "properties": {
+      "access_token": {
+        "type": "string",
+        "title": "Access Token"
+      },
+      "username": {
+        "type": "string",
+        "title": "Username"
+      }
+    },
+    "disposition": [
+      "access_token",
+      "username"
+    ]
   },
   "rpcs": {},
   "actions": {

@@ -43,8 +43,8 @@ GetFavorites.prototype.invoke = function(imports, channel, sysImports, contentPa
     if (!err) {
       pod.trackingUpdate(channel, function(err, until) {
         if (!err) {
-          var url = pod._apiURL + '/' + JSON.parse(sysImports.auth.oauth.profile).username
-              + '/favorites?access_token=' + sysImports.auth.oauth.token
+          var url = pod._apiURL + '/' + (sysImports.auth.oauth.username || JSON.parse(sysImports.auth.oauth.profile).username)
+              + '/favorites?access_token=' + sysImports.auth.oauth.access_token
               + '&since=' + since
               + '&until=' + until;
 
