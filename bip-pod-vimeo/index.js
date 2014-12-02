@@ -23,8 +23,10 @@ VimeoAPI = require('vimeo-api').Vimeo,
 Vimeo = new Pod();
 
 Vimeo._getClient = function(sysImports) {
-  var podConfig = this.getConfig(),
-  client = new VimeoAPI(podConfig.oauth.clientID, podConfig.oauth.clientSecret);
+  var client = new VimeoAPI(
+    sysImports.auth.oauth.clientID,
+    sysImports.auth.oauth.clientSecret
+  );
 
   client.access_token = sysImports.auth.oauth.token;
   client.scope = 'public private upload';

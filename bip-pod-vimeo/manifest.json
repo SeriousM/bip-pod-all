@@ -19,9 +19,28 @@
   },
   "auth": {
     "strategy": "oauth",
-    "passport" : {
-      "provider" : "vimeo-oauth2"
-    }
+    "passport": {
+      "provider": "vimeo-oauth2"
+    },
+    "properties": {
+      "access_token": {
+        "type": "string",
+        "title": "Access Token"
+      },
+      "clientID": {
+        "type": "string",
+        "title": "Client ID"
+      },
+      "clientSecret": {
+        "type": "string",
+        "title": "Client Secret"
+      }
+    },
+    "disposition": [
+      "access_token",
+      "clientID",
+      "clientSecret"
+    ]
   },
   "rpcs": {},
   "actions": {
