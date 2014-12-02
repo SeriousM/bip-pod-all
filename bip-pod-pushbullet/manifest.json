@@ -35,11 +35,11 @@
             "description": "Device ID",
             "oneOf": [
               {
-                "$ref": "/renderers/my_devices#devices/{iden}"
+                "$ref": "/rpcs/my_devices#devices/{iden}"
               }
             ],
             "label": {
-              "$ref": "/renderers/my_devices#devices/{nickname}"
+              "$ref": "/rpcs/my_devices#devices/{nickname}"
             }
           }
         },
