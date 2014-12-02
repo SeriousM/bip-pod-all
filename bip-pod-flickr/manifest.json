@@ -12,14 +12,28 @@
     }
   },
   "auth": {
-    "strategy": "oauth"
+    "strategy": "oauth",
+    "properties": {
+      "access_token": {
+        "type": "string",
+        "title": "Access Token"
+      },
+      "user_id": {
+        "type": "string",
+        "title": "User ID"
+      }
+    },
+    "disposition": [
+      "access_token",
+      "user_id"
+    ]
   },
   "rpcs": {},
   "actions": {
     "get_recent": {
       "title": "Get Recent Photos",
       "description": "Returns a list of your latest public photos uploaded to flickr.",
-      "doc_ref" : "https://www.flickr.com/services/api/flickr.people.getPhotos.html",
+      "doc_ref": "https://www.flickr.com/services/api/flickr.people.getPhotos.html",
       "trigger": "poll",
       "config": {
         "properties": {

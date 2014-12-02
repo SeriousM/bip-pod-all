@@ -28,9 +28,9 @@ FlickrPod.getClient = function(sysImports, next) {
     profile = JSON.parse(sysImports.auth.oauth.profile)
     options = {
       user_id : profile.id,
-      api_key : sysImports.auth.oauth.consumerKey || podConfig.oauth.consumerKey,
-      secret : sysImports.auth.oauth.consumerSecret || podConfig.oauth.consumerSecret,
-      access_token : sysImports.auth.oauth.token,
+      api_key : sysImports.auth.oauth.consumerKey,
+      secret : sysImports.auth.oauth.consumerSecret,
+      access_token : sysImports.auth.oauth.acecss_token,
       access_token_secret : sysImports.auth.oauth.secret,
       nobrowser : true
     };
