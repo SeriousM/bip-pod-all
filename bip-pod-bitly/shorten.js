@@ -26,7 +26,7 @@ Shorten.prototype = {};
 
 Shorten.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
   var uri = 'https://api-ssl.bitly.com/v3/link/lookup?url=';
-  uri += imports.url + '&access_token=' + sysImports.auth.oauth.token;
+  uri += imports.url + '&access_token=' + sysImports.auth.oauth.access_token;
   pod._httpGet(uri, function(err, bodyJSON) {
     next(err || bodyJSON.status_code !== 200, bodyJSON.data, contentParts, 0);
   });
