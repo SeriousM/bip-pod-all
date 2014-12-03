@@ -28,17 +28,25 @@ PostPhoto.prototype = {};
  *
  */
 PostPhoto.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
+  var $resource = this.$resource,
+    self = this;
+
   if (contentParts._files) {
     for (var i = 0; i < contentParts._files.length; i++) {
-      var localImports = app._.clone(imports);
-      delete localImports.source;
-      delete localImports.link;
+      (function(fStruct) {
+        var localImports = app._.clone(imports);
 
-      localImports.data = contentParts._files[i].localpath;
-      this.pod._createPost('photo', localImports, channel, sysImports, contentParts, next);
+        delete localImports.source;
+        delete localImports.link;
+
+        $resource.file.get(contentParts._files[i], function(err, fStruct, readStream) {
+          localImports.data = fStruct.localpath;
+          self.pod._createPost('photo', localImports, channel, sysImports, contentParts, next);
+        });
+      })(contentParts._files[i]);
     }
   } else {
-    this.pod._createPost('photo', imports, channel, sysImports, contentParts, next);
+    self.pod._createPost('photo', imports, channel, sysImports, contentParts, next);
   }
 }
 // -----------------------------------------------------------------------------

@@ -52,8 +52,7 @@ Tumblr.rpc = function(action, method, sysImports, options, channel, req, res) {
 
 Tumblr._createPost = function(type, imports, channel, sysImports, contentParts, next) {
   var log = this.log,
-    defaultFormat = sysImports.auth.oauth.default_post_format || JSON.parse(sysImports.auth.oauth.profile).response.user.default_post_format,
-    podConfig = this.getConfig();
+    defaultFormat = sysImports.auth.oauth.default_post_format || JSON.parse(sysImports.auth.oauth.profile).response.user.default_post_format;
 
   var client = this.getClient(sysImports);
 
