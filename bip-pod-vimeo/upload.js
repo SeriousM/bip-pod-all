@@ -29,17 +29,22 @@ Upload.prototype.invoke = function(imports, channel, sysImports, contentParts, n
     for (var i = 0; i < contentParts._files.length; i++) {
       f = contentParts._files[i];
 
-      if ('application/octet-stream' === f.type) {
-        transferredBytes += f.size;
-        client.streamingUpload(f.localpath, function(err) {
-          if (err) {
-            next(err.toString());
-          } else {
-            next(false, { status : true }, contentParts, transferredBytes);
+      this.$resource.file.get(contentParts._files[i], function(err, fileStruct, readStream) {
+        if (err) {
+          next(err);
+        } else {
+          if ('application/octet-stream' === f.type) {
+            transferredBytes += f.size;
+            client.streamingUpload(fileStruct.localpath, function(err) {
+              if (err) {
+                next(err);
+              } else {
+                next(false, { status : true }, contentParts, transferredBytes);
+              }
+            });
           }
-
-        });
-      }
+        }
+      });
     }
   }
 
