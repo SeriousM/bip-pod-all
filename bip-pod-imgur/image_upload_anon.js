@@ -43,9 +43,10 @@ ImageUploadAnon.prototype.invoke = function(imports, channel, sysImports, conten
     if (contentParts._files && numFiles > 0) {
         for (var i = 0; i < numFiles; i++) {
             if (/(png|jpg|gif|jpeg|apng|tiff|bmp|pdf|xcf)$/gi.test(contentParts._files[i].type)) {
-
-                (function(fileStruct) {
-                    $resource.file.get(contentParts._files[i], function(err, fileStruct, stream) {
+                $resource.file.get(contentParts._files[i], function(err, fileStruct, stream) {
+                    if (err) {
+                        next(err);
+                    } else {
                         var options = {
                             url: 'https://api.imgur.com/3/upload',
                             headers: {
@@ -55,7 +56,7 @@ ImageUploadAnon.prototype.invoke = function(imports, channel, sysImports, conten
 
                         var post = request.post(options, function(err, req, body){
                             try{
-                                next(err, JSON.parse(body).data);
+                                next(err, JSON.parse(body).data, contentParts, fileStruct.size);
                             } catch(e){
                                 log(body, channel, 'error');
                                 next(err, body);
@@ -65,8 +66,8 @@ ImageUploadAnon.prototype.invoke = function(imports, channel, sysImports, conten
                         var upload = post.form();
                         upload.append('type', 'file');
                         upload.append('image', stream);
-                    });
-                })(contentParts._files[i]);
+                    }
+                });
             } else {
                 next(false, exports);
             }
