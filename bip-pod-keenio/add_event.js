@@ -24,7 +24,7 @@ AddEvent.prototype = {};
 AddEvent.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
   var client = this.pod.getClient(sysImports, channel.config.project_id);
   try {
-    var evData = app.helper.isObject(imports.event) ? imports.event : JSON.parse(imports.event);
+    var evData = this.$resource.helper.isObject(imports.event) ? imports.event : JSON.parse(imports.event);
     client.addEvent(imports.collection_name, evData, function(err, res) {
       next(err, res)
     });
