@@ -31,16 +31,11 @@ Insert.prototype = {};
  *
  */
 Insert.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
-  var document;
-  if (app.helper.isObject(imports.document)) {
-    document = imports.document;
-  } else {
-    try {
-      document = JSON.parse(imports.document);
-    } catch (e) {
-      next(e);
-      return;
-    }
+  try {
+    var doc = this.$resource.helper.getObject(imports.document);
+  } catch (e) {
+    next(e);
+    return;
   }
 
   this.pod.getClient(sysImports, function(err, db) {
@@ -51,7 +46,7 @@ Insert.prototype.invoke = function(imports, channel, sysImports, contentParts, n
         if (err) {
           next(err);
         } else {
-          collection.insert(document, function(err, result) {
+          collection.insert(doc, function(err, result) {
             next(err, {});
           });
         }

@@ -34,15 +34,11 @@ Remove.prototype.invoke = function(imports, channel, sysImports, contentParts, n
   var url = sysImports.auth.issuer_token.username,
     match;
 
-  if (app.helper.isObject(imports.match)) {
-    match = imports.match;
-  } else {
-    try {
-      match = JSON.parse(imports.match);
-    } catch (e) {
-      next(e);
-      return;
-    }
+  try {
+    var match = this.$resource.helper.getObject(imports.match);
+  } catch (e) {
+    next(e);
+    return;
   }
 
   this.pod.getClient(sysImports, function(err, db) {
