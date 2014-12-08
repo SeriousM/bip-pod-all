@@ -27,7 +27,7 @@ OnNewAlert.prototype.invoke = function(imports, channel, sysImports, contentPart
   this.pod.apiGetRequest('/alert', sysImports, function(err, res, headers, statusCode) {
     if (err || 200 !== statusCode) {
       next(err || res.message);
-    } else if (app.helper.isArray(res)) {
+    } else if ($resource.helper.isArray(res)) {
       for (var i = 0; i < res.length; i++) {
         $resource.dupFilter(res[i], '_cid', channel, sysImports, function(err, alert) {
           if (err) {

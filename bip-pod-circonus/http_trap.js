@@ -23,10 +23,11 @@ HTTPTrap.prototype = {};
 
 HTTPTrap.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
   var $resource = this.$resource;
+
   try {
-    this.$resource._httpPut(
+    $resource._httpPut(
       channel.config.trap_url,
-      app.helper.deriveObject(imports.data),
+      $resource.helper.getObject(imports.data),
       function(err, resp) {
         next(err, resp);
       },
