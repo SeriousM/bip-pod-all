@@ -56,7 +56,7 @@ ScreenShot.prototype.invoke = function(imports, channel, sysImports, contentPart
       if (err) {
         next(err);
       } else {
-        fs.stat(outPath, function(err, stats) {
+        $resource.file.find(outPath, function(err, stats) {
           if (err) {
             next(err);
           } else {
