@@ -19,6 +19,19 @@ function Unsubscribed() {}
 
 Unsubscribed.prototype = {};
 
+Unsubscribed.prototype.trigger = function(imports, channel, sysImports, contentParts, next) {
+  var $resource = this.$resource;
+  this.invoke(imports, channel, sysImports, contentParts, function(err, exports) {
+    if (err) {
+      next(err);
+    } else {
+      $resource.dupFilter(exports, 'address', channel, sysImports, function(err, addr) {
+        next(err, addr);
+      });
+    }
+  });
+}
+
 Unsubscribed.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
   var self = this,
   $resource = this.$resource;
@@ -31,9 +44,7 @@ Unsubscribed.prototype.invoke = function(imports, channel, sysImports, contentPa
         next(err);
       } else {
         for (var i = 0; i < addrs.items[i].length; i++) {
-            $resource.dupFilter(addrs.items[i], 'address', channel, sysImports, function(err, addr) {
-                  next(err, addr);
-            });
+          next(err, addrs.items[i]);
         }
       }
     });

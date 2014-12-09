@@ -18,6 +18,19 @@ function Bounced() {}
 
 Bounced.prototype = {};
 
+Bounced.prototype.trigger = function(imports, channel, sysImports, contentParts, next) {
+  var $resource = this.$resource;
+  this.invoke(imports, channel, sysImports, contentParts, function(err, exports) {
+    if (err) {
+      next(err);
+    } else {
+      $resource.dupFilter(exports, 'addr_code', channel, sysImports, function(err, addr) {
+        next(err, addr);
+      });
+    }
+  });
+}
+
 Bounced.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
   var self = this,
   $resource = this.$resource;
@@ -25,16 +38,14 @@ Bounced.prototype.invoke = function(imports, channel, sysImports, contentParts, 
   this.pod.getClient(sysImports, channel.config.domain)
     .bounces()
     .list(imports, function (err, addrs) {
-      var a;
+      var addr;
       if (err) {
         next(err);
       } else {
         for (var i = 0; i < addrs.items[i].length; i++) {
-            a = addrs.items[i];
-            a['addr_code'] = a['address'] + '_' + a['code'];
-            $resource.dupFilter(a, 'addr_code', channel, sysImports, function(err, addr) {
-                  next(err, addr);
-            });
+          addr = addrs.items[i];
+          addr['addr_code'] = addr['address'] + '_' + addr['code'];
+          next(err, addr);
         }
       }
     });
