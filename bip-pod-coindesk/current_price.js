@@ -20,6 +20,10 @@ function CurrentPrice() {}
 
 CurrentPrice.prototype = {};
 
+CurrentPrice.prototype.trigger = function() {
+  this.invoke.apply(this, arguments);
+}
+
 CurrentPrice.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
   this.pod.getLastPrice(next);
 }
