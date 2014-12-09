@@ -21,6 +21,24 @@ function OnNewAlert() {}
 
 OnNewAlert.prototype = {};
 
+OnNewAlert.prototype.trigger = function(imports, channel, sysImports, contentParts, next) {
+  var $resource = this.$resource;
+
+  this.invoke(imports, channel, sysImports, contentParts, function(err, exports) {
+    if (err) {
+      next(err);
+    } else {
+      $resource.dupFilter(exports, '_cid', channel, sysImports, function(err, alert) {
+        if (err) {
+          next(err);
+        } else {
+          next(false, alert);
+        }
+      });
+    }
+  });
+}
+
 OnNewAlert.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
   var $resource = this.$resource;
 
@@ -29,13 +47,7 @@ OnNewAlert.prototype.invoke = function(imports, channel, sysImports, contentPart
       next(err || res.message);
     } else if ($resource.helper.isArray(res)) {
       for (var i = 0; i < res.length; i++) {
-        $resource.dupFilter(res[i], '_cid', channel, sysImports, function(err, alert) {
-          if (err) {
-            next(err);
-          } else {
-            next(false, alert);
-          }
-        });
+        next(false, res[i]);
       }
     } else {
       next('Malformed Response ' + res);
