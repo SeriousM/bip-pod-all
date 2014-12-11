@@ -56,28 +56,20 @@ ScreenShot.prototype.invoke = function(imports, channel, sysImports, contentPart
       if (err) {
         next(err);
       } else {
-        $resource.file.find(outPath, function(err, stats) {
+        $resource.file.find(outPath, function(err, file) {
           if (err) {
             next(err);
           } else {
-            var fStruct = {
-              txId : sysImports.id,
-              localpath : outPath,
-              name : fileName,
-              type : 'image/png',
-              encoding : 'binary',
-              size : stats.size
-            }
 
             if (contentParts && contentParts._files) {
-              contentParts._files.push(fStruct)
+              contentParts._files.push(file)
             } else {
               contentParts = {
-                _files : [ fStruct ]
+                _files : [ file ]
               }
             }
 
-            next(err, {}, contentParts, fStruct.size);
+            next(err, {}, contentParts, file.size);
           }
         });
       }
