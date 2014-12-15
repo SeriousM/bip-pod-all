@@ -24,6 +24,7 @@
   ],
   "main": ".",
   "dependencies": {
+    "favitest": "^1.0.7",
     "jsdom": "^0.10.5"
   },
   "engines": {

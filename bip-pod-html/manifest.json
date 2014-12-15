@@ -131,6 +131,50 @@
           "attr"
         ]
       }
+    },
+    "get_favicon": {
+      "title": "Get Favicon",
+      "description": "Resolves a Favicon for any URL/URI Scheme",
+      "doc_ref" : "http://en.wikipedia.org/wiki/Favicon",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "Favicon URL"
+          },
+          "suffix": {
+            "type": "string",
+            "description": "Favicon File Suffix"
+          },
+          "mime": {
+            "type": "string",
+            "description": "Mime Type"
+          },
+          "domain": {
+            "type": "string",
+            "description": "Domain Name"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "Target Site URL"
+          }
+        },
+        "required": [
+          "url"
+        ],
+        "disposition": [
+          "url"
+        ]
+      }
     }
   }
 }
