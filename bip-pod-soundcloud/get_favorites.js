@@ -21,11 +21,50 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-var moment = require('moment');
-
 function GetFavorites() {}
 
 GetFavorites.prototype = {};
+
+GetFavorites.prototype.trigger = function(imports, channel, sysImports, contentParts, next) {
+  var $resource = this.$resource;
+    token = sysImports.auth.oauth.access_token,
+    dataDir = this.pod.getDataDir(channel, 'get_favorites');
+    self = this;
+
+  this.invoke(imports, channel, sysImports, contentParts, function(err, track) {
+    if (err) {
+      next(err);
+    } else {
+      var outfile, fName;
+
+      $resource.dupFilter(track, 'id', channel, sysImports, function(err, track) {
+        if (err) {
+          next(err);
+        } else {
+          if (channel.config.download && track.downloadable) {
+            fName = track.title + '.mp3';
+            outfile = dataDir + '/' + fName;
+            self.pod._httpStreamToFile(
+              track.download_url + '?oauth_token=' + token,
+              outfile,
+              function(err, fileStruct) {
+                if (!err) {
+                  track.artist = track.user.username;
+                  contentParts._files.push(fileStruct);
+                }
+
+                next(err, exports, contentParts, fileStruct.size);
+              }
+            );
+          } else {
+            next(false, track);
+          }
+        }
+
+      });
+    }
+  });
+}
 
 /**
  * Invokes (runs) the action.
@@ -33,94 +72,17 @@ GetFavorites.prototype = {};
 GetFavorites.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
   var uri = '/me/favorites',
     self = this,
-    token = sysImports.auth.oauth.access_token,
-    modelName = this.$resource.getDataSourceName('track_favorite'),
-    resource = this.$resource,
-    dao = resource.dao;
+    token = sysImports.auth.oauth.access_token;
 
-  this.pod.getDataDir(channel, 'get_favorites', function(err, dataDir) {
-    if (!err) {
-      self.pod._httpGet(self.pod._apiURL + uri + '.json?oauth_token=' + token, function(err, data) {
-        var numTracks = 0,
-          exports = {},
-          track,
-          outfile,
-          fName;
-
-        if (!err) {
-          numTracks = data.length;
-          for (var i = 0; i < numTracks; i++) {
-            track = data[i];
-            (function(track, channel, next) {
-              var nowTime = moment().unix();
-
-              // push to tracking
-              dao.find(
-                modelName,
-                {
-                  owner_id : channel.owner_id,
-                  channel_id : channel.id,
-                  track_id : track.id
-                },
-                function(err, result) {
-                  var now = moment().unix(),
-                    pubdate;
-
-                  if (err) {
-                    log(err, channel, 'error');
-
-                  // already tracked favorites get skipped
-                  } else if (!result) {
-                    var model = dao.modelFactory(modelName, {
-                      owner_id : channel.owner_id,
-                      channel_id : channel.id,
-                      track_id : track.id,
-                      last_update : nowTime
-                    });
-
-                    dao.create(model);
-
-                    if (channel.config.download) {
-                      if (track.downloadable) {
-                        fName = track.title + '.mp3';
-                        outfile = dataDir + fName;
-                        self.pod._httpStreamToFile(
-                          track.download_url + '?oauth_token=' + token,
-                          outfile,
-                          function(err, exports, fileStruct) {
-                            if (!err) {
-                              exports.artist = exports.user.username;
-                            } else {
-                              resource.log(err, channel);
-                            }
-                            next(err, exports, {
-                              _files : [ fileStruct ]
-                              });
-                          },
-                          track,  // export
-                          {       // file meta container
-                            txId : sysImports.id,
-                            localpath : outfile,
-                            name : fName,
-                            type : 'mp3',
-                            encoding : 'binary'
-                          }
-                          );
-                      } else {
-                        resource.log(track.title + ' NOT DOWNLOADABLE', channel);
-                      }
-                    } else {
-                      next(false, track);
-                    }
-                  }
-                }
-              );
-            })(track, channel, next);
-          }
-        } else {
-          next(err, exports, []);
-        }
-      });
+  self.pod._httpGet(self.pod._apiURL + uri + '.json?oauth_token=' + token, function(err, data) {
+    var numTracks = 0;
+    if (err) {
+      next(err);
+    } else {
+      numTracks = data.length;
+      for (var i = 0; i < numTracks; i++) {
+        next(false, data[i]);
+      }
     }
   });
 }

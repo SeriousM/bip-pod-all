@@ -3,7 +3,7 @@
   "title": "SoundCloud",
   "description": "SoundCloud is an audio platform that enables sound creators to upload, record, promote and share their originally-created sounds",
   "url": "https://soundcloud.com",
-  "trackDuplicates": false,
+  "trackDuplicates": true,
   "config": {
     "oauth": {
       "clientID": "",
