@@ -32,6 +32,34 @@ GetFavorites.prototype.teardown = function(channel, accountInfo, next) {
   this.pod.trackingRemove(channel, accountInfo, next);
 }
 
+GetFavorites.prototype.trigger = function(imports, channel, sysImports, contentParts, next) {
+  var pod = this.pod,
+    self = this;
+
+  pod.trackingGet(channel, function(err, since) {
+    if (err) {
+      next(err);
+    } else {
+      pod.trackingUpdate(channel, function(err, until) {
+        if (err) {
+          next(err);
+        } else {
+          imports.since = since;
+          imports.until = until;
+
+          self.invoke(imports, channel, sysImports, contentParts, function(err, mix) {
+            if (err) {
+              next(err);
+            } else {
+              next(false, mix);
+            }
+          });
+        }
+      });
+    }
+  });
+}
+
 /**
  * Invokes (runs) the action.
  */
@@ -39,42 +67,41 @@ GetFavorites.prototype.invoke = function(imports, channel, sysImports, contentPa
   var log = this.$resource.log,
     pod = this.pod;
 
-  pod.trackingGet(channel, function(err, since) {
-    if (!err) {
-      pod.trackingUpdate(channel, function(err, until) {
-        if (!err) {
-          var url = pod._apiURL + '/' + (sysImports.auth.oauth.username || JSON.parse(sysImports.auth.oauth.profile).username)
-              + '/favorites?access_token=' + sysImports.auth.oauth.access_token
-              + '&since=' + since
-              + '&until=' + until;
+  var url = pod._apiURL + '/' + (sysImports.auth.oauth.username || JSON.parse(sysImports.auth.oauth.profile).username)
+      + '/favorites?access_token=' + sysImports.auth.oauth.access_token;
 
-          pod._httpGet(url, function(err, bodyJSON) {
-            if (!err && bodyJSON.data && bodyJSON.data.length > 0 ) {
-              var exports, tags;
-              for (var i = 0; i < bodyJSON.data.length; i++) {
-                tags = [];
-                exports = bodyJSON.data[i];
+  if (imports.since) {
+    url += '&since=' + imports.since;
+  }
 
-                for (var t = 0; t < exports.tags.length; t++) {
-                  tags.push(exports.tags[t].name);
-                }
-                exports.tags = tags;
+  if (imports.until) {
+   url += '&until=' + imports.until;
+  }
 
-                exports.pictures_xl = exports.pictures.extra_large;
-                exports.pictures_thumbnail = exports.pictures.thumbnail;
+  pod._httpGet(url, function(err, bodyJSON) {
+    if (!err && bodyJSON.data && bodyJSON.data.length > 0 ) {
+      var exports, tags;
+      for (var i = 0; i < bodyJSON.data.length; i++) {
+        tags = [];
+        exports = bodyJSON.data[i];
 
-                exports.user_username = exports.user.username;
-                exports.user_name = exports.user.name;
-                exports.user_url = exports.user.url;
-
-                next(false, exports);
-              }
-            }
-          });
+        for (var t = 0; t < exports.tags.length; t++) {
+          tags.push(exports.tags[t].name);
         }
-      });
+        exports.tags = tags;
+
+        exports.pictures_xl = exports.pictures.extra_large;
+        exports.pictures_thumbnail = exports.pictures.thumbnail;
+
+        exports.user_username = exports.user.username;
+        exports.user_name = exports.user.name;
+        exports.user_url = exports.user.url;
+
+        next(false, exports);
+      }
     }
   });
+
 
 }
 

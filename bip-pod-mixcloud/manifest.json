@@ -82,7 +82,17 @@
         }
       },
       "imports": {
-        "properties": {}
+        "properties": {
+          "since" : {
+            "type" : "number",
+            "descsription" : "Since Time (Unix Timestamp)"
+          },
+          "until" : {
+            "type" : "number",
+            "descsription" : "Until Time (Unix Timestamp)"
+          }
+        },
+        "disposition" : [ "since", "until" ]
       }
     },
     "oembed": {
