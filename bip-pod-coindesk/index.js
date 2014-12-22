@@ -22,7 +22,6 @@ var Pod = require('bip-pod'),
     CoinDesk = new Pod({},
       function() {
       	var self = this;
-
       	// refresh prices every 60 seconds
       	setInterval(function() {
       		self.refreshPrice.call(self);
@@ -44,14 +43,7 @@ CoinDesk._setLastPrice = function(err, respBody) {
 	if (err) {
 		this.log(err, channelInfo, 'error');
 	} else {
-		// coindesk uses 'application/javascript' content-type ??
-		try {
-			respBody = JSON.parse(respBody);
-		} catch (err) {
-			this.log(err, channelInfo, 'error');
-			return;
-		}
-
+		// (note) coindesk uses 'application/javascript' content-type to serve json
 		if (lastTime !== respBody.time.updated) {
 			lastTime = respBody.time.updated;
 
