@@ -390,6 +390,103 @@
           "url"
         ]
       }
+    },
+
+
+    "sentiment_url": {
+      "title": "Get Sentiment from a URL",
+      "description": "Analyses the sentiment (positive, neutral, negative, mixed) of the given URL",
+      "doc_ref": "http://www.alchemyapi.com/api/sentiment",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "language": {
+            "type": "string",
+            "description": "Text Language"
+          },
+          "type": {
+            "type": "string",
+            "description": "Sentiment Type"
+          },
+          "score": {
+            "type": "string",
+            "description": "Type Score"
+          },
+          "mixed": {
+            "type": "string",
+            "description": "Is Mixed"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "Source URL"
+          }
+        },
+        "required": [
+          "url"
+        ],
+        "disposition" : [
+          "url"
+        ]
+      }
+    },
+
+    "sentiment_url_target": {
+      "title": "Get Target Sentiment from a URL",
+      "description": "Analyses the sentiment (positive, neutral, negative, mixed) of the given URL for a keyword target",
+      "doc_ref": "http://www.alchemyapi.com/api/sentiment",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "language": {
+            "type": "string",
+            "description": "Text Language"
+          },
+          "type": {
+            "type": "string",
+            "description": "Sentiment Type"
+          },
+          "score": {
+            "type": "string",
+            "description": "Type Score"
+          },
+          "mixed": {
+            "type": "string",
+            "description": "Is Mixed"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "target": {
+            "type": "string",
+            "description": "Target Phrase"
+          },
+          "url": {
+            "type": "string",
+            "description": "Source URL"
+          }
+        },
+        "required": [
+          "url",
+          "target"
+        ],
+        "disposition": [
+          "url",
+          "target"
+        ]
+      }
     }
   }
 }
