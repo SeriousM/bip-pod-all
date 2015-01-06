@@ -25,8 +25,6 @@ Send.prototype = {};
 
 Send.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
   var self = this,
-    log = this.$resource.log,
-    pod = this.pod,
     auth = self.pod.getOAuthClient(sysImports),
     rawBody =
     'From:' + imports.user_id + '\r\n'
