@@ -1,0 +1,35 @@
+{
+  "name": "bip-pod-gmail",
+  "version": "0.0.1",
+  "author": "Michael Pearson",
+  "description": "GMail Pod for Bipio",
+  "keywords": [
+    "bip",
+    "bipio",
+    "pod",
+    "google",
+    "gmail"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bipio-server/bip-pod-gmail.git"
+  },
+  "bugs": {
+    "url": "http://github.com/bipio-server/bip-pod-gmail/issues"
+  },
+  "licenses": [
+    {
+      "type": "GNU GPLv3",
+      "url": "http://www.gnu.org/copyleft/gpl.html"
+    }
+  ],
+  "main": ".",
+  "dependencies": {
+    "googleapis": "^1.0.20",
+    "passport-google-oauth": ">=0.1.5",
+    "pkginfo": "0.2.x"
+  },
+  "engines": {
+    "node": ">= 0.10.0"
+  }
+}

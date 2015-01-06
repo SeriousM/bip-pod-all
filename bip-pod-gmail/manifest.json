@@ -1,0 +1,100 @@
+{
+  "name": "gmail",
+  "title": "GMail",
+  "description": "GMail is a Google-owned, web-based email service provides details of storage, options and links to related services",
+  "url": "https://gmail.google.com",
+  "config": {
+    "oauth": {
+      "clientID": "",
+      "clientSecret": "",
+      "scopes": [
+        "https://www.googleapis.com/auth/gmail.compose",
+        "https://www.googleapis.com/auth/userinfo.email",
+        "https://www.googleapis.com/auth/userinfo.profile"
+      ],
+      "extras": {
+        "accessType": "offline",
+        "approvalPrompt": "force"
+      }
+    }
+  },
+  "auth": {
+    "strategy": "oauth",
+    "passport": {
+      "provider": "google-oauth",
+      "strategy": "OAuth2Strategy"
+    },
+    "properties": {
+      "access_token": {
+        "type": "string",
+        "title": "Access Token"
+      }
+    },
+    "disposition": [
+      "access_token"
+    ]
+  },
+  "rpcs": {
+  },
+  "actions": {
+    "send": {
+      "doc_ref" : "https://developers.google.com/gmail/api/v1/reference/",
+      "title": "Send An Email",
+      "description": "Send An Email via your GMail account or alias",
+      "trigger": "invoke",
+      "config": {
+        "properties": {
+          "user_id" : {
+            "type" : "string",
+            "description" : "From Email",
+            "default" : "me"
+          }
+        },
+        "definitions": {},
+        "disposition" : [ "user_id" ]
+      },
+      "exports": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Message ID"
+          },
+          "threadId": {
+            "type": "string",
+            "description": "Thread ID"
+          },
+          "labelIds": {
+            "type": "array",
+            "description": "Labels"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "user_id" : {
+            "type" : "string",
+            "description" : "From Email"
+          },
+          "rcpt_to" : {
+            "type" : "string",
+            "description" : "To Email"
+          },
+          "reply_to" : {
+            "type" : "string",
+            "description" : "Reply To Email"
+          },
+          "subject" : {
+            "type" : "string",
+            "description" : "Subject"
+          },
+          "body" : {
+            "type" : "string",
+            "description" : "Body"
+          }
+        },
+        "required" : [ "rcpt_to" ],
+        "disposition" : [ "rcpt_to", "reply_to", "user_id", "subject", "body" ]
+      }
+    }
+  }
+}
