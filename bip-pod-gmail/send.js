@@ -1,7 +1,7 @@
 /**
  *
- * @author Michael Pearson <github@m.bip.io>
- * Copyright (c) 2010-2014 Michael Pearson https://github.com/mjpearson
+ * Copyright (c) 2010-2014 WoT.IO inc http://wot.io
+ * @author Michael Pearson <michael@wot.io>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
