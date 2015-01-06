@@ -1,7 +1,7 @@
 ![GMail](gmail.png) bip-pod-gmail
 =======
 
-[GMail](gmail.google.com) Pod for [BipIO](https://bip.io).
+[GMail](https://gmail.google.com) Pod for [BipIO](https://bip.io).
 
 ## Installation
 
