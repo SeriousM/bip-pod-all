@@ -1,6 +1,6 @@
 {
   "name": "bip-pod-mailchimp",
-  "version": "0.0.7",
+  "version": "0.3.0",
   "author": "Michael Pearson",
   "description": "MailChimp Pod for Bipio",
   "keywords": [
