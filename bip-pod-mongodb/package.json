@@ -1,6 +1,6 @@
 {
   "name": "bip-pod-mongodb",
-  "version": "0.0.2",
+  "version": "0.3.0",
   "description": "mongodb Pod for Bipio",
   "keywords": [
     "bip",
