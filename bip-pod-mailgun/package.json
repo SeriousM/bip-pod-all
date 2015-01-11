@@ -1,6 +1,6 @@
 {
   "name": "bip-pod-mailgun",
-  "version": "0.0.7",
+  "version": "0.3.0",
   "description": "mailgun Pod for Bipio",
   "keywords": [
     "bip",
