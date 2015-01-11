@@ -44,11 +44,7 @@ SendSMS.prototype.invoke = function(imports, channel, sysImports, contentParts, 
         from: channel.config.from_phone,
         body: imports.body
     }, function(error, message) {
-        if (error) {
-            next(error);
-        } else {
-            next(error, message);
-        }
+        next(error, message);
     });
 
 }
