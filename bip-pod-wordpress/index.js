@@ -22,21 +22,7 @@
  * @link http://developer.wordpress.com/docs/api
  */
 var Pod = require('bip-pod'),
-    Wordpress = new Pod({
-        name : 'wordpress',
-        title : 'Wordpress',
-        description : 'WordPress is an open source CMS, often used as a blog publishing application powered by PHP and MySQL',
-        authType : 'oauth',
-        passportStrategy : require('passport-wordpress').Strategy,
-        config : {
-            "oauth": {
-                "clientID" : "",
-                "clientSecret" : ""
-            }
-        }
-    });
-
-Wordpress.add(require('./new_post.js'));
+    Wordpress = new Pod();
 
 // -----------------------------------------------------------------------------
 module.exports = Wordpress;
