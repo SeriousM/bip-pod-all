@@ -17,7 +17,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-var math = require('mathjs')();
+var math = require('mathjs');
 
 function Eval(podConfig) {}
 
