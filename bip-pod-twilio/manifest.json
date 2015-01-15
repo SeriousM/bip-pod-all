@@ -32,11 +32,11 @@
         "properties": {
           "body": {
             "type": "string",
-            "description": "Default SMS Body"
+            "description": "SMS Body"
           },
           "to_phone": {
             "type": "string",
-            "description": "Default destination phone #"
+            "description": "Recipient Phone #"
           },
           "from_phone": {
             "type": "string",
@@ -62,7 +62,7 @@
           },
           "body": {
             "type": "string",
-            "description": "SMS Message Body or Error Response Body"
+            "description": "Response Body"
           },
           "uri": {
             "type": "string",
@@ -74,11 +74,11 @@
         "properties": {
           "body": {
             "type": "string",
-            "description": "SMS Body.  Uses channel default if empty"
+            "description": "SMS Body"
           },
           "to_phone": {
             "type": "string",
-            "description": "Recipient Phone #.  Uses channel default if empty"
+            "description": "Recipient Phone #"
           }
         },
         "disposition": [
