@@ -33,7 +33,9 @@ GetRecent.prototype.teardown = function(channel, accountInfo, next) {
 }
 
 GetRecent.prototype.trigger = function(imports, channel, sysImports, contentParts, next) {
-  var self = this;
+  var self = this,
+    pod = this.pod;
+
   pod.trackingGet(channel, function(err, since) {
     if (err) {
       next(err);
