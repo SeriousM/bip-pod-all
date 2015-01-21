@@ -1,4 +1,4 @@
-![Openweathermap](boilerplate.png) bip-pod-openweathermap
+![Openweathermap](openweathermap.png) bip-pod-openweathermap
 =======
 
 

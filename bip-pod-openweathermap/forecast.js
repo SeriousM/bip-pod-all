@@ -1,6 +1,6 @@
 /**
  *
- * The Bipio Forecast Pod.  
+ * The Bipio OpenWeatherMap Pod.  
  * ---------------------------------------------------------------
  *
  *
@@ -62,15 +62,14 @@ Forecast.prototype.rpc = function(method, sysImports, options, channel, req, res
  */
 Forecast.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
 	if (imports.q) {
-			weather.daily({q : imports.q}, function(err, cb) {
-				if (err) {
+		weather.daily({q : imports.q}, function(err, cb) {
+			if (err) {
 				next(err);
-				} else {
+			} else {
 				next(false, cb);
-				}
-			}); 
+			}
+		}); 
 	}
-
 }
 
 // -----------------------------------------------------------------------------
