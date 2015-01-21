@@ -1,0 +1,85 @@
+{
+  "name": "openweathermap",
+  "title": "OpenWeatherMap",
+  "url": "www.openweathermap.org",
+  "description": "OpenWeatherMap service provides open weather data for more than 200,000 cities",
+  "auth": {
+    "strategy": "issuer_token",
+    "properties": {
+      "username": "OpenWeatherMap API Key"
+    },
+    "disposition": [
+      "username"
+    ]
+  },
+  "actions": {
+    "forecast": {
+      "title": "Forecast",
+      "description": "Forecast for a Given City",
+	  "config": {
+      	"properties" : {}
+	  },
+	  "imports": {
+        "properties": {
+          "q": {
+            "type": "string",
+            "title": "query",
+            "description": "City & Country to Search"
+          }
+        },
+        "disposition": [
+          "q"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "forecast": {
+            "type": "object",
+            "title": "Forecast",
+            "description": "Returned Forecast for a Given City"
+          }
+        },
+        "disposition": [
+          "forecast"
+        ]
+      }
+    },
+    "daily": {
+      "title": "DailyForecast",
+      "description": "Daily Forecast for a Given City",
+	  "config": {
+      	"properties" : {}
+	  },
+	  "imports": {
+        "properties": {
+          "q": {
+            "type": "string",
+            "title": "query",
+            "description": "City & Country to Search"
+          },
+          "cnt": {
+            "type": "number",
+            "title": "count",
+            "description": "Number of Days"
+          }
+        },
+        "disposition": [
+          "q",
+          "cnt"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "daily": {
+            "type": "object",
+            "title": "Daily",
+            "description": "Returned Daily Forecast for a Given City"
+          }
+        },
+        "disposition": [
+          "daily"
+        ]
+      }
+    }
+  }
+}

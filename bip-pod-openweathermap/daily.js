@@ -1,6 +1,6 @@
 /**
  *
- * The Bipio Forecast Pod.  
+ * The Bipio Daily Pod.  
  * ---------------------------------------------------------------
  *
  *
@@ -26,15 +26,14 @@ weather.defaults =  {
     mode:'json'
 }
 
-
-function Forecast(podConfig) {
+function Daily(podConfig) {
   this.podConfig = podConfig; // general system level config for this pod (transports etc)
 }
 
-Forecast.prototype = {};
+Daily.prototype = {};
 
 // RPC/Renderer accessor - /rpc/render/channel/{channel id}/hello
-Forecast.prototype.rpc = function(method, sysImports, options, channel, req, res) {
+Daily.prototype.rpc = function(method, sysImports, options, channel, req, res) {
   var self = this;
 	
 
@@ -60,9 +59,10 @@ Forecast.prototype.rpc = function(method, sysImports, options, channel, req, res
  * @param Function next callback(error, exports, contentParts, transferredBytes)
  *
  */
-Forecast.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
+Daily.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
+	var count = imports.cnt ? imports.cnt : 3;
 	if (imports.q) {
-			weather.daily({q : imports.q}, function(err, cb) {
+			weather.daily({q : imports.q, cnt : count}, function(err, cb) {
 				if (err) {
 				next(err);
 				} else {
@@ -70,8 +70,7 @@ Forecast.prototype.invoke = function(imports, channel, sysImports, contentParts,
 				}
 			}); 
 	}
-
 }
 
 // -----------------------------------------------------------------------------
-module.exports = Forecast;
+module.exports = Daily;

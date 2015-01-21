@@ -1,6 +1,6 @@
 {
     "name": "bip-pod-openweathermap",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "openweathermap Pod for Bipio",
     "keywords": [
     "bip",
@@ -23,8 +23,7 @@
     ],
     "main": ".",
     "dependencies": {
-        "bip-pod" : ">=0.0.1",
-        "openweathermap" : "*"
+		"openweathermap" : "0.2.0"
     },
     "engines": {
         "node": ">= 0.10.0"
