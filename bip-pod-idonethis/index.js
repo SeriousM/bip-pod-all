@@ -25,9 +25,30 @@ var Pod = require('bip-pod'),
     Idonethis = new Pod();
 
 
+Idonethis.testCredentials = function(token, next) {
+	var get = this.$resource._httpGet,
+		url = API_URL + 'noop'
+	get(
+		url,
+		function(err, resp, headers, statusCode) {
+			if (err) {
+				next(err, 500);
+			} else if (statusCode == 200) {
+				console.log('resp.user-> ',resp.user);
+				next(false, resp);
+			}
+		},
+		{
+		  'Authorization' : 'TOKEN ' + token
+		}
+	);
+}
+
 Idonethis.rpc = function(action, method, sysImports, options, channel, req, res) {
 
   if (method == 'teams') {
+
+	this.testCredentials(sysImports.auth.issuer_token.username, function() {});
 
 	// call 'teams' api endpoint...
 	var get = this.$resource._httpGet,
@@ -38,7 +59,7 @@ Idonethis.rpc = function(action, method, sysImports, options, channel, req, res)
 			res.status(err? 500 : 200).send(resp);
 		},
 		{
-		'Authorization' : 'TOKEN ' + sysImports.auth.issuer_token.username
+		  'Authorization' : 'TOKEN ' + sysImports.auth.issuer_token.username
 		}
 	);
 
