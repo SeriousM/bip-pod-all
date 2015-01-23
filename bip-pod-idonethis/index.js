@@ -24,11 +24,19 @@ var Pod = require('bip-pod'),
 Idonethis.rpc = function(action, method, sysImports, options, channel, req, res) {
 
   if (method == 'teams') {
-	console.log('teams rpc invoked');
-
-	// test credentials....
 
 	// call 'teams' api endpoint...
+	var get = this.$resource._httpGet,
+		url = API_URL + 'teams/';
+	get(
+		url,
+		function(err, resp, headers, statusCode) {
+			res.status(err? 500 : 200).send(resp);
+		},
+		{
+		'Authorization' : 'TOKEN ' + sysImports.auth.issuer_token.username
+		}
+	);
 
 
   } else {
