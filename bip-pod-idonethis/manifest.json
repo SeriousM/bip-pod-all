@@ -12,14 +12,33 @@
       "username"
     ]
   },
+  "rpcs": {
+      "name": "teams",
+      "title": "Teams",
+      "description": "Teams RPC",
+      "ContentType": "application/json"
+  },
   "actions": {
     "teams": {
       "title": "Teams",
       "description": "Returns the list of teams you can post dones to.",
 	  "trigger": "invoke",
       "config": {
-        "properties": {}
-		},
+        "properties": {
+		  "teams": {
+			"type": "string",
+			"description": "teams RPC",
+			"oneOf": [
+			  {
+				"$ref": "/rpcs/teams#results/{short_name}"
+			  }
+			],
+			"name" {
+			  "$ref": "/rpcs/teams#{name}"
+			}
+		  }
+		}
+	  },
        "imports": {
 	  	"properties": {}
 	  },
@@ -71,12 +90,6 @@
             "description": "Team Permalink"
           }
         }
-      },
-      "rpcs": {
-        "name": "teams",
-        "title": "Teams",
-        "description": "Teams RPC",
-        "ContentType": "application/json"
       }
     },
     "dones": {
@@ -86,13 +99,7 @@
 	  "config": {
 	    "properties": {}
 	  },	
-      "rpcs": {
-        "name": "dones",
-        "title": "Dones",
-        "description": "Dones RPC",
-        "ContentType": "application/json"
-      },
-	  "imports": {
+      "imports": {
 	  	"properties": {
 	      "team": {
 		    "type": "string",

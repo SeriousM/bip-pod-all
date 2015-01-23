@@ -16,6 +16,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+var BASE_URL = 'https://idonethis.com/';
+var API_VERSION = 'v0.1'
+var API_URL = BASE_URL + 'api/' + API_VERSION + '/';
+
 
 var Pod = require('bip-pod'),
     Idonethis = new Pod();
