@@ -33,7 +33,7 @@
 				"$ref": "/rpcs/teams#results/{short_name}"
 			  }
 			],
-			"name" {
+			"name": {
 			  "$ref": "/rpcs/teams#{name}"
 			}
 		  }
