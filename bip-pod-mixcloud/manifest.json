@@ -83,16 +83,19 @@
       },
       "imports": {
         "properties": {
-          "since" : {
-            "type" : "number",
-            "descsription" : "Since Time (Unix Timestamp)"
+          "since": {
+            "type": "number",
+            "descsription": "Since Time (Unix Timestamp)"
           },
-          "until" : {
-            "type" : "number",
-            "descsription" : "Until Time (Unix Timestamp)"
+          "until": {
+            "type": "number",
+            "descsription": "Until Time (Unix Timestamp)"
           }
         },
-        "disposition" : [ "since", "until" ]
+        "disposition": [
+          "since",
+          "until"
+        ]
       }
     },
     "oembed": {
@@ -208,5 +211,9 @@
         "track_id"
       ]
     }
-  }
+  },
+  "tags": [
+    "social",
+    "audio"
+  ]
 }
