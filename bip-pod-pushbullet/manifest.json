@@ -124,5 +124,9 @@
         ]
       }
     }
-  }
+  },
+  "tags": [
+    "real-time",
+    "messaging"
+  ]
 }
