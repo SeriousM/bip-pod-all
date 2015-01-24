@@ -13,7 +13,7 @@
     "search": {
       "title": "Listing Search",
       "description": "Exports the first 100 listings matching your search criteria",
-      "doc_ref" : "http://craigslist.org/search/sss?query=SearchString",
+      "doc_ref": "http://craigslist.org/search/sss?query=SearchString",
       "trigger": "invoke",
       "config": {
         "properties": {}
@@ -85,5 +85,9 @@
         ]
       }
     }
-  }
+  },
+  "tags": [
+    "social",
+    "commerce"
+  ]
 }
