@@ -13,20 +13,22 @@
   },
   "auth": {
     "strategy": "oauth",
-    "properties" : {
-      "access_token" : {
-        "type" : "string",
-        "title" : "Access Token"
+    "properties": {
+      "access_token": {
+        "type": "string",
+        "title": "Access Token"
       }
     },
-    "disposition" : [ "access_token" ]
+    "disposition": [
+      "access_token"
+    ]
   },
   "rpcs": {},
   "actions": {
     "shorten": {
       "title": "Shortens a URL",
       "description": "Given a long URL, returns a bitly short URL",
-      "doc_ref" : "http://dev.bitly.com/links.html#v3_shorten",
+      "doc_ref": "http://dev.bitly.com/links.html#v3_shorten",
       "trigger": "invoke",
       "config": {
         "properties": {},
@@ -74,7 +76,7 @@
     "expand": {
       "title": "Expands a URL",
       "description": "Given a bitly URL or hash (or multiple), returns the target (long) URL",
-      "doc_ref" : "http://dev.bitly.com/links.html#v3_expand",
+      "doc_ref": "http://dev.bitly.com/links.html#v3_expand",
       "trigger": "invoke",
       "config": {
         "properties": {},
@@ -128,5 +130,9 @@
         ]
       }
     }
-  }
+  },
+  "tags": [
+    "link",
+    "shortener"
+  ]
 }
