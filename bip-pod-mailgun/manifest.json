@@ -284,5 +284,10 @@
         ]
       }
     }
-  }
+  },
+  "tags": [
+    "email",
+    "productivity",
+    "messaging"
+  ]
 }
