@@ -13,7 +13,7 @@
     "hash": {
       "title": "Generates a MD5 Hash",
       "description": "Generates a MD5 Hash of the supplied content",
-      "doc_ref" : "http://nodejs.org/api/crypto.html#crypto_class_hash",
+      "doc_ref": "http://nodejs.org/api/crypto.html#crypto_class_hash",
       "trigger": "invoke",
       "config": {
         "properties": {},
@@ -42,5 +42,8 @@
         ]
       }
     }
-  }
+  },
+  "tags": [
+    "security"
+  ]
 }
