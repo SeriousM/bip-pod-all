@@ -32,7 +32,11 @@
       "default_post_format": {
         "type": "string",
         "title": "Default Post Format",
-        "enum": [ "html", "markdown", "raw" ]
+        "enum": [
+          "html",
+          "markdown",
+          "raw"
+        ]
       }
     },
     "disposition": [
@@ -608,5 +612,8 @@
         ]
       }
     }
-  }
+  },
+  "tags": [
+    "social"
+  ]
 }
