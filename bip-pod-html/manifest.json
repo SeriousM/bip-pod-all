@@ -13,7 +13,7 @@
     "validate": {
       "title": "W3C Validate",
       "description": "Validates HTML with the W3C Validation Service, exporting the results",
-      "doc_ref" : "http://validator.w3.org",
+      "doc_ref": "http://validator.w3.org",
       "trigger": "invoke",
       "config": {
         "properties": {
@@ -85,7 +85,7 @@
     "dom_select": {
       "title": "DOM Selector",
       "description": "Select portions of DOM for export from a URL or raw HTML data using jQuery syntax",
-      "doc_ref" : "http://api.jquery.com/category/selectors",
+      "doc_ref": "http://api.jquery.com/category/selectors",
       "trigger": "invoke",
       "config": {
         "properties": {},
@@ -135,7 +135,7 @@
     "get_favicon": {
       "title": "Get Favicon",
       "description": "Resolves a Favicon for any URL/URI Scheme",
-      "doc_ref" : "http://en.wikipedia.org/wiki/Favicon",
+      "doc_ref": "http://en.wikipedia.org/wiki/Favicon",
       "trigger": "invoke",
       "config": {
         "properties": {},
@@ -176,5 +176,8 @@
         ]
       }
     }
-  }
+  },
+  "tags": [
+    "html"
+  ]
 }
