@@ -113,5 +113,9 @@
         ]
       }
     }
-  }
+  },
+  "tags": [
+    "productivity",
+    "templating"
+  ]
 }
