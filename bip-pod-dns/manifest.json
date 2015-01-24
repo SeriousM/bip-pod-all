@@ -15,36 +15,40 @@
       "description": "Extracts GTLD and Subdomain tokens from a URL.  Works with any URI Scheme.",
       "trigger": "invoke",
       "imports": {
-        "properties" : {
-          "url" : {
-            "type" :  "string",
-            "description" : "URL"
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "URL"
           }
         },
-        "required" : [ "url" ],
-        "disposition" : [ "url" ]
+        "required": [
+          "url"
+        ],
+        "disposition": [
+          "url"
+        ]
       },
       "exports": {
-        "properties" : {
-          "gtld" : {
-            "type" : "string",
-            "description" : "Generic Top Level Domain"
+        "properties": {
+          "gtld": {
+            "type": "string",
+            "description": "Generic Top Level Domain"
           },
-          "domain" : {
-            "type" : "string",
-            "description" : "Domain"
+          "domain": {
+            "type": "string",
+            "description": "Domain"
           },
-          "subdomain" : {
-            "type" : "string",
-            "description" : "Sub-Domain"
+          "subdomain": {
+            "type": "string",
+            "description": "Sub-Domain"
           },
-          "protocol" : {
-            "type" : "string",
-            "description" : "URI Scheme"
+          "protocol": {
+            "type": "string",
+            "description": "URI Scheme"
           },
-          "host" : {
-            "type" : "string",
-            "description" : "Host Name"
+          "host": {
+            "type": "string",
+            "description": "Host Name"
           }
         }
       }
@@ -54,20 +58,24 @@
       "description": "Extracts Whois Data from a URL",
       "trigger": "invoke",
       "imports": {
-        "properties" : {
-          "url" : {
-            "type" :  "string",
-            "description" : "URL"
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "URL"
           }
         },
-        "required" : [ "url" ],
-        "disposition" : [ "url" ]
+        "required": [
+          "url"
+        ],
+        "disposition": [
+          "url"
+        ]
       },
       "exports": {
-        "properties" : {
-          "whois_body" : {
-            "type" : "string",
-            "description" : "Raw Whois Data"
+        "properties": {
+          "whois_body": {
+            "type": "string",
+            "description": "Raw Whois Data"
           }
         }
       }
@@ -77,24 +85,28 @@
       "description": "Resolves a domain into the first found A (IPv4) or AAAA (IPv6) record",
       "trigger": "invoke",
       "imports": {
-        "properties" : {
-          "url" : {
-            "type" :  "string",
-            "description" : "URL"
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "URL"
           }
         },
-        "required" : [ "url" ],
-        "disposition" : [ "url" ]
+        "required": [
+          "url"
+        ],
+        "disposition": [
+          "url"
+        ]
       },
       "exports": {
-        "properties" : {
-          "ip" : {
-            "type" : "string",
-            "description" : "IP Address"
+        "properties": {
+          "ip": {
+            "type": "string",
+            "description": "IP Address"
           },
-          "ip_version" : {
-            "type" : "string",
-            "description" : "IP Version (4 or 6)"
+          "ip_version": {
+            "type": "string",
+            "description": "IP Version (4 or 6)"
           }
         }
       }
@@ -104,24 +116,28 @@
       "description": "Resolves the MX (Mail Exchange) for a URL",
       "trigger": "invoke",
       "imports": {
-        "properties" : {
-          "url" : {
-            "type" :  "string",
-            "description" : "URL"
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "URL"
           }
         },
-        "required" : [ "url" ],
-        "disposition" : [ "url" ]
+        "required": [
+          "url"
+        ],
+        "disposition": [
+          "url"
+        ]
       },
       "exports": {
-        "properties" : {
-          "mx" : {
-            "type" : "array",
-            "description" : "MX Hosts"
+        "properties": {
+          "mx": {
+            "type": "array",
+            "description": "MX Hosts"
           },
-          "mx_first" : {
-            "type" : "string",
-            "description" : "Lowest Priority MX"
+          "mx_first": {
+            "type": "string",
+            "description": "Lowest Priority MX"
           }
         }
       }
@@ -131,27 +147,35 @@
       "description": "Reverse resolves an ip address to an array of domain names",
       "trigger": "invoke",
       "imports": {
-        "properties" : {
-          "ip_addr" : {
-            "type" :  "string",
-            "description" : "IP Address"
+        "properties": {
+          "ip_addr": {
+            "type": "string",
+            "description": "IP Address"
           }
         },
-        "required" : [ "ip_addr" ],
-        "disposition" : [ "ip_addr" ]
+        "required": [
+          "ip_addr"
+        ],
+        "disposition": [
+          "ip_addr"
+        ]
       },
       "exports": {
-        "properties" : {
-          "ip_first" : {
-            "type" : "string",
-            "description" : "First IP"
+        "properties": {
+          "ip_first": {
+            "type": "string",
+            "description": "First IP"
           },
-          "ip_all" : {
-            "type" : "array",
-            "description" : "All Reverse IP's"
+          "ip_all": {
+            "type": "array",
+            "description": "All Reverse IP's"
           }
         }
       }
     }
-  }
+  },
+  "tags": [
+    "networking",
+    "productivity"
+  ]
 }
