@@ -80,5 +80,10 @@
         ]
       }
     }
-  }
+  },
+  "tags": [
+    "finance",
+    "bitcoin",
+    "messaging"
+  ]
 }
