@@ -391,8 +391,6 @@
         ]
       }
     },
-
-
     "sentiment_url": {
       "title": "Get Sentiment from a URL",
       "description": "Analyses the sentiment (positive, neutral, negative, mixed) of the given URL",
@@ -432,12 +430,11 @@
         "required": [
           "url"
         ],
-        "disposition" : [
+        "disposition": [
           "url"
         ]
       }
     },
-
     "sentiment_url_target": {
       "title": "Get Target Sentiment from a URL",
       "description": "Analyses the sentiment (positive, neutral, negative, mixed) of the given URL for a keyword target",
@@ -488,5 +485,13 @@
         ]
       }
     }
-  }
+  },
+  "tags": [
+    "nlp",
+    "language",
+    "ai",
+    "artificial-intelligence",
+    "analytics",
+    "productivity"
+  ]
 }
