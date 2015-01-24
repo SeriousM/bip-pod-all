@@ -197,5 +197,9 @@
         "track_id"
       ]
     }
-  }
+  },
+  "tags": [
+    "social",
+    "audio"
+  ]
 }
