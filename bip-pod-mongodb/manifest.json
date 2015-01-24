@@ -162,5 +162,10 @@
         ]
       }
     }
-  }
+  },
+  "tags": [
+    "productivity",
+    "database",
+    "ops"
+  ]
 }
