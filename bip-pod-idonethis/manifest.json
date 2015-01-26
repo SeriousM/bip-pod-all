@@ -1,8 +1,8 @@
 {
    "name":"idonethis",
    "title":"IDoneThis",
-   "description":"Reply to an evening email reminder with what you did that day. The next day, get a digest with what everyone on the team got done.",
-   "url":"www.idonethis.com",
+   "description":"Reply to an evening email reminder with what you did that day. The next day, get a digest with what everyone on the team got done with IDoneThis",
+   "url":"http://www.idonethis.com",
    "auth":{
       "strategy":"issuer_token",
       "properties":{
@@ -86,7 +86,7 @@
          }
       },
       "dones":{
-         "title":"GET Dones",
+         "title":"Get Dones",
          "description":"Returns the list of dones you have permission to view.",
          "trigger":"invoke",
          "config":{
@@ -135,7 +135,18 @@
          "trigger":"invoke",
          "config":{
             "properties":{
-
+               "team": {
+                  "type":"string",
+                  "description":"Team",
+                  "oneOf":[
+                     {
+                        "$ref":"/rpcs/teams#results/{short_name}"
+                     }
+                  ],
+                  "label":{
+                     "$ref":"/rpcs/teams#results/{name}"
+                  }
+               }
             }
          },
          "imports":{
