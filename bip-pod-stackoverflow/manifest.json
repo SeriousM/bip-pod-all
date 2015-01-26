@@ -1,0 +1,143 @@
+{
+  "name": "stackoverflow",
+  "title": "Stack Overflow",
+  "url": "http://www.stackoverflow.com",
+  "description": "Stack Overflow is a question and answer site for professional and enthusiast programmers. It's 100% free, no registration required",
+  "API": "2.2",
+  "trackDuplicates": true,
+  "auth" : {
+    "strategy" : "none"
+  },
+  "actions": {
+    "search": {
+      "trigger" : "poll",
+      "title": "Search",
+      "description": "Triggers When A Search Term Matches",
+      "ref": "https://api.stackexchange.com/docs/search",
+      "imports" : {
+        "properties" : {
+          "query"   : {
+            "type" : "string",
+            "description" : "Query String"
+          }
+        },
+        "definitions" : {}
+      },
+      "config" : {
+        "properties" : {
+          "query"   : {
+            "type" : "string",
+            "description" : "Query String"
+          }
+        },
+        "definitions" : {}
+      },
+      "exports": {
+        "properties": {
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "title": "Tags",
+            "description": "Tags"
+          },
+          "owner": {
+            "type": "object",
+            "properties": {
+              "reputation": {
+                "type": "number",
+                "description": "Reputation"
+              },
+              "user_id": {
+                "type": "number",
+                "description": "User ID"
+              },
+              "user_type": {
+                "type": "string",
+                "description": "User Type"
+              },
+              "accept_rate": {
+                "type": "number",
+                "description": "Accept Rate"
+              },
+              "profile_image": {
+                "type": "string",
+                "description": "Profile Image"
+              },
+              "display_name": {
+                "type": "string",
+                "description": "Display Name"
+              },
+              "link": {
+                "type": "string",
+                "description": "Link"
+              }
+            },
+            "title": "Owner",
+            "description": "Owner"
+          },
+          "is_answered": {
+            "type": "boolean",
+            "title": "Is Answered",
+            "description": "Is Answered"
+          },
+          "view_count": {
+            "type": "number",
+            "title": "View Count",
+            "description": "View Count"
+          },
+          "answer_count": {
+            "type": "number",
+            "title": "Answer Count",
+            "description": "Answer Count"
+          },
+          "score": {
+            "type": "number",
+            "title": "Score",
+            "description": "Score"
+          },
+          "last_activity_date": {
+            "type": "number",
+            "title": "Last Activity Date",
+            "description": "Last Activity Date"
+          },
+          "creation_date": {
+            "type": "number",
+            "title": "Creation Date",
+            "description": "Creation Date"
+          },
+          "question_id": {
+            "type": "number",
+            "title": "Question ID",
+            "description": "Question ID"
+          },
+          "link": {
+            "type": "string",
+            "title": "Link",
+            "description": "Link"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title",
+            "description": "Title"
+          }
+        },
+        "definitions" : {},
+        "disposition": [
+          "tags",
+          "owner",
+          "is_answered",
+          "view_count",
+          "answer_count",
+          "score",
+          "last_activity_date",
+          "creation_date",
+          "question_id",
+          "link",
+          "title"
+        ]
+      }
+    }
+  }
+}
