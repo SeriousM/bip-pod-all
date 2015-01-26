@@ -7,7 +7,7 @@
       "strategy":"issuer_token",
       "properties":{
          "username":{
-            "title":"IDoneThis API Key",
+            "title":"API Key",
             "type":"string"
          }
       },
