@@ -1,152 +1,162 @@
 {
-  "name": "idonethis",
-  "title": "IDoneThis",
-  "description": "Reply to an evening email reminder with what you did that day. The next day, get a digest with what everyone on the team got done.",
-  "url": "www.idonethis.com",
-  "auth": {
-    "strategy": "issuer_token",
-    "properties": {
-      "username": "IDoneThis API Key"
-    },
-    "disposition": [
-      "username"
-    ]
-  },
-  "rpcs": {
-      "name": "teams",
-      "title": "Teams",
-      "description": "Teams RPC",
-      "ContentType": "application/json"
-  },
-  "actions": {
-    "teams": {
-      "title": "Teams",
-      "description": "Returns the list of teams you can post dones to.",
-	  "trigger": "invoke",
-      "config": {
-        "properties": {
-		  "teams": {
-			"type": "string",
-			"description": "teams RPC",
-			"oneOf": [
-			  {
-				"$ref": "/rpcs/teams#results/{short_name}"
-			  }
-			],
-			"name": {
-			  "$ref": "/rpcs/teams#{name}"
-			}
-		  }
-		}
-	  },
-       "imports": {
-	  	"properties": {}
-	  },
-      "exports": {
-		"properties": {
-		  "name": {
-            "type": "string",
-            "title": "Team Name",
-            "description": "Name of the team you can post dones to."
-          },
-		  "done_count": {
-            "type": "number",
-            "title": "Done Count",
-            "description": "Number of Dones for a given Team."
-          },
-		  "updated": {
-            "type": "string",
-            "title": "Team Updated",
-            "description": "Last update for a Team"
-          },
-          "created": {
-            "type": "string",
-            "title": "Team Created",
-            "description": "Creation Timestamp of a Team"
-          },         
-		  "url": {
-            "type": "string",
-            "title": "Team URL",
-            "description": "Team URL"
-          },         
-		  "short_name": {
-            "type": "string",
-            "title": "Team Short Name",
-            "description": "Team Short Name"
-          },         
-		  "dones": {
-            "type": "string",
-            "title": "Team Dones URL",
-            "description": "Team Dones URL"
-          },         
-		  "is_personal": {
-            "type": "boolean",
-            "title": "Is Team Personal",
-            "description": "Is Team Personal"
-          },         
-		  "permalink": {
-            "type": "string",
-            "title": "Team Permalink",
-            "description": "Team Permalink"
-          }
-        }
+   "name":"idonethis",
+   "title":"IDoneThis",
+   "description":"Reply to an evening email reminder with what you did that day. The next day, get a digest with what everyone on the team got done.",
+   "url":"www.idonethis.com",
+   "auth":{
+      "strategy":"issuer_token",
+      "properties":{
+         "username":{
+            "title":"IDoneThis API Key",
+            "type":"string"
+         }
+      },
+      "disposition":[
+         "username"
+      ]
+   },
+    "rpcs": {
+      "teams": {
+        "contentType": "application/json",
+        "title": "Get My Teams"
       }
     },
-    "dones": {
-      "title": "GET Dones",
-      "description": "Returns the list of dones you have permission to view.",
-	  "trigger": "invoke",
-	  "config": {
-	    "properties": {}
-	  },	
-      "imports": {
-	  	"properties": {
-	      "team": {
-		    "type": "string",
-			"title": "Team (short) Name",
-			"description": "Filter on Team (short) name"
-		  },
-		  "tags": {
-		    "type": "string",
-			"title": "Filter on Tags",
-			"description": "can be single or comma-separated values"
-		  }
-		}
-	  },
-      "exports": {
-        "properties": {
-          "raw_text": {
-            "type": "string",
-            "title": "Done Text",
-            "description": "Raw Text of the Done"
-          }
-        }      
-	  }
-    },
-    "new_done": {
-      "title": "Create New Done",
-      "description": "Create a new Done.",
-	  "trigger": "invoke",
-	  "config": {
-	    "properties": {}
-	  },	
-	  "imports": {
-	  	"properties": {
-	      "raw_text": {
-		    "type": "string",
-			"title": "Text of the new Done",
-			"description": "Text of the new Done"
-		  },
-		  "team": {
-		    "type": "string",
-			"title": "Team to POST new Done to",
-			"description": "Team to POST new Done to"
-		  }
-		}
-	  },
-      "exports": {
-        "properties": {}      
-	  }
-    }
-  }
+   "actions":{
+      "teams":{
+         "title":"Teams",
+         "description":"Returns the list of teams you can post dones to.",
+         "trigger":"invoke",
+         "config":{
+            "properties": {
+            }
+         },
+         "imports":{
+            "properties":{
+
+            }
+         },
+         "exports":{
+            "properties":{
+               "name":{
+                  "type":"string",
+                  "title":"Team Name",
+                  "description":"Name of the team you can post dones to."
+               },
+               "done_count":{
+                  "type":"number",
+                  "title":"Done Count",
+                  "description":"Number of Dones for a given Team."
+               },
+               "updated":{
+                  "type":"string",
+                  "title":"Team Updated",
+                  "description":"Last update for a Team"
+               },
+               "created":{
+                  "type":"string",
+                  "title":"Team Created",
+                  "description":"Creation Timestamp of a Team"
+               },
+               "url":{
+                  "type":"string",
+                  "title":"Team URL",
+                  "description":"Team URL"
+               },
+               "short_name":{
+                  "type":"string",
+                  "title":"Team Short Name",
+                  "description":"Team Short Name"
+               },
+               "dones":{
+                  "type":"string",
+                  "title":"Team Dones URL",
+                  "description":"Team Dones URL"
+               },
+               "is_personal":{
+                  "type":"boolean",
+                  "title":"Is Team Personal",
+                  "description":"Is Team Personal"
+               },
+               "permalink":{
+                  "type":"string",
+                  "title":"Team Permalink",
+                  "description":"Team Permalink"
+               }
+            }
+         }
+      },
+      "dones":{
+         "title":"GET Dones",
+         "description":"Returns the list of dones you have permission to view.",
+         "trigger":"invoke",
+         "config":{
+            "properties": {
+               "team": {
+                  "type":"string",
+                  "description":"Team",
+                  "oneOf":[
+                     {
+                        "$ref":"/rpcs/teams#results/{short_name}"
+                     }
+                  ],
+                  "label":{
+                     "$ref":"/rpcs/teams#results/{name}"
+                  }
+               }
+            }
+         },
+         "imports":{
+            "properties":{
+               "team":{
+                  "type":"string",
+                  "title":"Team (short) Name",
+                  "description":"Filter on Team (short) name"
+               },
+               "tags":{
+                  "type":"string",
+                  "title":"Filter on Tags",
+                  "description":"can be single or comma-separated values"
+               }
+            }
+         },
+         "exports":{
+            "properties":{
+               "raw_text":{
+                  "type":"string",
+                  "title":"Done Text",
+                  "description":"Raw Text of the Done"
+               }
+            }
+         }
+      },
+      "new_done":{
+         "title":"Create New Done",
+         "description":"Create a new Done.",
+         "trigger":"invoke",
+         "config":{
+            "properties":{
+
+            }
+         },
+         "imports":{
+            "properties":{
+               "raw_text":{
+                  "type":"string",
+                  "title":"Text of the new Done",
+                  "description":"Text of the new Done"
+               },
+               "team":{
+                  "type":"string",
+                  "title":"Team to POST new Done to",
+                  "description":"Team to POST new Done to"
+               }
+            }
+         },
+         "exports":{
+            "properties":{
+
+            }
+         }
+      }
+   }
 }
