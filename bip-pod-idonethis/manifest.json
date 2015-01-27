@@ -3,6 +3,7 @@
    "title":"IDoneThis",
    "description":"Reply to an evening email reminder with what you did that day. The next day, get a digest with what everyone on the team got done with IDoneThis",
    "url":"http://www.idonethis.com",
+   "version":"v0.1",
    "auth":{
       "strategy":"issuer_token",
       "properties":{
@@ -88,7 +89,8 @@
       "dones":{
          "title":"Get Dones",
          "description":"Returns the list of dones you have permission to view.",
-         "trigger":"invoke",
+         "trigger":"poll",
+		 "trackDuplicates":true,
          "config":{
             "properties": {
                "team": {
@@ -121,11 +123,17 @@
          },
          "exports":{
             "properties":{
+               "id":{
+                  "type":"number",
+                  "title":"Done ID",
+                  "description":"Done ID"
+               },
                "raw_text":{
                   "type":"string",
                   "title":"Done Text",
                   "description":"Raw Text of the Done"
                }
+
             }
          }
       },

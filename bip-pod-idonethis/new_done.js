@@ -19,46 +19,26 @@
  */
 
 
-var BASE_URL = 'https://idonethis.com/';
-var API_VERSION = 'v0.1'
-var API_URL = BASE_URL + 'api/' + API_VERSION + '/';
-
-
-
 function NewDone(podConfig) {
-  this.podConfig = podConfig; 
+	this.podConfig = podConfig; 
 }
+
 
 NewDone.prototype = {};
-
-NewDone.prototype.rpc = function(method, sysImports, options, channel, req, res) {
-  var self = this;
-	
-
-  if (method === 'new_done') {
-    res.contentType(self.pod.getActionRPC(self.name, method).contentType);
-    res.send(req.query.message);
-  } else {
-    res.send(404);
-  }
-
-}
 
 
 NewDone.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
 
-	var resource = this.$resource;
 	var done = {
 		"raw_text": imports.raw_text,
 		"team": imports.team
 	}
 
-    var url = API_URL + 'dones/';
-	resource._httpPost(
+    var url = this.getApiUrl()  + 'dones/';
+	this.$resource._httpPost(
 		url,
 		done,
 		function(err,  body) {
-			console.log(body.errors);
 			if (body.errors) {
 				next(body.message)
 			} else {

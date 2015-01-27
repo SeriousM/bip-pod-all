@@ -16,19 +16,15 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-var BASE_URL = 'https://idonethis.com/';
-var API_VERSION = 'v0.1'
-var API_URL = BASE_URL + 'api/' + API_VERSION + '/';
-
-
 var Pod = require('bip-pod'),
     Idonethis = new Pod();
 
 
 Idonethis.testCredentials = function(struct, next) {
-	var get = this.$resource._httpGet,
-		url = API_URL + 'noop'
-	get(
+		
+	var url = API_URL + 'noop';
+
+	this.$resource._httpGet(
 		url,
 		function(err, resp, headers, statusCode) {
 			if (err) {
@@ -38,32 +34,44 @@ Idonethis.testCredentials = function(struct, next) {
 			}
 		},
 		{
-		  'Authorization' : 'TOKEN ' + struct.username
+			'Authorization' : 'TOKEN ' + struct.username
 		}
 	);
 }
 
+
+// TODO pass sysImports as param in order to inject auth header.
+// TODO wrap _httpGet fn call as base level API getter. 
+Idonethis.getApiUrl = function() {
+
+	var BASE_URL = 'https://idonethis.com/api/';
+	var API_VERSION = pod.getSchema().version;
+	var API_URL = BASE_URL + API_VERSION + '/';
+
+	return API_URL;
+}
+
+
 Idonethis.rpc = function(action, method, sysImports, options, channel, req, res) {
 
-  if (method == 'teams') {
+	if (method == 'teams') {
+		
+		var url = this.getApiUrl() + 'teams/';
 
-	// call 'teams' api endpoint...
-	var get = this.$resource._httpGet,
-		url = API_URL + 'teams/';
-	get(
-		url,
-		function(err, resp, headers, statusCode) {
-			res.status(err? 500 : 200).send(resp);
-		},
-		{
-		  'Authorization' : 'TOKEN ' + sysImports.auth.issuer_token.username
-		}
-	);
+		this.$resource._httpGet(
+			url,
+			function(err, resp, headers, statusCode) {
+				res.contentType(pod.getRPCs('teams').contentType);
+				res.status(err? 500 : 200).send(resp);
+			},
+			{
+				'Authorization' : 'TOKEN ' + sysImports.auth.issuer_token.username
+			}
+		);
 
-
-  } else {
-    this.__proto__.rpc.apply(this, arguments);
-  }
+	} else {
+    	this.__proto__.rpc.apply(this, arguments);
+	}
 }
 
 // -----------------------------------------------------------------------------
