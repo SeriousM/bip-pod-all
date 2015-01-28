@@ -44,18 +44,14 @@ Dones.prototype.trigger = function(imports, channel, sysImports, contentParts, n
 
 
 Dones.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
+  var url = this.pod.getApiUrl() + 'dones/?team=' + imports.team;
 
-    var url = this.getApiUrl() + 'dones/';
-
-	if (imports.team) {
-		url = url + '&team=' + imports.team;
-	} 
 	if (imports.tags) {
 		var tags = imports.tags.replace(/\s+/g,'');
 		url = url + '&tags=' + tags;
-	} 
+	}
 
-	this.$resouce._httpGet(
+	this.$resource._httpGet(
 		url,
 		function(err, resp, headers, statusCode) {
 			if (err) {

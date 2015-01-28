@@ -21,7 +21,7 @@
 
 
 function Teams(podConfig) {
-	this.podConfig = podConfig; 
+	this.podConfig = podConfig;
 }
 
 
@@ -30,8 +30,8 @@ Teams.prototype = {};
 
 Teams.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
 
-	var url = this.getApiUrl() + 'teams/';
-  
+	var url = this.pod.getApiUrl() + 'teams/';
+
 	this.$resource._httpGet(
 		url,
 		function(err, resp, headers, statusCode) {

@@ -21,7 +21,7 @@ var Pod = require('bip-pod'),
 
 
 Idonethis.testCredentials = function(struct, next) {
-		
+
 	var url = API_URL + 'noop';
 
 	this.$resource._httpGet(
@@ -41,11 +41,11 @@ Idonethis.testCredentials = function(struct, next) {
 
 
 // TODO pass sysImports as param in order to inject auth header.
-// TODO wrap _httpGet fn call as base level API getter. 
+// TODO wrap _httpGet fn call as base level API getter.
 Idonethis.getApiUrl = function() {
 
 	var BASE_URL = 'https://idonethis.com/api/';
-	var API_VERSION = pod.getSchema().version;
+	var API_VERSION = this.getSchema().version;
 	var API_URL = BASE_URL + API_VERSION + '/';
 
 	return API_URL;
@@ -55,7 +55,7 @@ Idonethis.getApiUrl = function() {
 Idonethis.rpc = function(action, method, sysImports, options, channel, req, res) {
 
 	if (method == 'teams') {
-		
+
 		var url = this.getApiUrl() + 'teams/';
 
 		this.$resource._httpGet(

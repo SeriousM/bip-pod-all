@@ -20,7 +20,7 @@
 
 
 function NewDone(podConfig) {
-	this.podConfig = podConfig; 
+	this.podConfig = podConfig;
 }
 
 
@@ -34,7 +34,7 @@ NewDone.prototype.invoke = function(imports, channel, sysImports, contentParts, 
 		"team": imports.team
 	}
 
-    var url = this.getApiUrl()  + 'dones/';
+    var url = this.pod.getApiUrl()  + 'dones/';
 	this.$resource._httpPost(
 		url,
 		done,
