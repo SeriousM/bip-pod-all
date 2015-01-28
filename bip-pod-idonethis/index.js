@@ -22,7 +22,7 @@ var Pod = require('bip-pod'),
 
 Idonethis.testCredentials = function(struct, next) {
 
-	var url = API_URL + 'noop';
+	var url = this.getApiUrl() + 'noop';
 
 	this.$resource._httpGet(
 		url,
