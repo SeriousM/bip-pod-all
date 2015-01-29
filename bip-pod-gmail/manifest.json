@@ -3,6 +3,7 @@
   "title": "GMail",
   "description": "GMail is a Google-owned, web-based email service provides details of storage, options and links to related services",
   "url": "https://gmail.google.com",
+  "trackDuplicates" : true,
   "config": {
     "oauth": {
       "clientID": "",
@@ -10,7 +11,8 @@
       "scopes": [
         "https://www.googleapis.com/auth/gmail.compose",
         "https://www.googleapis.com/auth/userinfo.email",
-        "https://www.googleapis.com/auth/userinfo.profile"
+        "https://www.googleapis.com/auth/userinfo.profile",
+        "https://www.googleapis.com/auth/gmail.readonly"
       ],
       "extras": {
         "accessType": "offline",
@@ -94,6 +96,110 @@
         },
         "required" : [ "rcpt_to" ],
         "disposition" : [ "rcpt_to", "reply_to", "user_id", "subject", "body" ]
+      }
+    },
+    "on_new_message": {
+      "doc_ref" : "https://developers.google.com/gmail/api/v1/reference/",
+      "title": "On A New Email",
+      "description": "When A New Email Appears In Your Inbox",
+      "trigger": "poll",
+      "config": {
+        "properties": {
+        },
+        "DISABLED_properties": {
+          "get_attachments" : {
+            "type" : "boolean",
+            "description" : "Include Attachments",
+            "default" : false
+          }
+        },
+        "definitions": {}
+      },
+      "exports": {
+        "DISABLED_properties": {
+          "html_body": {
+            "description": "HTML Body",
+            "type": "string"
+          }
+        },
+        "properties": {
+          "text_body": {
+            "description": "Text Body",
+            "type": "string"
+          },
+          "mimeType": {
+            "description": "Mime Type",
+            "type": "string"
+          },
+          "Delivered-To": {
+            "description": "Delivered To",
+            "type": "string"
+          },
+          "Received": {
+            "description": "Received",
+            "type": "string"
+          },
+          "X-Received": {
+            "description": "X Received",
+            "type": "string"
+          },
+          "Return-Path": {
+            "description": "Return Path",
+            "type": "string"
+          },
+          "Received-SPF": {
+            "description": "Received SPF",
+            "type": "string"
+          },
+          "Authentication-Results": {
+            "description": "Authentication Results",
+            "type": "string"
+          },
+          "X-Google-DKIM-Signature": {
+            "description": "X Google DKIM Signature",
+            "type": "string"
+          },
+          "X-Gm-Message-State": {
+            "description": "X Gm Message State",
+            "type": "string"
+          },
+          "MIME-Version": {
+            "description": "MIME Version",
+            "type": "string"
+          },
+          "Reply-To": {
+            "description": "Reply To",
+            "type": "string"
+          },
+          "Date": {
+            "description": "Date",
+            "type": "string"
+          },
+          "Message-ID": {
+            "description": "Message ID",
+            "type": "string"
+          },
+          "Subject": {
+            "description": "Subject",
+            "type": "string"
+          },
+          "From": {
+            "description": "From",
+            "type": "string"
+          },
+          "To": {
+            "description": "To",
+            "type": "string"
+          },
+          "Content-Type": {
+            "description": "Content Type",
+            "type": "string"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+        }
       }
     }
   }
