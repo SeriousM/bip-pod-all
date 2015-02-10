@@ -19,6 +19,7 @@
  */
 var Pod = require('bip-pod'),
   moment = require('moment-timezone'),
+  sugar       = require('sugar'),
   Time = new Pod();
 
 Time.get = function(time) {
