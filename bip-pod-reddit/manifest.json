@@ -1,0 +1,75 @@
+{
+  "name": "reddit",
+  "url": "reddit.com",
+  "title": "Reddit",
+  "description": "The Front Page of the Internet",
+  "auth": {
+    "strategy": "none"
+  },
+  "actions": {
+    "r": {
+      "title": "r subreddit",
+      "description": "subreddit",
+	  "trigger":"invoke",
+      "imports": {
+        "properties": {
+          "subreddit": {
+            "type": "string",
+            "title": "subreddit",
+            "description": "subreddit"
+          }
+        },
+        "disposition": [
+          "subreddit"
+        ]
+      },
+      "config": {
+        "properties": {}
+      },
+      "exports": {
+        "properties": {
+          "subreddit": {
+            "type": "object",
+            "title": "subreddit",
+            "description": "First Page of Returned subreddit"
+          }
+        },
+        "disposition": [
+          "subreddit"
+        ]
+      }
+    },
+    "user": {
+      "title": "User",
+      "description": "Reddit Username",
+	  "trigger":"invoke",
+	  "config": {
+		"properties": {}
+	  },
+      "imports": {
+        "properties": {
+          "username": {
+            "type": "string",
+            "title": "Username",
+            "description": "Username"
+          }
+        },
+        "disposition": [
+          "username"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "username": {
+            "type": "object",
+            "title": "Username",
+            "description": "Username Object"
+          }
+        },
+        "disposition": [
+          "username"
+        ]
+      }
+    }
+  }
+}
