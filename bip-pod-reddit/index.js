@@ -21,5 +21,16 @@
 var Pod = require('bip-pod'),
     Reddit = new Pod();
 
+
+Reddit.getApiUrl = function() {
+
+	var BASE_URL = 'http://www.reddit.com/api/';
+	var API_VERSION = this.getSchema().version;
+	var API_URL = BASE_URL + API_VERSION + '/';
+
+	return API_URL;
+}
+
+
 // -----------------------------------------------------------------------------
 module.exports = Reddit;

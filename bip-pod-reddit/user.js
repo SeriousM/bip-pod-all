@@ -18,7 +18,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-var reddit = require('redwrap');
 var _ = require('lodash');
 
 function User(podConfig) {
@@ -28,17 +27,29 @@ function User(podConfig) {
 User.prototype = {};
 
 User.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
-	reddit.user(imports.username, function(err, data, res){
-		if (err) {
-			next(err);
-		} else {
-			_.forEach(data.data.children, function(child) {
-				console.log(child.data);
-				next(false, child.data);
-			});
+
+	var url = 'http://www.reddit.com/u/' + imports.username + '/.json';
+
+	this.$resource._httpGet(
+		url, 
+		function(err, resp, headers, statusCode) {
+			if (err) {
+				next(err);
+			} else {
+				if (resp.data.children == 'undefined') {
+					next(err);
+				} else {
+					_.forEach(resp.data.children, function(sub) {
+						next(false, sub.data); 
+					});
+				}
+			}
 		}
-	});
+	);
 }
+
+
+
 
 // -----------------------------------------------------------------------------
 module.exports = User;
