@@ -14,6 +14,10 @@
       "title": "Get GTLD",
       "description": "Extracts GTLD and Subdomain tokens from a URL.  Works with any URI Scheme.",
       "trigger": "invoke",
+      "config" : {
+        "properties" : {},
+        "definitions" : {}
+      },
       "imports": {
         "properties": {
           "url": {
@@ -57,6 +61,10 @@
       "title": "Get Whois",
       "description": "Extracts Whois Data from a URL",
       "trigger": "invoke",
+      "config" : {
+        "properties" : {},
+        "definitions" : {}
+      },
       "imports": {
         "properties": {
           "url": {
@@ -84,6 +92,10 @@
       "title": "Resolve A Domain",
       "description": "Resolves a domain into the first found A (IPv4) or AAAA (IPv6) record",
       "trigger": "invoke",
+      "config" : {
+        "properties" : {},
+        "definitions" : {}
+      },
       "imports": {
         "properties": {
           "url": {
@@ -115,6 +127,10 @@
       "title": "Resolve MX",
       "description": "Resolves the MX (Mail Exchange) for a URL",
       "trigger": "invoke",
+      "config" : {
+        "properties" : {},
+        "definitions" : {}
+      },
       "imports": {
         "properties": {
           "url": {
@@ -146,6 +162,10 @@
       "title": "Reverse Lookup",
       "description": "Reverse resolves an ip address to an array of domain names",
       "trigger": "invoke",
+      "config" : {
+        "properties" : {},
+        "definitions" : {}
+      },
       "imports": {
         "properties": {
           "ip_addr": {
