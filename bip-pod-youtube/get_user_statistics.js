@@ -19,7 +19,6 @@
  */
 
 function Get_statistics(podConfig) {
-
 }
 
 Get_statistics.prototype = {};
@@ -29,7 +28,6 @@ Get_statistics.prototype.invoke = function(imports, channel, sysImports, content
     url = 'http://gdata.youtube.com/feeds/api/users/' + imports.username + '?alt=json';
 
   $resource._httpGet(url, function(err, body) {
-console.log(body);
     next(err, body.entry['yt$statistics'] );
   });
 

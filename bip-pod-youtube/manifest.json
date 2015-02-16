@@ -8,9 +8,9 @@
     "strategy": "none"
   },
   "actions": {
-    "get_statistics": {
+    "get_user_statistics": {
       "trigger" : "invoke",
-      "title": "Get Statistics",
+      "title": "Get User Statistics",
       "description": "Get User Statistics",
       "uri": "http://gdata.youtube.com/feeds/api/users/{username}?alt=json",
       "config": {
@@ -23,6 +23,26 @@
           "subscriberCount" : {
             "description" : "Subscriber Count",
             "title" : "Subscriber Count",
+            "type" : "string"
+          },
+          "lastWebAccess" : {
+            "description" : "Last Access",
+            "title" : "Last Access",
+            "type" : "string"
+          },
+          "videoWatchCount" : {
+            "description" : "Video Watch Count",
+            "title" : "Video Watch Count",
+            "type" : "string"
+          },
+          "viewCount" : {
+            "description" : "View Count",
+            "title" : "View Count",
+            "type" : "string"
+          },
+          "totalUploadViews" : {
+            "description" : "Total Upload Views",
+            "title" : "Total Upload Views",
             "type" : "string"
           }
         },
@@ -37,6 +57,9 @@
           }
         },
         "definitions" : {},
+        "required": [
+          "username"
+        ],
         "disposition": [
           "username"
         ]
