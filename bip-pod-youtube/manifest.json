@@ -1,0 +1,46 @@
+{
+  "name": "youtube",
+  "title": "YouTube",
+  "url": "https://youtube.com",
+  "API": "v2",
+  "description": "Share your videos with friends, family, and the world.",
+  "auth": {
+    "strategy": "none"
+  },
+  "actions": {
+    "get_statistics": {
+      "trigger" : "invoke",
+      "title": "Get Statistics",
+      "description": "Get User Statistics",
+      "uri": "http://gdata.youtube.com/feeds/api/users/{username}?alt=json",
+      "config": {
+        "properties": {
+        },
+        "definitions" : {}
+      },
+      "exports": {
+        "properties": {
+          "subscriberCount" : {
+            "description" : "Subscriber Count",
+            "title" : "Subscriber Count",
+            "type" : "string"
+          }
+        },
+        "definitions" : {}
+      },
+      "imports": {
+        "properties": {
+          "username": {
+            "type": "string",
+            "title": "Username",
+            "description": "Username"
+          }
+        },
+        "definitions" : {},
+        "disposition": [
+          "username"
+        ]
+      }
+    }
+  }
+}
