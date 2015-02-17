@@ -20,23 +20,38 @@
 
 var mc = require('minecraft-protocol');
 
-function Server_status(podConfig) {
-  this.podConfig = podConfig; // general system level config for this pod (transports etc)
+function ServerStatus() {}
+
+ServerStatus.prototype.hostCheck = function(host, channel, next) {
+  var config = this.pod.getConfig();
+  this.$resource._isVisibleHost.call(this.pod, host, function(err, blacklisted) {
+    next(err, blacklisted.length !== 0);
+  }, channel, config.whitelist ? config.whitelist : []);
 }
 
-Server_status.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
-  mc.ping(imports, function(err, response) {
+ServerStatus.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
 
-    if (!err) {
-      response.players_max = response.players.max;
-      response.players_online = response.players.online;
-      response.version_name = response.version.name;
-      response.version_protocol = response.version.protocol;
+  // @todo host blacklist
+  this.hostCheck(imports.host, channel, function(err, blacklisted) {
+    if (err) {
+      next(err);
+    } else if (blacklisted) {
+      next('Requested Host ' + imports.host + ' Is Blacklisted');
+    } else {
+      mc.ping(imports, function(err, response) {
+
+        if (!err) {
+          response.players_max = response.players.max;
+          response.players_online = response.players.online;
+          response.version_name = response.version.name;
+          response.version_protocol = response.version.protocol;
+        }
+
+        next(err, response);
+      });
     }
-
-    next(err, response);
   });
 }
 
 // -----------------------------------------------------------------------------
-module.exports = Server_status;
+module.exports = ServerStatus;
