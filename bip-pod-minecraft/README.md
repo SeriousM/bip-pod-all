@@ -11,7 +11,7 @@ From bipio server root directory
 
 The pod-install script is a server script which will register the pod with the bipio server and add sparse
 configuration to your NODE_ENV environment config ('default.json', staging or production)
-keyed to 'boilerplate', based on the default config in the pod constructor.  It will also move the
+keyed to 'minecraft', based on the default config in the pod constructor.  It will also move the
 pod icon into the server cdn
 
 Manually restart the bipio server at your convenience.
@@ -28,4 +28,4 @@ If you'd like to integrate BipIO with your proprietary system, GPLv3 is likely i
 please [reach us](mailto:hello@bip.io)
 
 
-Copyright (c) 2010-2014 [WoT.IO Inc](http://wot.io)
+Copyright (c) 2010-2015 [WoT.IO Inc](http://wot.io)
