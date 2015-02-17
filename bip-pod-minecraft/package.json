@@ -1,0 +1,32 @@
+{
+  "name": "bip-pod-minecraft",
+  "version": "0.0.1",
+  "description": "minecraft Pod for Bipio",
+  "keywords": [
+    "bip",
+    "bipio",
+    "pod",
+    "minecraft"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bipio-server/bip-pod-minecraft.git"
+  },
+  "bugs": {
+    "url": "http://github.com/bipio-server/bip-pod-minecraft/issues"
+  },
+  "licenses": [
+    {
+      "type": "GNU GPLv3",
+      "url": "http://www.gnu.org/copyleft/gpl.html"
+    }
+  ],
+  "main": ".",
+  "dependencies": {
+    "bip-pod": ">=0.0.1",
+    "minecraft-protocol": "^0.12.3"
+  },
+  "engines": {
+    "node": ">= 0.10.0"
+  }
+}

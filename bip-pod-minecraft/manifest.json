@@ -1,0 +1,91 @@
+{
+  "name": "minecraft",
+  "title": "Minecraft",
+  "url" : "https://minecraft.net",
+  "description" : "Minecraft is a game about breaking and placing blocks",
+  "auth": {
+    "strategy": "none"
+  },
+  "actions": {
+    "server_status": {
+      "trigger" : "invoke",
+      "title": "Get Server Status",
+      "description": "Retrieves Stats For a MineCraft Server",
+      "config": {
+        "properties": {
+          "host": {
+            "type": "string",
+            "title": "Host",
+            "description": "Host"
+          },
+          "port": {
+            "type": "string",
+            "title": "Port",
+            "description": "Port",
+            "default" : 25565
+          }
+        },
+        "definitions" : {},
+        "disposition": [
+          "host",
+          "port"
+        ]
+      },
+      "imports": {
+        "properties": {
+          "host": {
+            "type": "string",
+            "title": "Host",
+            "description": "Host"
+          },
+          "port": {
+            "type": "string",
+            "title": "Port",
+            "description": "Port",
+            "default" : 25565
+          }
+        },
+        "definitions" : {},
+        "disposition": [
+          "host",
+          "port"
+        ]
+      },
+      "exports" : {
+        "properties" : {
+          "description" : {
+            "type" : "string",
+            "description" : "Server Description"
+          },
+          "players_max" : {
+            "type" : "object",
+            "description" : "Maximum Players"
+          },
+          "players_online" : {
+            "type" : "object",
+            "description" : "Online Players"
+          },
+          "version_name" : {
+            "type" : "string",
+            "description" : "Version Name"
+          },
+          "version_protocol" : {
+            "type" : "string",
+            "description" : "Version Protocol"
+          },
+          "latency" : {
+            "type" : "number",
+            "description" : "Latency MS"
+          },
+          "favicon" : {
+            "type" : "string",
+            "description" : "Favicon (Base64)"
+          }
+        },
+        "definitions" : {}
+      }
+    }
+  }
+}
+
+
