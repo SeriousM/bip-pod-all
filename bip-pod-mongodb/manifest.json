@@ -5,9 +5,7 @@
   "url": "http://www.mongodb.org",
   "trackDuplicates": false,
   "config": {
-    "whitelist": [
-      "127.0.0.1"
-    ]
+    "whitelist": []
   },
   "auth": {
     "strategy": "issuer_token",
