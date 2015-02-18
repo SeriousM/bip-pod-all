@@ -3,13 +3,14 @@
   "url": "reddit.com",
   "title": "Reddit",
   "description": "The Front Page of the Internet",
+  "version":"v1",
   "auth": {
     "strategy": "none"
   },
   "actions": {
     "r": {
-      "title": "r subreddit",
-      "description": "subreddit",
+      "title": "Get a Subreddit Listing",
+      "description": "Retrieves a Given Subreddit Listing",
 	  "trigger":"invoke",
       "imports": {
         "properties": {
@@ -28,20 +29,43 @@
       },
       "exports": {
         "properties": {
-          "subreddit": {
-            "type": "object",
-            "title": "subreddit",
-            "description": "First Page of Returned subreddit"
+          "author": {
+            "type": "string",
+            "title": "author",
+            "description": "Author of Subreddit Post"
+          },
+          "title": {
+            "type": "string",
+            "title": "title",
+            "description": "Title of Subreddit Post"
+          },
+          "url": {
+            "type": "string",
+            "title": "url",
+            "description": "URL of Subreddit Post"
+          },
+		  "permalink": {
+            "type": "string",
+            "title": "permalink",
+            "description": "Permalink of Subreddit Post"
+          },
+          "created": {
+            "type": "number",
+            "title": "created",
+            "description": "Timestamp of when Subreddit Post was created."
+          },
+          "ups": {
+            "type": "number",
+            "title": "Ups",
+            "description": "Number of Upvotes a Post has received."
           }
-        },
-        "disposition": [
-          "subreddit"
-        ]
+
+        }
       }
     },
     "user": {
-      "title": "User",
-      "description": "Reddit Username",
+      "title": "Get User's Latest Activity",
+      "description": "Get the Latest Activity of a Reddit User",
 	  "trigger":"invoke",
 	  "config": {
 		"properties": {}
@@ -60,15 +84,32 @@
       },
       "exports": {
         "properties": {
-          "username": {
-            "type": "object",
-            "title": "Username",
-            "description": "Username Object"
+          "author": {
+            "type": "string",
+            "title": "author",
+            "description": "Author of Reddit Post"
+          },
+          "body": {
+            "type": "string",
+            "title": "body",
+            "description": "Body of Reddit Post"
+          },
+          "link_url": {
+            "type": "string",
+            "title": "link_url",
+            "description": "Link to Reddit Post"
+          },
+          "created": {
+            "type": "number",
+            "title": "created",
+            "description": "Date Created"
+          },
+          "ups": {
+            "type": "number",
+            "title": "ups",
+            "description": "Number of Upvotes a post has received."
           }
-        },
-        "disposition": [
-          "username"
-        ]
+        }
       }
     }
   }

@@ -29,7 +29,7 @@ R.prototype = {};
 
 R.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
 
-
+	var subr = {};
 	var url = 'http://www.reddit.com/r/' + imports.subreddit + '/.json';
 
 	this.$resource._httpGet(
@@ -42,7 +42,13 @@ R.prototype.invoke = function(imports, channel, sysImports, contentParts, next) 
 					next(err);
 				} else {
 					_.forEach(resp.data.children, function(sub) {
-						next(false, sub.data); 
+						subr.author = sub.data.author;
+						subr.title = sub.data.title;
+						subr.url = sub.data.url;
+						subr.permalink = 'http://www.reddit.com' + sub.data.permalink;
+						subr.created = sub.data.created;
+						subr.ups = sub.data.ups;
+						next(false, subr); 
 					});
 				}
 			}
