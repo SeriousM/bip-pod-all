@@ -16,10 +16,19 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
-
 var Pod = require('bip-pod'),
     Openweathermap = new Pod();
+
+
+Openweathermap.getDefaults = function() {
+	var cfg = {
+    	units:'imperial', 
+    	lang:'en', 
+    	mode:'json'
+	};
+	return cfg;
+} 
+
 
 // -----------------------------------------------------------------------------
 module.exports = Openweathermap;

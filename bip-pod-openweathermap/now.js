@@ -21,38 +21,33 @@
 var weather = require('openweathermap');
 
 
-function Forecast(podConfig) {
+function Now(podConfig) {
   this.podConfig = podConfig; 
 }
 
 
-Forecast.prototype = {};
+Now.prototype = {};
 
 
-Forecast.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
+Now.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
 
-	var reqParams = {};
+	var reqParams = {}, weatherNow = {};
 
 	if (imports.q) {
 		reqParams = this.pod.getDefaults();
 		reqParams['q'] = imports.q;
-		reqParams['cnt'] = imports.cnt ? imports.cnt : 21;   // 7 days in 3hr increments.
 		
-		weather.forecast(reqParams, function(data) {
+		weather.now(reqParams, function(data) {
 			if (data) {
-				data.list.forEach( function(fc) {
-					weatherObj.temp = fc.main.temp;
-					weatherObj.description = fc['weather'][0].description;
-					weatherObj.wind_speed = fc.wind.speed;
-					weatherObj.wind_direction = fc.wind.deg;
-					weatherObj.pressure = fc.main.pressure;
-					next(false, weatherObj);
-				});
+				weatherNow.temp = data['main'].temp;
+				weatherNow.description = data['weather'][0].description;
+				weatherNow.wind_speed = data['wind'].speed;
+				weatherNow.wind_direction = data['wind'].deg;
+				next(false, weatherNow);
 			}	
 		}); 
 	}
 }
 
-
 // -----------------------------------------------------------------------------
-module.exports = Forecast;
+module.exports = Now;

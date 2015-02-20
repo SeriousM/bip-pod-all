@@ -20,57 +20,43 @@
 
 var weather = require('openweathermap');
 
-weather.defaults =  {
-    units:'metric', 
-    lang:'en', 
-    mode:'json'
-}
 
 function Daily(podConfig) {
-  this.podConfig = podConfig; // general system level config for this pod (transports etc)
+  this.podConfig = podConfig;
 }
+
 
 Daily.prototype = {};
 
-// RPC/Renderer accessor - /rpc/render/channel/{channel id}/hello
-Daily.prototype.rpc = function(method, sysImports, options, channel, req, res) {
-  var self = this;
-	
 
-  if (method === 'echo') {
-    res.contentType(self.pod.getActionRPC(self.name, method).contentType);
-    res.send(req.query.message);
-  } else {
-    res.send(404);
-  }
-
-}
-
-/**
- * Action Invoker - the primary function of a channel
- *
- * @param Object imports transformed key/value input pairs
- * @param Channel channel invoking channel model
- * @param Object sysImports
- * @param Array contentParts array of File Objects, key/value objects
- * with attributes txId (transaction ID), size (bytes size), localpath (local tmp file path)
- * name (file name), type (content-type), encoding ('binary')
- *
- * @param Function next callback(error, exports, contentParts, transferredBytes)
- *
- */
 Daily.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
-	var count = imports.cnt ? imports.cnt : 3;
+
+	var reqParams = {};
+
 	if (imports.q) {
-		weather.daily({q : imports.q, cnt : count}, function(err, cb) {
-			if (err) {
-				next(err);
-			} else {
-				next(false, cb);
-			}
+		reqParams = this.pod.getDefaults();
+		reqParams['q'] = imports.q;
+		reqParams['cnt'] = imports.cnt ? imports.cnt : 5;
+		
+		weather.daily(reqParams, function(data) {
+			if (data) {
+				data.list.forEach( function(day) {
+					weatherObj.temp_day = day.temp.day;
+					weatherObj.temp_night = day.temp.night;
+					weatherObj.description = day['weather'][0].description;
+					weatherObj.wind_speed = day.speed;
+					weatherObj.wind_direction = day.deg;
+					weatherObj.pressure = day.pressure;
+					weatherObj.humidity = day.humidity;
+					next(false, weatherObj);
+				});
+			}	
 		}); 
 	}
 }
+
+
+
 
 // -----------------------------------------------------------------------------
 module.exports = Daily;
