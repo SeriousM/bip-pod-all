@@ -6,7 +6,7 @@
   "auth": {
     "strategy": "issuer_token",
     "properties": {
-      "username": "ab8f27849b1a0efe391a1c0763c77c8f"
+      "username": ""
     },
     "disposition": [
       "username"
