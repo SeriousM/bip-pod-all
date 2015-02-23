@@ -1,0 +1,28 @@
+{
+    "name": "bip-pod-hall",
+    "version": "0.0.1",
+    "description": "hall Pod for Bipio",
+    "keywords": [
+    "bip",
+    "bipio",
+    "pod",
+    "hall"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/bipio-server/bip-pod-hall.git"
+    },
+    "bugs": {
+        "url": "http://github.com/bipio-server/bip-pod-hall/issues"
+    },
+    "licenses": [
+    {
+        "type": "GNU GPLv3",
+        "url": "http://www.gnu.org/copyleft/gpl.html"
+    }
+    ],
+    "main": ".",
+    "engines": {
+        "node": ">= 0.10.0"
+    }
+}

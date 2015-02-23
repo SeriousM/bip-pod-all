@@ -1,0 +1,62 @@
+{
+  "name": "hall",
+  "auth": {
+    "strategy": "none"
+  },
+  "version" : 1,
+  "url": "https://hall.com",
+  "title": "Hall",
+  "description": "Hall. Group Chat. Instant Messaging. Built for Businesses",
+  "actions": {
+    "group_message": {
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "imports": {
+        "properties": {
+          "url" : {
+            "type" : "string",
+            "description" : "Group Webhook URL"
+          },
+          "title" : {
+            "type" : "string",
+            "description" : "Title"
+          },
+          "message" : {
+            "type" : "string",
+            "description" : "Message"
+          },
+          "picture" : {
+            "type" : "string",
+            "description" : "Picture URL"
+          }
+        },
+        "definitions": {},
+        "required" : [
+          "url",
+          "title",
+          "message"
+        ],
+        "disposition" : [
+          "url",
+          "title",
+          "message",
+          "picture"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "status" : {
+            "type" : "string",
+            "description" : "Response Status"
+          }
+        },
+        "definitions": {}
+      },
+      "title": "Group Message",
+      "description": "Sends A Group Message To Hall"
+    }
+  }
+}
