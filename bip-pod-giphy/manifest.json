@@ -41,27 +41,27 @@
         "properties": {
           "type" : {
             "type" : "string",
-            "description" : ""
+            "description" : "Type"
           },
           "id" : {
             "type" : "string",
-            "description" : ""
+            "description" : "ID"
           },
           "url" : {
             "type" : "string",
-            "description" : ""
+            "description" : "URL"
           },
           "embed_url" : {
             "type" : "string",
-            "description" : ""
+            "description" : "Embed URL"
           },
           "rating" : {
             "type" : "string",
-            "description" : ""
+            "description" : "Rating"
           },
           "import_datetime" : {
             "type" : "string",
-            "description" : ""
+            "description" : "Import Datetime"
           },
           "image_original_url" : {
             "type" : "string",
@@ -86,7 +86,7 @@
           "image_original_mp4" : {
             "type" : "string",
             "description" : "Original MP4"
-          },
+          }
         },
         "definitions": {}
       },

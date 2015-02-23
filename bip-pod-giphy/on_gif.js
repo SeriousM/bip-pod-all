@@ -44,11 +44,17 @@ OnGif.prototype.invoke = function(imports, channel, sysImports, contentParts, ne
   this.$resource._httpGet(
     'http://api.giphy.com/v1/gifs/search?q= ' + encodeURIComponent(imports.q) + ' &api_key=' + sysImports.auth.issuer_token.key,
     function(err, resp) {
+      var gif;
       if (err) {
         next(err);
       } else if (resp.data) {
         for (var i = 0; i < resp.data.length; i++) {
-          next(false, resp.data[i]);
+          gif = resp.data[i];
+          // flatten original
+          for (var k in gif.images.original) {
+            gif['original_' + k] = gif.images.original[k];
+          }
+          next(false, gif);
         }
       }
     }
