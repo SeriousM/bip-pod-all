@@ -18,12 +18,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-function Group_message(podConfig) {
+function GroupMessage(podConfig) {
 }
 
-Group_message.prototype = {};
+GroupMessage.prototype = {};
 
-Group_message.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
+GroupMessage.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
   this.$resource._httpPost(
       imports.url,
       imports,
@@ -34,4 +34,4 @@ Group_message.prototype.invoke = function(imports, channel, sysImports, contentP
 }
 
 // -----------------------------------------------------------------------------
-module.exports = Group_message;
+module.exports = GroupMessage;

@@ -56,7 +56,7 @@
         "definitions": {}
       },
       "title": "Group Message",
-      "description": "Sends A Group Message To Hall"
+      "description": "Send A Group Message"
     }
   }
 }
