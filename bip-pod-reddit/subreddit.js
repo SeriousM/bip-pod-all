@@ -1,6 +1,6 @@
 /**
  *
- * The Bipio Reddit Pod.  r 'subreddit' action definition
+ * The Bipio Reddit Pod.  /r/ 'subreddit' action definition
  * ----------------------------------------------------------------------
  *
  *
@@ -20,14 +20,30 @@
 
 var _ = require('lodash');
 
-function R(podConfig) {
+function Subreddit(podConfig) {
   this.podConfig = podConfig; 
 }
 
-R.prototype = {};
+Subreddit.prototype = {};
 
 
-R.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
+Subreddit.prototype.trigger = function(imports, channel, sysImports, contentParts, next) {
+	var $resource = this.$resource;
+
+	this.invoke(imports, channel, sysImports, contentParts, function(err, listing) {
+		if (err) {
+			next(err);
+		} else {
+			$resource.dupFilter(listing, 'id', channel, sysImports, function(err, listing) {
+				next(err, listing);
+			});
+		}	
+	});
+
+}
+
+
+Subreddit.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
 
 	var subr = {};
 	var url = 'http://www.reddit.com/r/' + imports.subreddit + '/.json';
@@ -48,6 +64,7 @@ R.prototype.invoke = function(imports, channel, sysImports, contentParts, next) 
 						subr.permalink = 'http://www.reddit.com' + sub.data.permalink;
 						subr.created = sub.data.created;
 						subr.ups = sub.data.ups;
+						subr.id = sub.data.id;
 						next(false, subr); 
 					});
 				}
@@ -57,4 +74,4 @@ R.prototype.invoke = function(imports, channel, sysImports, contentParts, next) 
 }
 
 // -----------------------------------------------------------------------------
-module.exports = R;
+module.exports = Subreddit;

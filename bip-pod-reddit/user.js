@@ -28,7 +28,7 @@ User.prototype = {};
 
 User.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
 
-	var subr = {};
+	var listing = {};
 	var url = 'http://www.reddit.com/u/' + imports.username + '/.json';
 
 	this.$resource._httpGet(
@@ -40,13 +40,14 @@ User.prototype.invoke = function(imports, channel, sysImports, contentParts, nex
 				if (resp.data.children == 'undefined') {
 					next(err);
 				} else {
-					_.forEach(resp.data.children, function(sub) {
-						subr.author = sub.data.author;
-						subr.body = sub.data.body;
-						subr.link_url = sub.data.link_url;
-						subr.created = sub.data.created;
-						subr.ups = sub.data.ups;
-						next(false, subr); 
+					_.forEach(resp.data.children, function(item) {
+						listing.author = item.data.author;
+						listing.body = item.data.body;
+						listing.link_url = item.data.link_url;
+						listing.created = item.data.created;
+						listing.ups = item.data.ups;
+						listing.id = item.data.id;
+						next(false, listing); 
 					});
 				}
 			}

@@ -8,24 +8,30 @@
     "strategy": "none"
   },
   "actions": {
-    "r": {
-      "title": "Get a Subreddit Listing",
-      "description": "Retrieves a Given Subreddit Listing",
-	  "trigger":"invoke",
+    "subreddit": {
+      "title": "On New Post",
+      "description": "When a New Post Appears in A Subreddit",
+	  "trigger":"poll",
+      "config": {
+        "properties": {
+          "subreddit": {
+            "type": "string",
+            "title": "Subreddit",
+            "description": "Subreddit"
+          }
+        }
+      },
       "imports": {
         "properties": {
           "subreddit": {
             "type": "string",
-            "title": "subreddit",
-            "description": "subreddit"
+            "title": "Subreddit",
+            "description": "Subreddit"
           }
         },
         "disposition": [
           "subreddit"
         ]
-      },
-      "config": {
-        "properties": {}
       },
       "exports": {
         "properties": {
@@ -58,8 +64,12 @@
             "type": "number",
             "title": "Ups",
             "description": "Number of Upvotes a Post has received."
+          },
+          "id": {
+            "type": "string",
+            "title": "subredditId",
+            "description": "Subreddit Listing Id"
           }
-
         }
       }
     },
@@ -68,7 +78,13 @@
       "description": "Get the Latest Activity of a Reddit User",
 	  "trigger":"invoke",
 	  "config": {
-		"properties": {}
+		"properties": {
+          "username": {
+            "type": "string",
+            "title": "Username",
+            "description": "Username"
+          }
+        }
 	  },
       "imports": {
         "properties": {
@@ -108,6 +124,11 @@
             "type": "number",
             "title": "ups",
             "description": "Number of Upvotes a post has received."
+          },
+          "id": {
+            "type": "string",
+            "title": "id",
+            "description": "Unique Reddit Id."
           }
         }
       }
