@@ -1,0 +1,28 @@
+{
+    "name": "bip-pod-giphy",
+    "version": "0.0.1",
+    "description": "giphy Pod for Bipio",
+    "keywords": [
+    "bip",
+    "bipio",
+    "pod",
+    "giphy"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/bipio-server/bip-pod-giphy.git"
+    },
+    "bugs": {
+        "url": "http://github.com/bipio-server/bip-pod-giphy/issues"
+    },
+    "licenses": [
+    {
+        "type": "GNU GPLv3",
+        "url": "http://www.gnu.org/copyleft/gpl.html"
+    }
+    ],
+    "main": ".",
+    "engines": {
+        "node": ">= 0.10.0"
+    }
+}
