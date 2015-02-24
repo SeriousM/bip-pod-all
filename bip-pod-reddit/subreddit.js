@@ -48,17 +48,13 @@ Subreddit.prototype.invoke = function(imports, channel, sysImports, contentParts
 	this.$resource._httpGet(
 		url,
 		function(err, resp, headers, statusCode) {
-			if (err) {
+			if (err || resp.data.children == 'undefined') {
 				next(err);
 			} else {
-				if (resp.data.children == 'undefined') {
-					next(err);
-				} else {
-					_.forEach(resp.data.children, function(sub) {
-						sub.data.permalink = 'http://www.reddit.com' + sub.data.permalink;
-						next(false, sub.data);
-					});
-				}
+				_.forEach(resp.data.children, function(sub) {
+					sub.data.permalink = 'http://www.reddit.com' + sub.data.permalink;
+					next(false, sub.data);
+				});
 			}
 		}
 	);
