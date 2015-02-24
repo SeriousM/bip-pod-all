@@ -1,8 +1,9 @@
 {
   "name": "reddit",
-  "url": "reddit.com",
+  "url": "http://reddit.com",
   "title": "Reddit",
-  "description": "The Front Page of the Internet",
+  "description": "Reddit Is The Front Page of the Internet",
+  "trackDuplicates" : true,
   "version":"v1",
   "auth": {
     "strategy": "none"
@@ -11,7 +12,7 @@
     "subreddit": {
       "title": "On New Post",
       "description": "When a New Post Appears in A Subreddit",
-	  "trigger":"poll",
+	    "trigger":"poll",
       "config": {
         "properties": {
           "subreddit": {
@@ -38,37 +39,37 @@
           "author": {
             "type": "string",
             "title": "author",
-            "description": "Author of Subreddit Post"
+            "description": "Author"
           },
           "title": {
             "type": "string",
             "title": "title",
-            "description": "Title of Subreddit Post"
+            "description": "Title"
           },
           "url": {
             "type": "string",
             "title": "url",
-            "description": "URL of Subreddit Post"
+            "description": "URL"
           },
-		  "permalink": {
+		      "permalink": {
             "type": "string",
             "title": "permalink",
-            "description": "Permalink of Subreddit Post"
+            "description": "Permalink"
           },
           "created": {
             "type": "number",
             "title": "created",
-            "description": "Timestamp of when Subreddit Post was created."
+            "description": "Created Timestamp"
           },
           "ups": {
             "type": "number",
             "title": "Ups",
-            "description": "Number of Upvotes a Post has received."
+            "description": "# Upvotes"
           },
           "id": {
             "type": "string",
             "title": "subredditId",
-            "description": "Subreddit Listing Id"
+            "description": "ID"
           }
         }
       }
@@ -103,17 +104,17 @@
           "author": {
             "type": "string",
             "title": "author",
-            "description": "Author of Reddit Post"
+            "description": "Author"
           },
           "body": {
             "type": "string",
             "title": "body",
-            "description": "Body of Reddit Post"
+            "description": "Body"
           },
           "link_url": {
             "type": "string",
             "title": "link_url",
-            "description": "Link to Reddit Post"
+            "description": "Link"
           },
           "created": {
             "type": "number",
@@ -123,12 +124,12 @@
           "ups": {
             "type": "number",
             "title": "ups",
-            "description": "Number of Upvotes a post has received."
+            "description": "# Upvotes"
           },
           "id": {
             "type": "string",
             "title": "id",
-            "description": "Unique Reddit Id."
+            "description": "ID"
           }
         }
       }
