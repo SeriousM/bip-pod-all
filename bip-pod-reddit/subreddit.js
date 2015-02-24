@@ -21,7 +21,7 @@
 var _ = require('lodash');
 
 function Subreddit(podConfig) {
-  this.podConfig = podConfig; 
+  this.podConfig = podConfig;
 }
 
 Subreddit.prototype = {};
@@ -37,19 +37,16 @@ Subreddit.prototype.trigger = function(imports, channel, sysImports, contentPart
 			$resource.dupFilter(listing, 'id', channel, sysImports, function(err, listing) {
 				next(err, listing);
 			});
-		}	
+		}
 	});
 
 }
 
 
 Subreddit.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
-
-	var subr = {};
 	var url = 'http://www.reddit.com/r/' + imports.subreddit + '/.json';
-
 	this.$resource._httpGet(
-		url, 
+		url,
 		function(err, resp, headers, statusCode) {
 			if (err) {
 				next(err);
@@ -58,14 +55,8 @@ Subreddit.prototype.invoke = function(imports, channel, sysImports, contentParts
 					next(err);
 				} else {
 					_.forEach(resp.data.children, function(sub) {
-						subr.author = sub.data.author;
-						subr.title = sub.data.title;
-						subr.url = sub.data.url;
-						subr.permalink = 'http://www.reddit.com' + sub.data.permalink;
-						subr.created = sub.data.created;
-						subr.ups = sub.data.ups;
-						subr.id = sub.data.id;
-						next(false, subr); 
+						sub.data.permalink = 'http://www.reddit.com' + sub.data.permalink;
+						next(false, sub.data);
 					});
 				}
 			}

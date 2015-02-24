@@ -20,19 +20,17 @@
             "title": "Subreddit",
             "description": "Subreddit"
           }
-        }
-      },
-      "imports": {
-        "properties": {
-          "subreddit": {
-            "type": "string",
-            "title": "Subreddit",
-            "description": "Subreddit"
-          }
         },
+        "required": [
+          "subreddit"
+        ],
         "disposition": [
           "subreddit"
         ]
+      },
+      "imports": {
+        "properties": {
+        }
       },
       "exports": {
         "properties": {
@@ -77,16 +75,22 @@
     "user": {
       "title": "Get User's Latest Activity",
       "description": "Get the Latest Activity of a Reddit User",
-	  "trigger":"invoke",
-	  "config": {
-		"properties": {
+  	  "trigger":"invoke",
+  	  "config": {
+    		"properties": {
           "username": {
             "type": "string",
             "title": "Username",
             "description": "Username"
           }
-        }
-	  },
+        },
+        "required": [
+          "username"
+        ],
+        "disposition": [
+          "username"
+        ]
+  	  },
       "imports": {
         "properties": {
           "username": {
