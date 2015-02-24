@@ -19,7 +19,6 @@
 var Pod = require('bip-pod'),
     Idonethis = new Pod();
 
-
 Idonethis.testCredentials = function(struct, next) {
 
 	var url = this.getApiUrl() + 'noop';
@@ -31,6 +30,8 @@ Idonethis.testCredentials = function(struct, next) {
 				next(err, 500);
 			} else if (statusCode == 200) {
 				next(false, 200);
+			} else if (statusCode !== 200) {
+				next( (resp && resp.detail) ? resp.detail : 'Invalid Token');
 			}
 		},
 		{
@@ -53,12 +54,9 @@ Idonethis.getApiUrl = function() {
 
 
 Idonethis.rpc = function(action, method, sysImports, options, channel, req, res) {
-
 	if (method == 'teams') {
-
 		var url = this.getApiUrl() + 'teams/';
-
-		this.$resource._httpGet(
+	 	this.$resource._httpGet(
 			url,
 			function(err, resp, headers, statusCode) {
 				res.contentType(pod.getRPCs('teams').contentType);
