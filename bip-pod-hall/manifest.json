@@ -11,15 +11,22 @@
     "group_message": {
       "trigger": "invoke",
       "config": {
-        "properties": {},
-        "definitions": {}
-      },
-      "imports": {
         "properties": {
           "url" : {
             "type" : "string",
             "description" : "Group Webhook URL"
-          },
+          }
+        },
+        "definitions": {},
+        "required" : [
+          "url"
+        ],
+        "disposition" : [
+          "url"
+        ]
+      },
+      "imports": {
+        "properties": {
           "title" : {
             "type" : "string",
             "description" : "Title"
@@ -35,12 +42,10 @@
         },
         "definitions": {},
         "required" : [
-          "url",
           "title",
           "message"
         ],
         "disposition" : [
-          "url",
           "title",
           "message",
           "picture"
