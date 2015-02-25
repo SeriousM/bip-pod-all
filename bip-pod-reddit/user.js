@@ -28,28 +28,17 @@ User.prototype = {};
 
 User.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
 
-	var listing = {};
 	var url = 'http://www.reddit.com/u/' + imports.username + '/.json';
 
 	this.$resource._httpGet(
 		url, 
 		function(err, resp, headers, statusCode) {
-			if (err) {
+			if (err || resp.data.children == 'undefined') {
 				next(err);
 			} else {
-				if (resp.data.children == 'undefined') {
-					next(err);
-				} else {
-					_.forEach(resp.data.children, function(item) {
-						listing.author = item.data.author;
-						listing.body = item.data.body;
-						listing.link_url = item.data.link_url;
-						listing.created = item.data.created;
-						listing.ups = item.data.ups;
-						listing.id = item.data.id;
-						next(false, listing); 
-					});
-				}
+				_.forEach(resp.data.children, function(item) {
+					next(false, item.data); 
+				});
 			}
 		}
 	);
