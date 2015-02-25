@@ -6,7 +6,10 @@
   "auth": {
     "strategy": "issuer_token",
     "properties": {
-      "username": ""
+      "username": {
+        "title": "API Key",
+        "type": "string"
+      }
     },
     "disposition": [
       "username"
@@ -23,7 +26,7 @@
 		  "q": {
 		    "type": "string",
             "description": "Weather in City & Country"
-		  } 
+		  }
 		}
 	  },
 	  "imports": {
@@ -48,28 +51,28 @@
         "properties": {
           "temp": {
             "type": "number",
-            "title": "Forecasted Temperature",
-            "description": "Forecasted Temperature"
+            "title": "Temperature",
+            "description": "Temperature"
           },
 		  "description": {
             "type": "string",
-            "title": "Description of the Weather",
-            "description": "Description of the Weather"
+            "title": "Weather",
+            "description": "Weather"
           },
           "wind_speed": {
             "type": "number",
             "title": "Wind Speed",
-            "description": "Forecasted Wind Speed"
+            "description": "Wind Speed"
           },
           "wind_direction": {
             "type": "number",
             "title": "Wind Direction",
-            "description": "Forecasted Wind Direction"
+            "description": "Wind Direction"
           },
           "pressure": {
             "type": "number",
             "title": "Barometric Pressure",
-            "description": "Forecasted Barometric Pressure"
+            "description": "Barometric Pressure"
           }
         }
       }
@@ -83,7 +86,7 @@
 		  "q": {
 		    "type": "string",
             "description": "Weather in City & Country"
-		  } 
+		  }
 		}
 	  },
 	  "imports": {
@@ -119,27 +122,27 @@
 		  "description": {
             "type": "string",
             "title": "Description of the Weather",
-            "description": "Description of the Weather"
+            "description": "Weather"
           },
           "wind_speed": {
             "type": "number",
             "title": "Wind Speed",
-            "description": "Forecasted Wind Speed"
+            "description": "Wind Speed"
           },
           "wind_direction": {
             "type": "number",
             "title": "Wind Direction",
-            "description": "Forecasted Wind Direction"
+            "description": "Wind Direction"
           },
           "pressure": {
             "type": "number",
             "title": "Barometric Pressure",
-            "description": "Forecasted Barometric Pressure"
+            "description": "Barometric Pressure"
           },
           "humidity": {
             "type": "number",
             "title": "Humidity",
-            "description": "Forecasted Humidity"
+            "description": "Humidity"
           }
         }
       }
@@ -153,7 +156,7 @@
 		  "q": {
 		    "type": "string",
             "description": "Weather in City & Country"
-		  } 
+		  }
 		}
 	  },
 	  "imports": {
@@ -172,23 +175,23 @@
         "properties": {
           "temp": {
             "type": "number",
-            "title": "Temperature Right Now",
-            "description": "Temperature Right Now"
+            "title": "Temperature",
+            "description": "Temperature"
           },
-		  "description": {
+    		  "description": {
             "type": "string",
-            "title": "Description of the Weather Right Now",
-            "description": "Description of the Weather Right Now"
+            "title": "Weather",
+            "description": "Weather"
           },
           "wind_speed": {
             "type": "number",
-            "title": "Wind Speed Right Now",
-            "description": "Wind Speed Right Now"
+            "title": "Wind Speed",
+            "description": "Wind Speed"
           },
           "wind_direction": {
             "type": "number",
-            "title": "Wind Direction Right Now",
-            "description": "Wind Direction Right Now"
+            "title": "Wind Direction",
+            "description": "Wind Direction"
           }
         }
       }
