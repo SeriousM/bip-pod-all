@@ -18,8 +18,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-var _ = require('lodash');
-
 function User(podConfig) {
   this.podConfig = podConfig; 
 }
@@ -33,10 +31,10 @@ User.prototype.invoke = function(imports, channel, sysImports, contentParts, nex
 	this.$resource._httpGet(
 		url, 
 		function(err, resp, headers, statusCode) {
-			if (err || resp.data.children == 'undefined') {
+			if (err || resp.data.children == undefined) {
 				next(err);
 			} else {
-				_.forEach(resp.data.children, function(item) {
+				resp.data.children.forEach(function(item) {
 					next(false, item.data); 
 				});
 			}

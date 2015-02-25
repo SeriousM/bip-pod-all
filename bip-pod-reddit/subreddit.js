@@ -18,7 +18,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-var _ = require('lodash');
 
 function Subreddit(podConfig) {
   this.podConfig = podConfig;
@@ -47,11 +46,11 @@ Subreddit.prototype.invoke = function(imports, channel, sysImports, contentParts
 	this.$resource._httpGet(
 		url,
 		function(err, resp, headers, statusCode) {
-			if (err || resp.data.children == 'undefined') {
+			if (err || resp.data.children == undefined) {
 				next(err);
 			} else {
 				if (resp.data) {
-					_.forEach(resp.data.children, function(sub) {
+					resp.data.children.forEach(function(sub) {
 						sub.data.permalink = 'http://www.reddit.com' + sub.data.permalink;
 						next(false, sub.data);
 					});
