@@ -39,7 +39,6 @@ Subreddit.prototype.trigger = function(imports, channel, sysImports, contentPart
 			});
 		}
 	});
-
 }
 
 
@@ -51,9 +50,7 @@ Subreddit.prototype.invoke = function(imports, channel, sysImports, contentParts
 			if (err) {
 				next(err);
 			} else {
-				if (resp.data.children == 'undefined') {
-					next(err);
-				} else {
+				if (resp.data) {
 					_.forEach(resp.data.children, function(sub) {
 						sub.data.permalink = 'http://www.reddit.com' + sub.data.permalink;
 						next(false, sub.data);
