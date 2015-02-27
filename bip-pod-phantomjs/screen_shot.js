@@ -27,54 +27,63 @@ function ScreenShot(podConfig) {}
 ScreenShot.prototype = {};
 
 ScreenShot.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
-  var pod = this.pod;
+  var pod = this.pod,
+    cdn = this.$resource.file,
+    dataDir = this.pod.getDataDir(channel, this.name),
+    md5Hash = crypto.createHash('md5').update(imports.url).digest('hex'),
+    options = {};
 
-  pod.getDataDir(channel, this.name, function(err, dataDir) {
-    var md5Hash = crypto.createHash('md5').update(imports.url).digest('hex'),
-      options = {};
+  if (channel.config && channel.config.viewport) {
+    var tokens = channel.config.viewport.split('x');
+    md5Hash += channel.config.viewport.replace(/[^x0-9]/g, '');
+    if (tokens.length === 2) {
+      options.screenSize = {
+        width : Number(tokens[0].trim()),
+        height : Number(tokens[1].trim()),
+      };
 
-    if (channel.config && channel.config.viewport) {
-      var tokens = channel.config.viewport.split('x');
-      md5Hash += channel.config.viewport.replace(/[^x0-9]/g, '');
-      if (tokens.length === 2) {
-        options.screenSize = {
-          width : Number(tokens[0].trim()),
-          height : Number(tokens[1].trim()),
-        };
-
-        options.shotSize = {
-          width : options.screenSize.width,
-          height : 'all'
-        }
+      options.shotSize = {
+        width : options.screenSize.width,
+        height : 'all'
       }
     }
+  }
 
-    var fileName = md5Hash + '.png',
-      outPath = path.normalize(dataDir + fileName);
+  var fileName = md5Hash + '.png',
+    outPath = path.normalize(dataDir + fileName);
 
-    webshot(imports.url, outPath, options, function(err) {
-      if (err) {
-        next(err);
-      } else {
-        $resource.file.find(outPath, function(err, file) {
-          if (err) {
-            next(err);
-          } else {
-
-            if (contentParts && contentParts._files) {
-              contentParts._files.push(file)
+  // touch cdn local file
+  cdn.save(outPath, new Buffer(''), function(err, struct) {
+    if (err) {
+      next(err);
+    } else {
+      webshot(imports.url, struct.localpath, options, function(err) {
+        if (err) {
+          next(err);
+        } else {
+          cdn.find(struct, function(err, file) {
+            if (err) {
+              next(err);
             } else {
-              contentParts = {
-                _files : [ file ]
-              }
-            }
 
-            next(err, {}, contentParts, file.size);
-          }
-        });
-      }
-    });
+              if (contentParts && contentParts._files) {
+                contentParts._files.push(file)
+              } else {
+                contentParts = {
+                  _files : [ file ]
+                }
+              }
+
+              next(err, {}, contentParts, file.size);
+            }
+          });
+        }
+      });
+    }
   });
+
+
+
 }
 
 // -----------------------------------------------------------------------------
