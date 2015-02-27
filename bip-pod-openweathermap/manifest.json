@@ -1,7 +1,7 @@
 {
   "name": "openweathermap",
   "title": "OpenWeatherMap",
-  "url": "www.openweathermap.org",
+  "url": "http://www.openweathermap.org",
   "description": "OpenWeatherMap service provides open weather data for more than 200,000 cities",
   "auth": {
     "strategy": "issuer_token",
