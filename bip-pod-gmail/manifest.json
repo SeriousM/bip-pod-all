@@ -1,7 +1,7 @@
 {
   "name": "gmail",
-  "title": "GMail",
-  "description": "GMail is a Google-owned, web-based email service provides details of storage, options and links to related services",
+  "title": "Gmail",
+  "description": "Gmail is a Google-owned, web-based email service provides details of storage, options and links to related services",
   "url": "https://gmail.google.com",
   "trackDuplicates" : true,
   "config": {
@@ -42,7 +42,7 @@
     "send": {
       "doc_ref" : "https://developers.google.com/gmail/api/v1/reference/",
       "title": "Send An Email",
-      "description": "Send An Email via your GMail account or alias",
+      "description": "Send An Email via your Gmail account or alias",
       "trigger": "invoke",
       "config": {
         "properties": {

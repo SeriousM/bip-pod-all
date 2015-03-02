@@ -1,7 +1,7 @@
-![GMail](gmail.png) bip-pod-gmail
+![Gmail](gmail.png) bip-pod-gmail
 =======
 
-[GMail](https://gmail.google.com) Pod for [BipIO](https://bip.io).
+[Gmail](https://gmail.google.com) Pod for [bip.io](https://bip.io).
 
 ## Installation
 
@@ -19,7 +19,7 @@ Manually restart the bipio server at your convenience.
 
 ## Documentation
 
-[Bipio Docs](https://bip.io/docs/pods/gmail)
+[bip.io Docs](https://bip.io/docs/pods/gmail)
 
 ## License
 
@@ -27,6 +27,6 @@ BipIO is free for non-commercial use - [GPLv3](http://www.gnu.org/copyleft/gpl.h
 
 Our open source license is the appropriate option if you are creating an open source application under a license compatible with the GNU GPL license v3.
 
-If you'd like to integrate BipIO with your proprietary system, GPLv3 is likely incompatible.  To secure a Commercial OEM License for Bipio, please [reach us](mailto:hello@bip.io)
+If you'd like to integrate BipIO with your proprietary system, GPLv3 is likely incompatible.  To secure a Commercial OEM License for bip.io, please [reach us](mailto:hello@bip.io)
 
-Copyright (c) 2010-2014 [WoT.IO Inc](http://wot.io)
+Copyright (c) 2010-2015 [WoT.IO Inc](http://wot.io)
