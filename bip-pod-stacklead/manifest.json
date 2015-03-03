@@ -27,12 +27,12 @@
         "properties": {
           "delivery_method": {
             "type": "string",
-            "description": "Delivery Method",
             "oneOf": [
               {
                 "$ref": "#/config/definitions/delivery_method"
               }
-            ]
+            ],
+            "title": "Delivery Method"
           }
         },
         "definitions": {
@@ -57,7 +57,7 @@
         "properties": {
           "message": {
             "type": "string",
-            "description": "Response Message"
+            "title": "Response Message"
           }
         }
       },
@@ -65,7 +65,7 @@
         "properties": {
           "email_address": {
             "type": "string",
-            "description": "Email Address"
+            "title": "Email Address"
           }
         },
         "required": [
