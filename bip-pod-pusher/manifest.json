@@ -37,7 +37,7 @@
         "properties": {
           "name": {
             "type": "string",
-            "description": "Default Event Name"
+            "title": "Default Event Name"
           }
         },
         "disposition": [
@@ -51,15 +51,15 @@
         "properties": {
           "name": {
             "type": "string",
-            "description": "Event Name"
+            "title": "Event Name"
           },
           "channels": {
             "type": "string",
-            "description": "List of Channels (',' delimiter)"
+            "title": "List of Channels (',' delimiter)"
           },
           "data": {
             "type": "string",
-            "description": "Event Data"
+            "title": "Event Data"
           }
         },
         "required": [
