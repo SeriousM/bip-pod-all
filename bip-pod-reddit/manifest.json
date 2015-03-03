@@ -3,8 +3,8 @@
   "url": "http://reddit.com",
   "title": "Reddit",
   "description": "Reddit Is The Front Page of the Internet",
-  "trackDuplicates" : true,
-  "version":"v1",
+  "trackDuplicates": true,
+  "version": "v1",
   "auth": {
     "strategy": "none"
   },
@@ -12,13 +12,12 @@
     "subreddit": {
       "title": "On New Post",
       "description": "When a New Post Appears in A Subreddit",
-	    "trigger":"poll",
+      "trigger": "poll",
       "config": {
         "properties": {
           "subreddit": {
             "type": "string",
-            "title": "Subreddit",
-            "description": "Subreddit"
+            "title": "Subreddit"
           }
         },
         "required": [
@@ -29,8 +28,7 @@
         ]
       },
       "imports": {
-        "properties": {
-        }
+        "properties": {}
       },
       "exports": {
         "properties": {
@@ -49,7 +47,7 @@
             "title": "url",
             "description": "URL"
           },
-		      "permalink": {
+          "permalink": {
             "type": "string",
             "title": "permalink",
             "description": "Permalink"
@@ -75,13 +73,12 @@
     "user": {
       "title": "Get User's Latest Activity",
       "description": "Get the Latest Activity of a Reddit User",
-  	  "trigger":"invoke",
-  	  "config": {
-    		"properties": {
+      "trigger": "invoke",
+      "config": {
+        "properties": {
           "username": {
             "type": "string",
-            "title": "Username",
-            "description": "Username"
+            "title": "Username"
           }
         },
         "required": [
@@ -90,13 +87,12 @@
         "disposition": [
           "username"
         ]
-  	  },
+      },
       "imports": {
         "properties": {
           "username": {
             "type": "string",
-            "title": "Username",
-            "description": "Username"
+            "title": "Username"
           }
         },
         "disposition": [

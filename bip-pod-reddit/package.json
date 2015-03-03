@@ -1,29 +1,29 @@
 {
-    "name": "bip-pod-reddit",
-    "version": "0.3.4",
-    "description": "reddit Pod for Bipio",
-    "keywords": [
+  "name": "bip-pod-reddit",
+  "version": "0.3.5",
+  "description": "reddit Pod for Bipio",
+  "keywords": [
     "bip",
     "bipio",
     "pod",
     "reddit"
-    ],
-    "repository": {
-        "type": "git",
-        "url": "git://github.com/bipio-server/bip-pod-reddit.git"
-    },
-    "bugs": {
-        "url": "http://github.com/bipio-server/bip-pod-reddit/issues"
-    },
-    "licenses": [
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bipio-server/bip-pod-reddit.git"
+  },
+  "bugs": {
+    "url": "http://github.com/bipio-server/bip-pod-reddit/issues"
+  },
+  "licenses": [
     {
-        "type": "GNU GPLv3",
-        "url": "http://www.gnu.org/copyleft/gpl.html"
+      "type": "GNU GPLv3",
+      "url": "http://www.gnu.org/copyleft/gpl.html"
     }
-    ],
-    "main": ".",
-    "dependencies": {},
-    "engines": {
-        "node": ">= 0.10.0"
-    }
+  ],
+  "main": ".",
+  "dependencies": {},
+  "engines": {
+    "node": ">= 0.10.0"
+  }
 }
