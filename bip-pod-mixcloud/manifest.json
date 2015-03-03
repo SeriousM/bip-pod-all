@@ -41,43 +41,43 @@
         "properties": {
           "name": {
             "type": "string",
-            "description": "Mix Name"
+            "title": "Mix Name"
           },
           "tags": {
             "type": "array",
-            "description": "Mix Tags"
+            "title": "Mix Tags"
           },
           "key": {
             "type": "string",
-            "description": "Key"
+            "title": "Key"
           },
           "url": {
             "type": "string",
-            "description": "Mix URL"
+            "title": "Mix URL"
           },
           "pictures_xl": {
             "type": "string",
-            "description": "Extra Large Picture URL"
+            "title": "Extra Large Picture URL"
           },
           "pictures_thumbnail": {
             "type": "string",
-            "description": "Thumbnail URL"
+            "title": "Thumbnail URL"
           },
           "user_username": {
             "type": "string",
-            "description": "Username"
+            "title": "Username"
           },
           "user_name": {
             "type": "string",
-            "description": "User Actual Name"
+            "title": "User Actual Name"
           },
           "user_url": {
             "type": "string",
-            "description": "User URL"
+            "title": "User URL"
           },
           "user_picture_xl": {
             "type": "string",
-            "description": "User XL Picture"
+            "title": "User XL Picture"
           }
         }
       },
@@ -109,23 +109,23 @@
         "properties": {
           "type": {
             "type": "string",
-            "description": "oEmbed Type"
+            "title": "oEmbed Type"
           },
           "provider_name": {
             "type": "string",
-            "description": "Provider Name (mixcloud)"
+            "title": "Provider Name (mixcloud)"
           },
           "provider_url": {
             "type": "string",
-            "description": "Provider URL"
+            "title": "Provider URL"
           },
           "title": {
             "type": "string",
-            "description": "Title"
+            "title": "Title"
           },
           "html": {
             "type": "string",
-            "description": "oEmbed HTML"
+            "title": "oEmbed HTML"
           }
         }
       },
@@ -133,27 +133,27 @@
         "properties": {
           "url": {
             "type": "string",
-            "description": "URL"
+            "title": "URL"
           },
           "maxwidth": {
             "type": "string",
-            "description": "Max Width"
+            "title": "Max Width"
           },
           "maxheight": {
             "type": "string",
-            "description": "Max Height"
+            "title": "Max Height"
           },
           "auto_play": {
             "type": "boolean",
-            "description": "Auto Play"
+            "title": "Auto Play"
           },
           "show_comments": {
             "type": "boolean",
-            "description": "Show Comments"
+            "title": "Show Comments"
           },
           "color": {
             "type": "string",
-            "description": "Primary Color Value (hex)"
+            "title": "Primary Color Value (hex)"
           }
         },
         "required": [
