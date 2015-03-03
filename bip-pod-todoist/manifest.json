@@ -27,7 +27,7 @@
         "properties": {
           "project_id": {
             "type": "string",
-            "description": "Project ID"
+            "title": "Project ID"
           }
         },
         "required": [
@@ -41,19 +41,19 @@
         "properties": {
           "id": {
             "type": "string",
-            "description": "Task ID"
+            "title": "Task ID"
           },
           "due_date": {
             "type": "string",
-            "description": "Due Date (literal)"
+            "title": "Due Date (literal)"
           },
           "date_string": {
             "type": "string",
-            "description": "Due Date (natural language)"
+            "title": "Due Date (natural language)"
           },
           "content": {
             "type": "string",
-            "description": "Task Content"
+            "title": "Task Content"
           }
         }
       },
@@ -61,15 +61,15 @@
         "properties": {
           "due_date": {
             "type": "string",
-            "description": "Due Date (literal)"
+            "title": "Due Date (literal)"
           },
           "date_string": {
             "type": "string",
-            "description": "Due Date (natural language)"
+            "title": "Due Date (natural language)"
           },
           "content": {
             "type": "string",
-            "description": "Task Content"
+            "title": "Task Content"
           }
         },
         "required": [
