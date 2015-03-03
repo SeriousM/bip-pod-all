@@ -18,18 +18,18 @@
   "rpcs": {},
   "actions": {
     "forecast": {
-	  "trigger": "invoke",
+      "trigger": "invoke",
       "title": "Forecast",
       "description": "Get the Forecast for a Given City",
-	  "config": {
-      	"properties": {
-		  "q": {
-		    "type": "string",
-            "description": "Weather in City & Country"
-		  }
-		}
-	  },
-	  "imports": {
+      "config": {
+        "properties": {
+          "q": {
+            "type": "string",
+            "title": "Weather in City & Country"
+          }
+        }
+      },
+      "imports": {
         "properties": {
           "q": {
             "type": "string",
@@ -44,52 +44,47 @@
         },
         "disposition": [
           "q",
-		  "cnt"
+          "cnt"
         ]
       },
       "exports": {
         "properties": {
           "temp": {
             "type": "number",
-            "title": "Temperature",
-            "description": "Temperature"
+            "title": "Temperature"
           },
-		  "description": {
+          "description": {
             "type": "string",
-            "title": "Weather",
-            "description": "Weather"
+            "title": "Weather"
           },
           "wind_speed": {
             "type": "number",
-            "title": "Wind Speed",
-            "description": "Wind Speed"
+            "title": "Wind Speed"
           },
           "wind_direction": {
             "type": "number",
-            "title": "Wind Direction",
-            "description": "Wind Direction"
+            "title": "Wind Direction"
           },
           "pressure": {
             "type": "number",
-            "title": "Barometric Pressure",
-            "description": "Barometric Pressure"
+            "title": "Barometric Pressure"
           }
         }
       }
     },
     "daily": {
-	  "trigger": "invoke",
+      "trigger": "invoke",
       "title": "Daily Forecast",
       "description": "Get the Daily Forecast for a Given City",
-	  "config": {
-      	"properties" : {
-		  "q": {
-		    "type": "string",
-            "description": "Weather in City & Country"
-		  }
-		}
-	  },
-	  "imports": {
+      "config": {
+        "properties": {
+          "q": {
+            "type": "string",
+            "title": "Weather in City & Country"
+          }
+        }
+      },
+      "imports": {
         "properties": {
           "q": {
             "type": "string",
@@ -111,55 +106,50 @@
         "properties": {
           "temp_day": {
             "type": "number",
-            "title": "Daytime Temperature",
-            "description": "Daytime Temperature"
+            "title": "Daytime Temperature"
           },
           "temp_night": {
             "type": "number",
             "title": "Night-time Temperature",
             "description": "Nighttime Temperature"
           },
-		  "description": {
+          "description": {
             "type": "string",
             "title": "Description of the Weather",
             "description": "Weather"
           },
           "wind_speed": {
             "type": "number",
-            "title": "Wind Speed",
-            "description": "Wind Speed"
+            "title": "Wind Speed"
           },
           "wind_direction": {
             "type": "number",
-            "title": "Wind Direction",
-            "description": "Wind Direction"
+            "title": "Wind Direction"
           },
           "pressure": {
             "type": "number",
-            "title": "Barometric Pressure",
-            "description": "Barometric Pressure"
+            "title": "Barometric Pressure"
           },
           "humidity": {
             "type": "number",
-            "title": "Humidity",
-            "description": "Humidity"
+            "title": "Humidity"
           }
         }
       }
     },
     "now": {
-	  "trigger": "invoke",
+      "trigger": "invoke",
       "title": "Weather Right Now",
       "description": "Get the Current Weather for a Given City",
-	  "config": {
-      	"properties" : {
-		  "q": {
-		    "type": "string",
-            "description": "Weather in City & Country"
-		  }
-		}
-	  },
-	  "imports": {
+      "config": {
+        "properties": {
+          "q": {
+            "type": "string",
+            "title": "Weather in City & Country"
+          }
+        }
+      },
+      "imports": {
         "properties": {
           "q": {
             "type": "string",
@@ -175,23 +165,19 @@
         "properties": {
           "temp": {
             "type": "number",
-            "title": "Temperature",
-            "description": "Temperature"
+            "title": "Temperature"
           },
-    		  "description": {
+          "description": {
             "type": "string",
-            "title": "Weather",
-            "description": "Weather"
+            "title": "Weather"
           },
           "wind_speed": {
             "type": "number",
-            "title": "Wind Speed",
-            "description": "Wind Speed"
+            "title": "Wind Speed"
           },
           "wind_direction": {
             "type": "number",
-            "title": "Wind Direction",
-            "description": "Wind Direction"
+            "title": "Wind Direction"
           }
         }
       }
