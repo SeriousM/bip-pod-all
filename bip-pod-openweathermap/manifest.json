@@ -25,7 +25,7 @@
         "properties": {
           "q": {
             "type": "string",
-            "title": "Weather in City & Country"
+            "title": "City & Country"
           }
         }
       },
@@ -33,13 +33,11 @@
         "properties": {
           "q": {
             "type": "string",
-            "title": "query",
-            "description": "Weather in City & Country"
+            "title": "City & Country"
           },
           "cnt": {
             "type": "number",
-            "title": "count",
-            "description": "Number of Days"
+            "title": "Number of Days"
           }
         },
         "disposition": [
@@ -80,7 +78,7 @@
         "properties": {
           "q": {
             "type": "string",
-            "title": "Weather in City & Country"
+            "title": "City & Country"
           }
         }
       },
@@ -88,13 +86,11 @@
         "properties": {
           "q": {
             "type": "string",
-            "title": "query",
-            "description": "Weather in City & Country"
+            "title": "City & Country"
           },
           "cnt": {
             "type": "number",
-            "title": "count",
-            "description": "Number of Days"
+            "title": "Number of Days"
           }
         },
         "disposition": [
@@ -110,13 +106,11 @@
           },
           "temp_night": {
             "type": "number",
-            "title": "Night-time Temperature",
-            "description": "Nighttime Temperature"
+            "title": "Night-time Temperature"
           },
           "description": {
             "type": "string",
-            "title": "Description of the Weather",
-            "description": "Weather"
+            "title": "Description of the Weather"
           },
           "wind_speed": {
             "type": "number",
