@@ -22,7 +22,7 @@
         "properties": {
           "time_formatted": {
             "type": "string",
-            "description": "Formatted Time"
+            "title": "Formatted Time"
           }
         }
       },
@@ -30,11 +30,11 @@
         "properties": {
           "time": {
             "type": "string",
-            "description": "Time to Format"
+            "title": "Time to Format"
           },
           "format": {
             "type": "string",
-            "description": "Format to apply"
+            "title": "Format to apply"
           }
         },
         "required": [
@@ -54,7 +54,7 @@
         "properties": {
           "time_zone": {
             "type": "string",
-            "description": "Timezone to Convert To"
+            "title": "Timezone to Convert To"
           }
         },
         "disposition": [
@@ -65,7 +65,7 @@
         "properties": {
           "time_converted": {
             "type": "string",
-            "description": "Convertted Time"
+            "title": "Convertted Time"
           }
         }
       },
@@ -73,15 +73,15 @@
         "properties": {
           "time": {
             "type": "string",
-            "description": "Time to Convert"
+            "title": "Time to Convert"
           },
           "time_zone": {
             "type": "string",
-            "description": "Timezone to Convert To"
+            "title": "Timezone to Convert To"
           },
           "format": {
             "type": "string",
-            "description": "Format to Apply"
+            "title": "Format to Apply"
           }
         },
         "required": [
@@ -106,7 +106,7 @@
         "properties": {
           "date_calculated": {
             "type": "string",
-            "description": "Calculated Time"
+            "title": "Calculated Time"
           }
         }
       },
@@ -114,13 +114,13 @@
         "properties": {
           "expression": {
             "type": "string",
-            "description": "Date Expression",
-            "example": "in 3 days"
+            "example": "in 3 days",
+            "title": "Date Expression"
           },
           "format": {
             "type": "string",
-            "description": "Date Format",
-            "example": "DD/MM/YYYY"
+            "example": "DD/MM/YYYY",
+            "title": "Date Format"
           }
         },
         "required": [
