@@ -38,23 +38,23 @@
         "properties": {
           "new_hash": {
             "type": "string",
-            "description": "1 if new hash"
+            "title": "1 if new hash"
           },
           "url": {
             "type": "string",
-            "description": "Bitly URL"
+            "title": "Bitly URL"
           },
           "hash": {
             "type": "string",
-            "description": "Account URL Hash"
+            "title": "Account URL Hash"
           },
           "global_hash": {
             "type": "string",
-            "description": "Global Hash"
+            "title": "Global Hash"
           },
           "long_url": {
             "type": "string",
-            "description": "Source URL"
+            "title": "Source URL"
           }
         }
       },
@@ -62,7 +62,7 @@
         "properties": {
           "url": {
             "type": "string",
-            "description": "URL"
+            "title": "URL"
           }
         },
         "required": [
@@ -86,27 +86,27 @@
         "properties": {
           "new_hash": {
             "type": "string",
-            "description": "1 if new hash"
+            "title": "1 if new hash"
           },
           "url": {
             "type": "string",
-            "description": "Bitly URL"
+            "title": "Bitly URL"
           },
           "hash": {
             "type": "string",
-            "description": "Account URL Hash"
+            "title": "Account URL Hash"
           },
           "global_hash": {
             "type": "string",
-            "description": "Global Hash"
+            "title": "Global Hash"
           },
           "short_url": {
             "type": "string",
-            "description": "Bitly URL"
+            "title": "Bitly URL"
           },
           "long_url": {
             "type": "string",
-            "description": "Original URL"
+            "title": "Original URL"
           }
         }
       },
@@ -114,11 +114,11 @@
         "properties": {
           "short_url": {
             "type": "string",
-            "description": "Bitly Short URL"
+            "title": "Bitly Short URL"
           },
           "hash": {
             "type": "string",
-            "description": "Bitly URL Hash (optional)"
+            "title": "Bitly URL Hash (optional)"
           }
         },
         "required": [
