@@ -38,15 +38,15 @@
         "properties": {
           "id": {
             "type": "string",
-            "description": "Image ID"
+            "title": "Image ID"
           },
           "deletehash": {
             "type": "string",
-            "description": "Unique Deletion Hash"
+            "title": "Unique Deletion Hash"
           },
           "link": {
             "type": "string",
-            "description": "Link to Image"
+            "title": "Link to Image"
           }
         }
       },
@@ -54,35 +54,35 @@
         "properties": {
           "id": {
             "type": "string",
-            "description": "ID"
+            "title": "ID"
           },
           "title": {
             "type": "string",
-            "description": "Title"
+            "title": "Title"
           },
           "description": {
             "type": "string",
-            "description": "Description"
+            "title": "Description"
           },
           "link": {
             "type": "string",
-            "description": "Link"
+            "title": "Link"
           },
           "width": {
             "type": "number",
-            "description": "Width"
+            "title": "Width"
           },
           "height": {
             "type": "number",
-            "description": "Height"
+            "title": "Height"
           },
           "type": {
             "type": "string",
-            "description": "Type"
+            "title": "Type"
           },
           "size": {
             "type": "number",
-            "description": "Size"
+            "title": "Size"
           }
         },
         "disposition": [
