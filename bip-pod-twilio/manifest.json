@@ -32,16 +32,16 @@
         "properties": {
           "body": {
             "type": "string",
-            "description": "SMS Body"
+            "title": "SMS Body"
           },
           "to_phone": {
             "type": "string",
-            "description": "Recipient Phone #"
+            "title": "Recipient Phone #"
           },
           "from_phone": {
             "type": "string",
-            "description": "From Phone Number",
-            "required": true
+            "required": true,
+            "title": "From Phone Number"
           }
         },
         "disposition": [
@@ -54,19 +54,19 @@
         "properties": {
           "status": {
             "type": "string",
-            "description": "SMS Status"
+            "title": "SMS Status"
           },
           "sid": {
             "type": "string",
-            "description": "SMS Message Id"
+            "title": "SMS Message Id"
           },
           "body": {
             "type": "string",
-            "description": "Response Body"
+            "title": "Response Body"
           },
           "uri": {
             "type": "string",
-            "description": "Twilio SMS URI"
+            "title": "Twilio SMS URI"
           }
         }
       },
@@ -74,11 +74,11 @@
         "properties": {
           "body": {
             "type": "string",
-            "description": "SMS Body"
+            "title": "SMS Body"
           },
           "to_phone": {
             "type": "string",
-            "description": "Recipient Phone #"
+            "title": "Recipient Phone #"
           }
         },
         "disposition": [
