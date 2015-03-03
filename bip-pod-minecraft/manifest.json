@@ -1,31 +1,29 @@
 {
   "name": "minecraft",
   "title": "Minecraft",
-  "url" : "https://minecraft.net",
-  "description" : "Minecraft is a game about breaking and placing blocks",
+  "url": "https://minecraft.net",
+  "description": "Minecraft is a game about breaking and placing blocks",
   "auth": {
     "strategy": "none"
   },
   "actions": {
     "server_status": {
-      "trigger" : "invoke",
+      "trigger": "invoke",
       "title": "Get Server Status",
       "description": "Retrieves Stats For a MineCraft Server",
       "config": {
         "properties": {
           "host": {
             "type": "string",
-            "title": "Host",
-            "description": "Host"
+            "title": "Host"
           },
           "port": {
             "type": "string",
             "title": "Port",
-            "description": "Port",
-            "default" : 25565
+            "default": 25565
           }
         },
-        "definitions" : {},
+        "definitions": {},
         "disposition": [
           "host",
           "port"
@@ -35,57 +33,53 @@
         "properties": {
           "host": {
             "type": "string",
-            "title": "Host",
-            "description": "Host"
+            "title": "Host"
           },
           "port": {
             "type": "string",
             "title": "Port",
-            "description": "Port",
-            "default" : 25565
+            "default": 25565
           }
         },
-        "definitions" : {},
+        "definitions": {},
         "disposition": [
           "host",
           "port"
         ]
       },
-      "exports" : {
-        "properties" : {
-          "description" : {
-            "type" : "string",
-            "description" : "Server Description"
+      "exports": {
+        "properties": {
+          "description": {
+            "type": "string",
+            "title": "Server Description"
           },
-          "players_max" : {
-            "type" : "object",
-            "description" : "Maximum Players"
+          "players_max": {
+            "type": "object",
+            "title": "Maximum Players"
           },
-          "players_online" : {
-            "type" : "object",
-            "description" : "Online Players"
+          "players_online": {
+            "type": "object",
+            "title": "Online Players"
           },
-          "version_name" : {
-            "type" : "string",
-            "description" : "Version Name"
+          "version_name": {
+            "type": "string",
+            "title": "Version Name"
           },
-          "version_protocol" : {
-            "type" : "string",
-            "description" : "Version Protocol"
+          "version_protocol": {
+            "type": "string",
+            "title": "Version Protocol"
           },
-          "latency" : {
-            "type" : "number",
-            "description" : "Latency MS"
+          "latency": {
+            "type": "number",
+            "title": "Latency MS"
           },
-          "favicon" : {
-            "type" : "string",
-            "description" : "Favicon (Base64)"
+          "favicon": {
+            "type": "string",
+            "title": "Favicon (Base64)"
           }
         },
-        "definitions" : {}
+        "definitions": {}
       }
     }
   }
 }
-
-

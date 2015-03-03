@@ -33,6 +33,7 @@ ServerStatus.prototype.invoke = function(imports, channel, sysImports, contentPa
 
   // @todo host blacklist
   this.hostCheck(imports.host, channel, function(err, blacklisted) {
+console.log(err);
     if (err) {
       next(err);
     } else if (blacklisted) {
