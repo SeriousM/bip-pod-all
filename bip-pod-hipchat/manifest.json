@@ -32,7 +32,6 @@
         "properties": {
           "room_id": {
             "type": "string",
-            "description": "Room ID",
             "oneOf": [
               {
                 "$ref": "/rpcs/room_list/{id}"
@@ -40,11 +39,12 @@
             ],
             "label": {
               "$ref": "/rpcs/my_pages/{name}"
-            }
+            },
+            "title": "Room ID"
           },
           "room_token": {
             "type": "string",
-            "description": "Room Notification Token"
+            "title": "Room Notification Token"
           }
         },
         "required": [
@@ -63,7 +63,7 @@
         "properties": {
           "message": {
             "type": "string",
-            "description": "Message"
+            "title": "Message"
           }
         },
         "required": [
@@ -82,7 +82,6 @@
         "properties": {
           "room_id": {
             "type": "string",
-            "description": "Room ID",
             "oneOf": [
               {
                 "$ref": "/rpcs/room_list/{id}"
@@ -90,7 +89,8 @@
             ],
             "label": {
               "$ref": "/rpcs/my_pages/{name}"
-            }
+            },
+            "title": "Room ID"
           }
         },
         "disposition": [
@@ -101,11 +101,11 @@
         "properties": {
           "hook_id": {
             "type": "integer",
-            "description": "Webhook ID"
+            "title": "Webhook ID"
           },
           "link_self": {
             "type": "string",
-            "description": "HipChat webhook URL"
+            "title": "HipChat webhook URL"
           }
         }
       },
@@ -113,24 +113,24 @@
         "properties": {
           "url": {
             "type": "string",
-            "description": "Hook URL"
+            "title": "Hook URL"
           },
           "pattern": {
             "type": "string",
-            "description": "pattern"
+            "title": "pattern"
           },
           "event": {
             "type": "string",
-            "description": "Event Type",
             "oneOf": [
               {
                 "$ref": "#/imports/definitions/room_events"
               }
-            ]
+            ],
+            "title": "Event Type"
           },
           "name": {
             "type": "string",
-            "description": "Hook Name"
+            "title": "Hook Name"
           }
         },
         "definitions": {
@@ -169,7 +169,6 @@
         "properties": {
           "room_id": {
             "type": "string",
-            "description": "Room ID",
             "oneOf": [
               {
                 "$ref": "/rpcs/room_list/{id}"
@@ -177,7 +176,8 @@
             ],
             "label": {
               "$ref": "/rpcs/my_pages/{name}"
-            }
+            },
+            "title": "Room ID"
           }
         },
         "required": [
@@ -194,7 +194,7 @@
         "properties": {
           "topic": {
             "type": "string",
-            "description": "New topic"
+            "title": "New topic"
           }
         },
         "required": [
