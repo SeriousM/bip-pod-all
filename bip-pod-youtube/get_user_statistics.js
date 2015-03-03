@@ -30,8 +30,6 @@ Get_statistics.prototype.invoke = function(imports, channel, sysImports, content
   $resource._httpGet(url, function(err, body) {
     next(err, body.entry['yt$statistics'] );
   });
-
-  next( false, {} );
 }
 
 // -----------------------------------------------------------------------------
