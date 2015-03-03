@@ -34,11 +34,11 @@
         "properties": {
           "target_language": {
             "type": "string",
-            "description": "Target Language"
+            "title": "Target Language"
           },
           "instructions": {
             "type": "string",
-            "description": "Client instructions for the translator"
+            "title": "Client instructions for the translator"
           }
         },
         "disposition": [
@@ -50,35 +50,35 @@
         "properties": {
           "status": {
             "type": "string",
-            "description": "Status"
+            "title": "Status"
           },
           "formality": {
             "type": "string",
-            "description": "The tone that should be used in the translation"
+            "title": "The tone that should be used in the translation"
           },
           "text": {
             "type": "string",
-            "description": "Original Text"
+            "title": "Original Text"
           },
           "target_language": {
             "type": "string",
-            "description": "Target Language"
+            "title": "Target Language"
           },
           "source_language": {
             "type": "string",
-            "description": "Source Language"
+            "title": "Source Language"
           },
           "uid": {
             "type": "string",
-            "description": "Transaction ID"
+            "title": "Transaction ID"
           },
           "price_euro": {
             "type": "string",
-            "description": "Price &euro;EUR"
+            "title": "Price &euro;EUR"
           },
           "topics": {
             "type": "string",
-            "description": "List of Topics for the text"
+            "title": "List of Topics for the text"
           }
         }
       },
@@ -86,19 +86,19 @@
         "properties": {
           "text": {
             "type": "string",
-            "description": "Text to Translate"
+            "title": "Text to Translate"
           },
           "source_language": {
             "type": "string",
-            "description": "Source Language"
+            "title": "Source Language"
           },
           "formality": {
             "type": "string",
-            "description": "The tone that should be used in the translation"
+            "title": "The tone that should be used in the translation"
           },
           "topics": {
             "type": "string",
-            "description": "List of Topics for the text"
+            "title": "List of Topics for the text"
           }
         },
         "disposition": [
@@ -126,27 +126,27 @@
         "properties": {
           "status": {
             "type": "string",
-            "description": "Status"
+            "title": "Status"
           },
           "text": {
             "type": "string",
-            "description": "Translated Text"
+            "title": "Translated Text"
           },
           "target_language": {
             "type": "string",
-            "description": "Target Language"
+            "title": "Target Language"
           },
           "source_language": {
             "type": "string",
-            "description": "Source Language"
+            "title": "Source Language"
           },
           "uid": {
             "type": "string",
-            "description": "Transaction ID"
+            "title": "Transaction ID"
           },
           "price_euro": {
             "type": "string",
-            "description": "Price &euro;EUR"
+            "title": "Price &euro;EUR"
           }
         }
       },
