@@ -18,7 +18,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-var _ = require('lodash');
 
 function Subreddit(podConfig) {
   this.podConfig = podConfig;
