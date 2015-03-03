@@ -36,35 +36,35 @@
         "properties": {
           "_value": {
             "type": "string",
-            "description": "Alert Value"
+            "title": "Alert Value"
           },
           "_alert_url": {
             "type": "string",
-            "description": "Alert URL"
+            "title": "Alert URL"
           },
           "_metric_name": {
             "type": "string",
-            "description": "Metric Name"
+            "title": "Metric Name"
           },
           "_metric_notes": {
             "type": "string",
-            "description": "Metric Notes"
+            "title": "Metric Notes"
           },
           "_metric_link": {
             "type": "string",
-            "description": "Metric Link"
+            "title": "Metric Link"
           },
           "_severity": {
             "type": "string",
-            "description": "Severity"
+            "title": "Severity"
           },
           "_cid": {
             "type": "string",
-            "description": "Alert ID"
+            "title": "Alert ID"
           },
           "_occurred_on": {
             "type": "string",
-            "description": "UTC Unix Time"
+            "title": "UTC Unix Time"
           }
         }
       },
@@ -81,7 +81,7 @@
         "properties": {
           "trap_url": {
             "type": "string",
-            "description": "Trap URL"
+            "title": "Trap URL"
           }
         },
         "required": [
@@ -98,7 +98,7 @@
         "properties": {
           "data": {
             "type": "mixed",
-            "description": "JSON Data Object"
+            "title": "JSON Data Object"
           }
         },
         "required": [
