@@ -5,32 +5,32 @@
   "description": "Stack Overflow is a question and answer site for professional and enthusiast programmers. It's 100% free, no registration required",
   "API": "2.2",
   "trackDuplicates": true,
-  "auth" : {
-    "strategy" : "none"
+  "auth": {
+    "strategy": "none"
   },
   "actions": {
     "search": {
-      "trigger" : "poll",
+      "trigger": "poll",
       "title": "Search",
       "description": "Triggers When A Search Term Matches",
       "ref": "https://api.stackexchange.com/docs/search",
-      "imports" : {
-        "properties" : {
-          "query"   : {
-            "type" : "string",
-            "description" : "Query String"
+      "imports": {
+        "properties": {
+          "query": {
+            "type": "string",
+            "title": "Query String"
           }
         },
-        "definitions" : {}
+        "definitions": {}
       },
-      "config" : {
-        "properties" : {
-          "query"   : {
-            "type" : "string",
-            "description" : "Query String"
+      "config": {
+        "properties": {
+          "query": {
+            "type": "string",
+            "title": "Query String"
           }
         },
-        "definitions" : {}
+        "definitions": {}
       },
       "exports": {
         "properties": {
@@ -39,8 +39,7 @@
             "items": {
               "type": "string"
             },
-            "title": "Tags",
-            "description": "Tags"
+            "title": "Tags"
           },
           "owner": {
             "type": "object",
@@ -74,56 +73,46 @@
                 "description": "Link"
               }
             },
-            "title": "Owner",
-            "description": "Owner"
+            "title": "Owner"
           },
           "is_answered": {
             "type": "boolean",
-            "title": "Is Answered",
-            "description": "Is Answered"
+            "title": "Is Answered"
           },
           "view_count": {
             "type": "number",
-            "title": "View Count",
-            "description": "View Count"
+            "title": "View Count"
           },
           "answer_count": {
             "type": "number",
-            "title": "Answer Count",
-            "description": "Answer Count"
+            "title": "Answer Count"
           },
           "score": {
             "type": "number",
-            "title": "Score",
-            "description": "Score"
+            "title": "Score"
           },
           "last_activity_date": {
             "type": "number",
-            "title": "Last Activity Date",
-            "description": "Last Activity Date"
+            "title": "Last Activity Date"
           },
           "creation_date": {
             "type": "number",
-            "title": "Creation Date",
-            "description": "Creation Date"
+            "title": "Creation Date"
           },
           "question_id": {
             "type": "number",
-            "title": "Question ID",
-            "description": "Question ID"
+            "title": "Question ID"
           },
           "link": {
             "type": "string",
-            "title": "Link",
-            "description": "Link"
+            "title": "Link"
           },
           "title": {
             "type": "string",
-            "title": "Title",
-            "description": "Title"
+            "title": "Title"
           }
         },
-        "definitions" : {},
+        "definitions": {},
         "disposition": [
           "tags",
           "owner",
