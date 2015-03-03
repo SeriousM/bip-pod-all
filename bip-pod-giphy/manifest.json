@@ -5,7 +5,8 @@
     "properties": {
       "key": {
         "title": "API Key",
-        "type": "string"
+        "type": "string",
+        "description" : "Use 'dc6zaTOxFJmzC' Unless You Have Your Own"
       }
     },
     "disposition": [
@@ -24,8 +25,7 @@
         "properties": {
           "q": {
             "type": "string",
-            "title": "Query",
-            "description": "Query"
+            "title": "Query"
           }
         },
         "definitions": {},
@@ -39,53 +39,53 @@
       },
       "exports": {
         "properties": {
-          "type" : {
-            "type" : "string",
-            "description" : "Type"
+          "type": {
+            "type": "string",
+            "title": "Type"
           },
-          "id" : {
-            "type" : "string",
-            "description" : "ID"
+          "id": {
+            "type": "string",
+            "title": "ID"
           },
-          "url" : {
-            "type" : "string",
-            "description" : "URL"
+          "url": {
+            "type": "string",
+            "title": "URL"
           },
-          "embed_url" : {
-            "type" : "string",
-            "description" : "Embed URL"
+          "embed_url": {
+            "type": "string",
+            "title": "Embed URL"
           },
-          "rating" : {
-            "type" : "string",
-            "description" : "Rating"
+          "rating": {
+            "type": "string",
+            "title": "Rating"
           },
-          "import_datetime" : {
-            "type" : "string",
-            "description" : "Import Datetime"
+          "import_datetime": {
+            "type": "string",
+            "title": "Import Datetime"
           },
-          "image_original_url" : {
-            "type" : "string",
-            "description" : "Original URL"
+          "image_original_url": {
+            "type": "string",
+            "title": "Original URL"
           },
-          "image_original_width" : {
-            "type" : "string",
-            "description" : "Original Width (px)"
+          "image_original_width": {
+            "type": "string",
+            "title": "Original Width (px)"
           },
-          "image_original_height" : {
-            "type" : "string",
-            "description" : "Original Height (px)"
+          "image_original_height": {
+            "type": "string",
+            "title": "Original Height (px)"
           },
-          "image_original_size" : {
-            "type" : "string",
-            "description" : "Original Size (bytes)"
+          "image_original_size": {
+            "type": "string",
+            "title": "Original Size (bytes)"
           },
-          "image_original_frames" : {
-            "type" : "string",
-            "description" : "Original # Frames"
+          "image_original_frames": {
+            "type": "string",
+            "title": "Original # Frames"
           },
-          "image_original_mp4" : {
-            "type" : "string",
-            "description" : "Original MP4"
+          "image_original_mp4": {
+            "type": "string",
+            "title": "Original MP4"
           }
         },
         "definitions": {}
