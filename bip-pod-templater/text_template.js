@@ -27,6 +27,7 @@ TextTemplate.prototype = {};
  * Invokes (runs) the action.
  */
 TextTemplate.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
+console.log(imports);
   next(false, {
     message : imports.message || channel.config.message
   });

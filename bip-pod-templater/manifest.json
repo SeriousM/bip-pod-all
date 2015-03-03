@@ -18,8 +18,8 @@
         "properties": {
           "message": {
             "type": "text",
-            "description": "Default Message",
-            "required": false
+            "required": false,
+            "title": "Default Message"
           }
         },
         "disposition": [
@@ -30,7 +30,7 @@
         "properties": {
           "message": {
             "type": "text",
-            "description": "Templated Message"
+            "title": "Templated Message"
           }
         }
       },
@@ -38,7 +38,7 @@
         "properties": {
           "message": {
             "type": "text",
-            "description": "Templated Message"
+            "title": "Templated Message"
           }
         },
         "disposition": [
@@ -54,8 +54,8 @@
         "properties": {
           "message": {
             "type": "text",
-            "description": "Default Message",
-            "required": false
+            "required": false,
+            "title": "Default Message"
           }
         },
         "disposition": [
@@ -66,7 +66,7 @@
         "properties": {
           "message": {
             "type": "string",
-            "description": "Templated Markdown Message"
+            "title": "Templated Markdown Message"
           }
         }
       },
@@ -74,7 +74,7 @@
         "properties": {
           "message": {
             "type": "string",
-            "description": "Templated Markdown Message"
+            "title": "Templated Markdown Message"
           }
         },
         "disposition": [
@@ -94,7 +94,7 @@
         "properties": {
           "markdown": {
             "type": "string",
-            "description": "Markdown"
+            "title": "Markdown"
           }
         }
       },
@@ -102,7 +102,7 @@
         "properties": {
           "html": {
             "type": "string",
-            "description": "HTML"
+            "title": "HTML"
           }
         },
         "required": [
