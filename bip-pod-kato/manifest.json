@@ -18,24 +18,24 @@
         "properties": {
           "from": {
             "type": "string",
-            "description": "From Label"
+            "title": "From Label"
           },
           "renderer": {
             "type": "string",
-            "description": "Text Renderer",
             "oneOf": [
               {
                 "$ref": "#/config/definitions/renderer"
               }
-            ]
+            ],
+            "title": "Text Renderer"
           },
           "room_id": {
             "type": "string",
-            "description": "Room ID"
+            "title": "Room ID"
           },
           "color": {
             "type": "string",
-            "description": "Default HTML Color"
+            "title": "Default HTML Color"
           }
         },
         "definitions": {
@@ -71,11 +71,11 @@
         "properties": {
           "color": {
             "type": "string",
-            "description": "HTML Color"
+            "title": "HTML Color"
           },
           "text": {
             "type": "string",
-            "description": "Message Text"
+            "title": "Message Text"
           }
         },
         "required": [
