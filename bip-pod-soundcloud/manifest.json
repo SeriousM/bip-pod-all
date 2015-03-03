@@ -36,8 +36,8 @@
         "properties": {
           "download": {
             "type": "boolean",
-            "description": "Download Files",
-            "default": false
+            "default": false,
+            "title": "Download Files"
           }
         },
         "disposition": [
@@ -48,35 +48,35 @@
         "properties": {
           "title": {
             "type": "string",
-            "description": "Track Title"
+            "title": "Track Title"
           },
           "artist": {
             "type": "string",
-            "description": "Artist Name"
+            "title": "Artist Name"
           },
           "genre": {
             "type": "string",
-            "description": "Music Genre"
+            "title": "Music Genre"
           },
           "download_url": {
             "type": "string",
-            "description": "Direct Download URL"
+            "title": "Direct Download URL"
           },
           "label_name": {
             "type": "string",
-            "description": "Releasing Label Name"
+            "title": "Releasing Label Name"
           },
           "permalink_url": {
             "type": "string",
-            "description": "Track Permalink URL"
+            "title": "Track Permalink URL"
           },
           "artwork_url": {
             "type": "string",
-            "description": "Track Artwork URL (JPEG)"
+            "title": "Track Artwork URL (JPEG)"
           },
           "description": {
             "type": "string",
-            "description": "Track Description"
+            "title": "Track Description"
           }
         }
       },
@@ -95,23 +95,23 @@
         "properties": {
           "type": {
             "type": "string",
-            "description": "oEmbed Type"
+            "title": "oEmbed Type"
           },
           "provider_name": {
             "type": "string",
-            "description": "Provider Name (soundcloud)"
+            "title": "Provider Name (soundcloud)"
           },
           "provider_url": {
             "type": "string",
-            "description": "Provider URL"
+            "title": "Provider URL"
           },
           "title": {
             "type": "string",
-            "description": "Title"
+            "title": "Title"
           },
           "html": {
             "type": "string",
-            "description": "oEmbed HTML"
+            "title": "oEmbed HTML"
           }
         }
       },
@@ -119,27 +119,27 @@
         "properties": {
           "url": {
             "type": "string",
-            "description": "URL"
+            "title": "URL"
           },
           "maxwidth": {
             "type": "string",
-            "description": "Max Width"
+            "title": "Max Width"
           },
           "maxheight": {
             "type": "string",
-            "description": "Max Height"
+            "title": "Max Height"
           },
           "auto_play": {
             "type": "boolean",
-            "description": "Auto Play"
+            "title": "Auto Play"
           },
           "show_comments": {
             "type": "boolean",
-            "description": "Show Comments"
+            "title": "Show Comments"
           },
           "color": {
             "type": "string",
-            "description": "Primary Color Value (hex)"
+            "title": "Primary Color Value (hex)"
           }
         },
         "required": [
