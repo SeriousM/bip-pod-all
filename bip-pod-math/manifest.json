@@ -22,7 +22,7 @@
         "properties": {
           "result": {
             "type": "string",
-            "description": "Expression Result"
+            "title": "Expression Result"
           }
         }
       },
@@ -30,7 +30,7 @@
         "properties": {
           "expression": {
             "type": "string",
-            "description": "Math Expression"
+            "title": "Math Expression"
           }
         },
         "required": [
