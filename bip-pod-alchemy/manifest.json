@@ -20,7 +20,7 @@
   "rpcs": {},
   "actions": {
     "scrape_nlp_url": {
-      "title": "Scrape a URL using natural language",
+      "title": "Scrape A URL With Natural Language",
       "description": "Extract structured data from a URL using natural language.",
       "doc_ref": "http://www.alchemyapi.com/api/content-scraping",
       "trigger": "invoke",
@@ -32,11 +32,11 @@
         "properties": {
           "resultText": {
             "type": "string",
-            "description": "Result Text"
+            "title": "Result Text"
           },
           "resultURL": {
             "type": "string",
-            "description": "Result URL"
+            "title": "Result URL"
           }
         }
       },
@@ -44,11 +44,11 @@
         "properties": {
           "url": {
             "type": "string",
-            "description": "Source URL"
+            "title": "Source URL"
           },
           "query": {
             "type": "string",
-            "description": "NLP Query"
+            "title": "NLP Query"
           }
         },
         "required": [
@@ -62,7 +62,7 @@
       }
     },
     "scrape_nlp_html": {
-      "title": "Scrape HTML using natural language",
+      "title": "Scrape HTML With Natural Language",
       "description": "Extract structured data for uploaded HTML using natural language",
       "doc_ref": "http://www.alchemyapi.com/api/content-scraping",
       "trigger": "invoke",
@@ -74,11 +74,11 @@
         "properties": {
           "resultText": {
             "type": "string",
-            "description": "Result Text"
+            "title": "Result Text"
           },
           "resultURL": {
             "type": "string",
-            "description": "Result URL"
+            "title": "Result URL"
           }
         }
       },
@@ -86,11 +86,11 @@
         "properties": {
           "html": {
             "type": "string",
-            "description": "Source HTML"
+            "title": "Source HTML"
           },
           "query": {
             "type": "string",
-            "description": "NLP Query"
+            "title": "NLP Query"
           }
         },
         "required": [
@@ -116,19 +116,19 @@
         "properties": {
           "language": {
             "type": "string",
-            "description": "Detected Language"
+            "title": "Detected Language"
           },
           "label_highest": {
             "type": "string",
-            "description": "Category Label"
+            "title": "Category Label"
           },
           "label_highest_score": {
             "type": "string",
-            "description": "Highest Category Score"
+            "title": "Highest Category Score"
           },
           "taxonomy": {
             "type": "array",
-            "description": "List of all taxonomies"
+            "title": "List of all taxonomies"
           }
         }
       },
@@ -136,11 +136,11 @@
         "properties": {
           "url": {
             "type": "string",
-            "description": "Source URL"
+            "title": "Source URL"
           },
           "query": {
             "type": "string",
-            "description": "NLP Query (optional)"
+            "title": "NLP Query (optional)"
           }
         },
         "disposition": [
@@ -162,19 +162,19 @@
         "properties": {
           "language": {
             "type": "string",
-            "description": "Detected Language"
+            "title": "Detected Language"
           },
           "label_highest": {
             "type": "string",
-            "description": "Category Label"
+            "title": "Category Label"
           },
           "label_highest_score": {
             "type": "string",
-            "description": "Highest Category Score"
+            "title": "Highest Category Score"
           },
           "taxonomy": {
             "type": "array",
-            "description": "List of all taxonomies"
+            "title": "List of all taxonomies"
           }
         }
       },
@@ -182,7 +182,7 @@
         "properties": {
           "text": {
             "type": "string",
-            "description": "Source Text"
+            "title": "Source Text"
           }
         },
         "disposition": [
@@ -203,19 +203,19 @@
         "properties": {
           "language": {
             "type": "string",
-            "description": "Detected Language"
+            "title": "Detected Language"
           },
           "label_highest": {
             "type": "string",
-            "description": "Category Label"
+            "title": "Category Label"
           },
           "label_highest_score": {
             "type": "string",
-            "description": "Highest Category Score"
+            "title": "Highest Category Score"
           },
           "taxonomy": {
             "type": "array",
-            "description": "List of all taxonomies"
+            "title": "List of all taxonomies"
           }
         }
       },
@@ -223,15 +223,15 @@
         "properties": {
           "html": {
             "type": "string",
-            "description": "Source HTML"
+            "title": "Source HTML"
           },
           "url": {
             "type": "string",
-            "description": "Source URL of HTML"
+            "title": "Source URL of HTML"
           },
           "query": {
             "type": "string",
-            "description": "NLP Query (optional)"
+            "title": "NLP Query (optional)"
           }
         },
         "disposition": [
@@ -254,19 +254,19 @@
         "properties": {
           "tag_highest_text": {
             "type": "string",
-            "description": "Highest Ranked Tag Text"
+            "title": "Highest Ranked Tag Text"
           },
           "tag_highest_score": {
             "type": "string",
-            "description": "Highest Ranked Tag"
+            "title": "Highest Ranked Tag"
           },
           "tags": {
             "type": "array",
-            "description": "List of all tags"
+            "title": "List of all tags"
           },
           "tags_csv": {
             "type": "string",
-            "description": "Comma Separated List of all tags"
+            "title": "Comma Separated List of all tags"
           }
         }
       },
@@ -274,7 +274,7 @@
         "properties": {
           "url": {
             "type": "string",
-            "description": "Source URL"
+            "title": "Source URL"
           }
         },
         "required": [
@@ -298,19 +298,19 @@
         "properties": {
           "language": {
             "type": "string",
-            "description": "Text Language"
+            "title": "Text Language"
           },
           "type": {
             "type": "string",
-            "description": "Sentiment Type"
+            "title": "Sentiment Type"
           },
           "score": {
             "type": "string",
-            "description": "Type Score"
+            "title": "Type Score"
           },
           "mixed": {
             "type": "string",
-            "description": "Is Mixed"
+            "title": "Is Mixed"
           }
         }
       },
@@ -318,12 +318,12 @@
         "properties": {
           "text": {
             "type": "string",
-            "description": "Source Text"
+            "title": "Source Text"
           },
           "url": {
             "type": "string",
-            "description": "Source URL (optional)",
-            "required": false
+            "required": false,
+            "title": "Source URL (optional)"
           }
         },
         "required": [
@@ -348,19 +348,19 @@
         "properties": {
           "language": {
             "type": "string",
-            "description": "Text Language"
+            "title": "Text Language"
           },
           "type": {
             "type": "string",
-            "description": "Sentiment Type"
+            "title": "Sentiment Type"
           },
           "score": {
             "type": "string",
-            "description": "Type Score"
+            "title": "Type Score"
           },
           "mixed": {
             "type": "string",
-            "description": "Is Mixed"
+            "title": "Is Mixed"
           }
         }
       },
@@ -368,16 +368,16 @@
         "properties": {
           "text": {
             "type": "string",
-            "description": "Source Text"
+            "title": "Source Text"
           },
           "target": {
             "type": "string",
-            "description": "Target Phrase"
+            "title": "Target Phrase"
           },
           "url": {
             "type": "string",
-            "description": "Source URL (optional)",
-            "required": false
+            "required": false,
+            "title": "Source URL (optional)"
           }
         },
         "required": [
@@ -404,19 +404,19 @@
         "properties": {
           "language": {
             "type": "string",
-            "description": "Text Language"
+            "title": "Text Language"
           },
           "type": {
             "type": "string",
-            "description": "Sentiment Type"
+            "title": "Sentiment Type"
           },
           "score": {
             "type": "string",
-            "description": "Type Score"
+            "title": "Type Score"
           },
           "mixed": {
             "type": "string",
-            "description": "Is Mixed"
+            "title": "Is Mixed"
           }
         }
       },
@@ -424,7 +424,7 @@
         "properties": {
           "url": {
             "type": "string",
-            "description": "Source URL"
+            "title": "Source URL"
           }
         },
         "required": [
@@ -448,19 +448,19 @@
         "properties": {
           "language": {
             "type": "string",
-            "description": "Text Language"
+            "title": "Text Language"
           },
           "type": {
             "type": "string",
-            "description": "Sentiment Type"
+            "title": "Sentiment Type"
           },
           "score": {
             "type": "string",
-            "description": "Type Score"
+            "title": "Type Score"
           },
           "mixed": {
             "type": "string",
-            "description": "Is Mixed"
+            "title": "Is Mixed"
           }
         }
       },
@@ -468,11 +468,11 @@
         "properties": {
           "target": {
             "type": "string",
-            "description": "Target Phrase"
+            "title": "Target Phrase"
           },
           "url": {
             "type": "string",
-            "description": "Source URL"
+            "title": "Source URL"
           }
         },
         "required": [
