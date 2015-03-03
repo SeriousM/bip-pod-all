@@ -22,7 +22,6 @@
         "properties": {
           "time": {
             "type": "object",
-            "description": "Time Formats",
             "properties": {
               "updated": {
                 "type": "string",
@@ -36,15 +35,15 @@
                 "type": "string",
                 "description": "Last Updated (UK)"
               }
-            }
+            },
+            "title": "Time Formats"
           },
           "disclaimer": {
             "type": "string",
-            "description": "Disclaimer"
+            "title": "Disclaimer"
           },
           "bpi": {
             "type": "object",
-            "description": "BPI Object",
             "properties": {
               "USD": {
                 "properties": {
@@ -118,19 +117,20 @@
                   }
                 }
               }
-            }
+            },
+            "title": "BPI Object"
           },
           "usd_float": {
             "type": "number",
-            "description": "USD Rate"
+            "title": "USD Rate"
           },
           "gbp_float": {
             "type": "number",
-            "description": "GBP Rate"
+            "title": "GBP Rate"
           },
           "eur_float": {
             "type": "number",
-            "description": "EUR Rate"
+            "title": "EUR Rate"
           }
         }
       },
