@@ -13,7 +13,7 @@
     "current_price": {
       "title": "Price Change",
       "description": "Triggers whenever the BitCoin Price is Updated",
-      "doc_ref" : "http://www.coindesk.com/api",
+      "doc_ref": "http://www.coindesk.com/api",
       "trigger": "realtime",
       "config": {
         "properties": {}
@@ -138,5 +138,10 @@
         "properties": {}
       }
     }
-  }
+  },
+  "tags": [
+    "finance",
+    "bitcoin",
+    "syndication"
+  ]
 }
