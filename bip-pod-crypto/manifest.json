@@ -23,7 +23,7 @@
         "properties": {
           "hash": {
             "type": "string",
-            "description": "MD5 String"
+            "title": "MD5 String"
           }
         }
       },
@@ -31,7 +31,7 @@
         "properties": {
           "funnel": {
             "type": "string",
-            "description": "Content Funnel"
+            "title": "Content Funnel"
           }
         },
         "required": [
