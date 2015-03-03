@@ -38,12 +38,12 @@
         "properties": {
           "domain": {
             "type": "string",
-            "description": "Domain",
             "oneOf": [
               {
                 "$ref": "/rpcs/get_domains#items/{name}"
               }
-            ]
+            ],
+            "title": "Domain"
           }
         },
         "required": [
@@ -57,11 +57,11 @@
         "properties": {
           "code": {
             "type": "number",
-            "description": "bounce code"
+            "title": "bounce code"
           },
           "address": {
             "type": "string",
-            "description": "bounced email address"
+            "title": "bounced email address"
           }
         }
       },
@@ -78,12 +78,12 @@
         "properties": {
           "domain": {
             "type": "string",
-            "description": "Domain",
             "oneOf": [
               {
                 "$ref": "/rpcs/get_domains#items/{name}"
               }
-            ]
+            ],
+            "title": "Domain"
           }
         },
         "required": [
@@ -97,11 +97,11 @@
         "properties": {
           "created_at": {
             "type": "string",
-            "description": "time complaint was registered"
+            "title": "time complaint was registered"
           },
           "address": {
             "type": "string",
-            "description": "complaint email address"
+            "title": "complaint email address"
           }
         }
       },
@@ -118,16 +118,16 @@
         "properties": {
           "from": {
             "type": "string",
-            "description": "Default From Address"
+            "title": "Default From Address"
           },
           "domain": {
             "type": "string",
-            "description": "Domain",
             "oneOf": [
               {
                 "$ref": "/rpcs/get_domains#items/{name}"
               }
-            ]
+            ],
+            "title": "Domain"
           }
         },
         "disposition": [
@@ -139,11 +139,11 @@
         "properties": {
           "message": {
             "type": "string",
-            "description": "Queue Message"
+            "title": "Queue Message"
           },
           "id": {
             "type": "string",
-            "description": "Message ID"
+            "title": "Message ID"
           }
         }
       },
@@ -151,31 +151,31 @@
         "properties": {
           "from": {
             "type": "string",
-            "description": "From Address"
+            "title": "From Address"
           },
           "to": {
             "type": "string",
-            "description": "To Address"
+            "title": "To Address"
           },
           "cc": {
             "type": "string",
-            "description": "Cc"
+            "title": "Cc"
           },
           "bcc": {
             "type": "string",
-            "description": "Bcc"
+            "title": "Bcc"
           },
           "subject": {
             "type": "string",
-            "description": "Subject"
+            "title": "Subject"
           },
           "text": {
             "type": "string",
-            "description": "Text"
+            "title": "Text"
           },
           "html": {
             "type": "string",
-            "description": "HTML"
+            "title": "HTML"
           }
         },
         "required": [
@@ -202,12 +202,12 @@
         "properties": {
           "domain": {
             "type": "string",
-            "description": "Domain",
             "oneOf": [
               {
                 "$ref": "/rpcs/get_domains#items/{name}"
               }
-            ]
+            ],
+            "title": "Domain"
           }
         },
         "required": [
@@ -221,11 +221,11 @@
         "properties": {
           "tag": {
             "type": "string",
-            "description": "tag for unsubscribe list"
+            "title": "tag for unsubscribe list"
           },
           "address": {
             "type": "string",
-            "description": "unsubscribed email address"
+            "title": "unsubscribed email address"
           }
         }
       },
@@ -245,27 +245,27 @@
         "properties": {
           "is_valid": {
             "type": "boolean",
-            "description": "Email Is Valid"
+            "title": "Email Is Valid"
           },
           "address": {
             "type": "string",
-            "description": "Email Address"
+            "title": "Email Address"
           },
           "did_you_mean": {
             "type": "string",
-            "description": "Did You Mean Address"
+            "title": "Did You Mean Address"
           },
           "domain": {
             "type": "string",
-            "description": "Address Domain"
+            "title": "Address Domain"
           },
           "local_part": {
             "type": "string",
-            "description": "Address Local Part"
+            "title": "Address Local Part"
           },
           "parts": {
             "type": "object",
-            "description": "Address Parts"
+            "title": "Address Parts"
           }
         }
       },
@@ -273,7 +273,7 @@
         "properties": {
           "address": {
             "type": "string",
-            "description": "Email Address"
+            "title": "Email Address"
           }
         },
         "required": [
