@@ -3,7 +3,7 @@
   "title": "Gmail",
   "description": "Gmail is a Google-owned, web-based email service provides details of storage, options and links to related services",
   "url": "https://gmail.google.com",
-  "trackDuplicates" : true,
+  "trackDuplicates": true,
   "config": {
     "oauth": {
       "clientID": "",
@@ -36,81 +36,89 @@
       "access_token"
     ]
   },
-  "rpcs": {
-  },
+  "rpcs": {},
   "actions": {
     "send": {
-      "doc_ref" : "https://developers.google.com/gmail/api/v1/reference/",
+      "doc_ref": "https://developers.google.com/gmail/api/v1/reference/",
       "title": "Send An Email",
       "description": "Send An Email via your Gmail account or alias",
       "trigger": "invoke",
       "config": {
         "properties": {
-          "user_id" : {
-            "type" : "string",
-            "description" : "From Email",
-            "default" : "me"
+          "user_id": {
+            "type": "string",
+            "default": "me",
+            "title": "From Email"
           }
         },
         "definitions": {},
-        "disposition" : [ "user_id" ]
+        "disposition": [
+          "user_id"
+        ]
       },
       "exports": {
         "properties": {
           "id": {
             "type": "string",
-            "description": "Message ID"
+            "title": "Message ID"
           },
           "threadId": {
             "type": "string",
-            "description": "Thread ID"
+            "title": "Thread ID"
           },
           "labelIds": {
             "type": "array",
-            "description": "Labels"
+            "title": "Labels"
           }
         }
       },
       "imports": {
         "properties": {
-          "user_id" : {
-            "type" : "string",
-            "description" : "From Email"
+          "user_id": {
+            "type": "string",
+            "title": "From Email"
           },
-          "rcpt_to" : {
-            "type" : "string",
-            "description" : "To Email"
+          "rcpt_to": {
+            "type": "string",
+            "title": "To Email"
           },
-          "reply_to" : {
-            "type" : "string",
-            "description" : "Reply To Email"
+          "reply_to": {
+            "type": "string",
+            "title": "Reply To Email"
           },
-          "subject" : {
-            "type" : "string",
-            "description" : "Subject"
+          "subject": {
+            "type": "string",
+            "title": "Subject"
           },
-          "body" : {
-            "type" : "string",
-            "description" : "Body"
+          "body": {
+            "type": "string",
+            "title": "Body"
           }
         },
-        "required" : [ "rcpt_to" ],
-        "disposition" : [ "rcpt_to", "reply_to", "user_id", "subject", "body" ]
+        "required": [
+          "rcpt_to"
+        ],
+        "disposition": [
+          "rcpt_to",
+          "reply_to",
+          "user_id",
+          "subject",
+          "body"
+        ]
       }
     },
     "on_new_message": {
-      "doc_ref" : "https://developers.google.com/gmail/api/v1/reference/",
+      "doc_ref": "https://developers.google.com/gmail/api/v1/reference/",
       "title": "On A New Email",
       "description": "When A New Email Appears In Your Inbox",
       "trigger": "poll",
       "config": {
-        "properties": {
-        },
+        "properties": {},
         "DISABLED_properties": {
-          "get_attachments" : {
-            "type" : "boolean",
-            "description" : "Include Attachments",
-            "default" : false
+          "get_attachments": {
+            "type": "boolean",
+            "description": "Include Attachments",
+            "default": false
           }
         },
         "definitions": {}
@@ -124,82 +132,81 @@
         },
         "properties": {
           "text_body": {
-            "description": "Text Body",
-            "type": "string"
+            "type": "string",
+            "title": "Text Body"
           },
           "mimeType": {
-            "description": "Mime Type",
-            "type": "string"
+            "type": "string",
+            "title": "Mime Type"
           },
           "Delivered-To": {
-            "description": "Delivered To",
-            "type": "string"
+            "type": "string",
+            "title": "Delivered To"
           },
           "Received": {
-            "description": "Received",
-            "type": "string"
+            "type": "string",
+            "title": "Received"
           },
           "X-Received": {
-            "description": "X Received",
-            "type": "string"
+            "type": "string",
+            "title": "X Received"
           },
           "Return-Path": {
-            "description": "Return Path",
-            "type": "string"
+            "type": "string",
+            "title": "Return Path"
           },
           "Received-SPF": {
-            "description": "Received SPF",
-            "type": "string"
+            "type": "string",
+            "title": "Received SPF"
           },
           "Authentication-Results": {
-            "description": "Authentication Results",
-            "type": "string"
+            "type": "string",
+            "title": "Authentication Results"
           },
           "X-Google-DKIM-Signature": {
-            "description": "X Google DKIM Signature",
-            "type": "string"
+            "type": "string",
+            "title": "X Google DKIM Signature"
           },
           "X-Gm-Message-State": {
-            "description": "X Gm Message State",
-            "type": "string"
+            "type": "string",
+            "title": "X Gm Message State"
           },
           "MIME-Version": {
-            "description": "MIME Version",
-            "type": "string"
+            "type": "string",
+            "title": "MIME Version"
           },
           "Reply-To": {
-            "description": "Reply To",
-            "type": "string"
+            "type": "string",
+            "title": "Reply To"
           },
           "Date": {
-            "description": "Date",
-            "type": "string"
+            "type": "string",
+            "title": "Date"
           },
           "Message-ID": {
-            "description": "Message ID",
-            "type": "string"
+            "type": "string",
+            "title": "Message ID"
           },
           "Subject": {
-            "description": "Subject",
-            "type": "string"
+            "type": "string",
+            "title": "Subject"
           },
           "From": {
-            "description": "From",
-            "type": "string"
+            "type": "string",
+            "title": "From"
           },
           "To": {
-            "description": "To",
-            "type": "string"
+            "type": "string",
+            "title": "To"
           },
           "Content-Type": {
-            "description": "Content Type",
-            "type": "string"
+            "type": "string",
+            "title": "Content Type"
           }
         }
       },
       "imports": {
-        "properties": {
-        }
+        "properties": {}
       }
     }
   }
