@@ -1,6 +1,6 @@
 {
   "name": "bip-pod-pushbullet",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "author": "Michael Pearson",
   "description": "PushBullet Pod for Bipio",
   "keywords": [

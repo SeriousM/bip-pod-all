@@ -32,7 +32,6 @@
         "properties": {
           "device_iden": {
             "type": "string",
-            "description": "Device ID",
             "oneOf": [
               {
                 "$ref": "/rpcs/my_devices#devices/{iden}"
@@ -40,7 +39,8 @@
             ],
             "label": {
               "$ref": "/rpcs/my_devices#devices/{nickname}"
-            }
+            },
+            "title": "Device ID"
           }
         },
         "disposition": [
@@ -51,55 +51,55 @@
         "properties": {
           "iden": {
             "type": "string",
-            "description": "ID"
+            "title": "ID"
           },
           "type": {
             "type": "string",
-            "description": "Push Type"
+            "title": "Push Type"
           },
           "title": {
             "type": "string",
-            "description": "Title"
+            "title": "Title"
           },
           "body": {
             "type": "string",
-            "description": "Body"
+            "title": "Body"
           },
           "created": {
             "type": "string",
-            "description": "Created Time"
+            "title": "Created Time"
           },
           "active": {
             "type": "boolean",
-            "description": "Active"
+            "title": "Active"
           },
           "dismissed": {
             "type": "boolean",
-            "description": "Dismissed"
+            "title": "Dismissed"
           },
           "owner_iden": {
             "type": "string",
-            "description": "Owner ID"
+            "title": "Owner ID"
           },
           "target_device_iden": {
             "type": "string",
-            "description": "Target Device ID"
+            "title": "Target Device ID"
           },
           "sender_iden": {
             "type": "string",
-            "description": "Sender ID"
+            "title": "Sender ID"
           },
           "sender_email_normalized": {
             "type": "string",
-            "description": "Sender Email"
+            "title": "Sender Email"
           },
           "receiver_iden": {
             "type": "string",
-            "description": "Receiver ID"
+            "title": "Receiver ID"
           },
           "receiver_email_normalized": {
             "type": "string",
-            "description": "Receiver Email"
+            "title": "Receiver Email"
           }
         }
       },
@@ -107,11 +107,11 @@
         "properties": {
           "title": {
             "type": "string",
-            "description": "Title"
+            "title": "Title"
           },
           "body": {
             "type": "string",
-            "description": "Body"
+            "title": "Body"
           }
         },
         "required": [
