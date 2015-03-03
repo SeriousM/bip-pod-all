@@ -22,35 +22,35 @@
         "properties": {
           "pid": {
             "type": "string",
-            "description": "PID"
+            "title": "PID"
           },
           "category": {
             "type": "string",
-            "description": "Category"
+            "title": "Category"
           },
           "date": {
             "type": "string",
-            "description": "Date"
+            "title": "Date"
           },
           "hasPic": {
             "type": "boolean",
-            "description": "Has Picture"
+            "title": "Has Picture"
           },
           "location": {
             "type": "string",
-            "description": "Location"
+            "title": "Location"
           },
           "price": {
             "type": "string",
-            "description": "Price"
+            "title": "Price"
           },
           "title": {
             "type": "string",
-            "description": "Title"
+            "title": "Title"
           },
           "url": {
             "type": "string",
-            "description": "Listing URL"
+            "title": "Listing URL"
           }
         }
       },
@@ -58,19 +58,19 @@
         "properties": {
           "city": {
             "type": "string",
-            "description": "City"
+            "title": "City"
           },
           "query": {
             "type": "string",
-            "description": "Search"
+            "title": "Search"
           },
           "min": {
             "type": "string",
-            "description": "Min Ask Price"
+            "title": "Min Ask Price"
           },
           "max": {
             "type": "string",
-            "description": "Max Ask Price"
+            "title": "Max Ask Price"
           }
         },
         "required": [
@@ -97,35 +97,35 @@
         "properties": {
           "pid": {
             "type": "string",
-            "description": "PID"
+            "title": "PID"
           },
           "category": {
             "type": "string",
-            "description": "Category"
+            "title": "Category"
           },
           "date": {
             "type": "string",
-            "description": "Date"
+            "title": "Date"
           },
           "hasPic": {
             "type": "boolean",
-            "description": "Has Picture"
+            "title": "Has Picture"
           },
           "location": {
             "type": "string",
-            "description": "Location"
+            "title": "Location"
           },
           "price": {
             "type": "string",
-            "description": "Price"
+            "title": "Price"
           },
           "title": {
             "type": "string",
-            "description": "Title"
+            "title": "Title"
           },
           "url": {
             "type": "string",
-            "description": "Listing URL"
+            "title": "Listing URL"
           }
         }
       },
@@ -133,19 +133,19 @@
         "properties": {
           "city": {
             "type": "string",
-            "description": "City"
+            "title": "City"
           },
           "query": {
             "type": "string",
-            "description": "Search"
+            "title": "Search"
           },
           "min": {
             "type": "string",
-            "description": "Min Ask Price"
+            "title": "Min Ask Price"
           },
           "max": {
             "type": "string",
-            "description": "Max Ask Price"
+            "title": "Max Ask Price"
           }
         },
         "required": [
