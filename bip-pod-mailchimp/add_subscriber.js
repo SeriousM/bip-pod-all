@@ -52,6 +52,7 @@ AddSubscriber.prototype.teardown = function(channel, accountInfo, next) {
 
 AddSubscriber.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
   var log = this.$resource.log,
+    rl = this.$resource.rateLimit,
     args;
 
   if (channel.config.list_id && imports.email) {

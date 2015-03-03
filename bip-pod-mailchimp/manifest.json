@@ -52,7 +52,6 @@
         "properties": {
           "list_id": {
             "type": "string",
-            "description": "List ID",
             "oneOf": [
               {
                 "$ref": "/rpcs/get_lists#data/{id}"
@@ -60,7 +59,8 @@
             ],
             "label": {
               "$ref": "/rpcs/get_lists#data/{name}"
-            }
+            },
+            "title": "List ID"
           }
         },
         "required": [
@@ -74,15 +74,15 @@
         "properties": {
           "email": {
             "type": "string",
-            "description": "Added Email Address"
+            "title": "Added Email Address"
           },
           "euid": {
             "type": "string",
-            "description": "Email Unique ID"
+            "title": "Email Unique ID"
           },
           "leid": {
             "type": "string",
-            "description": "List Email Unique ID"
+            "title": "List Email Unique ID"
           }
         }
       },
@@ -90,7 +90,7 @@
         "properties": {
           "email": {
             "type": "string",
-            "description": "Email Address"
+            "title": "Email Address"
           }
         },
         "required": [
@@ -116,7 +116,6 @@
         "properties": {
           "list_id": {
             "type": "string",
-            "description": "List ID",
             "oneOf": [
               {
                 "$ref": "/rpcs/get_lists#data/{id}"
@@ -124,7 +123,8 @@
             ],
             "label": {
               "$ref": "/rpcs/get_lists#data/{name}"
-            }
+            },
+            "title": "List ID"
           }
         },
         "required": [
@@ -138,7 +138,7 @@
         "properties": {
           "id": {
             "type": "string",
-            "description": "Segment ID"
+            "title": "Segment ID"
           }
         }
       },
@@ -146,7 +146,7 @@
         "properties": {
           "segment_name": {
             "type": "string",
-            "description": "Segment Name"
+            "title": "Segment Name"
           }
         },
         "required": [
