@@ -19,12 +19,12 @@
         "properties": {
           "aggregate": {
             "type": "string",
-            "description": "Error Aggregation Type",
             "oneOf": [
               {
                 "$ref": "#/config/definitions/aggregate_type"
               }
-            ]
+            ],
+            "title": "Error Aggregation Type"
           }
         },
         "definitions": {
@@ -51,19 +51,19 @@
         "properties": {
           "message": {
             "type": "string",
-            "description": "Validation Message"
+            "title": "Validation Message"
           },
           "lastLine": {
             "type": "integer",
-            "description": "Last Line"
+            "title": "Last Line"
           },
           "lastColumn": {
             "type": "integer",
-            "description": "Column Number"
+            "title": "Column Number"
           },
           "explanation": {
             "type": "string",
-            "description": "Explanation"
+            "title": "Explanation"
           }
         }
       },
@@ -71,7 +71,7 @@
         "properties": {
           "url": {
             "type": "string",
-            "description": "URL"
+            "title": "URL"
           }
         },
         "required": [
@@ -95,15 +95,15 @@
         "properties": {
           "attr": {
             "type": "string",
-            "description": "Attribute Value"
+            "title": "Attribute Value"
           },
           "html": {
             "type": "string",
-            "description": "Inner HTML"
+            "title": "Inner HTML"
           },
           "text": {
             "type": "string",
-            "description": "Text"
+            "title": "Text"
           }
         }
       },
@@ -111,15 +111,15 @@
         "properties": {
           "selector": {
             "type": "string",
-            "description": "jQuery Selector"
+            "title": "jQuery Selector"
           },
           "attr": {
             "type": "string",
-            "description": "Export Attribute"
+            "title": "Export Attribute"
           },
           "source": {
             "type": "string",
-            "description": "URL or HTML"
+            "title": "URL or HTML"
           }
         },
         "required": [
@@ -145,19 +145,19 @@
         "properties": {
           "url": {
             "type": "string",
-            "description": "Favicon URL"
+            "title": "Favicon URL"
           },
           "suffix": {
             "type": "string",
-            "description": "Favicon File Suffix"
+            "title": "Favicon File Suffix"
           },
           "mime": {
             "type": "string",
-            "description": "Mime Type"
+            "title": "Mime Type"
           },
           "domain": {
             "type": "string",
-            "description": "Domain Name"
+            "title": "Domain Name"
           }
         }
       },
@@ -165,7 +165,7 @@
         "properties": {
           "url": {
             "type": "string",
-            "description": "Target Site URL"
+            "title": "Target Site URL"
           }
         },
         "required": [
@@ -191,7 +191,7 @@
         "properties": {
           "funnel": {
             "type": "string",
-            "description": "Content Funnel.  If empty, encodes all adjacent imports"
+            "title": "Content Funnel.  If empty, encodes all adjacent imports"
           }
         },
         "disposition": [
@@ -214,7 +214,7 @@
         "properties": {
           "funnel": {
             "type": "string",
-            "description": "Content Funnel.  If empty, decodes all adjacent imports"
+            "title": "Content Funnel.  If empty, decodes all adjacent imports"
           }
         },
         "disposition": [
