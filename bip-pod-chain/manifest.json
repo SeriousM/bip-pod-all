@@ -37,31 +37,31 @@
         "properties": {
           "hash": {
             "type": "string",
-            "description": "Address ID"
+            "title": "Address ID"
           },
           "balance": {
             "type": "number",
-            "description": "Address Balance"
+            "title": "Address Balance"
           },
           "received": {
             "type": "number",
-            "description": "Received"
+            "title": "Received"
           },
           "sent": {
             "type": "number",
-            "description": "Sent"
+            "title": "Sent"
           },
           "unconfirmed_received": {
             "type": "number",
-            "description": "Unconfirmed Received"
+            "title": "Unconfirmed Received"
           },
           "unconfirmed_sent": {
             "type": "number",
-            "description": "Unconfirmed Sent"
+            "title": "Unconfirmed Sent"
           },
           "unconfirmed_balance": {
             "type": "number",
-            "description": "Unconfirmed Balance"
+            "title": "Unconfirmed Balance"
           }
         }
       },
@@ -69,7 +69,7 @@
         "properties": {
           "address": {
             "type": "string",
-            "description": "Bitcoin Address"
+            "title": "Bitcoin Address"
           }
         },
         "required": [
