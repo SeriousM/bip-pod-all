@@ -36,11 +36,11 @@
         "properties": {
           "collection": {
             "type": "string",
-            "description": "Name of the Collection"
+            "title": "Name of the Collection"
           },
           "document": {
             "type": "mixed",
-            "description": "Document to Insert"
+            "title": "Document to Insert"
           }
         },
         "required": [
@@ -65,7 +65,7 @@
         "properties": {
           "found_documents": {
             "type": "object",
-            "description": "Array of Document(s)"
+            "title": "Array of Document(s)"
           }
         }
       },
@@ -73,11 +73,11 @@
         "properties": {
           "collection": {
             "type": "string",
-            "description": "Name of the Collection"
+            "title": "Name of the Collection"
           },
           "query": {
             "type": "object",
-            "description": "Query to Search On"
+            "title": "Query to Search On"
           }
         },
         "required": [
@@ -105,15 +105,15 @@
         "properties": {
           "collection": {
             "type": "string",
-            "description": "Name of the Collection"
+            "title": "Name of the Collection"
           },
           "match": {
             "type": "mixed",
-            "description": "Pattern to Match"
+            "title": "Pattern to Match"
           },
           "document": {
             "type": "mixed",
-            "description": "Data to Update"
+            "title": "Data to Update"
           }
         },
         "required": [
@@ -143,11 +143,11 @@
         "properties": {
           "collection": {
             "type": "string",
-            "description": "Name of the Collection"
+            "title": "Name of the Collection"
           },
           "match": {
             "type": "mixed",
-            "description": "Pattern to Match for Removal"
+            "title": "Pattern to Match for Removal"
           }
         },
         "required": [
