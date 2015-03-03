@@ -56,7 +56,7 @@
         "properties": {
           "status": {
             "type": "boolean",
-            "description": "Upload Complete"
+            "title": "Upload Complete"
           }
         }
       },
