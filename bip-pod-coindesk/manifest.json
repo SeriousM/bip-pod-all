@@ -11,7 +11,7 @@
   "rpcs": {},
   "actions": {
     "current_price": {
-      "title": "Current Price",
+      "title": "Price Change",
       "description": "Triggers whenever the BitCoin Price is Updated",
       "doc_ref" : "http://www.coindesk.com/api",
       "trigger": "realtime",
