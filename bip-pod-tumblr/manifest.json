@@ -84,23 +84,23 @@
         "properties": {
           "url": {
             "type": "string",
-            "description": "Blog URL eg: blog.tumblr.com",
             "optional": false,
             "unique": true,
             "oneOf": [
               {
                 "$ref": "/rpcs/user_info#user/blogs/{name}"
               }
-            ]
+            ],
+            "title": "Blog URL eg: blog.tumblr.com"
           },
           "state": {
             "type": "string",
-            "description": "Default State",
             "oneOf": [
               {
                 "$ref": "#/config/definitions/state"
               }
-            ]
+            ],
+            "title": "Default State"
           }
         },
         "definitions": {
@@ -130,7 +130,7 @@
         "properties": {
           "id": {
             "type": "integer",
-            "description": "Post ID"
+            "title": "Post ID"
           }
         }
       },
@@ -138,11 +138,11 @@
         "properties": {
           "title": {
             "type": "string",
-            "description": "Post Title"
+            "title": "Post Title"
           },
           "body": {
             "type": "string",
-            "description": "Post Body"
+            "title": "Post Body"
           }
         },
         "disposition": [
@@ -159,23 +159,23 @@
         "properties": {
           "url": {
             "type": "string",
-            "description": "Blog URL eg: blog.tumblr.com",
             "optional": false,
             "unique": true,
             "oneOf": [
               {
                 "$ref": "/rpcs/user_info#user/blogs/{name}"
               }
-            ]
+            ],
+            "title": "Blog URL eg: blog.tumblr.com"
           },
           "state": {
             "type": "string",
-            "description": "Default State",
             "oneOf": [
               {
                 "$ref": "#/config/definitions/state"
               }
-            ]
+            ],
+            "title": "Default State"
           }
         },
         "definitions": {
@@ -205,7 +205,7 @@
         "properties": {
           "id": {
             "type": "integer",
-            "description": "Post ID"
+            "title": "Post ID"
           }
         }
       },
@@ -213,15 +213,15 @@
         "properties": {
           "caption": {
             "type": "string",
-            "description": "Caption"
+            "title": "Caption"
           },
           "link": {
             "type": "string",
-            "description": "Link"
+            "title": "Link"
           },
           "source": {
             "type": "string",
-            "description": "Image Source URL"
+            "title": "Image Source URL"
           }
         },
         "disposition": [
@@ -239,23 +239,23 @@
         "properties": {
           "url": {
             "type": "string",
-            "description": "Blog URL eg: blog.tumblr.com",
             "optional": false,
             "unique": true,
             "oneOf": [
               {
                 "$ref": "/rpcs/user_info#user/blogs/{name}"
               }
-            ]
+            ],
+            "title": "Blog URL eg: blog.tumblr.com"
           },
           "state": {
             "type": "string",
-            "description": "Default State",
             "oneOf": [
               {
                 "$ref": "#/config/definitions/state"
               }
-            ]
+            ],
+            "title": "Default State"
           }
         },
         "definitions": {
@@ -285,7 +285,7 @@
         "properties": {
           "id": {
             "type": "integer",
-            "description": "Post ID"
+            "title": "Post ID"
           }
         }
       },
@@ -293,11 +293,11 @@
         "properties": {
           "quote": {
             "type": "string",
-            "description": "Quote"
+            "title": "Quote"
           },
           "source": {
             "type": "string",
-            "description": "Cited Source"
+            "title": "Cited Source"
           }
         },
         "disposition": [
@@ -314,23 +314,23 @@
         "properties": {
           "url": {
             "type": "string",
-            "description": "Blog URL eg: blog.tumblr.com",
             "optional": false,
             "unique": true,
             "oneOf": [
               {
                 "$ref": "/rpcs/user_info#user/blogs/{name}"
               }
-            ]
+            ],
+            "title": "Blog URL eg: blog.tumblr.com"
           },
           "state": {
             "type": "string",
-            "description": "Default State",
             "oneOf": [
               {
                 "$ref": "#/config/definitions/state"
               }
-            ]
+            ],
+            "title": "Default State"
           }
         },
         "definitions": {
@@ -360,7 +360,7 @@
         "properties": {
           "id": {
             "type": "integer",
-            "description": "Post ID"
+            "title": "Post ID"
           }
         }
       },
@@ -368,15 +368,15 @@
         "properties": {
           "title": {
             "type": "string",
-            "description": "Link Title"
+            "title": "Link Title"
           },
           "url": {
             "type": "string",
-            "description": "URL"
+            "title": "URL"
           },
           "description": {
             "type": "string",
-            "description": "Link Summary"
+            "title": "Link Summary"
           }
         },
         "disposition": [
@@ -394,23 +394,23 @@
         "properties": {
           "url": {
             "type": "string",
-            "description": "Blog URL eg: blog.tumblr.com",
             "optional": false,
             "unique": true,
             "oneOf": [
               {
                 "$ref": "/rpcs/user_info#user/blogs/{name}"
               }
-            ]
+            ],
+            "title": "Blog URL eg: blog.tumblr.com"
           },
           "state": {
             "type": "string",
-            "description": "Default State",
             "oneOf": [
               {
                 "$ref": "#/config/definitions/state"
               }
-            ]
+            ],
+            "title": "Default State"
           }
         },
         "definitions": {
@@ -440,7 +440,7 @@
         "properties": {
           "id": {
             "type": "integer",
-            "description": "Post ID"
+            "title": "Post ID"
           }
         }
       },
@@ -448,12 +448,12 @@
         "properties": {
           "title": {
             "type": "string",
-            "description": "Chat Title"
+            "title": "Chat Title"
           },
           "conversation": {
             "type": "string",
-            "description": "Chat Transcript",
-            "optional": false
+            "optional": false,
+            "title": "Chat Transcript"
           }
         },
         "disposition": [
@@ -470,23 +470,23 @@
         "properties": {
           "url": {
             "type": "string",
-            "description": "Blog URL eg: blog.tumblr.com",
             "optional": false,
             "unique": true,
             "oneOf": [
               {
                 "$ref": "/rpcs/user_info#user/blogs/{name}"
               }
-            ]
+            ],
+            "title": "Blog URL eg: blog.tumblr.com"
           },
           "state": {
             "type": "string",
-            "description": "Default State",
             "oneOf": [
               {
                 "$ref": "#/config/definitions/state"
               }
-            ]
+            ],
+            "title": "Default State"
           }
         },
         "definitions": {
@@ -516,7 +516,7 @@
         "properties": {
           "id": {
             "type": "integer",
-            "description": "Post ID"
+            "title": "Post ID"
           }
         }
       },
@@ -524,11 +524,11 @@
         "properties": {
           "caption": {
             "type": "string",
-            "description": "Caption"
+            "title": "Caption"
           },
           "external_url": {
             "type": "string",
-            "description": "Source URL (not Tumblr)"
+            "title": "Source URL (not Tumblr)"
           }
         },
         "disposition": [
@@ -545,23 +545,23 @@
         "properties": {
           "url": {
             "type": "string",
-            "description": "Blog URL eg: blog.tumblr.com",
             "optional": false,
             "unique": true,
             "oneOf": [
               {
                 "$ref": "/rpcs/user_info#user/blogs/{name}"
               }
-            ]
+            ],
+            "title": "Blog URL eg: blog.tumblr.com"
           },
           "state": {
             "type": "string",
-            "description": "Default State",
             "oneOf": [
               {
                 "$ref": "#/config/definitions/state"
               }
-            ]
+            ],
+            "title": "Default State"
           }
         },
         "definitions": {
@@ -591,7 +591,7 @@
         "properties": {
           "id": {
             "type": "integer",
-            "description": "Post ID"
+            "title": "Post ID"
           }
         }
       },
@@ -599,11 +599,11 @@
         "properties": {
           "caption": {
             "type": "string",
-            "description": "Caption"
+            "title": "Caption"
           },
           "embed": {
             "type": "string",
-            "description": "HTML embed code"
+            "title": "HTML embed code"
           }
         },
         "disposition": [
