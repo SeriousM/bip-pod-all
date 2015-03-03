@@ -47,15 +47,13 @@ Subreddit.prototype.invoke = function(imports, channel, sysImports, contentParts
 	this.$resource._httpGet(
 		url,
 		function(err, resp, headers, statusCode) {
-			if (err || resp.data.children == 'undefined') {
+			if (err) {
 				next(err);
-			} else {
-				if (resp.data) {
-					_.forEach(resp.data.children, function(sub) {
-						sub.data.permalink = 'http://www.reddit.com' + sub.data.permalink;
-						next(false, sub.data);
-					});
-				}
+			} else if (resp && resp.data) {
+				_.forEach(resp.data.children, function(sub) {
+					sub.data.permalink = 'http://www.reddit.com' + sub.data.permalink;
+					next(false, sub.data);
+				});
 			}
 		}
 	);
