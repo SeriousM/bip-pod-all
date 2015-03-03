@@ -32,7 +32,7 @@
         "properties": {
           "project_id": {
             "type": "string",
-            "description": "Project ID"
+            "title": "Project ID"
           }
         },
         "required": [
@@ -46,7 +46,7 @@
         "properties": {
           "created": {
             "type": "boolean",
-            "description": "Event Created"
+            "title": "Event Created"
           }
         }
       },
@@ -54,11 +54,11 @@
         "properties": {
           "collection_name": {
             "type": "string",
-            "description": "Collection Name"
+            "title": "Collection Name"
           },
           "event": {
             "type": "object",
-            "description": "Event Object"
+            "title": "Event Object"
           }
         },
         "required": [
