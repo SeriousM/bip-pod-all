@@ -14,15 +14,15 @@
       "title": "Get GTLD",
       "description": "Extracts GTLD and Subdomain tokens from a URL.  Works with any URI Scheme.",
       "trigger": "invoke",
-      "config" : {
-        "properties" : {},
-        "definitions" : {}
+      "config": {
+        "properties": {},
+        "definitions": {}
       },
       "imports": {
         "properties": {
           "url": {
             "type": "string",
-            "description": "URL"
+            "title": "URL"
           }
         },
         "required": [
@@ -36,23 +36,23 @@
         "properties": {
           "gtld": {
             "type": "string",
-            "description": "Generic Top Level Domain"
+            "title": "Generic Top Level Domain"
           },
           "domain": {
             "type": "string",
-            "description": "Domain"
+            "title": "Domain"
           },
           "subdomain": {
             "type": "string",
-            "description": "Sub-Domain"
+            "title": "Sub-Domain"
           },
           "protocol": {
             "type": "string",
-            "description": "URI Scheme"
+            "title": "URI Scheme"
           },
           "host": {
             "type": "string",
-            "description": "Host Name"
+            "title": "Host Name"
           }
         }
       }
@@ -61,15 +61,15 @@
       "title": "Get Whois",
       "description": "Extracts Whois Data from a URL",
       "trigger": "invoke",
-      "config" : {
-        "properties" : {},
-        "definitions" : {}
+      "config": {
+        "properties": {},
+        "definitions": {}
       },
       "imports": {
         "properties": {
           "url": {
             "type": "string",
-            "description": "URL"
+            "title": "URL"
           }
         },
         "required": [
@@ -83,7 +83,7 @@
         "properties": {
           "whois_body": {
             "type": "string",
-            "description": "Raw Whois Data"
+            "title": "Raw Whois Data"
           }
         }
       }
@@ -92,15 +92,15 @@
       "title": "Resolve A Domain",
       "description": "Resolves a domain into the first found A (IPv4) or AAAA (IPv6) record",
       "trigger": "invoke",
-      "config" : {
-        "properties" : {},
-        "definitions" : {}
+      "config": {
+        "properties": {},
+        "definitions": {}
       },
       "imports": {
         "properties": {
           "url": {
             "type": "string",
-            "description": "URL"
+            "title": "URL"
           }
         },
         "required": [
@@ -114,11 +114,11 @@
         "properties": {
           "ip": {
             "type": "string",
-            "description": "IP Address"
+            "title": "IP Address"
           },
           "ip_version": {
             "type": "string",
-            "description": "IP Version (4 or 6)"
+            "title": "IP Version (4 or 6)"
           }
         }
       }
@@ -127,15 +127,15 @@
       "title": "Resolve MX",
       "description": "Resolves the MX (Mail Exchange) for a URL",
       "trigger": "invoke",
-      "config" : {
-        "properties" : {},
-        "definitions" : {}
+      "config": {
+        "properties": {},
+        "definitions": {}
       },
       "imports": {
         "properties": {
           "url": {
             "type": "string",
-            "description": "URL"
+            "title": "URL"
           }
         },
         "required": [
@@ -149,11 +149,11 @@
         "properties": {
           "mx": {
             "type": "array",
-            "description": "MX Hosts"
+            "title": "MX Hosts"
           },
           "mx_first": {
             "type": "string",
-            "description": "Lowest Priority MX"
+            "title": "Lowest Priority MX"
           }
         }
       }
@@ -162,15 +162,15 @@
       "title": "Reverse Lookup",
       "description": "Reverse resolves an ip address to an array of domain names",
       "trigger": "invoke",
-      "config" : {
-        "properties" : {},
-        "definitions" : {}
+      "config": {
+        "properties": {},
+        "definitions": {}
       },
       "imports": {
         "properties": {
           "ip_addr": {
             "type": "string",
-            "description": "IP Address"
+            "title": "IP Address"
           }
         },
         "required": [
@@ -184,11 +184,11 @@
         "properties": {
           "ip_first": {
             "type": "string",
-            "description": "First IP"
+            "title": "First IP"
           },
           "ip_all": {
             "type": "array",
-            "description": "All Reverse IP's"
+            "title": "All Reverse IP's"
           }
         }
       }
