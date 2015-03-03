@@ -32,47 +32,47 @@
         "properties": {
           "type": {
             "type": "string",
-            "description": "Resource Type"
+            "title": "Resource Type"
           },
           "author_name": {
             "type": "string",
-            "description": "Author Name"
+            "title": "Author Name"
           },
           "author_url": {
             "type": "string",
-            "description": "Author URL"
+            "title": "Author URL"
           },
           "provider_name": {
             "type": "string",
-            "description": "Provider Name"
+            "title": "Provider Name"
           },
           "provider_url": {
             "type": "string",
-            "description": "Provider URL"
+            "title": "Provider URL"
           },
           "thumbnail_url": {
             "type": "string",
-            "description": "Thumbnail URL"
+            "title": "Thumbnail URL"
           },
           "description": {
             "type": "string",
-            "description": "URL Description"
+            "title": "URL Description"
           },
           "html": {
             "type": "string",
-            "description": "HTML (Rich/Video Types)"
+            "title": "HTML (Rich/Video Types)"
           },
           "width": {
             "type": "string",
-            "description": "Width (Rich/Video Types)"
+            "title": "Width (Rich/Video Types)"
           },
           "height": {
             "type": "string",
-            "description": "Height (Rich/Video Types)"
+            "title": "Height (Rich/Video Types)"
           },
           "url": {
             "type": "string",
-            "description": "URL (Photo Types)"
+            "title": "URL (Photo Types)"
           }
         }
       },
@@ -80,23 +80,23 @@
         "properties": {
           "url": {
             "type": "string",
-            "description": "URL"
+            "title": "URL"
           },
           "maxwidth": {
             "type": "integer",
-            "description": "Max Width"
+            "title": "Max Width"
           },
           "maxheight": {
             "type": "integer",
-            "description": "Max Height"
+            "title": "Max Height"
           },
           "autoplay": {
             "type": "boolean",
-            "description": "Autoplay Video"
+            "title": "Autoplay Video"
           },
           "words": {
             "type": "integer",
-            "description": "Max Description Words"
+            "title": "Max Description Words"
           }
         },
         "required": [
@@ -124,23 +124,23 @@
         "properties": {
           "url": {
             "type": "string",
-            "description": "URL"
+            "title": "URL"
           },
           "title": {
             "type": "string",
-            "description": "Title"
+            "title": "Title"
           },
           "description": {
             "type": "string",
-            "description": "Description"
+            "title": "Description"
           },
           "favicon_url": {
             "type": "string",
-            "description": "Favicon URL"
+            "title": "Favicon URL"
           },
           "content": {
             "type": "string",
-            "description": "Extracted Content"
+            "title": "Extracted Content"
           }
         }
       },
@@ -148,15 +148,15 @@
         "properties": {
           "url": {
             "type": "string",
-            "description": "URL"
+            "title": "URL"
           },
           "maxwidth": {
             "type": "integer",
-            "description": "Max Width"
+            "title": "Max Width"
           },
           "maxheight": {
             "type": "integer",
-            "description": "Max Height"
+            "title": "Max Height"
           }
         },
         "required": [
