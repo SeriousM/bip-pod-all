@@ -39,8 +39,8 @@
         "properties": {
           "download": {
             "type": "boolean",
-            "description": "Download File",
-            "default": false
+            "default": false,
+            "title": "Download File"
           }
         },
         "disposition": [
@@ -51,15 +51,15 @@
         "properties": {
           "title": {
             "type": "string",
-            "description": "Title"
+            "title": "Title"
           },
           "media_original_url": {
             "type": "string",
-            "description": "Media Original Res URL"
+            "title": "Media Original Res URL"
           },
           "tags": {
             "type": "string",
-            "description": "Tags"
+            "title": "Tags"
           }
         }
       },
