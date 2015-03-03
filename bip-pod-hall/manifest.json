@@ -3,7 +3,7 @@
   "auth": {
     "strategy": "none"
   },
-  "version" : 1,
+  "version": 1,
   "url": "https://hall.com",
   "title": "Hall",
   "description": "Hall. Group Chat. Instant Messaging. Built for Businesses",
@@ -12,40 +12,40 @@
       "trigger": "invoke",
       "config": {
         "properties": {
-          "url" : {
-            "type" : "string",
-            "description" : "Group Webhook URL"
+          "url": {
+            "type": "string",
+            "title": "Group Webhook URL"
           }
         },
         "definitions": {},
-        "required" : [
+        "required": [
           "url"
         ],
-        "disposition" : [
+        "disposition": [
           "url"
         ]
       },
       "imports": {
         "properties": {
-          "title" : {
-            "type" : "string",
-            "description" : "Title"
+          "title": {
+            "type": "string",
+            "title": "Title"
           },
-          "message" : {
-            "type" : "string",
-            "description" : "Message"
+          "message": {
+            "type": "string",
+            "title": "Message"
           },
-          "picture" : {
-            "type" : "string",
-            "description" : "Picture URL"
+          "picture": {
+            "type": "string",
+            "title": "Picture URL"
           }
         },
         "definitions": {},
-        "required" : [
+        "required": [
           "title",
           "message"
         ],
-        "disposition" : [
+        "disposition": [
           "title",
           "message",
           "picture"
@@ -53,9 +53,9 @@
       },
       "exports": {
         "properties": {
-          "status" : {
-            "type" : "string",
-            "description" : "Response Status"
+          "status": {
+            "type": "string",
+            "title": "Response Status"
           }
         },
         "definitions": {}
