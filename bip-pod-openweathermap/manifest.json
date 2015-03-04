@@ -25,7 +25,8 @@
         "properties": {
           "q": {
             "type": "string",
-            "title": "City & Country"
+            "title": "City & Country",
+            "description" : "eg: New York,USA"
           }
         }
       },
@@ -33,7 +34,8 @@
         "properties": {
           "q": {
             "type": "string",
-            "title": "City & Country"
+            "title": "City & Country",
+            "description" : "eg: New York,USA"
           },
           "cnt": {
             "type": "number",
@@ -78,7 +80,8 @@
         "properties": {
           "q": {
             "type": "string",
-            "title": "City & Country"
+            "title": "City & Country",
+            "description" : "eg: New York,USA"
           }
         }
       },
@@ -86,7 +89,8 @@
         "properties": {
           "q": {
             "type": "string",
-            "title": "City & Country"
+            "title": "City & Country",
+            "description" : "eg: New York,USA"
           },
           "cnt": {
             "type": "number",
@@ -139,7 +143,8 @@
         "properties": {
           "q": {
             "type": "string",
-            "title": "Weather in City & Country"
+            "title": "Weather in City & Country",
+            "description" : "eg: New York,USA"
           }
         }
       },
@@ -147,8 +152,8 @@
         "properties": {
           "q": {
             "type": "string",
-            "title": "query",
-            "description": "Weather in City & Country"
+            "title": "City & Country",
+            "description" : "eg: New York,USA"
           }
         },
         "disposition": [
