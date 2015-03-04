@@ -28,9 +28,8 @@ mongodb.testCredentials = function(struct, next) {
     var url = struct.username,
         config = this.getConfig();
 
-    // host blacklisted
-    this.$resource._isVisibleHost(url, function(err, blacklisted) {
-
+    // host blacklisted ?
+    this.$resource._isVisibleHost.call(this, url, function(err, blacklisted) {
         if (err) {
             next(err, 500);
 

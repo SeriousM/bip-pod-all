@@ -12,7 +12,8 @@
     "properties": {
       "username": {
         "title": "Connection URI",
-        "type": "string"
+        "type": "string",
+        "description" : "See <a href='http://docs.mongodb.org/manual/reference/connection-string'>Connection String URI Format</a> For More Info"
       }
     },
     "disposition": [
@@ -22,7 +23,7 @@
   "rpcs": {},
   "actions": {
     "insert": {
-      "title": "Insert a document into MongoDB",
+      "title": "Insert",
       "description": "Insert a MongoDB document",
       "trigger": "invoke",
       "config": {
@@ -36,11 +37,12 @@
         "properties": {
           "collection": {
             "type": "string",
-            "title": "Name of the Collection"
+            "title": "Collection Name"
           },
           "document": {
             "type": "mixed",
-            "title": "Document to Insert"
+            "title": "New Document",
+            "description" : "JSON String or Object"
           }
         },
         "required": [
@@ -54,8 +56,8 @@
       }
     },
     "find": {
-      "title": "Find a MongoDB Collection of Documents",
-      "description": "Find a MongoDB Collection of Documents",
+      "title": "Find",
+      "description": "Find Document(s)",
       "trigger": "invoke",
       "config": {
         "properties": {},
@@ -73,11 +75,12 @@
         "properties": {
           "collection": {
             "type": "string",
-            "title": "Name of the Collection"
+            "title": "Collection Name"
           },
           "query": {
             "type": "object",
-            "title": "Query to Search On"
+            "title": "Find Criteria",
+            "description" : "See <a href='http://docs.mongodb.org/manual/reference/method/db.collection.find'>db.collection.find</a>, Criteria Only"
           }
         },
         "required": [
@@ -92,7 +95,7 @@
     },
     "update": {
       "title": "Update",
-      "description": "Update a MongoDB document",
+      "description": "Update A Document",
       "trigger": "invoke",
       "config": {
         "properties": {},
@@ -105,15 +108,17 @@
         "properties": {
           "collection": {
             "type": "string",
-            "title": "Name of the Collection"
+            "title": "Collection Name"
           },
           "match": {
             "type": "mixed",
-            "title": "Pattern to Match"
+            "title": "Find Criteria",
+            "description" : "See <a href='http://docs.mongodb.org/manual/reference/method/db.collection.find'>db.collection.find</a>, Criteria Only"
           },
           "document": {
             "type": "mixed",
-            "title": "Data to Update"
+            "title": "New Document",
+            "description" : "JSON String or Object"
           }
         },
         "required": [
@@ -130,7 +135,7 @@
     },
     "remove": {
       "title": "Remove",
-      "description": "Remove a MongoDB document",
+      "description": "Remove A Document",
       "trigger": "invoke",
       "config": {
         "properties": {},
@@ -147,7 +152,8 @@
           },
           "match": {
             "type": "mixed",
-            "title": "Pattern to Match for Removal"
+            "title": "Find Criteria",
+            "description" : "See <a href='http://docs.mongodb.org/manual/reference/method/db.collection.find'>db.collection.find</a>, Criteria Only"
           }
         },
         "required": [
