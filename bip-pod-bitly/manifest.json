@@ -26,8 +26,8 @@
   "rpcs": {},
   "actions": {
     "shorten": {
-      "title": "Shortens a URL",
-      "description": "Given a long URL, returns a bitly short URL",
+      "title": "Shorten a URL",
+      "description": "Converts A URL Into It's Bitly Short URL",
       "doc_ref": "http://dev.bitly.com/links.html#v3_shorten",
       "trigger": "invoke",
       "config": {
@@ -38,7 +38,7 @@
         "properties": {
           "new_hash": {
             "type": "string",
-            "title": "1 if new hash"
+            "title": "If A New Hash"
           },
           "url": {
             "type": "string",
@@ -114,11 +114,11 @@
         "properties": {
           "short_url": {
             "type": "string",
-            "title": "Bitly Short URL"
+            "title": "Short URL"
           },
           "hash": {
             "type": "string",
-            "title": "Bitly URL Hash (optional)"
+            "title": "URL Hash"
           }
         },
         "required": [
