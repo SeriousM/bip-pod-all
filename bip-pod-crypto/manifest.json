@@ -11,8 +11,8 @@
   "rpcs": {},
   "actions": {
     "hash": {
-      "title": "Generates a MD5 Hash",
-      "description": "Generates a MD5 Hash of the supplied content",
+      "title": "MD5 Hash",
+      "description": "Exports The MD5 Hash Of Your Content",
       "doc_ref": "http://nodejs.org/api/crypto.html#crypto_class_hash",
       "trigger": "invoke",
       "config": {
@@ -31,7 +31,7 @@
         "properties": {
           "funnel": {
             "type": "string",
-            "title": "Content Funnel"
+            "title": "Content"
           }
         },
         "required": [
