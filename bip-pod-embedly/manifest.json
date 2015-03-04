@@ -21,7 +21,7 @@
   "actions": {
     "oembed": {
       "title": "Create oEmbed",
-      "description": "Create oEmbed",
+      "description": "Create The oEmbed Representation Of A URL",
       "doc_ref": "http://embed.ly/docs/api/embed/endpoints/1/oembed",
       "trigger": "invoke",
       "config": {
