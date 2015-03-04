@@ -18,7 +18,8 @@
         "properties": {
           "viewport": {
             "type": "string",
-            "title": "Viewport size pixels, eg 800x1128"
+            "title": "Viewport Size",
+            "description" : "eg: 800x1128"
           }
         },
         "disposition": [
@@ -36,7 +37,8 @@
           },
           "viewport": {
             "type": "string",
-            "title": "Viewport size pixels, eg 800x1128"
+            "title": "Viewport Size",
+            "description" : "eg: 800x1128"
           }
         },
         "required": [
