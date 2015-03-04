@@ -31,8 +31,8 @@
   "rpcs": {},
   "actions": {
     "get_recent": {
-      "title": "Get Recent Photos",
-      "description": "Returns a list of your latest public photos uploaded to flickr.",
+      "title": "When You Upload A Photo",
+      "description": "Triggers When You Upload A Photo To Flickr",
       "doc_ref": "https://www.flickr.com/services/api/flickr.people.getPhotos.html",
       "trigger": "poll",
       "config": {

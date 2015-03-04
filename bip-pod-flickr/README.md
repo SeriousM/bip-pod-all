@@ -31,4 +31,4 @@ Bipio may not be used for Commercial purposes by an entity who has not secured a
 please [reach us](mailto:hello@bip.io)
 
 
-Copyright (c) 2010-2014  [Michael Pearson](https://github.com/mjpearson)
+Copyright (c) 2010-2015  [Michael Pearson](https://github.com/mjpearson)
