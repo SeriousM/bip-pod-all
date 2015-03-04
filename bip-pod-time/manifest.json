@@ -30,11 +30,12 @@
         "properties": {
           "time": {
             "type": "string",
-            "title": "Time to Format"
+            "title": "Time"
           },
           "format": {
             "type": "string",
-            "title": "Format to apply"
+            "title": "Format",
+            "description" : "eg: DD/MM/YYYY"
           }
         },
         "required": [
@@ -54,7 +55,7 @@
         "properties": {
           "time_zone": {
             "type": "string",
-            "title": "Timezone to Convert To"
+            "title": "New Timezone"
           }
         },
         "disposition": [
@@ -65,7 +66,7 @@
         "properties": {
           "time_converted": {
             "type": "string",
-            "title": "Convertted Time"
+            "title": "Converted Time"
           }
         }
       },
@@ -73,15 +74,16 @@
         "properties": {
           "time": {
             "type": "string",
-            "title": "Time to Convert"
+            "title": "Time"
           },
           "time_zone": {
             "type": "string",
-            "title": "Timezone to Convert To"
+            "title": "New Timezone"
           },
           "format": {
             "type": "string",
-            "title": "Format to Apply"
+            "title": "Format",
+            "description" : "eg: DD/MM/YYYY"
           }
         },
         "required": [
@@ -114,12 +116,12 @@
         "properties": {
           "expression": {
             "type": "string",
-            "example": "in 3 days",
+            "description": "eg: in 3 days",
             "title": "Date Expression"
           },
           "format": {
             "type": "string",
-            "example": "DD/MM/YYYY",
+            "description": "eg: DD/MM/YYYY",
             "title": "Date Format"
           }
         },

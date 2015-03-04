@@ -30,4 +30,4 @@ If you'd like to integrate BipIO with your proprietary system, GPLv3 is likely i
 please [reach us](mailto:hello@bip.io)
 
 
-Copyright (c) 2010-2014  [Michael Pearson](https://github.com/mjpearson)
+Copyright (c) 2010-2015  [Michael Pearson](https://github.com/mjpearson)
