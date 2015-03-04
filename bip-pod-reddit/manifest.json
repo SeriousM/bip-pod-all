@@ -78,7 +78,8 @@
         "properties": {
           "username": {
             "type": "string",
-            "title": "Username"
+            "title": "Username",
+            "description" : "jane_doe"
           }
         },
         "required": [
@@ -92,7 +93,8 @@
         "properties": {
           "username": {
             "type": "string",
-            "title": "Username"
+            "title": "Username",
+            "description" : "jane_doe"
           }
         },
         "disposition": [
