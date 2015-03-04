@@ -25,8 +25,8 @@
   "rpcs": {},
   "actions": {
     "address": {
-      "title": "Address",
-      "description": "Returns the associated data for a given Bitcoin Address",
+      "title": "Get An Address",
+      "description": "Gets The Data For A Bitcoin Address",
       "doc_ref": "https://chain.com/docs#object-bitcoin-address",
       "trigger": "invoke",
       "config": {
@@ -37,11 +37,11 @@
         "properties": {
           "hash": {
             "type": "string",
-            "title": "Address ID"
+            "title": "ID"
           },
           "balance": {
             "type": "number",
-            "title": "Address Balance"
+            "title": "Balance"
           },
           "received": {
             "type": "number",
