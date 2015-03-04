@@ -22,7 +22,7 @@
     "scrape_nlp_url": {
       "title": "Scrape A URL With Natural Language",
       "description": "Extract structured data from a URL using natural language.",
-      "doc_ref": "http://www.alchemyapi.com/api/content-scraping",
+      "doc_ref": "http://www.alchemyapi.com/api/scrape/proc.html",
       "trigger": "invoke",
       "config": {
         "properties": {},
@@ -48,7 +48,8 @@
           },
           "query": {
             "type": "string",
-            "title": "NLP Query"
+            "title": "NLP Query",
+            "description" : "See <a href='http://www.alchemyapi.com/api/scrape/qlang.html'>AlchemyAPI Documentation</a>"
           }
         },
         "required": [
@@ -90,7 +91,8 @@
           },
           "query": {
             "type": "string",
-            "title": "NLP Query"
+            "title": "NLP Query",
+            "description" : "See <a href='http://www.alchemyapi.com/api/scrape/qlang.html'>AlchemyAPI Documentation</a>"
           }
         },
         "required": [
@@ -140,7 +142,8 @@
           },
           "query": {
             "type": "string",
-            "title": "NLP Query (optional)"
+            "title": "NLP Query",
+            "description" : "See <a href='http://www.alchemyapi.com/api/scrape/qlang.html'>AlchemyAPI Documentation</a>"
           }
         },
         "disposition": [
@@ -231,7 +234,8 @@
           },
           "query": {
             "type": "string",
-            "title": "NLP Query (optional)"
+            "title": "NLP Query",
+            "description" : "See <a href='http://www.alchemyapi.com/api/scrape/qlang.html'>AlchemyAPI Documentation</a>"
           }
         },
         "disposition": [
@@ -323,7 +327,7 @@
           "url": {
             "type": "string",
             "required": false,
-            "title": "Source URL (optional)"
+            "title": "Source URL"
           }
         },
         "required": [
@@ -377,7 +381,7 @@
           "url": {
             "type": "string",
             "required": false,
-            "title": "Source URL (optional)"
+            "title": "Source URL"
           }
         },
         "required": [
