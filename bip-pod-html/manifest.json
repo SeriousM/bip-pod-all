@@ -177,8 +177,8 @@
       }
     },
     "entity_encode": {
-      "title": "Entity Encode",
-      "description": "Encodes HTML Entities, strips &lt;script&gt; tags and XSS",
+      "title": "HTML Entity Encode",
+      "description": "Encodes HTML Entities, Strips &lt;script&gt; Tags And XSS",
       "trigger": "invoke",
       "config": {
         "properties": {},
@@ -191,7 +191,8 @@
         "properties": {
           "funnel": {
             "type": "string",
-            "title": "Content Funnel.  If empty, encodes all adjacent imports"
+            "title": "Encode Attributes",
+            "description" : "If Empty, Encodes All Attributes"
           }
         },
         "disposition": [
@@ -200,7 +201,7 @@
       }
     },
     "entity_decode": {
-      "title": "Entity Decode",
+      "title": "HTML Entity Decode",
       "description": "Decodes HTML Entities",
       "trigger": "invoke",
       "config": {
@@ -214,7 +215,8 @@
         "properties": {
           "funnel": {
             "type": "string",
-            "title": "Content Funnel.  If empty, decodes all adjacent imports"
+            "title": "Decode Attributes",
+            "description" : "If Empty, Decodes All Attributes"
           }
         },
         "disposition": [
