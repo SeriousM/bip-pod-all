@@ -12,7 +12,7 @@
   "actions": {
     "eval": {
       "title": "Eval",
-      "description": "Evaluates a Math expression, exporting the result",
+      "description": "Evaluates A Math Expression",
       "trigger": "invoke",
       "config": {
         "properties": {},
@@ -22,7 +22,7 @@
         "properties": {
           "result": {
             "type": "string",
-            "title": "Expression Result"
+            "title": "Result"
           }
         }
       },
@@ -30,7 +30,8 @@
         "properties": {
           "expression": {
             "type": "string",
-            "title": "Math Expression"
+            "title": "Expression",
+            "description" : "Eval Expressions Provided By <a href='http://mathjs.org/index.html'>MathJS.org</a>"
           }
         },
         "required": [
