@@ -6,7 +6,7 @@
       "key": {
         "title": "API Key",
         "type": "string",
-        "description" : "Use 'dc6zaTOxFJmzC' Unless You Have Your Own"
+        "description" : "Use 'dc6zaTOxFJmzC' if you're not sure"
       }
     },
     "disposition": [
@@ -29,6 +29,9 @@
           }
         },
         "definitions": {},
+        "required": [
+          "q"
+        ],
         "disposition": [
           "q"
         ]
@@ -94,5 +97,9 @@
       "description": "Triggers When A New Gif Matches Your Search",
       "ref": "https://github.com/Giphy/GiphyAPI#sample-response-search"
     }
-  }
+  },
+  "tags": [
+    "images",
+    "social"
+  ]
 }
