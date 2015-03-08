@@ -47,7 +47,7 @@
           "from_phone"
         ],
         "disposition": [
-          "from_phone"
+          "from_phone",
           "body",
           "to_phone"
         ]
