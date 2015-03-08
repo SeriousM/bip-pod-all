@@ -40,14 +40,16 @@
           },
           "from_phone": {
             "type": "string",
-            "required": true,
             "title": "From Phone Number"
           }
         },
-        "disposition": [
-          "body",
-          "to_phone",
+        "required" : [
           "from_phone"
+        ],
+        "disposition": [
+          "from_phone"
+          "body",
+          "to_phone"
         ]
       },
       "exports": {
