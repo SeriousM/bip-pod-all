@@ -52,7 +52,7 @@ OnGif.prototype.invoke = function(imports, channel, sysImports, contentParts, ne
           gif = resp.data[i];
           // flatten original
           for (var k in gif.images.original) {
-            gif['original_' + k] = gif.images.original[k];
+            gif['image_original_' + k] = gif.images.original[k];
           }
           next(false, gif);
         }
