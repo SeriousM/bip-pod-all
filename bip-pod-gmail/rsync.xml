@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Rsync On gmail" basedir="." default="rsync">
+	<description>Builder for eclipse to rsync on save for OSX.</description>
+	<!-- local source directory for rsync (read from this directory) -->
+	<property name="rsync.source.dir" value="/home/elie/git/bip-pod-gmail" />
+	<!-- remote rsync host -->
+	<property name="rsync.destination.host" value="23.253.40.24" />
+	<!-- remote rsync directory (write to this directory) -->
+	<property name="rsync.destination.dir" value="/home/elie.youssef/bipio/node_modules/" />
+
+	<!-- filepath to the ssh key-->
+	<property name="rsync.ssh.key" value="/home/elie/.ssh/id_rsa" />
+	<!-- ssh user to login to remote -->
+	<property name="rsync.ssh.user" value="elie.youssef" />
+
+	<target name="rsync">
+		<echo message="Rsync source:" />
+		<echo message="${rsync.source.dir}" />
+		<echo message="Rsync destination:" />
+		<echo message="${rsync.ssh.user}@${rsync.destination.host}:${rsync.destination.dir}" />
+		<exec dir="${rsync.source.dir}" executable="rsync">
+			<!-- rsync command options -->
+			<arg value="-arvvv" />
+
+			<!-- exclude all hidden files and directories -->
+			<arg line="--exclude='.*'" />
+
+			<arg line="--delete-after" />
+
+			<!-- exclude build.xml and rsync.xml -->
+			<arg line="--exclude='build.xml'" />
+			<arg line="--exclude='rsync.xml'" />
+
+			<!-- variable that holds the filepath to the ssh key -->
+			<arg line="-e &quot;ssh -i ${rsync.ssh.key}&quot;" />
+
+			<!-- local directory that is the source for the rsync -->
+			<arg value="${rsync.source.dir}" />
+
+			<!-- remote host and directory destination for rsync -->
+			<arg value="${rsync.ssh.user}@${rsync.destination.host}:${rsync.destination.dir}" />
+		</exec>
+	</target>
+</project>
