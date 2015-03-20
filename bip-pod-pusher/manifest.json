@@ -1,7 +1,7 @@
 {
   "name": "pusher",
   "title": "Pusher",
-  "description": "<a href=\"http://pusher.com\">Pusher</a> is a hosted API for quickly, easily and securely adding scalable realtime functionality to web and mobile apps.",
+  "description": "Pusher is a hosted API for quickly, easily and securely adding scalable realtime functionality to web and mobile apps.",
   "url": "",
   "trackDuplicates": false,
   "config": {},
@@ -55,16 +55,19 @@
           },
           "channels": {
             "type": "string",
-            "title": "List of Channels (',' delimiter)"
+            "title": "List of Channels",
+            "description" : "Comma separated list of channels"
           },
           "data": {
             "type": "string",
-            "title": "Event Data"
+            "title": "Event Data",
+            "description" : "JSON String or Object"
           }
         },
         "required": [
           "data",
-          "name"
+          "name",
+          "channels"
         ],
         "disposition": [
           "data",
