@@ -8,11 +8,76 @@
     "strategy": "none"
   },
   "actions": {
+     "get_user_favorites": {
+      "title": "On Video Favorite",
+      "description": "Triggers When You Favorite A Video",
+      "uri": "http://gdata.youtube.com/feeds/api/users/{username}?alt=json",
+      "trigger" : "poll",
+      "config": {
+       "properties": {
+          "username": {
+            "type": "string",
+            "title": "Username",
+            "description": "Username"
+          }
+         },
+        "disposition": [
+          "username"
+        ],
+        "definitions" : {}
+      },
+      "exports": {
+        "properties": {
+          "subscriberCount" : {
+            "description" : "Subscriber Count",
+            "title" : "Subscriber Count",
+            "type" : "string"
+          },
+          "lastWebAccess" : {
+            "description" : "Last Access",
+            "title" : "Last Access",
+            "type" : "string"
+          },
+          "videoWatchCount" : {
+            "description" : "Video Watch Count",
+            "title" : "Video Watch Count",
+            "type" : "string"
+          },
+          "viewCount" : {
+            "description" : "View Count",
+            "title" : "View Count",
+            "type" : "string"
+          },
+          "totalUploadViews" : {
+            "description" : "Total Upload Views",
+            "title" : "Total Upload Views",
+            "type" : "string"
+          }
+        },
+        "definitions" : {}
+      },
+      "imports": {
+        "properties": {
+          "username": {
+            "type": "string",
+            "title": "Username",
+            "description": "Username"
+          }
+        },
+        "definitions" : {},
+        "required": [
+          "username"
+        ],
+        "disposition": [
+          "username"
+        ]
+      }
+    },
     "get_user_statistics": {
       "trigger" : "invoke",
       "title": "Get User Statistics",
       "description": "Get User Statistics",
-      "uri": "http://gdata.youtube.com/feeds/api/users/{username}?alt=json",
+      "uri": "http://gdata.youtube.com/feeds/api/users/{username}/favorites?alt=json",
       "config": {
         "properties": {
         },
