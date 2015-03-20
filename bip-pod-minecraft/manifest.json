@@ -80,6 +80,112 @@
         },
         "definitions": {}
       }
+    },
+    "server_status_change": {
+      "trigger": "poll",
+      "title": "When A Server Goes Up Or Down",
+      "description": "Triggers When A Minecraft Server Goes Up Or Down",
+      "config": {
+        "properties": {
+          "host": {
+            "type": "string",
+            "title": "Host"
+          },
+          "port": {
+            "type": "string",
+            "title": "Port",
+            "default": 25565
+          }
+        },
+        "definitions": {},
+        "disposition": [
+          "host",
+          "port"
+        ]
+      },
+      "imports": {
+        "properties": {
+        },
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "title": "Server Status (up or down)"
+          },
+          "description": {
+            "type": "string",
+            "title": "Server Description"
+          },
+          "players_max": {
+            "type": "object",
+            "title": "Maximum Players"
+          },
+          "players_online": {
+            "type": "object",
+            "title": "Online Players"
+          },
+          "version_name": {
+            "type": "string",
+            "title": "Version Name"
+          },
+          "version_protocol": {
+            "type": "string",
+            "title": "Version Protocol"
+          },
+          "latency": {
+            "type": "number",
+            "title": "Latency MS"
+          },
+          "favicon": {
+            "type": "string",
+            "title": "Favicon (Base64)"
+          }
+        },
+        "definitions": {}
+      }
+    }
+  },
+  "dataSources": {
+    "delta_gate": {
+      "properties": {
+        "owner_id": {
+          "type": "string",
+          "renderable": false,
+          "writable": false
+        },
+        "channel_id": {
+          "type": "string",
+          "renderable": true,
+          "writable": false
+        },
+        "created": {
+          "type": "number",
+          "renderable": true,
+          "writable": false
+        },
+        "last_update": {
+          "type": "number",
+          "renderable": true,
+          "writable": false
+        },
+        "key": {
+          "type": "string",
+          "renderable": true,
+          "writable": false
+        },
+        "value": {
+          "type": "string",
+          "renderable": true,
+          "writable": false
+        }
+      },
+      "keys": [
+        "channel_id",
+        "owner_id",
+        "key"
+      ]
     }
   }
 }

@@ -30,10 +30,7 @@ ServerStatus.prototype.hostCheck = function(host, channel, next) {
 }
 
 ServerStatus.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
-
-  // @todo host blacklist
   this.hostCheck(imports.host, channel, function(err, blacklisted) {
-console.log(err);
     if (err) {
       next(err);
     } else if (blacklisted) {
