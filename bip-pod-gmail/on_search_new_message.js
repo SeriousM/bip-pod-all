@@ -1,5 +1,5 @@
 /**
- * 
+ *
  * Copyright (c) 2010-2014 WoT.IO inc http://wot.io
  * @author Michael Pearson <michael@wot.io>
  *
@@ -36,6 +36,7 @@ OnNewSearchMessage.prototype.trigger = function(imports, channel, sysImports, co
     if (err) {
       next(err);
     } else {
+
       $resource.dupFilter(message, 'id', channel, sysImports, function(err, message) {
         var params = {};
 
@@ -76,7 +77,7 @@ OnNewSearchMessage.prototype.trigger = function(imports, channel, sysImports, co
                     header = body.payload.headers[i];
                     exports[header.name] = header.value;
                   }
-                  
+
                   if (body.payload && body.payload.parts) {
                     for (var i = 0; i < body.payload.parts.length; i++) {
                       part = body.payload.parts[i];
@@ -114,7 +115,7 @@ OnNewSearchMessage.prototype.invoke = function(imports, channel, sysImports, con
     params = {
       auth : auth,
       userId:  uid,
-      q : 'newer_than:1d '+ imports.q
+      q : imports.q
     };
   gmail.users.messages.list(params, function(err, body, res) {
     if (err) {

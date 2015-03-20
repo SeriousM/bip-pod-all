@@ -211,35 +211,26 @@
     },
     "on_specific_new_message": {
       "doc_ref": "https://developers.google.com/gmail/api/v1/reference/",
-      "title": "On A New Specific Email",
+      "title": "On A New Email From An Address",
       "description": "When A New Email From A Certain Address Appears In Your Inbox",
       "trigger": "poll",
       "config": {
         "properties": {
           "from_id": {
             "type": "string",
-            "title": "From Email"
+            "title": "From Email",
+            "description" : "Email Address Or Sender Name"
           }
          },
+         "required": [
+          "from_id"
+        ],
         "disposition": [
           "from_id"
         ],
-        "DISABLED_properties": {
-          "get_attachments": {
-            "type": "boolean",
-            "description": "Include Attachments",
-            "default": false
-          }
-        },
         "definitions": {}
       },
       "exports": {
-        "DISABLED_properties": {
-          "html_body": {
-            "description": "HTML Body",
-            "type": "string"
-          }
-        },
         "properties": {
           "text_body": {
             "type": "string",
@@ -317,17 +308,109 @@
       },
       "imports": {
         "properties": {
-          "from_id": {
+        }
+      }
+    },
+    "on_search_new_message": {
+      "doc_ref": "https://developers.google.com/gmail/api/v1/reference/",
+      "title": "On A New Email Matches A Search",
+      "description": "Triggers When An Email Matching Your Search Query Appears In Your Inbox",
+      "trigger": "poll",
+      "config": {
+        "properties": {
+          "q": {
             "type": "string",
-            "title": "From Email"
+            "title": "Search Query",
+            "description" : "See <a target='_blank' href='https://support.google.com/mail/answer/7190?hl=en'>Gmail Advanced Search Documentation</a> For More Info"
           }
          },
-        "required": [
-          "from_id"
+         "required": [
+          "q"
         ],
         "disposition": [
-          "from_id"
-        ]
+          "q"
+        ],
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "text_body": {
+            "type": "string",
+            "title": "Text Body"
+          },
+          "mimeType": {
+            "type": "string",
+            "title": "Mime Type"
+          },
+          "Delivered-To": {
+            "type": "string",
+            "title": "Delivered To"
+          },
+          "Received": {
+            "type": "string",
+            "title": "Received"
+          },
+          "X-Received": {
+            "type": "string",
+            "title": "X Received"
+          },
+          "Return-Path": {
+            "type": "string",
+            "title": "Return Path"
+          },
+          "Received-SPF": {
+            "type": "string",
+            "title": "Received SPF"
+          },
+          "Authentication-Results": {
+            "type": "string",
+            "title": "Authentication Results"
+          },
+          "X-Google-DKIM-Signature": {
+            "type": "string",
+            "title": "X Google DKIM Signature"
+          },
+          "X-Gm-Message-State": {
+            "type": "string",
+            "title": "X Gm Message State"
+          },
+          "MIME-Version": {
+            "type": "string",
+            "title": "MIME Version"
+          },
+          "Reply-To": {
+            "type": "string",
+            "title": "Reply To"
+          },
+          "Date": {
+            "type": "string",
+            "title": "Date"
+          },
+          "Message-ID": {
+            "type": "string",
+            "title": "Message ID"
+          },
+          "Subject": {
+            "type": "string",
+            "title": "Subject"
+          },
+          "From": {
+            "type": "string",
+            "title": "From"
+          },
+          "To": {
+            "type": "string",
+            "title": "To"
+          },
+          "Content-Type": {
+            "type": "string",
+            "title": "Content Type"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+        }
       }
     }
   }

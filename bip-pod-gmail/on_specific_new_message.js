@@ -1,4 +1,4 @@
-/** 
+/**
  *
  * Copyright (c) 2010-2014 WoT.IO inc http://wot.io
  * @author Michael Pearson <michael@wot.io>
@@ -62,6 +62,7 @@ OnNewSpecificMessage.prototype.trigger = function(imports, channel, sysImports, 
           queue.push((function(params, next) {
             return function() {
               gmail.users.messages.get(params, function(err, body, res) {
+
                 if (err) {
                   next(err);
                 } else {
@@ -76,12 +77,21 @@ OnNewSpecificMessage.prototype.trigger = function(imports, channel, sysImports, 
                     header = body.payload.headers[i];
                     exports[header.name] = header.value;
                   }
-                  
+
                   //check if sent from the specific email
-                  if(exports.From!=null && exports.From.indexOf(imports.from_id) === -1){
+                  var fromStr = ' ';
+                  if (exports.From) {
+                    fromStr += exports.From + ' ';
+                  }
+
+                  if (exports['Reply-To']) {
+                    fromStr += exports['Reply-To'];
+                  }
+
+                  if( fromStr.toLowerCase().indexOf(imports.from_id.toLowerCase()) === -1) {
                 	  return;
                   }
-                  
+
                   if (body.payload && body.payload.parts) {
                     for (var i = 0; i < body.payload.parts.length; i++) {
                       part = body.payload.parts[i];
