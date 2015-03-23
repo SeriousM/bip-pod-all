@@ -29,55 +29,16 @@ ServerStatusChange.prototype.hostCheck = function(host, channel, next) {
   }, channel, config.whitelist ? config.whitelist : []);
 }
 
-ServerStatusChange.prototype.deltaGate = function(imports, channel, status, next) {
-  var key = imports.server + ':' + imports.port,
-    $resource = this.$resource,
-    self = this,
-    dao = $resource.dao,
-    modelName = this.$resource.getDataSourceName('delta_gate'),
-    filter = {
-      owner_id : channel.owner_id,
-      channel_id : channel.id,
-      key : key
-    },
-    props = {
-      last_update : $resource.helper.nowUTCMS(),
-      owner_id : channel.owner_id,
-      channel_id : channel.id,
-      key : key,
-      value : status
-    };
-
-  dao.find(modelName, filter, function(err, result) {
-    if (err) {
-      next(err);
-    } else {
-
-      if (!result || (result && result.value !== status )) {
-        next(false, true);
-      }
-
-      dao.upsert(modelName, filter, props, function(err, result) {
-        if (err) {
-          next(err);
-        }
-      });
-    }
-  });
-}
-
 ServerStatusChange.prototype.trigger = function(imports, channel, sysImports, contentParts, next) {
-  var self = this;
+  var self = this,
+    $resource = this.$resource;
+
   this.invoke(imports, channel, sysImports, contentParts, function(err, resp) {
     if (err) {
       next(err);
     } else {
-      self.deltaGate(imports, channel, resp.status, function(err, delta) {
-        if (err) {
-          next(err);
-        } else if (delta) {
-          next(false, resp);
-        }
+      $resource.deltaFilter(resp, 'status', channel, sysImports, function(err, delta) {
+        next(err, resp);
       });
     }
   });

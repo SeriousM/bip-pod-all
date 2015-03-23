@@ -6,6 +6,7 @@
   "auth": {
     "strategy": "none"
   },
+  "trackDeltas" : true,
   "actions": {
     "server_status": {
       "trigger": "invoke",
@@ -145,47 +146,6 @@
         },
         "definitions": {}
       }
-    }
-  },
-  "dataSources": {
-    "delta_gate": {
-      "properties": {
-        "owner_id": {
-          "type": "string",
-          "renderable": false,
-          "writable": false
-        },
-        "channel_id": {
-          "type": "string",
-          "renderable": true,
-          "writable": false
-        },
-        "created": {
-          "type": "number",
-          "renderable": true,
-          "writable": false
-        },
-        "last_update": {
-          "type": "number",
-          "renderable": true,
-          "writable": false
-        },
-        "key": {
-          "type": "string",
-          "renderable": true,
-          "writable": false
-        },
-        "value": {
-          "type": "string",
-          "renderable": true,
-          "writable": false
-        }
-      },
-      "keys": [
-        "channel_id",
-        "owner_id",
-        "key"
-      ]
     }
   }
 }
