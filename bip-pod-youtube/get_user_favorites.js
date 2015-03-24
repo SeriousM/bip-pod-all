@@ -18,12 +18,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-function Get_user_favorites(podConfig) {
+function GetUserFavorites(podConfig) {
 }
 
-Get_user_favorites.prototype = {};
+GetUserFavorites.prototype = {};
 
-Get_user_favorites.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
+GetUserFavorites.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
 	var $resource = this.pod.$resource,
      url = 'http://gdata.youtube.com/feeds/api/users/' + imports.username + '/favorites?alt=json';
     $resource._httpGet(url, function(err, body) {
@@ -33,4 +33,4 @@ Get_user_favorites.prototype.invoke = function(imports, channel, sysImports, con
 }
 
 // -----------------------------------------------------------------------------
-module.exports = Get_user_favorites;
+module.exports = GetUserFavorites;
