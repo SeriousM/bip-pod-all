@@ -18,20 +18,19 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-function Get_statistics(podConfig) {
+function Get_user_favorites(podConfig) {
 }
 
-Get_statistics.prototype = {};
+Get_user_favorites.prototype = {};
 
-Get_statistics.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
+Get_user_favorites.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
 	var $resource = this.pod.$resource,
-    url = 'http://gdata.youtube.com/feeds/api/users/' + imports.username + '/favorites?alt=json';
-	console.log(url);
-  $resource._httpGet(url, function(err, body) {
-	  console.log(body.entry);
-    next(err, body.entry['yt$statistics'] );
-  });
+     url = 'http://gdata.youtube.com/feeds/api/users/' + imports.username + '/favorites?alt=json';
+    $resource._httpGet(url, function(err, body) {
+	  next(err, body.feed.entry );
+   });
+    
 }
 
 // -----------------------------------------------------------------------------
-module.exports = Get_statistics;
+module.exports = Get_user_favorites;
