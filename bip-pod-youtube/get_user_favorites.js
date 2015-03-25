@@ -23,12 +23,31 @@ function GetUserFavorites(podConfig) {
 
 GetUserFavorites.prototype = {};
 
+GetUserFavorites.prototype.trigger = function(imports, channel, sysImports, contentParts, next) {
+    var $resource = this.$resource;
+    this.invoke(imports, channel, sysImports, contentParts, function(err, video) {
+    	var exports = {};
+    	exports['id'] = video['id']['$t'];
+    	exports['published'] = video['published']['$t'];
+    	exports['updated'] = video['updated']['$t'];
+    	exports['title'] = video['title']['$t'];
+    	exports['content'] = video['content']['$t'];
+    	exports['link'] = video['link'][0]['href'];
+
+        $resource.dupFilter(exports, 'id', channel, sysImports, function(err, favorite) {
+            next(err, favorite);
+        });
+    });
+}
+
 GetUserFavorites.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
-	var $resource = this.pod.$resource,
-     url = 'http://gdata.youtube.com/feeds/api/users/' + imports.username + '/favorites?alt=json';
-    $resource._httpGet(url, function(err, body) {
-	  next(err, body.feed.entry );
-   });
+	var $resource = this.pod.$resource;
+	url = 'http://gdata.youtube.com/feeds/api/users/' + imports.username + '/favorites?alt=json';
+     $resource._httpGet(url, function(err, body) {
+     	 for (var i = 0; i < body.feed.entry.length; i++) {
+     		 next(err, body.feed.entry[i]);
+     	 }
+     });
     
 }
 

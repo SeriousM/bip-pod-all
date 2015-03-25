@@ -2,6 +2,7 @@
   "name": "youtube",
   "title": "YouTube",
   "url": "https://youtube.com",
+   "trackDuplicates": true,
   "API": "v2",
   "description": "Share your videos with friends, family, and the world.",
   "auth": {
@@ -28,29 +29,30 @@
       },
       "exports": {
         "properties": {
-          "subscriberCount" : {
-            "description" : "Subscriber Count",
-            "title" : "Subscriber Count",
+          "id" : {
+            "description" : "Id",
+            "title" : "Video Id",
             "type" : "string"
           },
-          "lastWebAccess" : {
-            "description" : "Last Access",
-            "title" : "Last Access",
+          "title" : {
+            "description" : "Title",
+            "title" : "Video Title",
             "type" : "string"
           },
-          "videoWatchCount" : {
-            "description" : "Video Watch Count",
-            "title" : "Video Watch Count",
+          "updated" : {
+            "title" : "Updated Time",
             "type" : "string"
           },
-          "viewCount" : {
-            "description" : "View Count",
-            "title" : "View Count",
+           "published" : {
+            "title" : "Created Time",
             "type" : "string"
           },
-          "totalUploadViews" : {
-            "description" : "Total Upload Views",
-            "title" : "Total Upload Views",
+          "content" : {
+            "title" : "Video Content",
+            "type" : "string"
+          },
+          "link" : {
+            "title" : "Video link",
             "type" : "string"
           }
         },
