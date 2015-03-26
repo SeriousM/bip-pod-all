@@ -2,7 +2,8 @@
   "name": "youtube",
   "title": "YouTube",
   "url": "https://youtube.com",
-   "trackDuplicates": true,
+  "trackDuplicates": true,
+  "trackDeltas":true,
   "API": "v2",
   "description": "Share your videos with friends, family, and the world.",
   "auth": {
@@ -75,6 +76,80 @@
         ]
       }
     },
+     "get_user_favorited_videos":{  
+         "trigger":"poll",
+         "title":"On A New Anonymous Favorite",
+         "description":"Trigger When Someone Favorites My Videos",
+         "uri":"http://gdata.youtube.com/feeds/api/users/{username}/uploads?alt=json",
+	       "config": {
+	       "properties": {
+	          "username": {
+	            "type": "string",
+	            "title": "Username",
+	            "description": "Username"
+	          }
+	         },
+	        "disposition": [
+	          "username"
+	        ],
+	        "definitions" : {}
+	      },
+         "exports":{  
+            "properties":{  
+               "id":{  
+                  "description":"Video Id",
+                  "title":"Video Id",
+                  "type":"string"
+               },
+               "title":{  
+                  "description":"Video Title",
+                  "title":"Video Title",
+                  "type":"string"
+               },
+               "updated":{  
+                  "description":"Update Date",
+                  "title":"Update Date",
+                  "type":"string"
+               },
+               "published":{  
+                  "description":"Published Date",
+                  "title":"Published Date",
+                  "type":"string"
+               },
+               "favcount":{  
+                  "description":"New Favorites Count",
+                  "title":"New Favorites Count",
+                  "type":"string"
+               },
+               "link":{  
+                  "description":"URL",
+                  "title":"URL",
+                  "type":"string"
+               }
+            },
+            "definitions":{  
+
+            }
+         },
+         "imports":{  
+            "properties":{  
+               "username":{  
+                  "type":"string",
+                  "title":"Username",
+                  "description":"Username"
+               }
+            },
+            "definitions":{  
+
+            },
+            "required":[  
+               "username"
+            ],
+            "disposition":[  
+               "username"
+            ]
+         }
+      },
     "get_user_statistics": {
       "trigger" : "invoke",
       "title": "Get User Statistics",
