@@ -12,7 +12,7 @@
   "actions": {
     "eval": {
       "title": "Eval",
-      "description": "Evaluates A Math Expression",
+      "description": "Evaluate A Math Expression",
       "trigger": "invoke",
       "config": {
         "properties": {},
@@ -37,6 +37,38 @@
         "required": [
           "expression"
         ],
+        "disposition": [
+          "expression"
+        ]
+      }
+    },
+    "random_int": {
+      "title": "Random Integer",
+      "description": "Generate A Random Integer",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "random_int": {
+            "type": "string",
+            "title": "Random Integer"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "min": {
+            "type": "string",
+            "title": "Minimum"
+          },
+          "max": {
+            "type": "string",
+            "title": "Maximum"
+          }
+        },
         "disposition": [
           "expression"
         ]
