@@ -24,108 +24,13 @@ function OnNewSearchMessage() {}
 OnNewSearchMessage.prototype = {};
 
 OnNewSearchMessage.prototype.trigger = function(imports, channel, sysImports, contentParts, next) {
-  var self = this,
-    uid = 'me',
-    auth = self.pod.getOAuthClient(sysImports),
-    $resource = this.$resource,
-    rateLimit = 100, // gmail api limit is 250/sec/user.  This should ultimately requeue on
-    queue = [],
-    popper;
-
-  this.invoke(imports, channel, sysImports, contentParts, function(err, message) {
-    if (err) {
-      next(err);
-    } else {
-
-      $resource.dupFilter(message, 'id', channel, sysImports, function(err, message) {
-        var params = {};
-
-        if (err) {
-          next(err);
-        } else {
-
-          if (!popper) {
-            popper = setInterval(function() {
-              if (queue.length) {
-                queue.pop()();
-              } else {
-                clearInterval(popper);
-              }
-
-            }, 1000 / rateLimit);
-          }
-
-          // fetch mail if it's not a dup
-          params.auth = auth;
-          params.userId = uid;
-          params.id = message.id;
-
-          queue.push((function(params, next) {
-            return function() {
-              gmail.users.messages.get(params, function(err, body, res) {
-                if (err) {
-                  next(err);
-                } else {
-                  var exports = {
-                      mimeType : body.payload.mimeType
-                    },
-                    header,
-                    part;
-
-                  // export headers
-                  for (var i = 0; i < body.payload.headers.length; i++) {
-                    header = body.payload.headers[i];
-                    exports[header.name] = header.value;
-                  }
-
-                  if (body.payload && body.payload.parts) {
-                    for (var i = 0; i < body.payload.parts.length; i++) {
-                      part = body.payload.parts[i];
-                      if (part.body.size && part.body.data) {
-                        var buff = new Buffer(part.body.size);
-                        buff.write(part.body.data, 'base64');
-
-                        // @todo - object too large
-                        if ('text/html' === part.mimeType) {
-//                          exports.html_body = buff.toString('utf8');
-                        } else if ('text/plain') {
-                          exports.text_body = buff.toString('utf8');
-                        }
-                      } else if (part.body.attachmentId) {
-                          // @todo - get file
-                      }
-                    }
-                  }
-
-                  next(false, exports);
-                }
-              });
-            }
-          })(params, next));
-        }
-      });
-    }
-  });
+	imports.searchQuery=imports.q;
+	this.pod._parseEmails(gmail, imports, channel, sysImports, contentParts, next, false);
 }
-
+ 
 OnNewSearchMessage.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
-  var self = this,
-    uid = 'me',
-    auth = self.pod.getOAuthClient(sysImports),
-    params = {
-      auth : auth,
-      userId:  uid,
-      q : imports.q
-    };
-  gmail.users.messages.list(params, function(err, body, res) {
-    if (err) {
-      next(err);
-    } else {
-    	for (var i = 0; i < body.messages.length; i++) {
-        next(false, body.messages[i]);
-      }
-    }
-  });
+	imports.searchQuery=imports.q;
+	this.pod._invoker(gmail,imports, channel, sysImports, contentParts, next);
 }
 
 // -----------------------------------------------------------------------------
