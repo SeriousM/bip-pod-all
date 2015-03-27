@@ -4,6 +4,7 @@
   "description": "Gmail is a Google-owned, web-based email service provides details of storage, options and links to related services",
   "url": "https://gmail.google.com",
   "trackDuplicates": true,
+  "rateLimit" : 100,
   "config": {
     "oauth": {
       "clientID": "",

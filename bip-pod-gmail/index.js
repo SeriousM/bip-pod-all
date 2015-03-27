@@ -73,7 +73,7 @@ GMail.BTOA = function(str) {
   } else {
     buf = new Buffer(str.toString(), 'binary');
   }
-  return buf.toString('base64'); 
+  return buf.toString('base64');
 }
 
 GMail.getOAuthClient = function(sysImports) {
@@ -100,7 +100,7 @@ console.log("imports.searchQuery"+imports.searchQuery);
 	      next(err);
 	    } else {
 	    	for (var i = 0; i < body.messages.length; i++) {
-	    		
+
 	        next(false, body.messages[i]);
 	      }
 	    }
@@ -110,10 +110,8 @@ console.log("imports.searchQuery"+imports.searchQuery);
 GMail._parseEmails = function(gmail, imports, channel, sysImports, contentParts, next, specificEmail) {
 	  var self = this;
 	  var  uid = 'me',
-	    auth = GMail.getOAuthClient(sysImports),
-	    rateLimit = 100, // gmail api limit is 250/sec/user.  This should ultimately requeue on
-	    queue = [],
-	    popper;
+	    auth = GMail.getOAuthClient(sysImports);
+
 	    $resource = this.$resource;
 	    GMail._invoker(gmail, imports, channel, sysImports, contentParts, function(err, message) {
 	    if (err) {
@@ -124,82 +122,76 @@ GMail._parseEmails = function(gmail, imports, channel, sysImports, contentParts,
 	        if (err) {
 	          next(err);
 	        } else {
-	          if (!popper) {
-	            popper = setInterval(function() {
-	              if (queue.length) {
-	                queue.pop()();
-	              } else {
-	                clearInterval(popper);
-	              }
 
-	            }, 1000 / rateLimit);
-	          }
 	          // fetch mail if it's not a dup
 	          params.auth = auth;
 	          params.userId = uid;
 	          params.id = message.id;
 
-	          queue.push((function(params, next) {
-	            return function() {
-	              gmail.users.messages.get(params, function(err, body, res) {
-	                if (err) {
-	                  next(err);
-	                } else {
-	                  var exports = {
-	                      mimeType : body.payload.mimeType
-	                    },
-	                    header,
-	                    part;
+	          self.limitRate(
+	          	channel,
+	          	(function(params, next) {
+		            return function() {
+		              gmail.users.messages.get(params, function(err, body, res) {
+		                if (err) {
+		                  next(err);
+		                } else {
+		                  var exports = {
+		                      mimeType : body.payload.mimeType
+		                    },
+		                    header,
+		                    part;
 
-	                  // export headers
-	                  for (var i = 0; i < body.payload.headers.length; i++) {
-	                    header = body.payload.headers[i];
-	                    exports[header.name] = header.value;
-	                  }
-	                  
-	                  if(specificEmail){
-	                	     //check if sent from the specific email
-	                      var fromStr = ' ';
-	                      if (exports.From) {
-	                        fromStr += exports.From + ' ';
-	                      }
+		                  // export headers
+		                  for (var i = 0; i < body.payload.headers.length; i++) {
+		                    header = body.payload.headers[i];
+		                    exports[header.name] = header.value;
+		                  }
 
-	                      if (exports['Reply-To']) {
-	                        fromStr += exports['Reply-To'];
-	                      }
+		                  if(specificEmail){
+		                	     //check if sent from the specific email
+		                      var fromStr = ' ';
+		                      if (exports.From) {
+		                        fromStr += exports.From + ' ';
+		                      }
 
-	                      if( fromStr.toLowerCase().indexOf(imports.from_id.toLowerCase()) === -1) {
-	                    	  return;
-	                      }
-	                  }
+		                      if (exports['Reply-To']) {
+		                        fromStr += exports['Reply-To'];
+		                      }
 
-	                  if (body.payload && body.payload.parts) {
-	                    for (var i = 0; i < body.payload.parts.length; i++) {
-	                      part = body.payload.parts[i];
-	                      if (part.body.size && part.body.data) {
-	                        var buff = new Buffer(part.body.size);
-	                        buff.write(part.body.data, 'base64');
-	                        // @todo - object too large
-	                        if ('text/html' === part.mimeType) {
-//	                          exports.html_body = buff.toString('utf8');
-	                        } else if ('text/plain') {
-	                          exports.text_body = buff.toString('utf8');
-	                        }
-	                      } else if (part.body.attachmentId) {
-	                          // @todo - get file
-	                      }
-	                    }
-	                  }
-	                  next(false, exports);
-	                }
-	              });
-	            }
-	          })(params, next));
+		                      if( fromStr.toLowerCase().indexOf(imports.from_id.toLowerCase()) === -1) {
+		                    	  return;
+		                      }
+		                  }
+
+		                  if (body.payload && body.payload.parts) {
+		                    for (var i = 0; i < body.payload.parts.length; i++) {
+		                      part = body.payload.parts[i];
+		                      if (part.body.size && part.body.data) {
+		                        var buff = new Buffer(part.body.size);
+		                        buff.write(part.body.data, 'base64');
+		                        // @todo - object too large
+		                        if ('text/html' === part.mimeType) {
+	//	                          exports.html_body = buff.toString('utf8');
+		                        } else if ('text/plain') {
+		                          exports.text_body = buff.toString('utf8');
+		                        }
+		                      } else if (part.body.attachmentId) {
+		                          // @todo - get file
+		                      }
+		                    }
+		                  }
+		                  next(false, exports);
+		                }
+		              });
+		            }
+	          	})(params, next)
+          	);
 	        }
 	      });
 	    }
 	  });
-	  
+
 	}
 
 
