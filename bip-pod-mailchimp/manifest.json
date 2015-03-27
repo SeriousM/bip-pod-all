@@ -4,6 +4,7 @@
   "description": "MailChimp is an email marketing service provider. It is a web-based application, although data can be downloaded and for some features there is an offline application.",
   "url": "",
   "trackDuplicates": false,
+  "rateLimit" : 5,
   "config": {
     "oauth": {
       "clientID": "",
