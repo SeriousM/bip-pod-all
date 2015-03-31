@@ -11,8 +11,8 @@
   },
   "actions": {
      "get_user_favorites": {
-      "title": "When I Favorite A Video",
-      "description": "Triggers When You Favorite A Video",
+      "title": "When A User Favorites A Video",
+      "description": "Triggers When A User Favorites A Video",
       "uri": "http://gdata.youtube.com/feeds/api/users/{username}?alt=json",
       "trigger" : "poll",
       "config": {
@@ -78,8 +78,8 @@
     },
      "get_user_favorited_videos":{
          "trigger":"poll",
-         "title":"When Someone Favorites My Video",
-         "description":"Trigger When Someone Favorites My Videos",
+         "title":"When A Users Video Gets Favorited",
+         "description":"Triggers When A Users Video Gets Favorited",
          "uri":"http://gdata.youtube.com/feeds/api/users/{username}/uploads?alt=json",
 	       "config": {
 	       "properties": {
