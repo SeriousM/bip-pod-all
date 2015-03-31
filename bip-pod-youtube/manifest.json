@@ -19,10 +19,12 @@
        "properties": {
           "username": {
             "type": "string",
-            "title": "Username",
-            "description": "Username"
+            "title": "Username"
           }
          },
+        "required": [
+          "username"
+        ],
         "disposition": [
           "username"
         ],
@@ -61,19 +63,8 @@
       },
       "imports": {
         "properties": {
-          "username": {
-            "type": "string",
-            "title": "Username",
-            "description": "Username"
-          }
         },
-        "definitions" : {},
-        "required": [
-          "username"
-        ],
-        "disposition": [
-          "username"
-        ]
+        "definitions" : {}
       }
     },
      "get_user_favorited_videos":{
@@ -85,10 +76,12 @@
 	       "properties": {
 	          "username": {
 	            "type": "string",
-	            "title": "Username",
-	            "description": "Username"
+	            "title": "Username"
 	          }
 	         },
+          "required": [
+            "username"
+          ],
 	        "disposition": [
 	          "username"
 	        ],
@@ -133,21 +126,9 @@
          },
          "imports":{
             "properties":{
-               "username":{
-                  "type":"string",
-                  "title":"Username",
-                  "description":"Username"
-               }
             },
             "definitions":{
-
-            },
-            "required":[
-               "username"
-            ],
-            "disposition":[
-               "username"
-            ]
+            }
          }
       },
     "get_user_statistics": {
@@ -194,8 +175,7 @@
         "properties": {
           "username": {
             "type": "string",
-            "title": "Username",
-            "description": "Username"
+            "title": "Username"
           }
         },
         "definitions" : {},
