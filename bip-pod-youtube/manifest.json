@@ -11,7 +11,7 @@
   },
   "actions": {
      "get_user_favorites": {
-      "title": "On Video Favorite",
+      "title": "When I Favorite A Video",
       "description": "Triggers When You Favorite A Video",
       "uri": "http://gdata.youtube.com/feeds/api/users/{username}?alt=json",
       "trigger" : "poll",
@@ -76,9 +76,9 @@
         ]
       }
     },
-     "get_user_favorited_videos":{  
+     "get_user_favorited_videos":{
          "trigger":"poll",
-         "title":"On A New Anonymous Favorite",
+         "title":"When Someone Favorites My Video",
          "description":"Trigger When Someone Favorites My Videos",
          "uri":"http://gdata.youtube.com/feeds/api/users/{username}/uploads?alt=json",
 	       "config": {
@@ -94,58 +94,58 @@
 	        ],
 	        "definitions" : {}
 	      },
-         "exports":{  
-            "properties":{  
-               "id":{  
+         "exports":{
+            "properties":{
+               "id":{
                   "description":"Video Id",
                   "title":"Video Id",
                   "type":"string"
                },
-               "title":{  
+               "title":{
                   "description":"Video Title",
                   "title":"Video Title",
                   "type":"string"
                },
-               "updated":{  
+               "updated":{
                   "description":"Update Date",
                   "title":"Update Date",
                   "type":"string"
                },
-               "published":{  
+               "published":{
                   "description":"Published Date",
                   "title":"Published Date",
                   "type":"string"
                },
-               "favcount":{  
+               "favcount":{
                   "description":"New Favorites Count",
                   "title":"New Favorites Count",
                   "type":"string"
                },
-               "link":{  
+               "link":{
                   "description":"URL",
                   "title":"URL",
                   "type":"string"
                }
             },
-            "definitions":{  
+            "definitions":{
 
             }
          },
-         "imports":{  
-            "properties":{  
-               "username":{  
+         "imports":{
+            "properties":{
+               "username":{
                   "type":"string",
                   "title":"Username",
                   "description":"Username"
                }
             },
-            "definitions":{  
+            "definitions":{
 
             },
-            "required":[  
+            "required":[
                "username"
             ],
-            "disposition":[  
+            "disposition":[
                "username"
             ]
          }
