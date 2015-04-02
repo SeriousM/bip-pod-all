@@ -172,12 +172,13 @@ GMail._parseEmails = function(gmail, imports, channel, sysImports, contentParts,
 		                        buff.write(part.body.data, 'base64');
 		                        // @todo - object too large
 		                        if ('text/html' === part.mimeType) {
-	//	                          exports.html_body = buff.toString('utf8');
+		                       //  exports.html_body = buff.toString('utf8');
 		                        } else if ('text/plain') {
 		                          exports.text_body = buff.toString('utf8');
 		                        }
 		                      } else if (part.body.attachmentId) {
-		                          // @todo - get file
+		                    	  var dataDir = GMail.getDataDir(channel, message.id);
+		                    	  GMail.saveAttachment(gmail,auth , uid, message.id, part, dataDir , contentParts , next);		        
 		                      }
 		                    }
 		                  }
@@ -194,6 +195,41 @@ GMail._parseEmails = function(gmail, imports, channel, sysImports, contentParts,
 
 	}
 
+
+GMail.saveAttachment = function(gmail, auth, uid, messageId, file , dataDir, contentParts , next) {
+	  var self = this;
+	  var request = gmail.users.messages.attachments.get({
+	        'id': file.body.attachmentId,
+	        'messageId': messageId,
+	        'auth':auth,
+	        'userId': uid
+	  }, function(err, attachment ,res ) {
+	    if (err) {
+		      next(err);
+	    } else {
+
+		  var options = {
+			  "encoding": 'base64',
+		  } 
+		  
+	      self.$resource.file.save(
+	    	   dataDir  + file.filename ,
+	    	   new Buffer(attachment.data),
+	    	   options,
+	    		function(err, struct) {
+	        	     if (err) {
+	        	        next(err);
+	        	      } else {
+	        	        struct.name = file.filename;
+	        	        contentParts._files.push(struct);
+	        	        next(false, {}, contentParts);
+	        	      }
+	        	 }
+        	 );
+	   
+	      }
+	  })
+}
 
 
 // -----------------------------------------------------------------------------
