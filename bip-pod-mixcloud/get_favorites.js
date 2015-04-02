@@ -46,9 +46,8 @@ GetFavorites.prototype.trigger = function(imports, channel, sysImports, contentP
         } else {
           imports.since = since;
           imports.until = until;
-
           self.invoke(imports, channel, sysImports, contentParts, function(err, mix) {
-            if (err) {
+			if (err) {
               next(err);
             } else {
               next(false, mix);
@@ -71,13 +70,18 @@ GetFavorites.prototype.invoke = function(imports, channel, sysImports, contentPa
       + '/favorites?access_token=' + sysImports.auth.oauth.access_token;
 
   if (imports.since) {
-    url += '&since=' + imports.since;
+	  var since_date = new Date(imports.since*1000);
+	  var since = since_date.getUTCFullYear() + "-" + (since_date.getUTCMonth()+1) + "-" + since_date.getUTCDate() + "+" + since_date.getUTCHours() + "%3A" +
+	  since_date.getUTCMinutes() + "%3A" + since_date.getUTCSeconds();
+    url += '&since=' + since;
   }
 
   if (imports.until) {
-   url += '&until=' + imports.until;
+	  var until_date = new Date(imports.until*1000);
+	  var until = until_date.getUTCFullYear() + "-" + (until_date.getUTCMonth()+1) + "-" + until_date.getUTCDate() + "+" + until_date.getUTCHours() + "%3A" +
+	  until_date.getUTCMinutes() + "%3A" + until_date.getUTCSeconds()
+	  url += '&until=' + until;
   }
-
   pod._httpGet(url, function(err, bodyJSON) {
     if (!err && bodyJSON.data && bodyJSON.data.length > 0 ) {
       var exports, tags;
