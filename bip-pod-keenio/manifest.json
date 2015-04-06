@@ -58,7 +58,8 @@
           },
           "event": {
             "type": "object",
-            "title": "Event Object"
+            "title": "Event Object",
+            "description" : "Object or JSON String"
           }
         },
         "required": [
