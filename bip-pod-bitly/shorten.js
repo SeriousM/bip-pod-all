@@ -25,10 +25,16 @@ function Shorten() {}
 Shorten.prototype = {};
 
 Shorten.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
-  var uri = 'https://api-ssl.bitly.com/v3/link/lookup?url=';
-  uri += imports.url + '&access_token=' + sysImports.auth.oauth.access_token;
-  pod._httpGet(uri, function(err, bodyJSON) {
-    next(err || bodyJSON.status_code !== 200, bodyJSON.data, contentParts, 0);
+  var uri = 'https://api-ssl.bitly.com/v3/shorten?longUrl=';
+  uri += encodeURIComponent(imports.url) + '&access_token=' + sysImports.auth.oauth.access_token;
+  this.pod._httpGet(uri, function(err, bodyJSON) {
+  	var errStr;
+  	if (err) {
+  		errStr = err;
+  	} else if ( bodyJSON.status_code !== 200) {
+  		errStr =  bodyJSON.status_txt
+  	}
+    next(errStr, bodyJSON.data, contentParts, 0);
   });
 }
 

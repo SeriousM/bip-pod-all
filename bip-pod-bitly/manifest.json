@@ -75,7 +75,7 @@
     },
     "expand": {
       "title": "Expands a URL",
-      "description": "Given a bitly URL or hash (or multiple), returns the target (long) URL",
+      "description": "Given a bitly URL, returns the target (long) URL",
       "doc_ref": "http://dev.bitly.com/links.html#v3_expand",
       "trigger": "invoke",
       "config": {
@@ -84,29 +84,29 @@
       },
       "exports": {
         "properties": {
-          "new_hash": {
-            "type": "string",
-            "title": "1 if new hash"
-          },
-          "url": {
-            "type": "string",
-            "title": "Bitly URL"
-          },
-          "hash": {
-            "type": "string",
-            "title": "Account URL Hash"
-          },
-          "global_hash": {
-            "type": "string",
-            "title": "Global Hash"
+          "title" : {
+            "type" : "string",
+            "title" : "Link Title"
           },
           "short_url": {
             "type": "string",
             "title": "Bitly URL"
           },
-          "long_url": {
+          "created_at": {
             "type": "string",
-            "title": "Original URL"
+            "title": "Created At Timestamp"
+          },
+          "created_by": {
+            "type": "string",
+            "title": "Created By User"
+          },
+          "user_hash": {
+            "type": "string",
+            "title": "User Hash"
+          },
+          "global_hash": {
+            "type": "string",
+            "title": "Global Hash"
           }
         }
       },
@@ -115,18 +115,13 @@
           "short_url": {
             "type": "string",
             "title": "Short URL"
-          },
-          "hash": {
-            "type": "string",
-            "title": "URL Hash"
           }
         },
         "required": [
           "short_url"
         ],
         "disposition": [
-          "short_url",
-          "hash"
+          "short_url"
         ]
       }
     }
