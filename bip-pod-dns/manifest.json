@@ -33,7 +33,7 @@
         ]
       },
       "exports": {
-	    "properties": {
+        "properties": {
           "blacklisted": {
             "type": "boolean",
             "title": "Blacklisted"
@@ -41,7 +41,7 @@
         }
       }
     },
-	"get_gtld": {
+    "get_gtld": {
       "title": "Get GTLD",
       "description": "Extracts GTLD and Subdomain tokens from a URL.  Works with any URI Scheme.",
       "trigger": "invoke",
