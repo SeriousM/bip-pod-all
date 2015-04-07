@@ -10,7 +10,38 @@
   },
   "rpcs": {},
   "actions": {
-    "get_gtld": {
+    "checkdnsbl": {
+	  "title": "Check DNSBL",
+	  "description" : "Check an addr against a list of DNS Blacklists",
+	  "trigger": "invoke",
+	  "config": {
+	    "properties": {}.
+		"definitions": {}
+	  },
+	  "imports": {
+	    "properties": {
+          "ip": {
+            "type": "string",
+            "title": "IP Address"
+          }
+        },
+        "required": [
+          "ip"
+        ],
+        "disposition": [
+          "ip"
+        ]
+      },
+	  "exports": {
+	    "properties": {
+		  "blacklisted": {
+		    "type": "boolean",
+			"title": "Blacklisted"
+		  }
+		}
+	  }
+	},
+	"get_gtld": {
       "title": "Get GTLD",
       "description": "Extracts GTLD and Subdomain tokens from a URL.  Works with any URI Scheme.",
       "trigger": "invoke",
