@@ -15,7 +15,7 @@
 	  "description" : "Check an addr against a list of DNS Blacklists",
 	  "trigger": "invoke",
 	  "config": {
-	    "properties": {}.
+	    "properties": {},
 		"definitions": {}
 	  },
 	  "imports": {
@@ -34,12 +34,12 @@
       },
 	  "exports": {
 	    "properties": {
-		  "blacklisted": {
-		    "type": "boolean",
-			"title": "Blacklisted"
-		  }
-		}
-	  }
+          "blacklisted": {
+	        "type": "boolean",
+            "title": "Blacklisted"
+          }
+        }
+      }
 	},
 	"get_gtld": {
       "title": "Get GTLD",
