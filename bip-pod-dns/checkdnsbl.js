@@ -28,21 +28,23 @@ CheckDNSBL.prototype = {};
 
 
 CheckDNSBL.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
-	var flipped = imports.ip.split('.').reverse().join('.');
+	var reversed = imports.ip.split('.').reverse().join('.');
 	var found = false;
+	var results = []; 
+
+	rbls.map(blacklisted);
 
 	function blacklisted(rbl) {
-		dns.resolve4(flipped + rbl.dns,	function (err, domain) {
-			if (err) {
-				next(err);
-			} else {
-				// ip resolves to A record if found on a blacklist
-				return true;
+		dns.resolve4(reversed + rbl.dns, function (err, domain) {
+			results.push(err ? false : true);
+			if (results.length === rbls.length) { 
+				found = results.filter(function(el) { return el; }) 
+				found = found.length ? true : false;
+				next(err, found);
 			}
-	});
-
-	found =	rbls.filter(blacklisted);
-	next(false, found);
-
+		}); 
+	}
 }
+
+
 
