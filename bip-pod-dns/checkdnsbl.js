@@ -26,25 +26,26 @@ function CheckDNSBL() {}
 
 CheckDNSBL.prototype = {};
 
-
 CheckDNSBL.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
 	var reversed = imports.ip.split('.').reverse().join('.');
 	var found = false;
-	var results = []; 
+	var results = [];
 
 	rbls.map(blacklisted);
 
 	function blacklisted(rbl) {
-		dns.resolve4(reversed + rbl.dns, function (err, domain) {
+		dns.resolve4(reversed + '.' + rbl.dns, function (err, domain) {
 			results.push(err ? false : true);
-			if (results.length === rbls.length) { 
-				found = results.filter(function(el) { return el; }) 
+			if (results.length === rbls.length) {
+				found = results.filter(function(el) { return el; })
 				found = found.length ? true : false;
 				next(err, found);
 			}
-		}); 
+		});
 	}
 }
+
+module.exports = CheckDNSBL;
 
 
 

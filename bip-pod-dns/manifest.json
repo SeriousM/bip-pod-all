@@ -11,15 +11,16 @@
   "rpcs": {},
   "actions": {
     "checkdnsbl": {
-	  "title": "Check DNSBL",
-	  "description" : "Check an addr against a list of DNS Blacklists",
-	  "trigger": "invoke",
-	  "config": {
-	    "properties": {},
-		"definitions": {}
-	  },
-	  "imports": {
-	    "properties": {
+  	  "title": "Check DNSBL",
+  	  "description" : "Check an addr against a list of DNS Blacklists",
+      "doc_ref" : "http://en.wikipedia.org/wiki/DNSBL",
+  	  "trigger": "invoke",
+  	  "config": {
+  	    "properties": {},
+  		  "definitions": {}
+	    },
+	    "imports": {
+	      "properties": {
           "ip": {
             "type": "string",
             "title": "IP Address"
