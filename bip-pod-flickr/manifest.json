@@ -66,7 +66,46 @@
       "imports": {
         "properties": {}
       }
-    }
+    },
+    "add_photo": {
+        "title": "Add photo to my photostream",
+        "description": "Upload A Photo To my photostream",
+        "doc_ref": "https://www.flickr.com/services/api/flickr.people.getPhotos.html",
+        "trigger": "invoke",
+        "config": {
+          "properties": {
+            "download": {
+              "type": "boolean",
+              "default": false,
+              "title": "Download File"
+            }
+          },
+          "disposition": [
+            "download"
+          ]
+        },
+        "exports": {
+          "properties": {
+            
+          }
+        },
+        "imports": {
+          "properties": {
+        	  "title": {
+                  "type": "string",
+                  "title": "Title"
+                },
+                "media_original_url": {
+                  "type": "string",
+                  "title": "Media Original Res URL"
+                },
+                "tags": {
+                  "type": "string",
+                  "title": "Tags"
+                }
+          }
+        }
+      }
   },
   "tags": [
     "social",
