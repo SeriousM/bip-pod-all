@@ -70,7 +70,7 @@
     "add_photo": {
         "title": "Add photo to my photostream",
         "description": "Upload A Photo To my photostream",
-        "doc_ref": "https://www.flickr.com/services/api/flickr.people.getPhotos.html",
+        "doc_ref": "https://www.flickr.com/services/api/upload.api.html",
         "trigger": "invoke",
         "config": {
           "properties": {
@@ -86,7 +86,6 @@
         },
         "exports": {
           "properties": {
-            
           }
         },
         "imports": {
@@ -95,13 +94,9 @@
                   "type": "string",
                   "title": "Title"
                 },
-                "media_original_url": {
+                "url": {
                   "type": "string",
                   "title": "Media Original Res URL"
-                },
-                "tags": {
-                  "type": "string",
-                  "title": "Tags"
                 }
           }
         }
