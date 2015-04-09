@@ -27,8 +27,9 @@ function CheckDNSBL() {}
 CheckDNSBL.prototype = {};
 
 CheckDNSBL.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
-	var reversed = imports.ip.split('.').reverse().join('.');
+	var reversed = imports.ip.split('.').reverse().join('.').replace(/\"/,'');
 	var found = false;
+	var result;
 	var results = [];
 
 	rbls.map(blacklisted);
@@ -38,8 +39,8 @@ CheckDNSBL.prototype.invoke = function(imports, channel, sysImports, contentPart
 			results.push(err ? false : true);
 			if (results.length === rbls.length) {
 				found = results.filter(function(el) { return el; })
-				found = found.length ? true : false;
-				next(err, found);
+				result = found.length ? true : false;
+				next(false, {blacklisted : result });
 			}
 		});
 	}
