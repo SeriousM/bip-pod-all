@@ -19,14 +19,16 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 var Pod = require('bip-pod'),
-  Keen = require('keen.io'),
+  Keen = require('keen-js'),
   KeenIO = new Pod();
 
 KeenIO.getClient = function(sysImports, projectId) {
-  return Keen.configure({
+  return new Keen({
     projectId : projectId,
     writeKey : sysImports.auth.issuer_token.password,
     readKey : sysImports.auth.issuer_token.username,
+	protocol : 'https',
+	host : 'api.keen.io/3.0'
   });
 }
 
