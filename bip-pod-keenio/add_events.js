@@ -1,7 +1,7 @@
 /**
  *
- * @author Michael Pearson <github@m.bip.io>
- * Copyright (c) 2010-2014 Michael Pearson https://github.com/mjpearson
+ * @author wot.io Devs <devs@wot.io>
+ * Copyright (c) 2015 wot.io 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,16 +17,26 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-function AddEvent() {}
+function AddEvents() {}
 
-AddEvent.prototype = {};
+AddEvents.prototype = {};
 
-AddEvent.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
+AddEvents.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
   var client = this.pod.getClient(sysImports, channel.config.project_id);
   try {
-    var evData = this.$resource.helper.isObject(imports.event) ? imports.event : JSON.parse(imports.event);
-    client.addEvent(imports.collection_name, evData, function(err, res) {
-      next(err, res)
+    var evsData = this.$resource.helper.isObject(imports.events) ? imports.events : JSON.parse(imports.events);
+    client.addEvents(evsData, function(err, res) {
+      if (err) {
+	    next(err);
+	  } else {
+		
+		Object.keys(res).forEach(function(collection) {
+			res[collection].forEach(function(succeeded) {
+				next(false, succeeded);
+			}); 
+		});
+
+	  }
     });
   } catch (e) {
     next(e);
@@ -34,4 +44,4 @@ AddEvent.prototype.invoke = function(imports, channel, sysImports, contentParts,
 }
 
 // -----------------------------------------------------------------------------
-module.exports = AddEvent;
+module.exports = AddEvents;

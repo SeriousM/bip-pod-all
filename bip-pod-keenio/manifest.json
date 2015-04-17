@@ -26,7 +26,7 @@
   "actions": {
     "add_event": {
       "title": "Add an Event",
-      "description": "Adds KeenIO Event data to a Project Id",
+      "description": "Adds Event data to a KeenIO Project Id",
       "trigger": "invoke",
       "config": {
         "properties": {
@@ -71,7 +71,50 @@
           "event"
         ]
       }
+    },
+    "add_events": {
+      "title": "Add Multiple Events",
+      "description": "Adds Multiple Events data to a KeenIO Project Id",
+      "trigger": "invoke",
+      "config": {
+        "properties": {
+          "project_id": {
+            "type": "string",
+            "title": "Project ID"
+          }
+        },
+        "required": [
+          "project_id"
+        ],
+        "disposition": [
+          "project_id"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "title": "Event Successfully Created"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "events": {
+            "type": "object",
+            "title": "Events Object",
+            "description" : "Object of Array(s) of Events"
+          }
+        },
+        "required": [
+          "events"
+        ],
+        "disposition": [
+          "events"
+        ]
+      }
     }
+
   },
   "tags": [
     "analytics"
