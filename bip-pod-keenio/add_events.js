@@ -1,7 +1,7 @@
 /**
  *
  * @author wot.io Devs <devs@wot.io>
- * Copyright (c) 2015 wot.io 
+ * Copyright (c) 2015 wot.io
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,16 +27,14 @@ AddEvents.prototype.invoke = function(imports, channel, sysImports, contentParts
     var evsData = this.$resource.helper.isObject(imports.events) ? imports.events : JSON.parse(imports.events);
     client.addEvents(evsData, function(err, res) {
       if (err) {
-	    next(err);
-	  } else {
-		
-		Object.keys(res).forEach(function(collection) {
-			res[collection].forEach(function(succeeded) {
-				next(false, succeeded);
-			}); 
-		});
-
-	  }
+		    next(err);
+		  } else {
+				Object.keys(res).forEach(function(collection) {
+					res[collection].forEach(function(succeeded) {
+						next(false, succeeded);
+					});
+				});
+	  	}
     });
   } catch (e) {
     next(e);
