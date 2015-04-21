@@ -1,6 +1,6 @@
 {
   "name": "bip-pod-gmail",
-  "version": "0.3.5",
+  "version": "0.3.6",
   "author": "Michael Pearson",
   "description": "Gmail Pod for Bipio",
   "keywords": [
@@ -27,7 +27,8 @@
   "dependencies": {
     "googleapis": "^1.0.20",
     "passport-google-oauth": ">=0.1.5",
-    "pkginfo": "0.2.x"
+    "pkginfo": "0.2.x",
+    "q": "^1.0.1"
   },
   "engines": {
     "node": ">= 0.10.0"

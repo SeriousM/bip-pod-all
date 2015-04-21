@@ -22,6 +22,7 @@ var Pod = require('bip-pod'),
 gapi = require('googleapis'),
 drive = gapi.drive('v2'),
 https = require('https'),
+Q = require('q'),
 GMail = new Pod({
   oAuthRefresh : function(refreshToken, next) {
     var c = this.getConfig();
@@ -164,25 +165,71 @@ GMail._parseEmails = function(gmail, imports, channel, sysImports, contentParts,
 		                      }
 		                  }
 
+		                  var promises = [], defer;
+
 		                  if (body.payload && body.payload.parts) {
 		                    for (var i = 0; i < body.payload.parts.length; i++) {
 		                      part = body.payload.parts[i];
 		                      if (part.body.size && part.body.data) {
 		                        var buff = new Buffer(part.body.size);
 		                        buff.write(part.body.data, 'base64');
+
 		                        // @todo - object too large
 		                        if ('text/html' === part.mimeType) {
 		                       //  exports.html_body = buff.toString('utf8');
-		                        } else if ('text/plain') {
+		                        } else if ('text/plain' === part.mimeType) {
 		                          exports.text_body = buff.toString('utf8');
 		                        }
-		                      } else if (part.body.attachmentId) {
+		                      }
+
+		                      if (part.body.attachmentId) {
+		                      	defer = Q.defer();
+		                      	promises.push( defer.promise );
 		                    	  var dataDir = GMail.getDataDir(channel, message.id);
-		                    	  GMail.saveAttachment(gmail,auth , uid, message.id, part, dataDir , contentParts , next);		        
+
+		                    	  (function(part, promise) {
+  		                    	  GMail.saveAttachment(
+			                    	  	gmail,
+			                    	  	auth,
+			                    	  	uid,
+			                    	  	message.id,
+			                    	  	part,
+			                    	  	dataDir,
+			                    	  	contentParts,
+			                    	  	function(err, struct) {
+			                    	  		if (err) {
+console.lolg(arguments);
+			                    	  			promise.reject(err);
+			                    	  		} else {
+			                    	  			promise.resolve(struct);
+			                    	  		}
+			                    	  	}
+		                    	  	);
+		                    	  })(part, defer);
 		                      }
 		                    }
 		                  }
-		                  next(false, exports);
+
+		                  if (!promises.length) {
+			                  next(false, exports);
+			                } else {
+			                	Q.all(promises).then(
+			                		function(results) {
+			                			var bSize = 0,
+			                				contentParts = {
+			                					_files : []
+			                				}
+			                			for (var i = 0; i < results.length; i++) {
+			                				contentParts._files.push(results[i]);
+			                				bSize += results[i].size ? results[i].size : 0;
+			                			}
+			                			next(false, exports, contentParts, bSize);
+			                		},
+			                		function(err) {
+			                			next(err);
+			                		}
+		                		);
+			                }
 		                }
 		              });
 		            }
@@ -192,7 +239,6 @@ GMail._parseEmails = function(gmail, imports, channel, sysImports, contentParts,
 	      });
 	    }
 	  });
-
 	}
 
 
@@ -208,25 +254,23 @@ GMail.saveAttachment = function(gmail, auth, uid, messageId, file , dataDir, con
 		      next(err);
 	    } else {
 
-		  var options = {
-			  "encoding": 'base64',
-		  } 
-		  
+			  var options = {
+				  "encoding": 'base64',
+			  }
+
 	      self.$resource.file.save(
-	    	   dataDir  + file.filename ,
-	    	   new Buffer(attachment.data),
-	    	   options,
-	    		function(err, struct) {
-	        	     if (err) {
-	        	        next(err);
-	        	      } else {
-	        	        struct.name = file.filename;
-	        	        contentParts._files.push(struct);
-	        	        next(false, {}, contentParts);
-	        	      }
-	        	 }
-        	 );
-	   
+	    	  dataDir  + file.filename,
+	    	  new Buffer(attachment.data),
+	    	  options,
+	     		function(err, struct) {
+	  	      if (err) {
+	  	        next(err);
+	  	      } else {
+	  	        struct.name = file.filename;
+	  	        next(false, struct);
+	  	      }
+ 	    	  }
+	  	    );
 	      }
 	  })
 }
