@@ -198,7 +198,6 @@ GMail._parseEmails = function(gmail, imports, channel, sysImports, contentParts,
 			                    	  	contentParts,
 			                    	  	function(err, struct) {
 			                    	  		if (err) {
-console.lolg(arguments);
 			                    	  			promise.reject(err);
 			                    	  		} else {
 			                    	  			promise.resolve(struct);
