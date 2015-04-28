@@ -34,15 +34,15 @@ GetUserFavorites.prototype.trigger = function(imports, channel, sysImports, cont
     	exports['content'] = video['content']['$t'];
     	exports['link'] = video['link'][0]['href'];
 
-        $resource.dupFilter(exports, 'id', channel, sysImports, function(err, favorite) {
-            next(err, favorite);
+    	$resource.dupFilter(exports, 'id', channel, sysImports, function(err, favorite) {
+           next(err, favorite);
         });
     });
 }
 
 GetUserFavorites.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
 	var $resource = this.pod.$resource;
-	url = 'http://gdata.youtube.com/feeds/api/users/' + imports.username + '/favorites?alt=json';
+	url = 'http://gdata.youtube.com/feeds/api/users/' + imports.username + '/uploads?alt=json';
      $resource._httpGet(url, function(err, body) {
     	 if(body && body.feed && body.feed.entry){
 	     	 for (var i = 0; i < body.feed.entry.length; i++) {

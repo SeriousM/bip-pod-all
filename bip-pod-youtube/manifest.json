@@ -10,6 +10,63 @@
     "strategy": "none"
   },
   "actions": {
+  "on_new_video": {
+      "title": "When A User Upload A New Video",
+      "description": "Triggers When A User Upload/Publish A New Video",
+      "uri": "http://gdata.youtube.com/feeds/api/users/{username}?alt=json",
+      "trigger" : "poll",
+      "config": {
+       "properties": {
+          "username": {
+            "type": "string",
+            "title": "Username"
+          }
+         },
+        "required": [
+          "username"
+        ],
+        "disposition": [
+          "username"
+        ],
+        "definitions" : {}
+      },
+      "exports": {
+        "properties": {
+          "id" : {
+            "description" : "Id",
+            "title" : "Video Id",
+            "type" : "string"
+          },
+          "title" : {
+            "description" : "Title",
+            "title" : "Video Title",
+            "type" : "string"
+          },
+          "updated" : {
+            "title" : "Updated Time",
+            "type" : "string"
+          },
+           "published" : {
+            "title" : "Created Time",
+            "type" : "string"
+          },
+          "content" : {
+            "title" : "Video Content",
+            "type" : "string"
+          },
+          "link" : {
+            "title" : "Video link",
+            "type" : "string"
+          }
+        },
+        "definitions" : {}
+      },
+      "imports": {
+        "properties": {
+        },
+        "definitions" : {}
+      }
+     },
      "get_user_favorites": {
       "title": "When A User Favorites A Video",
       "description": "Triggers When A User Favorites A Video",
