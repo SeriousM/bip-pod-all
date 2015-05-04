@@ -85,7 +85,7 @@
 	        },
 	        "escalation_policy":{
 	        	"properties":{
-	        		
+
 	        	}
 	        }
 	      },
@@ -100,16 +100,19 @@
 	      "config": {
 	        "properties": {
 	        	"service_key": {
-	                "type": "string",
-	                "optional": false,
-	                "unique": true,
-	                "oneOf": [
-	                  {
-	                    "$ref": "/rpcs/services_list#services/{service_key}"
-	                  }
-	                ],
-	                "title": "The GUID of one of your Generic API services"
-	              }
+              "type": "string",
+              "optional": false,
+              "unique": true,
+              "oneOf": [
+                {
+                  "$ref": "/rpcs/services_list#services/{service_key}"
+                }
+              ],
+							"label": {
+                "$ref": "/rpcs/services_list#services/{name}"
+              },
+              "title": "The GUID of one of your Generic API services"
+            }
 	        },
 	        "disposition":[
 	        	"service_key"
@@ -120,35 +123,74 @@
 	          "incident_key": {
 	            "type": "string",
 	            "title": "Incident Key"
+	          },
+	          "status": {
+	            "type": "string",
+	            "title": "Status"
+	          }
+	          "message" : {
+	            "type": "string",
+	            "title": "Message"
 	          }
 	        }
 	      },
 	      "imports": {
-		        "properties": {
-		            "description": {
-		            	"type":"string",
-		        		"description":"Description"
-		            },
-		            "client": {
-		            	"type":"string",
-		        		"description":"Client"
-		            },
-		            "client_url": {
-		            	"type":"string",
-		        		"description":"Client Url"
-		            }
-		        },
+	        "properties": {
+            "event_type": {
+	            "type":"string",
+	        		"title": "Event Type",
+	        		"default" : "trigger"
+            },
+            "description": {
+	            "type":"string",
+	        		"title":"Description"
+            },
+	        	"service_key": {
+	            "type": "string",
+	        		"title": "Service Key"
+            },
+            "incident_key": {
+            	"type":"string",
+	        		"title":"Incident Key"
+            },
+						"client": {
+            	"type":"string",
+	        		"title":"Client Name"
+            },
+            "client_url": {
+            	"type":"string",
+	        		"title":"Client Url"
+            },
+						"details": {
+            	"type":"object",
+	        		"title":"Additional Details",
+	        		"description" : "See <a href='https://developer.pagerduty.com/documentation/integration/events/trigger'>PagerDuty Trigger Docs</a> for more info"
+            },
+            "contexts": {
+            	"type":"object",
+	        		"title":"Additional Context",
+	        		"description" : "See <a href='https://developer.pagerduty.com/documentation/integration/events/trigger'>PagerDuty Trigger Docs</a> for more info"
+            }
+	        },
+	      	"required": [
+	          "event_type",
+	          "description"
+	        ],
 	      	"disposition": [
-	                      "description",
-	                      "client",
-	                      "client_url"
-	                    ]
-	      }
+	          "event_type",
+	          "description",
+	          "service_key",
+	          "incident_key",
+	          "client",
+	          "client_url",
+	          "details",
+	          "contexts"
+	        ]
+      	}
 	  }
   },
   "tags": [
-           "social",
-           "images",
-           "video"
+	   "alerts",
+	   "networking"
   ]
 }

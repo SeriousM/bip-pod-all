@@ -7,26 +7,32 @@ CreateEvent.prototype = {};
  *
  */
 CreateEvent.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
-  var pager = this.pod.getClient(channel);
-  console.log(imports);
-  pager.create({
-	  description: imports.description,
-	  client: imports.client,
-	  client_url: imports.client_url,
-	  details:{
-		  "occured":new Date()
-	  },
+  var pager = this.pod.getClient(channel),
+  	now = new Date();
+
+  if (!imports.details) {
+  	imports.details = {
+  		occured : now
+  	}
+  } else if (!imports.details.occured) {
+  	imports.details.occured = now;
+  }
+
+  var params = {
 	  callback: function(err, response){
 		  if (err){
-			  console.log(err);
 			  next(err);
-		  }
-		  else{
-			  console.log(response);
+		  } else {
 			  next(false,response);
 		  }
 	  }
-  })
+  }
+
+  for (var k in imports) {
+  	params[k] = imports[k];
+  }
+
+  pager.create(params);
 }
 
 // -----------------------------------------------------------------------------
