@@ -1,13 +1,13 @@
 {
-  "name": "bip-pod-rackspace",
-  "version": "0.0.0",
-  "description": "Rackspace pod for Bipio",
+  "name": "bip-pod-pagerduty",
+  "version": "0.0.1",
+  "description": "PagerDuty Pod For bip.io",
   "main": ".",
   "keywords": [
     "bip",
     "bipio",
     "pod",
-    "rackspace"
+    "pagerduty"
   ],
   "author": "Abdallah Maatouk",
   "license": [
