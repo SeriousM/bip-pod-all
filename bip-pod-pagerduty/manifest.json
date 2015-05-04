@@ -1,0 +1,154 @@
+{
+  "name": "pagerduty",
+  "title": "Pagerduty",
+  "description": "The pagerduty Pod lets you create an incident in pagerduty.",
+  "url": "http://www.pagerduty.com/",
+  "trackDuplicates": true,
+  "config": {
+  },
+  "auth": {
+    "strategy": "issuer_token",
+    "properties": {
+    	"username":{
+    		"type": "string",
+            "title": "Subdomain"
+    	},
+    	"password":{
+    		"type": "string",
+            "title": "Api Token"
+    	}
+    },
+    "disposition": [
+      "username",
+      "password"
+    ]
+  },
+  "rpcs": {
+	  "services_list": {
+	      "contentType": "application/json",
+	      "properties": {
+	        "id": {
+	          "type": "string",
+	          "description": "Id"
+	        },
+	        "name":{
+	        	"type":"string",
+	        	"description": "Name"
+	        },
+	        "service_url":{
+	        	"type":"string",
+	        	"description": "Service url"
+	        },
+	        "service_key":{
+	        	"type":"string",
+	        	"description": "Service key"
+	        },
+	        "auto_resolve_timeout":{
+	        	"type":"integer",
+	        	"description": "Auto resolve timeout"
+	        },
+	        "acknowledgement_timeout":{
+	        	"type":"integer",
+	        	"description": "Acknowledgement Timeout"
+	        },
+	        "created_at":{
+	        	"type":"string",
+	        	"description": "Created At"
+	        },
+	        "deleted_at":{
+	        	"type":"string",
+	        	"description": "Deleted At"
+	        },
+	        "status":{
+	        	"type":"string",
+	        	"description": "Status"
+	        },
+	        "last_incident_timestamp":{
+	        	"type":"string",
+	        	"description": "Last Incident Timestamp"
+	        },
+	        "email_incident_creation":{
+	        	"type":"string",
+	        	"description": "Email Incident Creation"
+	        },
+	        "email_filter_mode":{
+	        	"type":"string",
+	        	"description":"Email Filter Mode"
+	        },
+	        "type":{
+	        	"type":"string",
+	        	"description":"type"
+	        },
+	        "email_filter_mode":{
+	        	"type":"description",
+	        	"description":"Description"
+	        },
+	        "escalation_policy":{
+	        	"properties":{
+	        		
+	        	}
+	        }
+	      },
+	      "title": "Get Services List"
+	    }
+  },
+  "actions":{
+	  "create_event":{
+		  "title": "Trigger an alert",
+	      "description": "Trigger an alert in pagerduty when an incident occurs",
+	      "trigger": "invoke",
+	      "config": {
+	        "properties": {
+	        	"service_key": {
+	                "type": "string",
+	                "optional": false,
+	                "unique": true,
+	                "oneOf": [
+	                  {
+	                    "$ref": "/rpcs/services_list#services/{service_key}"
+	                  }
+	                ],
+	                "title": "The GUID of one of your Generic API services"
+	              }
+	        },
+	        "disposition":[
+	        	"service_key"
+	        ]
+	      },
+	      "exports": {
+	        "properties": {
+	          "incident_key": {
+	            "type": "string",
+	            "title": "Incident Key"
+	          }
+	        }
+	      },
+	      "imports": {
+		        "properties": {
+		            "description": {
+		            	"type":"string",
+		        		"description":"Description"
+		            },
+		            "client": {
+		            	"type":"string",
+		        		"description":"Client"
+		            },
+		            "client_url": {
+		            	"type":"string",
+		        		"description":"Client Url"
+		            }
+		        },
+	      	"disposition": [
+	                      "description",
+	                      "client",
+	                      "client_url"
+	                    ]
+	      }
+	  }
+  },
+  "tags": [
+           "social",
+           "images",
+           "video"
+  ]
+}

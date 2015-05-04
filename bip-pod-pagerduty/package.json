@@ -1,0 +1,22 @@
+{
+  "name": "bip-pod-rackspace",
+  "version": "0.0.0",
+  "description": "Rackspace pod for Bipio",
+  "main": ".",
+  "keywords": [
+    "bip",
+    "bipio",
+    "pod",
+    "rackspace"
+  ],
+  "author": "Abdallah Maatouk",
+  "license": [
+    {
+      "type": "GNU GPLv3",
+      "url": "http://www.gnu.org/copyleft/gpl.html"
+    }
+  ],
+  "dependencies": {
+    "pagerduty": "0.0.3"
+  }
+}
