@@ -127,7 +127,7 @@
 	          "status": {
 	            "type": "string",
 	            "title": "Status"
-	          }
+	          },
 	          "message" : {
 	            "type": "string",
 	            "title": "Message"
