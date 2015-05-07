@@ -1,6 +1,6 @@
 {
   "name": "bip-pod-pagerduty",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "PagerDuty Pod For bip.io",
   "main": ".",
   "keywords": [
@@ -10,13 +10,20 @@
     "pagerduty"
   ],
   "author": "Abdallah Maatouk",
-  "license": [
+  "dependencies": {
+    "pagerduty": "0.0.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bipio-server/bip-pod-pagerduty.git"
+  },
+  "bugs": {
+    "url": "http://github.com/bipio-server/bip-pod-pagerduty/issues"
+  },
+  "licenses": [
     {
       "type": "GNU GPLv3",
       "url": "http://www.gnu.org/copyleft/gpl.html"
     }
-  ],
-  "dependencies": {
-    "pagerduty": "0.0.3"
-  }
+  ]
 }
