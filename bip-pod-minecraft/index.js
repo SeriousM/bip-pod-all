@@ -21,5 +21,9 @@
 var Pod = require('bip-pod'),
     Minecraft = new Pod();
 
+Minecraft.stripColors = function(response) {
+	response.description = response.description.replace(/\xA7[0-9A-FK-OR]/gi, '');
+}
+
 // -----------------------------------------------------------------------------
 module.exports = Minecraft;

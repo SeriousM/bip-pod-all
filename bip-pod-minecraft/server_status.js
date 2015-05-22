@@ -30,6 +30,8 @@ ServerStatus.prototype.hostCheck = function(host, channel, next) {
 }
 
 ServerStatus.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
+  var pod = this.pod;
+
   this.hostCheck(imports.host, channel, function(err, blacklisted) {
     if (err) {
       next(err);
@@ -37,14 +39,13 @@ ServerStatus.prototype.invoke = function(imports, channel, sysImports, contentPa
       next('Requested Host ' + imports.host + ' Is Blacklisted');
     } else {
       mc.ping(imports, function(err, response) {
-
         if (!err) {
+          pod.stripColors(response);
           response.players_max = response.players.max;
           response.players_online = response.players.online;
           response.version_name = response.version.name;
           response.version_protocol = response.version.protocol;
         }
-
         next(err, response);
       });
     }

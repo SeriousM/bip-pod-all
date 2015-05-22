@@ -47,6 +47,7 @@ ServerStatusChange.prototype.trigger = function(imports, channel, sysImports, co
 }
 
 ServerStatusChange.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
+  var pod = this.pod;
   this.hostCheck(imports.host, channel, function(err, blacklisted) {
     if (err) {
       next(err);
@@ -55,6 +56,7 @@ ServerStatusChange.prototype.invoke = function(imports, channel, sysImports, con
     } else {
       mc.ping(imports, function(err, response) {
         if (!err) {
+          pod.stripColors(response);
           response.players_max = response.players.max;
           response.players_online = response.players.online;
           response.version_name = response.version.name;
