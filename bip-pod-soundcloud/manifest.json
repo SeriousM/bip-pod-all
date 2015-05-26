@@ -78,7 +78,16 @@
             "type": "string",
             "title": "Track Description"
           }
-        }
+        }, 
+        "disposition": [
+        	"title",
+        	"artist",
+        	"download_url",
+        	"label_name",
+        	"permalink_url",
+        	"artwork_url",
+        	"description"
+        	]
       },
       "imports": {
         "properties": {}
