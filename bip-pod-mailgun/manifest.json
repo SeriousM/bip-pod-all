@@ -63,7 +63,11 @@
             "type": "string",
             "title": "bounced email address"
           }
-        }
+        },
+        "disposition": [
+        	"code",
+        	"address"
+        	]
       },
       "imports": {
         "properties": {}
@@ -103,7 +107,11 @@
             "type": "string",
             "title": "complaint email address"
           }
-        }
+        },
+        "disposition": [
+        	"created_at",
+        	"address"
+        	]
       },
       "imports": {
         "properties": {}
@@ -227,7 +235,11 @@
             "type": "string",
             "title": "unsubscribed email address"
           }
-        }
+        },
+        "disposition": [
+        	"tag",
+        	"address"
+        	]
       },
       "imports": {
         "properties": {}
