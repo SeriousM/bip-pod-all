@@ -127,7 +127,17 @@
             "type": "string",
             "title": "Listing URL"
           }
-        }
+        },
+        "disposition": [
+        	"pid",
+        	"category",
+        	"date",
+        	"hasPic",
+        	"location",
+        	"price",
+        	"title",
+        	"url"
+        	]
       },
       "config": {
         "properties": {
