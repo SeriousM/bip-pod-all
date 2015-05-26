@@ -91,6 +91,20 @@
             "title": "Original MP4"
           }
         },
+        "disposition": [
+        	"type",
+        	"id",
+        	"url",
+        	"embed_url",
+        	"rating",
+        	"import_datetime",
+        	"image_original_url",
+        	"image_original_width",
+        	"image_original_height",
+        	"image_original_size",
+        	"image_original_frames",
+        	"image_original_mp4"
+        	],
         "definitions": {}
       },
       "title": "On A New GIF",
