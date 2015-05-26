@@ -66,7 +66,17 @@
             "type": "string",
             "title": "UTC Unix Time"
           }
-        }
+        },
+        "disposition": [
+        	"_value",
+        	"_alert_url",
+        	"_metric_name",
+        	"_metric_notes",
+        	"_metric_link",
+        	"_severity",
+        	"_cid",
+        	"_occurred_on"
+        	]
       },
       "imports": {
         "properties": {}
