@@ -21,7 +21,10 @@
             "title": "Query String"
           }
         },
-        "definitions": {}
+        "definitions": {},
+        "disposition": [
+       		"query"
+       		]
       },
       "config": {
         "properties": {
@@ -30,7 +33,10 @@
             "title": "Query String"
           }
         },
-        "definitions": {}
+        "definitions": {},
+        "disposition": [
+       		"query"
+       		]
       },
       "exports": {
         "properties": {
@@ -100,7 +106,7 @@
             "title": "Creation Date"
           },
           "question_id": {
-            "type": "number",
+            "type": "number", 
             "title": "Question ID"
           },
           "link": {
