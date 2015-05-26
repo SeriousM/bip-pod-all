@@ -116,6 +116,14 @@
             "type" : "string"
           }
         },
+        "disposition": [
+        	"id",
+        	"title",
+        	"updated",
+        	"published",
+        	"content",
+        	"link"
+        	],
         "definitions" : {}
       },
       "imports": {
@@ -177,6 +185,14 @@
                   "type":"string"
                }
             },
+        "disposition": [
+        	"id",
+        	"title",
+        	"updated",
+        	"published",
+        	"content",
+        	"link"
+        	],
             "definitions":{
 
             }
