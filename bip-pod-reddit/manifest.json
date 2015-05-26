@@ -68,7 +68,16 @@
             "description": "ID"
           }
         }
-      }
+      },
+        "disposition": [
+        	"author",
+        	"title",
+        	"url",
+        	"permalink",
+        	"created",
+        	"ups",
+        	"id"
+        	]
     },
     "user": {
       "title": "Get User's Latest Activity",
