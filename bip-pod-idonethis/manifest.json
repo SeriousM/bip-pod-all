@@ -77,7 +77,18 @@
             "title": "Team Permalink"
           }
         }
-      }
+      },
+        "disposition": [
+        	"name",
+        	"done_count",
+        	"updated",
+        	"created",
+        	"url",
+        	"short_name",
+        	"dones",
+        	"is_personal",
+        	"permalink"
+        	]
     },
     "dones": {
       "title": "Get Dones",
