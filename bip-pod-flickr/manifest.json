@@ -61,7 +61,12 @@
             "type": "string",
             "title": "Tags"
           }
-        }
+        },
+        "disposition": [
+        	"title",
+        	"media_original_url",
+        	"media_original_url"
+        	]
       },
       "imports": {
         "properties": {}
