@@ -1,7 +1,7 @@
 /**
  *
- * @author Scott Tuddenham <scott@bip.io>
- * Copyright (c) 2014 WoT.IO Inc http://wot.io
+ * @author Scott Tuddenhman <scott@wot.io>
+ * Copyright (c) 2015 WoT.IO Inc http://wot.io
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,18 +16,22 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+function AddressOpReturn() {}
 
-var Pod = require('bip-pod'),
-    Chain = new Pod(),
-    ChainNode = require('chain-node');
+AddressOpReturn.prototype = {};
 
-Chain._getClient = function(auth, chain) {
-	return new ChainNode({
-		keyId : auth.issuer_token.username,
-		keySecret : auth.issuer_token.password,
-		blockChain : chain 
+AddressOpReturn.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
+	
+	var chain = this.pod._getClient(sysImports.auth, 'testnet3');
+	
+	chain.getAddressOpReturns(imports.address, function(err, resp) {
+		if (err) {
+			next(err);
+		} else {
+			// returns array of OP_RETURNs
+			next(false, resp);
+		}
 	});
 }
-
 // -----------------------------------------------------------------------------
-module.exports = Chain;
+module.exports = AddressOpReturn;

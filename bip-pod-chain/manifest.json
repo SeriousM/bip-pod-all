@@ -35,35 +35,67 @@
       },
       "exports": {
         "properties": {
-          "hash": {
+          "address": {
             "type": "string",
-            "title": "ID"
+            "description": "Address"
           },
-          "balance": {
-            "type": "number",
-            "title": "Balance"
+          "total": {
+            "type": "object",
+            "description": "Total balances (confirmed & unconfirmed)"
           },
-          "received": {
-            "type": "number",
-            "title": "Received"
-          },
-          "sent": {
-            "type": "number",
-            "title": "Sent"
-          },
-          "unconfirmed_received": {
-            "type": "number",
-            "title": "Unconfirmed Received"
-          },
-          "unconfirmed_sent": {
-            "type": "number",
-            "title": "Unconfirmed Sent"
-          },
-          "unconfirmed_balance": {
-            "type": "number",
-            "title": "Unconfirmed Balance"
+          "confirmed": {
+            "type": "object",
+            "description": "confirmed balances"
           }
         }
+      },
+      "imports": {
+        "properties": {
+          "address": {
+            "type": "string",
+            "description": "Bitcoin Address"
+          }
+        },
+        "required": [
+          "address"
+        ],
+        "disposition": [
+          "address"
+        ]
+      }
+    },
+    "address_op_return": {
+      "title": "Address OP_RETURN",
+      "description": "Returns the associated OP_RETURN data for a given Bitcoin Address",
+      "doc_ref": "https://chain.com/docs#bitcoin-address-op-returns",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "tx_hash": {
+            "type": "string",
+            "description": "Transaction Hash"
+          },
+          "hex": {
+            "type": "string",
+            "description": "OP RETURN hex"
+          },
+          "text": {
+            "type": "string",
+            "description": "OP RETURN text"
+          },
+          "sender_addresses": {
+            "type": "array",
+            "description": "Sender Address(es)"
+          },
+          "receiver_addresses": {
+            "type": "array",
+            "description": "Receiver Address(es)"
+          }        
+	    }
       },
       "imports": {
         "properties": {
