@@ -1,6 +1,6 @@
 {
   "name": "bip-pod-flickr",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "author": "Michael Pearson",
   "description": "Flickr Pod for Bipio",
   "keywords": [
@@ -24,8 +24,9 @@
   ],
   "main": ".",
   "dependencies": {
-    "passport-flickr": ">=0.1.1",
-    "flickrapi": ">=0.3.12"
+    "flickrapi": ">=0.3.12",
+    "form-data": "^1.0.0-rc1",
+    "passport-flickr": ">=0.1.1"
   },
   "engines": {
     "node": ">= 0.10.0"
