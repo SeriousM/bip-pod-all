@@ -16,7 +16,8 @@
       "doc_ref": "http://www.coindesk.com/api",
       "trigger": "realtime",
       "config": {
-        "properties": {}
+        "properties": {},
+        "disposition": []
       },
       "exports": {
         "properties": {
@@ -124,8 +125,8 @@
             "type": "number",
             "title": "USD Rate"
           },
-          "gbp_float": {
-            "type": "number",
+          "gbp_float": { 
+            "type": "number", 
             "title": "GBP Rate"
           },
           "eur_float": {
@@ -133,9 +134,19 @@
             "title": "EUR Rate"
           }
         }
+        ,
+        "disposition": [
+       		"time",
+       		"disclaimer",
+       		"bpi",
+       		"usd_float",
+       		"gbp_float",
+       		"eur_float"
+       		]
       },
       "imports": {
-        "properties": {}
+        "properties": {},
+        "disposition": []
       }
     }
   },
