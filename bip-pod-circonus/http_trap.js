@@ -26,7 +26,7 @@ HTTPTrap.prototype.invoke = function(imports, channel, sysImports, contentParts,
 
   try {
     $resource._httpPut(
-      channel.config.trap_url,
+      imports.trap_url,
       $resource.helper.getObject(imports.data),
       function(err, resp) {
         next(err, resp);
