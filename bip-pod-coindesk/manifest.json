@@ -12,7 +12,7 @@
   "actions": {
     "current_price": {
       "title": "Price Change",
-      "description": "Triggers whenever the BitCoin Price is Updated",
+      "description": "Triggers When The BitCoin Price Changes",
       "doc_ref": "http://www.coindesk.com/api",
       "trigger": "realtime",
       "config": {
