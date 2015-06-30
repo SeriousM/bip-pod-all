@@ -26,7 +26,7 @@ PushNote.prototype.invoke = function(imports, channel, sysImports, contentParts,
     title : imports.title,
     body : imports.body,
     type : 'note',
-    device_iden : channel.config.device_iden
+    device_iden : imports.device_iden
   };
 
   this.pod.pushbulletRequestParsed(
