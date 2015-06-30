@@ -30,14 +30,14 @@ Validate.prototype.invoke = function(imports, channel, sysImports, contentParts,
   var GetResource = this.$resource._httpGet;
 
   GetResource(W3CURL + imports.url, function(err, result, headers, status) {
-    if ('none' === channel.config.aggregate) {
+    if ('none' === imports.aggregate) {
       for (var i = 0; i < result.messages.length; i++) {
         next(false, result.messages[i]);
       }
-    } else if ('json' === channel.config.aggregate) {
+    } else if ('json' === imports.aggregate) {
       next(false, { message : JSON.stringify(result.messages) } );
 
-    } else if ('text' === channel.config.aggregate) {
+    } else if ('text' === imports.aggregate) {
       var textOutput = '', m;
       for (var i = 0; i < result.messages.length; i++) {
         m = result.messages[i];
