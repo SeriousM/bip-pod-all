@@ -33,9 +33,9 @@ ScreenShot.prototype.invoke = function(imports, channel, sysImports, contentPart
     md5Hash = crypto.createHash('md5').update(imports.url).digest('hex'),
     options = {};
 
-  if (channel.config && channel.config.viewport) {
-    var tokens = channel.config.viewport.split('x');
-    md5Hash += channel.config.viewport.replace(/[^x0-9]/g, '');
+  if (imports && imports.viewport) {
+    var tokens = imports.viewport.split('x');
+    md5Hash += imports.viewport.replace(/[^x0-9]/g, '');
     if (tokens.length === 2) {
       options.screenSize = {
         width : Number(tokens[0].trim()),
