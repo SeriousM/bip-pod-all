@@ -86,21 +86,21 @@ PostMessage.prototype.invoke = function(imports, channel, sysImports, contentPar
     color,
     url = 'https://api.kato.im/rooms/';
 
-  if (channel.config.room_id && imports.text) {
-    url += channel.config.room_id + '/simple';
+  if (imports.room_id && imports.text) {
+    url += imports.room_id + '/simple';
 
     payload = {
       text : imports.text,
-      renderer : channel.config.renderer
+      renderer : imports.renderer
     };
 
-    color = imports.color || channel.config.color;
+    color = imports.color || imports.color;
     if (color) {
       payload.color = color;
     }
 
-    if (channel.config.from) {
-      payload.from = channel.config.from;
+    if (imports.from) {
+      payload.from = imports.from;
     }
 
     this.$resource._httpPost(url, payload, function(err, body) {
