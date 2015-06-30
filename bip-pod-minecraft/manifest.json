@@ -144,6 +144,16 @@
             "title": "Favicon (Base64)"
           }
         },
+        "disposition": [
+        	"status",
+        	"description",
+        	"players_max",
+        	"players_online",
+        	"version_name",
+        	"version_protocol",
+        	"latency",
+        	"favicon"
+        	],
         "definitions": {}
       }
     }
