@@ -5,7 +5,7 @@ Pagerduty = new Pod();
 
 Pagerduty.getClient = function(channel){
 	return new  pagerduty({
-		  serviceKey: channel.config.service_key // required
+		  serviceKey: imports.service_key // required
 	});
 }
 
