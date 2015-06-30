@@ -27,7 +27,7 @@ CreateWebHook.prototype = {};
 CreateWebHook.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
   var client = this.pod.getClient(sysImports);
   client.create_webhook(
-    channel.config.room_id,
+    imports.room_id,
     imports,
     function(err, result) {
       var exports = {};

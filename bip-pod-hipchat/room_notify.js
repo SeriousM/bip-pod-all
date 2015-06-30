@@ -27,10 +27,10 @@ RoomNotify.prototype = {};
 RoomNotify.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
   var client = this.pod.getClient(sysImports);
   client.notify(
-    channel.config.room_id,
+    imports.room_id,
     {
       message : imports.message,
-      token : channel.config.room_token
+      token : imports.room_token
     },
     function(err, result) {
       if (err) {

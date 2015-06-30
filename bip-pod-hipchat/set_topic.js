@@ -27,7 +27,7 @@ SetTopic.prototype = {};
 SetTopic.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
   var client = this.pod.getClient(sysImports);
   client.set_topic(
-    channel.config.room_id,
+    imports.room_id,
     imports.topic,
     function(err, result) {
       if (err) {
