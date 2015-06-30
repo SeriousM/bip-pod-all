@@ -70,7 +70,8 @@
           }
         },
         "disposition": [
-          "expression"
+          "min",
+          "max"
         ]
       }
     }
