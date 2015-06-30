@@ -41,7 +41,7 @@ GetFavorites.prototype.trigger = function(imports, channel, sysImports, contentP
         if (err) {
           next(err);
         } else {
-          if (channel.config.download && track.downloadable) {
+          if (imports.download && track.downloadable) {
             fName = track.title + '.mp3';
             outfile = dataDir + '/' + fName;
             self.pod._httpStreamToFile(
