@@ -54,9 +54,9 @@ AddSegmentStatic.prototype.invoke = function(imports, channel, sysImports, conte
   var log = this.$resource.log,
   args;
 
-  if (channel.config.list_id && imports.segment_name) {
+  if (imports.list_id && imports.segment_name) {
     args = {
-      id : channel.config.list_id,
+      id : imports.list_id,
       name : imports.segment_name
     };
 

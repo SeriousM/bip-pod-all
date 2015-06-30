@@ -54,7 +54,7 @@ AddSubscriber.prototype.invoke = function(imports, channel, sysImports, contentP
   var log = this.$resource.log,
     self = this,
     args = {
-      id : channel.config.list_id,
+      id : imports.list_id,
       email : {
         email : imports.email
       }
