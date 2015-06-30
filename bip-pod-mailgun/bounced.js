@@ -35,7 +35,7 @@ Bounced.prototype.invoke = function(imports, channel, sysImports, contentParts, 
   var self = this,
   $resource = this.$resource;
 
-  this.pod.getClient(sysImports, channel.config.domain)
+  this.pod.getClient(sysImports, imports.domain)
     .bounces()
     .list(imports, function (err, addrs) {
       var addr;

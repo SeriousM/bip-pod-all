@@ -36,7 +36,7 @@ Complaints.prototype.invoke = function(imports, channel, sysImports, contentPart
   var self = this,
   $resource = this.$resource;
 
-  this.pod.getClient(sysImports, channel.config.domain)
+  this.pod.getClient(sysImports, imports.domain)
     .complaints()
     .list(imports, function (err, addrs) {
       if (err) {

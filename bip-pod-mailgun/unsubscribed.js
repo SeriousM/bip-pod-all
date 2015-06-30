@@ -36,7 +36,7 @@ Unsubscribed.prototype.invoke = function(imports, channel, sysImports, contentPa
   var self = this,
   $resource = this.$resource;
 
-  this.pod.getClient(sysImports, channel.config.domain)
+  this.pod.getClient(sysImports, imports.domain)
     .unsubscribes()
     .list(imports, function (err, addrs) {
       var a;

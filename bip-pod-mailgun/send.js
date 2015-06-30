@@ -24,7 +24,7 @@ function Send(podConfig) {}
 Send.prototype = {};
 
 Send.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
-  this.pod.getClient(sysImports, channel.config.domain)
+  this.pod.getClient(sysImports, imports.domain)
     .messages()
     .send(imports, function (err, body) {
       next(err, body);
