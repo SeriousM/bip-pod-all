@@ -37,7 +37,7 @@ ServerStatusChange.prototype.trigger = function(imports, channel, sysImports, co
     if (err) {
       next(err);
     } else {
-      var key = (channel.config.host + '_' + channel.config.port).replace(/\./g, '');
+      var key = (imports.host + '_' + imports.port).replace(/\./g, '');
       resp[key] = resp['status'];
       $resource.deltaFilter(resp, key, channel, sysImports, function(err, delta) {
         next(err, resp);
