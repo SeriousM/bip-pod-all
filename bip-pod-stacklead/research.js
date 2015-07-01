@@ -25,7 +25,7 @@ Research.prototype.invoke = function(imports, channel, sysImports, contentParts,
   this.$resource._httpGet(
     'https://stacklead.com/api/leads?email='
       + imports.email_address
-      + '&delivery_method=' + channel.config.delivery_method
+      + '&delivery_method=' + imports.delivery_method
       + '&api_key='
       + sysImports.auth.issuer_token.username,
     function(err, resp) {
