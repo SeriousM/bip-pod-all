@@ -40,7 +40,7 @@ RequestTranslation.prototype.invoke = function(imports, channel, sysImports, con
   var modelName = this.$resource.getDataSourceName('track_translation'),
     pod = this.pod,
     payload = imports;
-    payload.target_language = channel.config.target_language;
+    payload.target_language = imports.target_language;
 
   pod.requestPOST('translation', payload, sysImports, function(err, response) {
     if (!err) {
