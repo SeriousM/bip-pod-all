@@ -41,7 +41,7 @@ SendSMS.prototype.invoke = function(imports, channel, sysImports, contentParts, 
 
     client.sms.messages.create({
         to: imports.to_phone,
-        from: channel.config.from_phone,
+        from: imports.from_phone,
         body: imports.body
     }, function(error, message) {
         next(error, message);
