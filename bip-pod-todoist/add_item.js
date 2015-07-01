@@ -47,7 +47,7 @@ AddItem.prototype.invoke = function(imports, channel, sysImports, contentParts, 
     args;
 
   var params = {
-    project_id : channel.config.project_id,
+    project_id : imports.project_id,
     content : imports.content
   };
 
