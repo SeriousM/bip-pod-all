@@ -31,7 +31,7 @@ Markdown2HTML.prototype.invoke = function(imports, channel, sysImports, contentP
     next(
         false,
         {
-            message : marked(imports.message || channel.config.message)
+            message : marked(imports.message)
         }
     );
 }
