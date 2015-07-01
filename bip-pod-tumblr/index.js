@@ -34,7 +34,6 @@ Tumblr.getClient = function(sysImports) {
 Tumblr.rpc = function(action, method, sysImports, options, channel, req, res) {
   var podConfig = this.getConfig();
   if (method == 'user_info') {
-
     var client = this.getClient(sysImports);
 
     client.userInfo(function(err, resp) {
@@ -56,15 +55,15 @@ Tumblr._createPost = function(type, imports, channel, sysImports, contentParts, 
 
   var client = this.getClient(sysImports);
 
-  imports.state = (channel.config.state && '' !== channel.config.state) ?
-    channel.config.state :
+  imports.state = (imports.state && '' !== imports.state) ?
+    imports.state :
     'draft';
 
-  imports.format = (channel.config.format && '' !== channel.config.format) ?
-    channel.config.format :
+  imports.format = (imports.format && '' !== imports.format) ?
+    imports.format :
     defaultFormat;
 
-  var url = channel.config.url;
+  var url = imports.url;
 
   if (-1 === url.indexOf('.')) {
     url += '.tumblr.com';
