@@ -1,7 +1,7 @@
 {
   "name": "chain",
   "title": "Chain",
-  "description": "Chain enables developers to Build bitcoin apps, not block chain infrastructure.",
+  "description": "Chain enables developers to build bitcoin apps, not blockchain infrastructure.",
   "url": "https://chain.com",
   "trackDuplicates": false,
   "config": {},
@@ -26,7 +26,7 @@
   "actions": {
     "address": {
       "title": "Get An Address",
-      "description": "Gets The Data For A Bitcoin Address",
+      "description": "Returns the data for A Bitcoin Address",
       "doc_ref": "https://chain.com/docs#object-bitcoin-address",
       "trigger": "invoke",
       "config": {
@@ -65,8 +65,8 @@
       }
     },
     "address_op_return": {
-      "title": "Address OP_RETURN",
-      "description": "Returns the associated OP_RETURN data for a given Bitcoin Address",
+      "title": "Get an Address OP_RETURN",
+      "description": "Returns the OP_RETURN data for a given Bitcoin Address",
       "doc_ref": "https://chain.com/docs#bitcoin-address-op-returns",
       "trigger": "invoke",
       "config": {
@@ -109,6 +109,110 @@
         ],
         "disposition": [
           "address"
+        ]
+      }
+    },
+    "transaction": {
+      "title": "Get a Transaction",
+      "description": "Returns the data for a given Bitcoin Transaction",
+      "doc_ref": "https://chain.com/docs#bitcoin-transaction",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "hash": {
+            "type": "string",
+            "description": "Transaction Hash"
+          },
+          "block_height": {
+            "type": "number",
+            "description": "Block Height"
+          },
+          "confirmations": {
+            "type": "number",
+            "description": "Number of Confirmations"
+          },
+          "inputs": {
+            "type": "array",
+            "description": "Transaction Inputs"
+          },
+          "receiver_addresses": {
+            "type": "array",
+            "description": "Transaction Outputs"
+          },
+		  "fees": {
+		    "type": "number",
+			"description": "Transaction Fees"
+		  },
+		  "amount": {
+		    "type": "number",
+			"description": "Transaction Amount"
+		  }
+	    }
+      },
+      "imports": {
+        "properties": {
+          "hash": {
+            "type": "string",
+            "title": "Transaction Hash"
+          }
+        },
+        "required": [
+          "hash"
+        ],
+        "disposition": [
+          "hash"
+        ]
+      }
+    },
+    "tx_op_return": {
+      "title": "Get a Transaction OP_RETURN",
+      "description": "Returns the OP_RETURN data for a given Bitcoin Transaction",
+      "doc_ref": "https://chain.com/docs#bitcoin-transaction-op-return",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "tx_hash": {
+            "type": "string",
+            "description": "Transaction Hash"
+          },
+          "hex": {
+            "type": "string",
+            "description": "OP RETURN hex"
+          },
+          "text": {
+            "type": "string",
+            "description": "OP RETURN text"
+          },
+          "sender_addresses": {
+            "type": "array",
+            "description": "Sender Address(es)"
+          },
+          "receiver_addresses": {
+            "type": "array",
+            "description": "Receiver Address(es)"
+          }        
+	    }
+      },
+      "imports": {
+        "properties": {
+          "hash": {
+            "type": "string",
+            "title": "Transaction Hash"
+          }
+        },
+        "required": [
+          "hash"
+        ],
+        "disposition": [
+          "hash"
         ]
       }
     }

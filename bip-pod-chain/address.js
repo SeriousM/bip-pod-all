@@ -1,7 +1,7 @@
 /**
  *
  * @author Scott Tuddenhman <scott@wot.io>
- * Copyright (c) 2014 WoT.IO Inc http://wot.io
+ * Copyright (c) 2014 wot.io, Inc. http://wot.io
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,7 +22,7 @@ Address.prototype = {};
 
 Address.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
 	
-	var chain = this.pod._getClient(sysImports.auth, 'bitcoin');
+	var chain = this.pod._getClient(sysImports.auth, 'testnet3');
 	
 	chain.getAddress(imports.address, function(err, resp) {
 		if (err) {

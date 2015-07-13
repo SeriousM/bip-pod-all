@@ -16,22 +16,24 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-function AddressOpReturn() {}
 
-AddressOpReturn.prototype = {};
+function Transaction() {}
 
-AddressOpReturn.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
+Transaction.prototype = {};
+
+Transaction.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
 	
 	var chain = this.pod._getClient(sysImports.auth, 'testnet3');
-	
-	chain.getAddressOpReturns(imports.address, function(err, resp) {
+
+	chain.getTransaction(imports.hash, function(err, resp) {
 		if (err) {
+			console.log(arguments);
 			next(err);
 		} else {
-			// returns array of OP_RETURNs
+			console.log(resp);
 			next(false, resp);
 		}
 	});
 }
 // -----------------------------------------------------------------------------
-module.exports = AddressOpReturn;
+module.exports = Transaction;
