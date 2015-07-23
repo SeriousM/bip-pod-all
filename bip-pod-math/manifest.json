@@ -72,6 +72,10 @@
         "disposition": [
           "min",
           "max"
+        ],
+        "required": [
+          "min",
+          "max"
         ]
       }
     }
