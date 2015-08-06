@@ -40,11 +40,55 @@
           "download": {
             "type": "boolean",
             "default": false,
-            "title": "Download File"
+            "title": "Download Photo"
           }
         },
         "disposition": [
           "download"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "media_original_url": {
+            "type": "string",
+            "title": "Media Original Res URL"
+          },
+          "tags": {
+            "type": "string",
+            "title": "Tags"
+          }
+        }
+      },
+      "imports": {
+        "properties": {}
+      }
+    },
+    "on_photo_favorited": {
+      "disabled" : true,
+      "title": "When One Of Your Photos Is Favorited",
+      "description": "Triggers When One Of Your Photos Is Favorited",
+      "doc_ref": "https://www.flickr.com/services/api/flickr.photos.getFavorites.html",
+      "trigger": "poll",
+      "config": {
+        "properties": {
+          "download": {
+            "type": "boolean",
+            "default": false,
+            "title": "Download Photo"
+          },
+          "first_favorite" : {
+            "type": "boolean",
+            "default": true,
+            "title" : "Trigger Once Per Photo"
+          }
+        },
+        "disposition": [
+          "download",
+          "first_favorite"
         ]
       },
       "exports": {
