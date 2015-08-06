@@ -82,7 +82,7 @@ GetRecent.prototype.invoke = function(imports, channel, sysImports, contentParts
             photo.media_original_url = p.url_o;
 
             // @todo deprecate option
-            if (channel.config.download) {
+            if (imports.download) {
 
               (function(photo) {
                 pod.getDataDir(channel, self.name, function(err, dataDir) {
