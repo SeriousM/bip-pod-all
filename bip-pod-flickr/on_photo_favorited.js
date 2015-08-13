@@ -26,7 +26,26 @@ OnPhotoFavorited.prototype = {};
 
 OnPhotoFavorited.prototype.trigger = function(imports, channel, sysImports, contentParts, next) {
   var self = this,
-    pod = this.pod;
+    pod = this.pod,
+    mime = this.$resource.mime,
+    userID = (sysImports.auth.oauth.user_id || JSON.parse(sysImports.auth.oauth.profile).id);
+
+  var args = {
+    user_id : userID,
+    page : 1,
+    per_page: 100
+  };
+
+  this.pageStats(sysImports, args, function(err, stats) {
+    if (err) {
+      next(err);
+    } else {
+    console.log('STATS ARE ', arguments);
+
+    }
+  });
+
+return;
 
   pod.trackingGet(channel, function(err, since) {
     if (err) {
@@ -42,7 +61,7 @@ OnPhotoFavorited.prototype.trigger = function(imports, channel, sysImports, cont
   });
 }
 
-OnPhotoFavorited.prototype.pageStats = function(args, next) {
+OnPhotoFavorited.prototype.pageStats = function(sysImports, args, next) {
   var self = this,
     pod = this.pod;
 
@@ -50,10 +69,11 @@ OnPhotoFavorited.prototype.pageStats = function(args, next) {
     if (err) {
       next(err);
     } else {
-      client.stats.getPopularPhotos(args, function(err, result) {
+      client.stats.getPopularPhotos(args, function(err, results) {
         if (err) {
           next(err);
         } else {
+console.log(results)
           if (results.pages && results.pages > args.page) {
 
           }

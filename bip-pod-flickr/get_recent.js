@@ -79,7 +79,7 @@ GetRecent.prototype.invoke = function(imports, channel, sysImports, contentParts
         } else {
           for (var i = 0; i < result.photos.photo.length; i++) {
             photo = result.photos.photo[i];
-            photo.media_original_url = p.url_o;
+            photo.media_original_url = photo.url_o;
 
             // @todo deprecate option
             if (imports.download) {

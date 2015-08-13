@@ -73,7 +73,7 @@
       }
     },
     "on_photo_favorited": {
-      "disabled" : true,
+      "disabled" : false,
       "title": "When One Of Your Photos Is Favorited",
       "description": "Triggers When One Of Your Photos Is Favorited",
       "doc_ref": "https://www.flickr.com/services/api/flickr.photos.getFavorites.html",

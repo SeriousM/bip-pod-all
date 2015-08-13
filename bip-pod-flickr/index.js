@@ -30,11 +30,11 @@ FlickrPod.getClient = function(sysImports, next) {
       user_id : profile.id,
       api_key : sysImports.auth.oauth.consumerKey,
       secret : sysImports.auth.oauth.consumerSecret,
-      access_token : sysImports.auth.oauth.acecss_token,
+      access_token : sysImports.auth.oauth.access_token,
       access_token_secret : sysImports.auth.oauth.secret,
       nobrowser : true
     };
-
+console.log(options);
   Flickr.authenticate(options, next);
 };
 
