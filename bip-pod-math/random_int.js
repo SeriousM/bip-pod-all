@@ -27,7 +27,7 @@ RandomInt.prototype.invoke = function(imports, channel, sysImports, contentParts
   var args = [];
 
   if (imports.max || 0 === imports.max) {
-    args.unshift(Number(imports.max));
+    args.unshift(Number(++imports.max));
   }
 
   if (imports.min || 0 === imports.min) {
@@ -35,7 +35,6 @@ RandomInt.prototype.invoke = function(imports, channel, sysImports, contentParts
   }
 
   var result = math.randomInt.apply(math, args );
-
   next(false, {
     random_int : result
   });

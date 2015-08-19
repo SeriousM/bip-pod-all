@@ -11,7 +11,7 @@
   "rpcs": {},
   "actions": {
     "eval": {
-      "title": "Eval",
+      "title": "Calculate",
       "description": "Evaluate A Math Expression",
       "trigger": "invoke",
       "config": {
@@ -44,7 +44,7 @@
     },
     "random_int": {
       "title": "Random Integer",
-      "description": "Generate A Random Integer",
+      "description": "Generate A Random Integer >= Minimum And <= Maximum",
       "trigger": "invoke",
       "config": {
         "properties": {},
