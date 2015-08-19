@@ -44,12 +44,13 @@
           }
         },
         "required" : [
-          "from_phone"
+          "from_phone",
+          "to_phone"
         ],
         "disposition": [
           "from_phone",
-          "body",
-          "to_phone"
+          "to_phone",
+          "body"
         ]
       },
       "exports": {
@@ -83,6 +84,9 @@
             "title": "Recipient Phone #"
           }
         },
+        "required" : [
+          "to_phone"
+        ],
         "disposition": [
           "body",
           "to_phone"
