@@ -111,7 +111,8 @@
         "properties": {
           "selector": {
             "type": "string",
-            "title": "jQuery Selector"
+            "title": "jQuery Selector",
+            "description" : "See <a href=\"https://api.jquery.com/category/selectors/\" target=\"_blank\">jQuery Selector Documentation</a>"
           },
           "attr": {
             "type": "string",
@@ -123,7 +124,8 @@
           }
         },
         "required": [
-          "source"
+          "source",
+          "selector"
         ],
         "disposition": [
           "source",
