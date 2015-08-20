@@ -28,15 +28,15 @@ PushBullet.pushbulletRequest = function(path, params, sysImports, next, method) 
     port: 443,
     path: '/v2/' + path,
     method: method || 'GET',
-    auth : sysImports.auth.issuer_token.username + ':'
+    headers : {
+      'Authorization' : 'Bearer ' + sysImports.auth.issuer_token.username
+    }
   }, paramStr;
 
   if ('POST' === method && params) {
     paramStr = JSON.stringify(params);
-    opts.headers = {
-      'Content-Type': 'application/json',
-      'Content-Length': paramStr.length
-    }
+    opts.headers['Content-Type'] = 'application/json';
+    opts.headers['Content-Length'] = paramStr.length;
   }
 
   var req = https.request(opts, next);

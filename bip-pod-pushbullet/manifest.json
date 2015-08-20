@@ -9,7 +9,7 @@
     "strategy": "issuer_token",
     "properties": {
       "username": {
-        "title": "API Key",
+        "title": "Access Token",
         "type": "string"
       }
     },
