@@ -164,6 +164,58 @@
           "title": "Retrieve Lists"
         }
       }
+    },
+    "get_growth_history": {
+      "title": "Get Growh History",
+      "description": "Retrieves the Growth History For A Given List",
+      "trigger": "invoke",
+      "config": {
+        "properties": {
+          "list_id": {
+            "type": "string",
+            "oneOf": [
+              {
+                "$ref": "/rpcs/get_lists#data/{id}"
+              }
+            ],
+            "label": {
+              "$ref": "/rpcs/get_lists#data/{name}"
+            },
+            "title": "List ID"
+          }
+        },
+        "required": [
+          "list_id"
+        ],
+        "disposition": [
+          "list_id"
+        ]
+      },
+      "exports": {
+        "type" :  "array",
+        "items": {
+          "month": {
+            "type": "string",
+            "title": "The Year and Month"
+          },
+          "existing": {
+            "type": "integer",
+            "title": "Existing Subscribers"
+          },
+          "imports": {
+            "type": "integer",
+            "title": "Imported Subscribers"
+          },
+          "optins": {
+            "type": "integer",
+            "title": "Optin Subscribers"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+        }
+      }
     }
   },
   "tags": [
