@@ -36,6 +36,7 @@ DOMSelect.prototype.invoke = function(imports, channel, sysImports, contentParts
       done: function (err, window) {
         if (err) {
           next(err);
+          window.close();
         } else {
           var $ = window.$;
           try {
@@ -57,8 +58,12 @@ DOMSelect.prototype.invoke = function(imports, channel, sysImports, contentParts
 
               next(false, exports);
             });
+
+            window.close();
           } catch (e) {
+
             next(e);
+            window.close();
           }
         }
       }
