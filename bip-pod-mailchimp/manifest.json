@@ -100,13 +100,6 @@
         "disposition": [
           "email"
         ]
-      },
-      "rpcs": {
-        "get_lists": {
-          "description": "Retrieves all lists for your account",
-          "contentType": "application/json",
-          "title": "Retrieve Lists"
-        }
       }
     },
     "add_static_segment": {
@@ -156,13 +149,6 @@
         "disposition": [
           "segment_name"
         ]
-      },
-      "rpcs": {
-        "get_lists": {
-          "description": "Retrieves all lists for your account",
-          "contentType": "application/json",
-          "title": "Retrieve Lists"
-        }
       }
     },
     "get_growth_history": {
@@ -215,6 +201,91 @@
       "imports": {
         "properties": {
         }
+      }
+    },
+    "remove_subscriber": {
+      "title": "Remove a Subscriber",
+      "description": "Un-Subscribe The Given Email Address From A List",
+      "trigger": "invoke",
+      "config": {
+        "properties": {
+          "list_id": {
+            "type": "string",
+            "oneOf": [
+              {
+                "$ref": "/rpcs/get_lists#data/{id}"
+              }
+            ],
+            "label": {
+              "$ref": "/rpcs/get_lists#data/{name}"
+            },
+            "title": "List ID"
+          },
+          "delete_member" : {
+            "title" : "Completely Delete Member",
+            "type" : "boolean",
+            "default" : false
+          },
+          "send_goodbye" : {
+            "title" : "Send A Goodbye Message",
+            "type" : "boolean",
+            "default" : true
+          },
+          "send_notify" : {
+            "title" : "Notify List Maintainer",
+            "type" : "boolean",
+            "default" : true
+          }
+        },
+        "required": [
+          "list_id"
+        ],
+        "disposition": [
+          "list_id",
+          "delete_member",
+          "send_goodbye",
+          "send_notify"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "complete": {
+            "type": "boolean",
+            "title": "Removed OK"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "email": {
+            "type": "string",
+            "title": "Email Address"
+          },
+          "delete_member" : {
+            "title" : "Completely Delete Member",
+            "type" : "boolean",
+            "default" : false
+          },
+          "send_goodbye" : {
+            "title" : "Send A Goodbye Message",
+            "type" : "boolean",
+            "default" : true
+          },
+          "send_notify" : {
+            "title" : "Notify List Maintainer",
+            "type" : "boolean",
+            "default" : true
+          }
+        },
+        "required": [
+          "email"
+        ],
+        "disposition": [
+          "email",
+          "delete_member",
+          "send_goodbye",
+          "send_notify"
+        ]
       }
     }
   },

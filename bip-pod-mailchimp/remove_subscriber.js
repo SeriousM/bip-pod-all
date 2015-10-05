@@ -20,13 +20,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-function AddSubscriber(podConfig) {
+function RemoveSubscriber(podConfig) {
   this.podConfig = podConfig; // general system level config for this pod (transports etc)
 }
 
-AddSubscriber.prototype = {};
+RemoveSubscriber.prototype = {};
 
-AddSubscriber.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
+RemoveSubscriber.prototype.invoke = function(imports, channel, sysImports, contentParts, next) {
   var log = this.$resource.log,
     self = this,
     args = {
@@ -40,7 +40,7 @@ AddSubscriber.prototype.invoke = function(imports, channel, sysImports, contentP
     channel,
     (function(args, sysImports, self, next) {
       return function() {
-        self.pod.callMC('lists', 'subscribe', args, sysImports, function(err, response) {
+        self.pod.callMC('lists', 'unsubscribe', args, sysImports, function(err, response) {
           next(err, response);
         });
       }
@@ -49,4 +49,4 @@ AddSubscriber.prototype.invoke = function(imports, channel, sysImports, contentP
 }
 
 // -----------------------------------------------------------------------------
-module.exports = AddSubscriber;
+module.exports = RemoveSubscriber;
