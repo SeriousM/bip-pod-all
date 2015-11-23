@@ -88,24 +88,23 @@ GMail.getOAuthClient = function(sysImports) {
 }
 
 GMail._invoker = function(gmail, imports, channel, sysImports, contentParts, next) {
-console.log("imports.searchQuery"+imports.searchQuery);
-	    uid = 'me',
-	    auth = GMail.getOAuthClient(sysImports),
-	    params = {
-	      auth : auth,
-	      userId:  uid,
-	      q : imports.searchQuery
-	    };
-	  gmail.users.messages.list(params, function(err, body, res) {
-	    if (err) {
-	      next(err);
-	    } else if (body && body.message) {
-	    	for (var i = 0; i < body.messages.length; i++) {
+  var uid = 'me',
+    auth = GMail.getOAuthClient(sysImports),
+    params = {
+      auth : auth,
+      userId:  uid,
+      q : imports.searchQuery
+    };
+  gmail.users.messages.list(params, function(err, body, res) {
+    if (err) {
+      next(err);
+    } else if (body && body.message) {
+    	for (var i = 0; i < body.messages.length; i++) {
 
-	        next(false, body.messages[i]);
-	      }
-	    }
-	  });
+        next(false, body.messages[i]);
+      }
+    }
+  });
 }
 
 GMail._parseEmails = function(gmail, imports, channel, sysImports, contentParts, next, specificEmail) {
