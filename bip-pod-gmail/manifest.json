@@ -204,11 +204,33 @@
             "type": "string",
             "title": "Content Type"
           }
-        }
+        },
+        "disposition": [
+          "text_body",
+          "mimeType",
+          "Delivered-To",
+          "Received",
+          "X-Received",
+          "Return-Path",
+          "Received-SPF",
+          "Authentication-Results",
+          "X-Google-DKIM-Signature",
+          "X-Gm-Message-State",
+          "MIME-Version",
+          "Reply-To",
+          "Date",
+          "Message-ID",
+          "Subject",
+          "From",
+          "To",
+          "Content-Type"
+        ]
       },
       "imports": {
-        "properties": {}
-      }
+        "properties": {},
+        "disposition": []
+      },
+        "disposition": []
     },
     "on_specific_new_message": {
       "doc_ref": "https://developers.google.com/gmail/api/v1/reference/",
@@ -305,11 +327,32 @@
             "type": "string",
             "title": "Content Type"
           }
-        }
+        },
+        "disposition": [
+          "text_body",
+          "mimeType",
+          "Delivered-To",
+          "Received",
+          "X-Received",
+          "Return-Path",
+          "Received-SPF",
+          "Authentication-Results",
+          "X-Google-DKIM-Signature",
+          "X-Gm-Message-State",
+          "MIME-Version",
+          "Reply-To",
+          "Date",
+          "Message-ID",
+          "Subject",
+          "From",
+          "To",
+          "Content-Type"
+        ]
       },
       "imports": {
         "properties": {
-        }
+        },
+        "disposition": []
       }
     },
     "on_search_new_message": {
@@ -407,11 +450,33 @@
             "type": "string",
             "title": "Content Type"
           }
-        }
+        },
+        "disposition": [
+          "text_body",
+          "mimeType",
+          "Delivered-To",
+          "Received",
+          "X-Received",
+          "Return-Path",
+          "Received-SPF",
+          "Authentication-Results",
+          "X-Google-DKIM-Signature",
+          "X-Gm-Message-State",
+          "MIME-Version",
+          "Reply-To",
+          "Date",
+          "Message-ID",
+          "Subject",
+          "From",
+          "To",
+          "Content-Type"
+        ]
       },
       "imports": {
         "properties": {
         }
+        ,
+        "disposition": []
       }
     }
   }
