@@ -99,7 +99,7 @@ console.log("imports.searchQuery"+imports.searchQuery);
 	  gmail.users.messages.list(params, function(err, body, res) {
 	    if (err) {
 	      next(err);
-	    } else {
+	    } else if (body && body.message) {
 	    	for (var i = 0; i < body.messages.length; i++) {
 
 	        next(false, body.messages[i]);
