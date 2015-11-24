@@ -1,6 +1,8 @@
 ![Kato](kato.png) bip-pod-kato
 =======
 
+# DEPRECATED.  THE KATO SERVICE IS NO LONGER ONLINE.
+
 <a href="https://kato.im">Kato</a> pod for [bipio](https://bip.io).
 
 ## Installation
