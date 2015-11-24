@@ -1,6 +1,7 @@
 ![Hall](hall.png) bip-pod-hall
 =======
 
+# DEPRECATED. THE HALL SERVICE IS NO LONGER ONLINE
 
 ## Installation
 
