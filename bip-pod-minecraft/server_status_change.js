@@ -25,7 +25,7 @@ function ServerStatusChange() {}
 ServerStatusChange.prototype.hostCheck = function(host, channel, next) {
   var config = this.pod.getConfig();
   this.$resource._isVisibleHost.call(this.pod, host, function(err, blacklisted) {
-    next(err, blacklisted.length !== 0);
+    next(err, !blacklisted || blacklisted && blacklisted.length !== 0);
   }, channel, config.whitelist ? config.whitelist : []);
 }
 
