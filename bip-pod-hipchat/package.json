@@ -1,6 +1,6 @@
 {
   "name": "bip-pod-hipchat",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "author": "Michael Pearson",
   "description": "HipChat Pod for Bipio",
   "keywords": [
@@ -24,7 +24,7 @@
   ],
   "main": ".",
   "dependencies": {
-    "hipchatter": ">=0.1.1"
+    "hipchatter": "0.1.3"
   },
   "engines": {
     "node": ">= 0.10.0"
