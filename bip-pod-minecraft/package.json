@@ -1,6 +1,6 @@
 {
   "name": "bip-pod-minecraft",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "minecraft Pod for Bipio",
   "keywords": [
     "bip",
@@ -23,7 +23,7 @@
   ],
   "main": ".",
   "dependencies": {
-    "minecraft-protocol": "^0.12.3"
+    "minecraft-protocol": ">=0.12.3"
   },
   "engines": {
     "node": ">= 0.10.0"
