@@ -29,15 +29,21 @@ Send.prototype.invoke = function(imports, channel, sysImports, contentParts, nex
     rawBody =
     'From:' + imports.user_id + '\r\n'
       + (imports.subject ? ('Subject:' + imports.subject + '\r\n') : '')
-      + 'To:' + imports.rcpt_to + '\r\n\r\n'
-      + imports.body,
+      + (imports.reply_to ? ('Reply-To:' + imports.reply_to + '\r\n') : '')
+      + 'To:' + imports.rcpt_to + '\r\n'
+      + "Content-Type: multipart/alternative; boundary=\"bipio_content_boundary\"\r\n\r\n"
+      + "--bipio_content_boundary\r\n"
+      + "Content-Type: text/html; charset=UTF-8\r\n\r\n"
+      + imports.body.replace(/\n/g, '<br/>'),
+
     params = {
       auth : auth,
       userId:  'me',
       resource : {
         // google api uses url safe encoding (RFC 4648)
         raw : new Buffer(rawBody).toString('base64')
-          .replace(/\+|\//g, '-')
+          .replace(/\+/g, '-')
+          .replace(/\//g, '_')
           .replace(/=+$/, '')
       }
     };
