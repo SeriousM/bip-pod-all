@@ -35,7 +35,10 @@ Send.prototype.invoke = function(imports, channel, sysImports, contentParts, nex
       auth : auth,
       userId:  'me',
       resource : {
+        // google api uses url safe encoding (RFC 4648)
         raw : new Buffer(rawBody).toString('base64')
+          .replace(/\+|\//g, '-')
+          .replace(/=+$/, '')
       }
     };
 
