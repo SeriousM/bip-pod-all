@@ -66,6 +66,10 @@ GMail = new Pod({
   }
 });
 
+GMail.profileReprOAuth = function(profile) {
+  return profile.displayName;
+}
+
 GMail.BTOA = function(str) {
   var buf;
 
