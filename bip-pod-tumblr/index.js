@@ -22,6 +22,10 @@ var Pod = require('bip-pod'),
 tumblr = require('tumblr.js'),
 Tumblr = new Pod();
 
+Tumblr.profileReprOAuth = function(profile) {
+  return profile.response.user.name;
+}
+
 Tumblr.getClient = function(sysImports) {
   return new tumblr.Client({
     consumer_key : sysImports.auth.oauth.consumerKey,
