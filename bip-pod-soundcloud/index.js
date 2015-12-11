@@ -23,5 +23,9 @@ var Pod = require('bip-pod'),
 
 SoundCloud._apiURL = 'https://api.soundcloud.com';
 
+SoundCloud.profileReprOAuth = function(profile) {
+  return profile.full_name;
+}
+
 // -----------------------------------------------------------------------------
 module.exports = SoundCloud;
