@@ -22,6 +22,10 @@ var Pod = require('bip-pod'),
 VimeoAPI = require('vimeo-api').Vimeo,
 Vimeo = new Pod();
 
+Vimeo.profileReprOAuth = function(profile) {
+  return profile.name;
+}
+
 Vimeo._getClient = function(sysImports) {
   var client = new VimeoAPI(
     sysImports.auth.oauth.clientID,
