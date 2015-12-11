@@ -36,6 +36,10 @@ MailChimp.rpc = function(action, method, sysImports, options, channel, req, res)
   }
 }
 
+MailChimp.profileReprOAuth = function(profile) {
+  return profile.login.login_name + ' - ' + profile.accountname;
+}
+
 MailChimp.getAPI = function(sysImports) {
   // fudge the api key for the mailchimp package.
   // need to inject
