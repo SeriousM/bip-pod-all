@@ -28,9 +28,9 @@ TZConvert.prototype.invoke = function(imports, channel, sysImports, contentParts
 
     time = time.tz(imports.time_zone);
     if (imports.format) {
-      exports.time_formatted = time.format(imports.format)
+      exports.time_converted = time.format(imports.format)
     } else {
-      exports.time_formatted = time.toString();
+      exports.time_converted = time.toString();
     }
 
     next(false, exports);
