@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-var sugar = require('sugar');
+require('./sugar.js');
 
 function Calculate() {}
 
@@ -29,9 +29,9 @@ Calculate.prototype.invoke = function(imports, channel, sysImports, contentParts
       d = Date.create(imports.expression);
 
     if (imports.format) {
-      exports.data_calculated = pod.format(d, imports.format);
+      exports.date_calculated = pod.format(d, imports.format);
     } else {
-      exports.data_calculated = d.getTime();
+      exports.date_calculated = d.getTime();
     }
 
     next(false, exports);
