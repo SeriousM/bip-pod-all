@@ -38,5 +38,16 @@ Time.format = function(date, format) {
   return moment(date).format(format);
 }
 
+Time.rpc = function(action, method, sysImports, options, channel, req, res) {
+  var podConfig = this.getConfig();
+  if (method == 'timezones') {
+    res.send(
+      moment.tz.names()
+    );
+  } else {
+    this.__proto__.rpc.apply(this, arguments);
+  }
+}
+
 // -----------------------------------------------------------------------------
 module.exports = Time;

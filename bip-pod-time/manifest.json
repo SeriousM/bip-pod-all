@@ -8,7 +8,12 @@
   "auth": {
     "strategy": "none"
   },
-  "rpcs": {},
+  "rpcs": {
+    "timezones": {
+      "contentType": "application/json",
+      "title": "Timezones"
+    }
+  },
   "actions": {
     "format": {
       "title": "Format a Time",
@@ -48,14 +53,19 @@
       }
     },
     "tz_convert": {
-      "title": "Convert a Time",
+      "title": "Convert To Timezone",
       "description": "Converts a UTC or string time representation into the given TimeZone and Format",
       "trigger": "invoke",
       "config": {
         "properties": {
           "time_zone": {
             "type": "string",
-            "title": "New Timezone"
+            "title": "New Timezone",
+            "oneOf": [
+              {
+                "$ref": "/rpcs/timezones"
+              }
+            ]
           }
         },
         "disposition": [
@@ -76,10 +86,6 @@
             "type": "string",
             "title": "Time"
           },
-          "time_zone": {
-            "type": "string",
-            "title": "New Timezone"
-          },
           "format": {
             "type": "string",
             "title": "Format",
@@ -87,7 +93,8 @@
           }
         },
         "required": [
-          "time"
+          "time",
+          "time_zone"
         ],
         "disposition": [
           "time",
