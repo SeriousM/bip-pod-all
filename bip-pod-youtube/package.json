@@ -1,28 +1,23 @@
 {
-    "name": "bip-pod-youtube",
-    "version": "0.0.8",
-    "description": "youtube Pod for Bipio",
-    "keywords": [
+  "name": "bip-pod-youtube",
+  "version": "0.0.8",
+  "description": "youtube Pod for Bipio",
+  "keywords": [
     "bip",
     "bipio",
     "pod",
     "youtube"
-    ],
-    "repository": {
-        "type": "git",
-        "url": "git://github.com/bipio-server/bip-pod-youtube.git"
-    },
-    "bugs": {
-        "url": "http://github.com/bipio-server/bip-pod-youtube/issues"
-    },
-    "licenses": [
-    {
-        "type": "GNU GPLv3",
-        "url": "http://www.gnu.org/copyleft/gpl.html"
-    }
-    ],
-    "main": ".",
-    "engines": {
-        "node": ">= 0.10.0"
-    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bipio-server/bip-pod-youtube.git"
+  },
+  "bugs": {
+    "url": "http://github.com/bipio-server/bip-pod-youtube/issues"
+  },
+  "license": "Apache-2.0",
+  "main": ".",
+  "engines": {
+    "node": ">= 0.10.0"
+  }
 }
