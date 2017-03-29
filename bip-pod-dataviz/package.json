@@ -1,0 +1,26 @@
+{
+  "name": "bip-pod-dataviz",
+  "version": "0.0.2",
+  "description": "dataviz Pod for Bipio",
+  "keywords": [
+    "bip",
+    "bipio",
+    "pod",
+    "dataviz"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bipio-server/bip-pod-dataviz.git"
+  },
+  "bugs": {
+    "url": "http://github.com/bipio-server/bip-pod-dataviz/issues"
+  },
+  "license": "Apache-2.0",
+  "main": ".",
+  "dependencies": {
+    "ejs": ">=0.7.1"
+  },
+  "engines": {
+    "node": ">= 0.10.0"
+  }
+}

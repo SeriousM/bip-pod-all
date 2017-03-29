@@ -1,0 +1,281 @@
+{
+  "name": "dataviz",
+  "title": "Data Vizualization",
+  "description": "Observe And Chart Data Anywhere On A Bip",
+  "url": "",
+  "config" : {},
+  "trackDuplicates": false,
+  "auth": {
+    "strategy": "none"
+  },
+  "rpcs": {
+  },
+  "dataSources" : {
+    "data" : {
+      "properties" : {
+        "channel_id" : {
+          "type" : "string",
+          "renderable" : false,
+          "writable" : false
+        },
+        "bip_id" : {
+          "type" : "string",
+          "renderable" : false,
+          "writable" : false
+        },
+        "created" : {
+          "type" : "number",
+          "renderable" : true,
+          "writable" : false
+        },
+        "value" : {
+          "type" : "string",
+          "renderable" : true,
+          "writable" : false
+        },
+        "owner_id" : {
+          "type" : "string",
+          "renderable" : false,
+          "writable" : false
+        }
+      }
+    }
+  },
+  "actions": {
+    "view_raw": {
+      "title": "View Raw Data",
+      "description": "Watch Unformatted Data",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "required" : [],
+        "disposition": []
+      },
+      "exports": {
+        "properties": {
+        }
+      },
+      "imports": {
+        "properties": {
+          "value": {
+            "type": "mixed",
+            "title": "Value"
+          }
+        },
+        "required" : [
+          "value"
+        ],
+        "disposition": [
+          "value"
+        ]
+      },
+      "rpcs" : {
+        "view" : {
+          "contentType" : "text/plain",
+          "title" : "View",
+          "description" : "Viewing Raw Data",
+          "method" : "GET",
+          "properties" : {
+            "bip_id" : {
+              "type" : "string",
+              "title" : "Target Bip ID"
+            },
+            "since" : {
+               "type" : "number",
+               "title" : "Since Unix Time"
+            }
+          },
+          "required" : [
+            "bip_id"
+          ]
+        }
+      }
+    },
+    "view_json":{
+      "title" : "View JSON",
+      "description" : "Watch For JSON Objects, Arrays Or JSON Parsable Strings",
+      "trigger" : "invoke",
+      "config" : {
+        "properties" : {},
+        "required": [],
+        "disposition" : []
+      },
+      "exports" : {
+        "properties" : {}
+      },
+      "imports":{
+          "properties":{
+             "value":{
+                "type" : "object",
+                "title" : "JSON"
+             }
+          },
+          "required":[
+             "value"
+          ],
+          "disposition":[
+             "value"
+          ]
+       },
+       "rpcs" : {
+          "view" : {
+             "contentType" : "application/json",
+             "title" : "View",
+             "description" : "Viewing JSON Data",
+             "method" : "GET",
+             "properties" : {
+                "bip_id" : {
+                   "type":"string",
+                   "title":"Target Bip ID"
+                },
+                "since" : {
+                   "type" : "number",
+                   "title" : "Since Unix Time"
+                }
+             },
+             "required":[
+                "bip_id"
+             ]
+          }
+       }
+    },
+    "view_chart": {
+      "title": "View Chart",
+      "description": "Create A Realtime Chart",
+      "trigger": "invoke",
+      "exports": {
+        "properties": {
+        }
+      },
+      "imports": {
+        "properties": {
+          "x": {
+            "type": "string",
+            "title": "X"
+          },
+          "y1": {
+            "type": "number",
+            "title": "Y1"
+          },
+          "y2": {
+            "type": "number",
+            "title": "Y2"
+          }
+        },
+        "required": [
+          "x",
+          "y1"
+        ],
+        "disposition": [
+          "x",
+          "y1",
+          "y2"
+        ]
+      },
+      "config": {
+        "properties" : {
+          "default_type": {
+            "type": "string",
+            "title": "Default Chart Type",
+            "oneOf": [
+              {
+                "$ref": "#/imports/definitions/chart_types"
+              }
+            ]
+          },
+          "maxPoints": {
+            "type": "number",
+            "title": "Chart maximum points"
+          },
+          "x_label": {
+            "type": "string",
+            "title": "X Label"
+          },
+          "y_label": {
+            "type": "string",
+            "title": "Y Label"
+          },
+          "y1_series_label": {
+            "type": "string",
+            "title": "Y1 Series Name"
+          },
+          "y2_series_label": {
+            "type": "string",
+            "title": "Y2 Series Name"
+          }
+        },
+        "definitions": {
+          "chart_types": {
+            "description": "Chart Types",
+            "enum": [
+              "bar",
+              "line"
+            ],
+            "enum_label": [
+              "Bar",
+              "Line"
+            ],
+            "default": "line"
+          },
+          
+          "chart_points": {
+            "description": "Chart Points",
+            "default": "15"
+          }
+        },
+        "required": [
+          "default_type"
+        ],
+        "disposition": [
+          "default_type",
+          "maxPoints",
+          "x_label",
+          "y_label",
+          "y1_series_label",
+          "y2_series_label"
+        ]
+      },
+      "rpcs" : {
+        "view" : {
+          "contentType" : "text/html",
+          "title" : "Chart",
+          "description" : "Viewing Chart Of Data",
+          "method" : "GET",
+          "properties" : {
+            "bip_id" : {
+              "type" : "string",
+              "title" : "Target Bip ID"
+            },
+            "since" : {
+               "type" : "number",
+               "title" : "Since Unix Time"
+            }
+          },
+          "required" : [
+            "bip_id"
+          ]
+         },
+        "json" : {
+          "contentType" : "application/json",
+          "title" : "Data",
+          "description" : "Viewing Chart Of Data",
+          "method" : "GET",
+          "properties" : {
+            "bip_id" : {
+              "type" : "string",
+              "title" : "Target Bip ID"
+            },
+            "since" : {
+               "type" : "number",
+               "title" : "Since Unix Time"
+            }
+          },
+          "required" : [
+            "bip_id"
+          ]
+         }
+       }
+     }
+
+  }
+}
