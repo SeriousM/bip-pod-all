@@ -1,0 +1,28 @@
+{
+  "name": "bip-pod-scriptr",
+  "author": "Marvette Feghali",
+  "description": "Scriptr Pod for Bipio",
+  "keywords": [
+    "bip",
+    "bipio",
+    "pod",
+    "scriptr"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/wotio/bip-pod-scriptr.git"
+  },
+  "bugs": {
+    "url": "http://github.com/wotio/bip-pod-scriptr/issues"
+  },
+  "license": "Apache-2.0",
+  "main": ".",
+  "dependencies": {
+    "request": ">=2.30.1",
+    "query-string": "^2.4.1",
+    "passport-scriptr": "^0.0.1"
+  },
+  "engines": {
+    "node": ">= 0.10.0"
+  }
+}
