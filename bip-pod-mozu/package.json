@@ -1,0 +1,26 @@
+{
+  "name": "bip-pod-mozu",
+  "version": "0.0.1",
+  "description": "Mozu Pod for Bipio",
+  "keywords": [
+    "bip",
+    "bipio",
+    "pod",
+    "mozu"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bipio-server/bip-pod-mozu.git"
+  },
+  "bugs": {
+    "url": "http://github.com/bipio-server/bip-pod-mozu/issues"
+  },
+  "license": "Apache-2.0",
+  "main": ".",
+  "dependencies": {
+    "mozu-node-sdk": "^1.17.15154-hotfix4"
+  },
+  "engines": {
+    "node": ">= 0.10.0"
+  }
+}

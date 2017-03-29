@@ -1,0 +1,132 @@
+{
+  "name": "mozu",
+  "title": "Mozu",
+  "description": "The Most Powerful Enterprise eCommerce Solution - Mozu",
+  "url": "https://www.mozu.com/",
+  "trackDuplicates": false,
+  "config": {},
+  "auth": {
+    "strategy": "issuer_token",
+    "properties" : {
+      "username" : {
+        "type" : "string",
+        "title" : "Tenant ID"
+      }
+    }
+
+  },
+  "rpcs": {
+    "bridge": {
+      "contentType": "application/json",
+      "title": "Mozu Event Bridge"
+    }
+  },
+  "actions": {
+    "product_updated": {
+      "title": "When A Product Is Updated",
+      "description": "Triggers When A Product Is Updated",
+      "trigger": "realtime",
+      "config": {
+        "properties": {
+        },
+        "required" : [
+        ],
+        "disposition": [
+        ]
+      },
+      "exports": {
+"properties" : {
+  "productCode" : {
+    "type" : "string",
+    "title" : ""
+  },
+  "content" : {
+    "type" : "object",
+    "title" : "Content Object",
+    "properties" : {
+      "productName" : {
+        "type" : "string",
+        "title" : "Product Name"
+      },
+      "productFullDescription" : {
+        "type" : "string",
+        "title" : "Full Description"
+      },
+      "productShortDescription" : {
+        "type" : "string",
+        "title" : "Short Description"
+      }      
+    }
+  },
+  "price" : {
+    "type" : "object",
+    "title" : "Price Object",
+    "properties" : {
+      "isoCurrencyCode" : {
+        "type" : "string",
+        "title" : "Currency Code"
+      },
+      "price" : {
+        "type" : "string",
+        "title" : "Price"
+      }          
+    }
+  }        
+}      },
+      "imports": {
+        "properties": {
+        },
+        "required": [
+        ],
+        "disposition": [
+        ]
+      }
+    },
+    "ping_created": {
+      "title": "Ping Created",
+      "description": "Triggers On A Test Event",
+      "trigger": "realtime",
+      "config": {
+        "properties": {
+        },
+        "required" : [
+        ],
+        "disposition": [
+        ]
+      },
+      "exports": {
+"properties" : {
+  "eventId": {
+    "type" : "string",
+    "title" : "Event Id"
+  },
+  "topic": {
+    "type" : "string",
+    "title" : "Event Topic"
+  },
+  "entityId": {
+    "type" : "string",
+    "title" : "Entity Id"
+  },
+  "timestamp": {
+    "type" : "string",
+    "title" : "Event Timestamp"
+  },
+  "isTest": {
+    "type" : "boolean",
+    "title" : "Is Test"
+  }
+}
+      },
+      "imports": {
+        "properties": {
+        },
+        "required": [
+        ],
+        "disposition": [
+        ]
+      }
+    }
+
+  }
+}
