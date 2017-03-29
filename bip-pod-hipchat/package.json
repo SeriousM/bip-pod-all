@@ -1,6 +1,6 @@
 {
   "name": "bip-pod-hipchat",
-  "version": "0.3.3",
+  "version": "0.4.0",
   "author": "Michael Pearson",
   "description": "HipChat Pod for Bipio",
   "keywords": [
