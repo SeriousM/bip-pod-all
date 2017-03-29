@@ -10,10 +10,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/wotio/bip-pod-scriptr.git"
+    "url": "git://github.com/bipio-server/bip-pod-scriptr.git"
   },
   "bugs": {
-    "url": "http://github.com/wotio/bip-pod-scriptr/issues"
+    "url": "http://github.com/bipio-server/bip-pod-scriptr/issues"
   },
   "license": "Apache-2.0",
   "main": ".",
