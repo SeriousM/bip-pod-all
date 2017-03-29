@@ -1,6 +1,6 @@
 {
   "name": "bip-pod-wemo",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "wemo Pod for Bipio",
   "keywords": [
     "bip",
@@ -18,10 +18,9 @@
   "license": "Apache-2.0",
   "main": ".",
   "dependencies": {
-  	"wemo": ">= 0.2.1"
+    "wemo": ">= 0.2.1"
   },
   "engines": {
     "node": ">= 0.10.0"
-
   }
 }
