@@ -1,6 +1,6 @@
 {
   "name": "bip-pod-filter",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "filter Pod for Bipio",
   "keywords": [
     "bip",
@@ -18,9 +18,9 @@
   "license": "Apache-2.0",
   "main": ".",
   "dependencies": {
-    "bip-pod" : ">=0.0.1"
+    "bip-pod": ">=0.0.1"
   },
   "engines": {
-      "node": ">= 0.10.0"
+    "node": ">= 0.10.0"
   }
 }
