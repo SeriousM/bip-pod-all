@@ -1,6 +1,7 @@
 {
   "name": "bip-pod-scriptr",
   "author": "Marvette Feghali",
+  "version": "0.0.1",
   "description": "Scriptr Pod for Bipio",
   "keywords": [
     "bip",
