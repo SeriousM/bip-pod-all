@@ -1,6 +1,6 @@
 {
   "name": "bip-pod-templater",
-  "version": "0.3.3",
+  "version": "0.4.0",
   "author": "Michael Pearson",
   "description": "Templating Pod for Bipio",
   "keywords": [
