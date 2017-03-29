@@ -1,0 +1,27 @@
+{
+  "name": "bip-pod-wemo",
+  "version": "0.1.0",
+  "description": "wemo Pod for Bipio",
+  "keywords": [
+    "bip",
+    "bipio",
+    "pod",
+    "wemo"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bipio-server/bip-pod-wemo.git"
+  },
+  "bugs": {
+    "url": "http://github.com/bipio-server/bip-pod-wemo/issues"
+  },
+  "license": "Apache-2.0",
+  "main": ".",
+  "dependencies": {
+  	"wemo": ">= 0.2.1"
+  },
+  "engines": {
+    "node": ">= 0.10.0"
+
+  }
+}
