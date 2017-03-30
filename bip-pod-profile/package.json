@@ -1,0 +1,26 @@
+{
+  "name": "bip-pod-profile",
+  "version": "0.0.1",
+  "description": "bip.io Profile Pod",
+  "keywords": [
+    "bip",
+    "bipio",
+    "pod",
+    "profile"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bipio-server/bip-pod-profile.git"
+  },
+  "bugs": {
+    "url": "http://github.com/bipio-server/bip-pod-profile/issues"
+  },
+  "license": "Apache-2.0",
+  "main": ".",
+  "dependencies": {
+    "nodemailer": "0.7.1"
+  },
+  "engines": {
+    "node": ">= 0.10.0"
+  }
+}
