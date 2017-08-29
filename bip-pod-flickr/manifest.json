@@ -1,0 +1,158 @@
+{
+  "name": "flickr",
+  "title": "Flickr",
+  "description": "Picture galleries available with social networking, chat, groups, and photo ratings",
+  "url": "https://www.flickr.com",
+  "trackDuplicates": false,
+  "config": {
+    "oauth": {
+      "consumerKey": "",
+      "consumerSecret": "",
+      "method": "authenticate"
+    }
+  },
+  "auth": {
+    "strategy": "oauth",
+    "properties": {
+      "access_token": {
+        "type": "string",
+        "title": "Access Token"
+      },
+      "user_id": {
+        "type": "string",
+        "title": "User ID"
+      }
+    },
+    "disposition": [
+      "access_token",
+      "user_id"
+    ]
+  },
+  "rpcs": {},
+  "actions": {
+    "get_recent": {
+      "title": "When You Upload A Photo",
+      "description": "Triggers When You Upload A Photo To Flickr",
+      "doc_ref": "https://www.flickr.com/services/api/flickr.people.getPhotos.html",
+      "trigger": "poll",
+      "config": {
+        "properties": {
+          "download": {
+            "type": "boolean",
+            "default": false,
+            "title": "Download Photo"
+          }
+        },
+        "disposition": [
+          "download"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "media_original_url": {
+            "type": "string",
+            "title": "Media Original Res URL"
+          },
+          "tags": {
+            "type": "string",
+            "title": "Tags"
+          }
+        },
+        "disposition": [
+        	"title",
+        	"media_original_url",
+        	"media_original_url"
+        	]
+      },
+      "imports": {
+        "properties": {}
+      }
+    },
+    "on_photo_favorited": {
+      "disabled" : false,
+      "title": "When One Of Your Photos Is Favorited",
+      "description": "Triggers When One Of Your Photos Is Favorited",
+      "doc_ref": "https://www.flickr.com/services/api/flickr.photos.getFavorites.html",
+      "trigger": "poll",
+      "config": {
+        "properties": {
+          "download": {
+            "type": "boolean",
+            "default": false,
+            "title": "Download Photo"
+          },
+          "first_favorite" : {
+            "type": "boolean",
+            "default": true,
+            "title" : "Trigger Once Per Photo"
+          }
+        },
+        "disposition": [
+          "download",
+          "first_favorite"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "media_original_url": {
+            "type": "string",
+            "title": "Media Original Res URL"
+          },
+          "tags": {
+            "type": "string",
+            "title": "Tags"
+          }
+        }
+      },
+      "imports": {
+        "properties": {}
+      }
+    },
+    "add_photo": {
+        "title": "Add photo to my photostream",
+        "description": "Upload A Photo To my photostream",
+        "doc_ref": "https://www.flickr.com/services/api/upload.api.html",
+        "trigger": "invoke",
+        "config": {
+          "properties": {
+            "download": {
+              "type": "boolean",
+              "default": false,
+              "title": "Download File"
+            }
+          },
+          "disposition": [
+            "download"
+          ]
+        },
+        "exports": {
+          "properties": {
+          }
+        },
+        "imports": {
+          "properties": {
+        	  "title": {
+                  "type": "string",
+                  "title": "Title"
+                },
+                "url": {
+                  "type": "string",
+                  "title": "Media Original Res URL"
+                }
+          }
+        }
+      }
+  },
+  "tags": [
+    "social",
+    "images"
+  ]
+}
