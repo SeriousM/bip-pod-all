@@ -1,0 +1,158 @@
+{
+  "name": "coindesk",
+  "title": "CoinDesk",
+  "description": "Realtime Bitcoin prices Powered by CoinDesk",
+  "url": "http://www.coindesk.com/price",
+  "trackDuplicates": false,
+  "config": {},
+  "auth": {
+    "strategy": "none"
+  },
+  "rpcs": {},
+  "actions": {
+    "current_price": {
+      "title": "Price Change",
+      "description": "Triggers When The BitCoin Price Changes",
+      "doc_ref": "http://www.coindesk.com/api",
+      "trigger": "realtime",
+      "config": {
+        "properties": {},
+        "disposition": []
+      },
+      "exports": {
+        "properties": {
+          "time": {
+            "type": "object",
+            "properties": {
+              "updated": {
+                "type": "string",
+                "description": "Last Updated"
+              },
+              "updatedISO": {
+                "type": "string",
+                "description": "Last Updated (ISO)"
+              },
+              "updateduk": {
+                "type": "string",
+                "description": "Last Updated (UK)"
+              }
+            },
+            "title": "Time Formats"
+          },
+          "disclaimer": {
+            "type": "string",
+            "title": "Disclaimer"
+          },
+          "bpi": {
+            "type": "object",
+            "properties": {
+              "USD": {
+                "properties": {
+                  "code": {
+                    "type": "string",
+                    "description": "Currency Code"
+                  },
+                  "symbol": {
+                    "type": "string",
+                    "description": "Symbol"
+                  },
+                  "rate": {
+                    "type": "string",
+                    "description": "Rate"
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "Description"
+                  },
+                  "rate_float": {
+                    "type": "number",
+                    "description": "Rate Float"
+                  }
+                }
+              },
+              "GBP": {
+                "properties": {
+                  "code": {
+                    "type": "string",
+                    "description": "Currency Code"
+                  },
+                  "symbol": {
+                    "type": "string",
+                    "description": "Symbol"
+                  },
+                  "rate": {
+                    "type": "string",
+                    "description": "Rate"
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "Description"
+                  },
+                  "rate_float": {
+                    "type": "number",
+                    "description": "Rate Float"
+                  }
+                }
+              },
+              "EUR": {
+                "properties": {
+                  "code": {
+                    "type": "string",
+                    "description": "Currency Code"
+                  },
+                  "symbol": {
+                    "type": "string",
+                    "description": "Symbol"
+                  },
+                  "rate": {
+                    "type": "string",
+                    "description": "Rate"
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "Description"
+                  },
+                  "rate_float": {
+                    "type": "number",
+                    "description": "Rate Float"
+                  }
+                }
+              }
+            },
+            "title": "BPI Object"
+          },
+          "usd_float": {
+            "type": "number",
+            "title": "USD Rate"
+          },
+          "gbp_float": { 
+            "type": "number", 
+            "title": "GBP Rate"
+          },
+          "eur_float": {
+            "type": "number",
+            "title": "EUR Rate"
+          }
+        }
+        ,
+        "disposition": [
+       		"time",
+       		"disclaimer",
+       		"bpi",
+       		"usd_float",
+       		"gbp_float",
+       		"eur_float"
+       		]
+      },
+      "imports": {
+        "properties": {},
+        "disposition": []
+      }
+    }
+  },
+  "tags": [
+    "finance",
+    "bitcoin",
+    "syndication"
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "name": "bip-pod-coindesk",
+  "version": "0.4.0",
+  "description": "CoinDesk Pod for Bipio",
+  "keywords": [
+    "bip",
+    "bipio",
+    "pod",
+    "coindesk"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bipio-server/bip-pod-coindesk.git"
+  },
+  "bugs": {
+    "url": "http://github.com/bipio-server/bip-pod-coindesk/issues"
+  },
+  "license": "Apache-2.0",
+  "main": ".",
+  "dependencies": {},
+  "engines": {
+    "node": ">= 0.10.0"
+  }
+}
