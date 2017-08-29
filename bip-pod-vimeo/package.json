@@ -1,0 +1,28 @@
+{
+  "name": "bip-pod-vimeo",
+  "version": "0.4.0",
+  "author": "Michael Pearson",
+  "description": "Vimeo Pod for Bipio",
+  "keywords": [
+    "bip",
+    "bipio",
+    "pod",
+    "vimeo"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bipio-server/bip-pod-vimeo.git"
+  },
+  "bugs": {
+    "url": "http://github.com/bipio-server/bip-pod-vimeo/issues"
+  },
+  "license": "Apache-2.0",
+  "main": ".",
+  "dependencies": {
+    "vimeo-api": ">=0.9.4",
+    "passport-vimeo-oauth2": ">=0.0.1"
+  },
+  "engines": {
+    "node": ">= 0.10.0"
+  }
+}
