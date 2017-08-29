@@ -1,0 +1,454 @@
+{
+  "name": "trello",
+  "title": "Trello",
+  "description": "Trello is the easiest way to organize anything with anyone.",
+  "url": "https://www.trello.com",
+  "trackDuplicates": false,
+  "config": {
+    "oauth": {
+      "consumerKey": "",
+      "consumerSecret": "",
+      "trelloParams": {
+        "scope": "read,write",
+        "expiration": "never"
+      }
+    }
+  },
+  "auth": {
+    "strategy": "oauth",
+    "properties": {
+      "access_token": {
+        "type": "string",
+        "title": "Access Token"
+      },
+      "consumerKey": {
+        "type": "string",
+        "title": "Consumer Key"
+      },
+      "user_id": {
+        "type": "string",
+        "title": "User ID"
+      }
+    },
+    "disposition": [
+      "access_token",
+      "consumerKey",
+      "user_id"
+    ]
+  },
+  "rpcs": {
+    "member_boards": {
+      "contentType": "application/json",
+      "title": "Retrieve Boards"
+    },
+    "board_lists": {
+      "contentType": "application/json",
+      "properties": {
+        "board_id": {
+          "description": "Board ID",
+          "type": "string",
+          "oneOf": [
+            {
+              "$ref": "/rpcs/member_boards#{id}"
+            }
+          ],
+          "required": true
+        }
+      },
+      "title": "Retrieve Lists For a Board"
+    },
+    "all_board_lists": {
+      "contentType": "application/json",
+      "title": "Retrieve All Lists For Active Boards"
+    },
+    "all_organization_members": {
+      "contentType": "application/json",
+      "title": "Retrieve All Members For Your Organizations"
+    }
+  },
+  "actions": {
+    "create_board": {
+      "title": "Create A Board",
+      "description": "Creates a New Trello Board",
+      "trigger": "invoke",
+      "config": {
+        "properties": {
+          "id_organization": {
+            "type": "string",
+            "title": "Organization ID"
+          },
+          "prefs_permissionLevel": {
+            "type": "string",
+            "oneOf": [
+              {
+                "$ref": "#/config/definitions/prefs_permissionLevel"
+              }
+            ],
+            "title": "Permission Level"
+          },
+          "prefs_comments": {
+            "type": "string",
+            "oneOf": [
+              {
+                "$ref": "#/config/definitions/prefs_comments"
+              }
+            ],
+            "title": "Comment Preferences"
+          },
+          "prefs_invitations": {
+            "type": "string",
+            "oneOf": [
+              {
+                "$ref": "#/config/definitions/prefs_invitations"
+              }
+            ],
+            "title": "Invitations Preferences"
+          },
+          "prefs_selfJoin": {
+            "type": "boolean",
+            "default": false,
+            "title": "Self Join"
+          }
+        },
+        "definitions": {
+          "prefs_permissionLevel": {
+            "description": "Permission Level",
+            "enum": [
+              "private",
+              "org",
+              "public"
+            ],
+            "enum_label": [
+              "Private",
+              "Organization",
+              "Public"
+            ],
+            "default": "private"
+          },
+          "prefs_comments": {
+            "description": "Comment Preferences",
+            "enum": [
+              "members",
+              "observers",
+              "org",
+              "public",
+              "disabled"
+            ],
+            "enum_label": [
+              "Members",
+              "Observers",
+              "Organization",
+              "Public",
+              "Disabled"
+            ],
+            "default": "members"
+          },
+          "prefs_invitations": {
+            "description": "Invitation Preferences",
+            "enum": [
+              "members",
+              "admins"
+            ],
+            "enum_label": [
+              "Members",
+              "Admins"
+            ],
+            "default": "members"
+          }
+        },
+        "disposition": [
+          "id_organization",
+          "prefs_permissionLevel",
+          "prefs_comments",
+          "prefs_invitations",
+          "prefs_selfJoin"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Board ID"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "disposition": [
+          "name",
+          "description"
+        ]
+      }
+    },
+    "create_list": {
+      "title": "Create A List",
+      "description": "Adds a List to an existing Board",
+      "trigger": "invoke",
+      "config": {
+        "properties": {
+          "default_board_id": {
+            "type": "string",
+            "oneOf": [
+              {
+                "$ref": "/rpcs/member_boards#{id}"
+              }
+            ],
+            "label": {
+              "$ref": "/rpcs/member_boards/{name}"
+            },
+            "title": "Default Board ID"
+          }
+        },
+         "required": [
+          "default_board_id"
+        ],
+        "disposition": [
+          "default_board_id"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "ID"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "closed": {
+            "type": "boolean",
+            "title": "List Closed"
+          },
+          "idBoard": {
+            "type": "string",
+            "title": "Board ID"
+          },
+          "pos": {
+            "type": "integer",
+            "title": "Position"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "List Name"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "disposition": [
+          "name"
+        ]
+      }
+    },
+    "create_card": {
+      "title": "Create A Card",
+      "description": "Adds a Card to an existing List",
+      "trigger": "invoke",
+      "config": {
+        "properties": {
+          "default_list_id": {
+            "type": "string",
+            "oneOf": [
+              {
+                "$ref": "/rpcs/all_board_lists/{id}"
+              }
+            ],
+            "label": {
+              "$ref": "/rpcs/all_board_lists/{name_path}"
+            },
+            "title": "Default List ID"
+          },
+          "assigned_member_ids": {
+            "type": "array",
+            "anyOf": [
+              {
+                "$ref": "/rpcs/all_organization_members/{id}"
+              }
+            ],
+            "label": {
+              "$ref": "/rpcs/all_organization_members/{fullName}"
+            },
+            "title": "Assign Members"
+          },
+          "label": {
+            "type": "string",
+            "oneOf": [
+              {
+                "$ref": "#/config/definitions/labels"
+              }
+            ],
+            "title": "Label"
+          },
+          "position": {
+            "type": "string",
+            "oneOf": [
+              {
+                "$ref": "#/config/definitions/position"
+              }
+            ],
+            "title": "Position"
+          }
+        },
+        "definitions": {
+          "labels": {
+            "description": "Permission Level",
+            "enum": [
+              "none",
+              "green",
+              "yellow",
+              "orange",
+              "red",
+              "purple",
+              "blue"
+            ],
+            "enum_label": [
+              "none",
+              "Green",
+              "Yellow",
+              "Orange",
+              "Red",
+              "Purple",
+              "Blue"
+            ],
+            "default": "none"
+          },
+          "position": {
+            "description": "Position",
+            "enum": [
+              "bottom",
+              "top"
+            ],
+            "enum_label": [
+              "Bottom",
+              "Top"
+            ],
+            "default": "bottom"
+          }
+        },
+        "required": [
+          "default_list_id"
+        ],
+        "disposition": [
+          "default_list_id",
+          "assigned_member_ids",
+          "label",
+          "position"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "ID"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "closed": {
+            "type": "boolean",
+            "title": "Card Closed"
+          },
+          "url": {
+            "type": "boolean",
+            "title": "Card URL"
+          },
+          "idBoard": {
+            "type": "string",
+            "title": "Board ID"
+          },
+          "pos": {
+            "type": "integer",
+            "title": "Position"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description"
+          },
+          "due": {
+            "type": "date",
+            "title": "Due"
+          },
+          "label": {
+            "type": "string",
+            "title": "Label Color"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "disposition": [
+          "name",
+          "description",
+          "due",
+          "label"
+        ]
+      }
+    },
+    "add_comment": {
+      "title": "Add A Comment",
+      "description": "Adds a Comment to a Card",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "CommentID"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "card_id": {
+            "type": "string",
+            "title": "Card ID"
+          },
+          "text": {
+            "type": "string",
+            "title": "Comment Text"
+          }
+        },
+        "required": [
+          "text"
+        ],
+        "disposition": [
+          "text",
+          "card_id"
+        ]
+      }
+    }
+  },
+  "tags": [
+    "crm",
+    "productivity"
+  ]
+}

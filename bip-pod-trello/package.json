@@ -1,0 +1,27 @@
+{
+  "name": "bip-pod-trello",
+  "version": "0.4.0",
+  "description": "Trello Pod for Bipio",
+  "keywords": [
+    "bip",
+    "bipio",
+    "pod",
+    "trello"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bipio-server/bip-pod-trello.git"
+  },
+  "bugs": {
+    "url": "http://github.com/bipio-server/bip-pod-trello/issues"
+  },
+  "license": "Apache-2.0",
+  "main": ".",
+  "dependencies": {
+    "passport-trello": "~0.1.4",
+    "q": "^1.0.1"
+  },
+  "engines": {
+    "node": ">= 0.10.0"
+  }
+}
