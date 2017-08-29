@@ -1,0 +1,211 @@
+{
+  "name": "dropbox",
+  "title": "Dropbox",
+  "description": "Dropbox is a file hosting service operated by Dropbox, Inc., that offers cloud storage, file synchronization, and client software.",
+  "url": "https://dropbox.com",
+  "trackDuplicates": true,
+  "rateLimit" : 1,
+  "config": {
+    "oauth": {
+      "consumerKey": "",
+      "consumerSecret": "",
+      "sandbox": true
+    }
+  },
+  "auth": {
+    "strategy": "oauth",
+    "properties": {
+      "access_token": {
+        "type": "string",
+        "title": "Access Token"
+      },
+      "secret": {
+        "type": "string",
+        "title": "Token Secret"
+      },
+      "consumerKey": {
+        "type": "string",
+        "title": "Consumer Key"
+      },
+      "consumerSecret": {
+        "type": "string",
+        "title": "Consumer Secret"
+      },
+      "sandbox": {
+        "type": "boolean",
+        "title": "Sandbox Mode"
+      }
+    },
+    "disposition": [
+      "access_token",
+      "secret",
+      "consumerKey",
+      "consumerSecret",
+      "sandbox"
+    ]
+  },
+  "rpcs": {},
+  "actions": {
+    "generate_link": {
+      "title": "Generate a File Link",
+      "description": "Generates a direct Dropbox file link that you can share with others",
+      "doc_ref": "https://www.dropbox.com/developers/core/docs#shares",
+      "trigger": "invoke",
+      "config": {
+        "properties": {
+          "direct_link": {
+            "type": "boolean",
+            "default": false,
+            "title": "Generate a Direct Link to File, no Preview"
+          },
+          "short": {
+            "type": "boolean",
+            "default": true,
+            "title": "Use Link Shortener"
+          }
+        },
+        "disposition": [
+          "direct_link",
+          "short"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "url": {
+            "type": "string",
+            "title": "URL of File"
+          },
+          "expires_at": {
+            "type": "string",
+            "title": "Expiry Date"
+          },
+          "is_direct": {
+            "type": "string",
+            "title": "Is a Direct Link to the File"
+          },
+          "is_preview": {
+            "type": "boolean",
+            "title": "Link is to Preview page"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "path": {
+            "type": "string",
+            "title": "File Path"
+          }
+        },
+        "required": [
+          "path"
+        ],
+        "disposition": [
+          "path"
+        ]
+      }
+    },
+     "on_new_file": {
+      "title": "On A New File",
+      "description": "Triggers When A New File Appears In A Dropbox Folder",
+      "doc_ref": "https://www.dropbox.com/developers/core/docs#shares",
+      "trigger": "poll",
+      "config": {
+        "properties": {
+         "directory": {
+            "type": "string",
+            "title": "Folder Path"
+          }
+        },
+        "disposition": [
+        	"directory"
+        ]
+      },
+      "exports": {
+        "properties": {
+        	"path": {
+              "type": "string",
+              "title": "File Path"
+            },
+            "name": {
+              "type": "string",
+              "title": "File Name"
+            },
+            "humanSize": {
+              "type": "string",
+              "title": "Size (bytes)"
+            },
+            "mimeType": {
+               "type": "string",
+           	   "title": "Mime Type"
+          	}
+        }
+      },
+      "imports": {
+        "properties": {
+        },
+        "disposition": []
+      }
+    },
+    "save_file": {
+      "title": "Save File To Dropbox",
+      "description": "Saves An Incoming File To A Dropbox App Folder",
+      "doc_ref": "https://www.dropbox.com/developers/core/docs#files_put",
+      "trigger": "invoke",
+      "config": {
+        "properties": {
+          "base_dir": {
+            "type": "string",
+            "title": "Base Directory"
+          },
+          "overwrite": {
+            "type": "boolean",
+            "default": false,
+            "title": "Overwrite Files"
+          }
+        },
+        "disposition": [
+          "base_dir",
+          "overwrite"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "path": {
+            "type": "string",
+            "title": "File Path"
+          },
+          "name": {
+            "type": "string",
+            "title": "File Name"
+          },
+          "size": {
+            "type": "integer",
+            "title": "Size in Bytes"
+          },
+          "human_size": {
+            "type": "string",
+            "title": "Friendly Size"
+          },
+          "mime_type": {
+            "type": "string",
+            "title": "File Mime Type"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "base_dir": {
+            "type": "string",
+            "title": "Base Directory"
+          }
+        },
+        "disposition": [
+          "base_dir"
+        ]
+      }
+    }
+  },
+  "tags": [
+    "productivity"
+  ]
+}
