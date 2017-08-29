@@ -1,0 +1,175 @@
+{
+  "name": "mongodb",
+  "title": "MongoDB",
+  "description": "MongoDB (from \"humongous\") is an open-source document database, and the leading NoSQL database.",
+  "url": "http://www.mongodb.org",
+  "trackDuplicates": false,
+  "config": {
+    "whitelist": []
+  },
+  "auth": {
+    "strategy": "issuer_token",
+    "properties": {
+      "username": {
+        "title": "Connection URI",
+        "type": "string",
+        "description" : "See <a href='http://docs.mongodb.org/manual/reference/connection-string'>Connection String URI Format</a> For More Info"
+      }
+    },
+    "disposition": [
+      "username"
+    ]
+  },
+  "rpcs": {},
+  "actions": {
+    "insert": {
+      "title": "Insert",
+      "description": "Insert a MongoDB document",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {}
+      },
+      "imports": {
+        "properties": {
+          "collection": {
+            "type": "string",
+            "title": "Collection Name"
+          },
+          "document": {
+            "type": "mixed",
+            "title": "New Document",
+            "description" : "JSON String or Object"
+          }
+        },
+        "required": [
+          "document",
+          "collection"
+        ],
+        "disposition": [
+          "document",
+          "collection"
+        ]
+      }
+    },
+    "find": {
+      "title": "Find",
+      "description": "Find Document(s)",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "found_documents": {
+            "type": "object",
+            "title": "Array of Document(s)"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "collection": {
+            "type": "string",
+            "title": "Collection Name"
+          },
+          "query": {
+            "type": "object",
+            "title": "Find Criteria",
+            "description" : "See <a href='http://docs.mongodb.org/manual/reference/method/db.collection.find'>db.collection.find</a>, Criteria Only"
+          }
+        },
+        "required": [
+          "collection",
+          "query"
+        ],
+        "disposition": [
+          "collection",
+          "query"
+        ]
+      }
+    },
+    "update": {
+      "title": "Update",
+      "description": "Update A Document",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {}
+      },
+      "imports": {
+        "properties": {
+          "collection": {
+            "type": "string",
+            "title": "Collection Name"
+          },
+          "match": {
+            "type": "mixed",
+            "title": "Find Criteria",
+            "description" : "See <a href='http://docs.mongodb.org/manual/reference/method/db.collection.find'>db.collection.find</a>, Criteria Only"
+          },
+          "document": {
+            "type": "mixed",
+            "title": "New Document",
+            "description" : "JSON String or Object"
+          }
+        },
+        "required": [
+          "collection",
+          "match",
+          "document"
+        ],
+        "disposition": [
+          "collection",
+          "match",
+          "document"
+        ]
+      }
+    },
+    "remove": {
+      "title": "Remove",
+      "description": "Remove A Document",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {}
+      },
+      "imports": {
+        "properties": {
+          "collection": {
+            "type": "string",
+            "title": "Name of the Collection"
+          },
+          "match": {
+            "type": "mixed",
+            "title": "Find Criteria",
+            "description" : "See <a href='http://docs.mongodb.org/manual/reference/method/db.collection.find'>db.collection.find</a>, Criteria Only"
+          }
+        },
+        "required": [
+          "collection",
+          "match"
+        ],
+        "disposition": [
+          "collection",
+          "match"
+        ]
+      }
+    }
+  },
+  "tags": [
+    "productivity",
+    "database",
+    "ops"
+  ]
+}
