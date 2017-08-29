@@ -1,0 +1,205 @@
+{
+  "name": "soundcloud",
+  "title": "SoundCloud",
+  "description": "SoundCloud is an audio platform that enables sound creators to upload, record, promote and share their originally-created sounds",
+  "url": "https://soundcloud.com",
+  "trackDuplicates": true,
+  "config": {
+    "oauth": {
+      "clientID": "",
+      "clientSecret": "",
+      "scopes": [
+        "non-expiring"
+      ],
+      "method": "authenticate"
+    }
+  },
+  "auth": {
+    "strategy": "oauth",
+    "properties": {
+      "access_token": {
+        "type": "string",
+        "title": "Access Token"
+      }
+    },
+    "disposition": [
+      "access_token"
+    ]
+  },
+  "rpcs": {},
+  "actions": {
+    "get_favorites": {
+      "title": "Get Favorites",
+      "description": "Retrieves the sounds you've favorited, exporting track data and (optionally) the track itself",
+      "trigger": "poll",
+      "config": {
+        "properties": {
+          "download": {
+            "type": "boolean",
+            "default": false,
+            "title": "Download Files"
+          }
+        },
+        "disposition": [
+          "download"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "title": {
+            "type": "string",
+            "title": "Track Title"
+          },
+          "artist": {
+            "type": "string",
+            "title": "Artist Name"
+          },
+          "genre": {
+            "type": "string",
+            "title": "Music Genre"
+          },
+          "download_url": {
+            "type": "string",
+            "title": "Direct Download URL"
+          },
+          "label_name": {
+            "type": "string",
+            "title": "Releasing Label Name"
+          },
+          "permalink_url": {
+            "type": "string",
+            "title": "Track Permalink URL"
+          },
+          "artwork_url": {
+            "type": "string",
+            "title": "Track Artwork URL (JPEG)"
+          },
+          "description": {
+            "type": "string",
+            "title": "Track Description"
+          }
+        }
+      },
+      "imports": {
+        "properties": {}
+      }
+    },
+    "oembed": {
+      "title": "SoundCloud oEmbed",
+      "description": "Converts any SoundCloud entity to its oEmbed representation",
+      "trigger": "invoke",
+      "config": {
+        "properties": {}
+      },
+      "exports": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "title": "oEmbed Type"
+          },
+          "provider_name": {
+            "type": "string",
+            "title": "Provider Name (soundcloud)"
+          },
+          "provider_url": {
+            "type": "string",
+            "title": "Provider URL"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "html": {
+            "type": "string",
+            "title": "oEmbed HTML"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "url": {
+            "type": "string",
+            "title": "URL"
+          },
+          "maxwidth": {
+            "type": "string",
+            "title": "Max Width"
+          },
+          "maxheight": {
+            "type": "string",
+            "title": "Max Height"
+          },
+          "auto_play": {
+            "type": "boolean",
+            "title": "Auto Play"
+          },
+          "show_comments": {
+            "type": "boolean",
+            "title": "Show Comments"
+          },
+          "color": {
+            "type": "string",
+            "title": "Primary Color Value (hex)"
+          }
+        },
+        "required": [
+          "url"
+        ],
+        "disposition": [
+          "url",
+          "maxwidth",
+          "maxheight",
+          "auto_play",
+          "show_comments",
+          "color"
+        ]
+      }
+    }
+  },
+  "dataSources": {
+    "track_favorite": {
+      "properties": {
+        "id": {
+          "type": "string",
+          "renderable": false,
+          "writable": false,
+          "unique": true
+        },
+        "owner_id": {
+          "type": "string",
+          "renderable": false,
+          "writable": false
+        },
+        "created": {
+          "type": "string",
+          "renderable": true,
+          "writable": false
+        },
+        "last_update": {
+          "type": "string",
+          "renderable": true,
+          "writable": false
+        },
+        "channel_id": {
+          "type": "string",
+          "renderable": true,
+          "writable": false
+        },
+        "track_id": {
+          "type": "string",
+          "renderable": true,
+          "writable": false
+        }
+      },
+      "keys": [
+        "owner_id",
+        "channel_id",
+        "track_id"
+      ]
+    }
+  },
+  "tags": [
+    "social",
+    "audio"
+  ]
+}
