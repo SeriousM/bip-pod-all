@@ -1,0 +1,132 @@
+{
+  "name": "pushbullet",
+  "title": "PushBullet",
+  "description": "PushBullet - Send files, links, and more to your phone and back, fast",
+  "url": "https://www.pushbullet.com",
+  "trackDuplicates": false,
+  "config": {},
+  "auth": {
+    "strategy": "issuer_token",
+    "properties": {
+      "username": {
+        "title": "Access Token",
+        "type": "string"
+      }
+    },
+    "disposition": [
+      "username"
+    ]
+  },
+  "rpcs": {
+    "my_devices": {
+      "contentType": "application/json",
+      "title": "Get My Devices"
+    }
+  },
+  "actions": {
+    "push_note": {
+      "title": "Push a Note",
+      "description": "Push a Note to one of your connected devices",
+      "trigger": "invoke",
+      "config": {
+        "properties": {
+          "device_iden": {
+            "type": "string",
+            "oneOf": [
+              {
+                "$ref": "/rpcs/my_devices#devices/{iden}"
+              }
+            ],
+            "label": {
+              "$ref": "/rpcs/my_devices#devices/{nickname}"
+            },
+            "title": "Device ID"
+          }
+        },
+        "disposition": [
+          "device_iden"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "iden": {
+            "type": "string",
+            "title": "ID"
+          },
+          "type": {
+            "type": "string",
+            "title": "Push Type"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "body": {
+            "type": "string",
+            "title": "Body"
+          },
+          "created": {
+            "type": "string",
+            "title": "Created Time"
+          },
+          "active": {
+            "type": "boolean",
+            "title": "Active"
+          },
+          "dismissed": {
+            "type": "boolean",
+            "title": "Dismissed"
+          },
+          "owner_iden": {
+            "type": "string",
+            "title": "Owner ID"
+          },
+          "target_device_iden": {
+            "type": "string",
+            "title": "Target Device ID"
+          },
+          "sender_iden": {
+            "type": "string",
+            "title": "Sender ID"
+          },
+          "sender_email_normalized": {
+            "type": "string",
+            "title": "Sender Email"
+          },
+          "receiver_iden": {
+            "type": "string",
+            "title": "Receiver ID"
+          },
+          "receiver_email_normalized": {
+            "type": "string",
+            "title": "Receiver Email"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "body": {
+            "type": "string",
+            "title": "Body"
+          }
+        },
+        "required": [
+          "title",
+          "body"
+        ],
+        "disposition": [
+          "title",
+          "body"
+        ]
+      }
+    }
+  },
+  "tags": [
+    "real-time",
+    "messaging"
+  ]
+}

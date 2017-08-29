@@ -1,0 +1,25 @@
+{
+  "name": "bip-pod-pushbullet",
+  "version": "0.4.0",
+  "author": "Michael Pearson",
+  "description": "PushBullet Pod for Bipio",
+  "keywords": [
+    "bip",
+    "bipio",
+    "pod",
+    "pushbullet"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bipio-server/bip-pod-pushbullet.git"
+  },
+  "bugs": {
+    "url": "http://github.com/bipio-server/bip-pod-pushbullet/issues"
+  },
+  "license": "Apache-2.0",
+  "main": ".",
+  "dependencies": {},
+  "engines": {
+    "node": ">= 0.10.0"
+  }
+}
