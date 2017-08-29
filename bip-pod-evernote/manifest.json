@@ -1,0 +1,266 @@
+{
+  "name": "evernote",
+  "title": "Evernote",
+  "description": "Evernote is the place to collect inspirational ideas, write meaningful words, and move your important projects forward",
+  "url": "https://evernote.com",
+  "trackDuplicates": true,
+  "config": {
+    "oauth": {
+      "consumerKey": "",
+      "consumerSecret": "",
+      "__requestTokenURL": "https://sandbox.evernote.com/oauth",
+      "__accessTokenURL": "https://sandbox.evernote.com/oauth",
+      "__userAuthorizationURL": "https://sandbox.evernote.com/OAuth.action"
+    },
+    "sandbox": false
+  },
+  "auth": {
+    "strategy": "oauth",
+    "properties": {
+      "access_token": {
+        "type": "string",
+        "title": "Access Token"
+      },
+      "sandbox": {
+        "type": "boolean",
+        "title": "Sandbox Mode"
+      }
+    },
+    "disposition": [
+      "access_token",
+      "sandbox"
+    ]
+  },
+  "rpcs": {
+    "get_notebooks": {
+      "contentType": "application/json",
+      "title": "Get Notebooks"
+    }
+  },
+  "actions": {
+    "add_note": {
+      "title": "Add a Note",
+      "description": "Adds a Note to one of your Notebooks",
+      "doc_ref": "https://dev.evernote.com/doc/reference/NoteStore.html#Fn_NoteStore_createNote",
+      "trigger": "invoke",
+      "config": {
+        "properties": {
+          "notebook_guid": {
+            "type": "string",
+            "oneOf": [
+              {
+                "$ref": "/rpcs/get_notebooks/{guid}"
+              }
+            ],
+            "label": {
+              "$ref": "/rpcs/get_notebooks/{name}"
+            },
+            "title": "Notebook GUID"
+          },
+          "embed_attachments": {
+            "type": "boolean",
+            "default": false,
+            "title": "Embed Attachments into Note"
+          }
+        },
+        "required": [
+          "notebook_guid"
+        ],
+        "disposition": [
+          "notebook_guid",
+          "embed_attachments"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "guid": {
+            "type": "string",
+            "title": "Note GUID"
+          },
+          "notebookGuid": {
+            "type": "string",
+            "title": "Notebook GUID"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "note": {
+            "type": "string",
+            "title": "Note"
+          },
+          "tags" : {
+            "type" : "array",
+            "title" : "Tags",
+            "description" : "Comma Separated List Of Tags, Or Array Of Strings"
+          }
+        },
+        "required": [
+          "title",
+          "note"
+        ],
+        "disposition": [
+          "title",
+          "note",
+          "tags"
+        ]
+      }
+    },
+    "delete_note": {
+      "title": "Delete a Note",
+      "description": "Deletes A Note From One Of Your Notebooks",
+      "doc_ref": "https://dev.evernote.com/doc/reference/NoteStore.html#Fn_NoteStore_deleteNote",
+      "trigger": "invoke",
+      "config": {
+        "properties": {}
+      },
+      "exports": {
+        "properties": {
+          "seq": {
+            "type": "string",
+            "title": "Action Sequence Number"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "note_guid": {
+            "type": "string",
+            "title": "Note GUID"
+          }
+        },
+        "required": [
+          "note_guid"
+        ],
+        "disposition": [
+          "note_guid"
+        ]
+      }
+    },
+    "get_note": {
+      "title": "Get a Note",
+      "description": "Retrieves A Note",
+      "doc_ref": "https://dev.evernote.com/doc/reference/NoteStore.html#Fn_NoteStore_getNote",
+      "trigger": "invoke",
+      "config": {
+        "properties": {}
+      },
+      "exports": {
+        "properties": {
+          "guid": {
+            "type": "string",
+            "title": "Note GUID"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "content": {
+            "type": "string",
+            "title": "XML Content"
+          },
+          "note": {
+            "type": "string",
+            "title": "Extracted Note"
+          },
+          "notebookGuid": {
+            "type": "string",
+            "title": "Notebook GUID"
+          },
+          "tagNames" : {
+            "type" : "array",
+            "title" : "Tag Names"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "note_guid": {
+            "type": "string",
+            "title": "Note GUID"
+          }
+        },
+        "required": [
+          "note_guid"
+        ],
+        "disposition": [
+          "note_guid"
+        ]
+      }
+    },
+    "on_new_note": {
+      "title": "On A New Note",
+      "description": "Triggers When A New Note Appears In One Of Your Notebooks",
+      "doc_ref": "https://dev.evernote.com/doc/reference/NoteStore.html#Fn_NoteStore_getNote",
+      "trigger": "poll",
+      "config": {
+        "properties": {
+          "notebook_guid": {
+            "type": "string",
+            "oneOf": [
+              {
+                "$ref": "/rpcs/get_notebooks/{guid}"
+              }
+            ],
+            "label": {
+              "$ref": "/rpcs/get_notebooks/{name}"
+            },
+            "title": "Notebook GUID"
+          }
+        },
+        "required": [
+          "notebook_guid"
+        ],
+        "disposition": [
+          "notebook_guid"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "guid": {
+            "type": "string",
+            "title": "Note GUID"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "content": {
+            "type": "string",
+            "title": "XML Content"
+          },
+          "note": {
+            "type": "string",
+            "title": "Extracted Note"
+          },
+          "notebookGuid": {
+            "type": "string",
+            "title": "Notebook GUID"
+          },
+          "tagNames" : {
+            "type" : "array",
+            "title" : "Tag Names"
+          }
+        },
+        "disposition": [
+        	"guid",
+        	"title",
+        	"content",
+        	"note",
+        	"notebookGuid",
+        	"tagNames"
+        	]
+      },
+      "imports": {
+        "properties": {}
+      }
+    }
+  },
+  "tags": [
+    "productivity"
+  ]
+}
