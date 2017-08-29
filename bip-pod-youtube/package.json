@@ -1,0 +1,23 @@
+{
+  "name": "bip-pod-youtube",
+  "version": "0.1.0",
+  "description": "youtube Pod for Bipio",
+  "keywords": [
+    "bip",
+    "bipio",
+    "pod",
+    "youtube"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bipio-server/bip-pod-youtube.git"
+  },
+  "bugs": {
+    "url": "http://github.com/bipio-server/bip-pod-youtube/issues"
+  },
+  "license": "Apache-2.0",
+  "main": ".",
+  "engines": {
+    "node": ">= 0.10.0"
+  }
+}
