@@ -1,0 +1,97 @@
+{
+  "name": "statuscake",
+  "title": "StatusCake",
+  "description": "StatusCake : Website Uptime Monitoring and Alerts - Free Unlimited Downtime Monitorin",
+  "url": "https://www.statuscake.com?aff=15112",
+  "trackDuplicates": false,
+  "config": {},
+  "auth": {
+    "strategy": "issuer_token",
+    "properties": {
+      "username": {
+        "title": "Username",
+        "type": "string"
+      },
+      "password": {
+        "title": "API Key",
+        "type": "string"
+      }
+    },
+    "disposition": [
+      "username",
+      "password"
+    ]
+  },
+  "rpcs": {
+    "get_tests": {
+      "contentType": "application/json",
+      "title": "Get Tests"
+    }
+  },
+  "actions": {
+    "get_alerts": {
+      "title": "On New Alert",
+      "description": "Triggers when a new Alert appears for a given test",
+      "trigger": "poll",
+      "config": {
+        "properties": {
+          "TestID": {
+            "type": "integer",
+            "oneOf": [
+              {
+                "$ref": "/rpcs/get_tests/{TestID}"
+              }
+            ],
+            "label": {
+              "$ref": "/rpcs/get_tests/{WebsiteName}"
+            },
+            "title": "Test ID"
+          }
+        },
+        "disposition": [
+          "TestID"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "Triggered": {
+            "type": "string",
+            "title": "Trigger Time"
+          },
+          "StatusCode": {
+            "type": "integer",
+            "title": "Status Code"
+          },
+          "Unix": {
+            "type": "integer",
+            "title": "Unix Timestamp"
+          },
+          "Status": {
+            "type": "string",
+            "title": "Status String"
+          },
+          "TestID": {
+            "type": "integer",
+            "title": "Test ID"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "since": {
+            "type": "integer",
+            "title": "Search Since",
+            "description": "Unix Timestamp"
+          }
+        },
+        "disposition": [
+          "since"
+        ]
+      }
+    }
+  },
+  "tags": [
+    "messaging",
+    "analytics"
+  ]
+}
