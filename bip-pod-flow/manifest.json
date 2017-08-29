@@ -1,0 +1,891 @@
+{
+  "name": "flow",
+  "title": "Flow Control",
+  "description": "Control flows, filtering, token generation for hubs, inline",
+  "url": "",
+  "trackDuplicates": true,
+  "config": {},
+  "auth": {
+    "strategy": "none"
+  },
+  "rpcs": {
+    "json_to_schema"   : {
+      "contentType" : "application/json",
+      "title" : "Convert JSON Struct to JSON Schema",
+      "method" : "POST"
+    }
+  },
+  "actions": {
+    "match": {
+      "title": "Match And Filter",
+      "description": "Conditionally Forward Or Discard Messages",
+      "trigger": "invoke",
+      "config": {
+        "properties": {
+          "accept_on": {
+            "type": "string",
+            "optional": true,
+            "title": "Accept Match",
+            "description" : "Literal String Or <a href='http://en.wikipedia.org/wiki/Regular_expression'>Regular Expression</a>"
+          },
+          "discard_on": {
+            "type": "string",
+            "optional": true,
+            "title": "Discard Match",
+            "description" : "Literal String Or <a href='http://en.wikipedia.org/wiki/Regular_expression'>Regular Expression</a>"
+          }
+        },
+        "disposition": [
+          "accept_on",
+          "discard_on"
+        ]
+      },
+      "exports": {
+        "properties": {}
+      },
+      "imports": {
+        "properties": {
+           "funnel": {
+            "type": "string",
+            "title": "Search On",
+            "description" : "When Empty, Matches Any Attribute"
+          },
+          "accept_on": {
+            "type": "string",
+            "optional": true,
+            "title": "Accept Filter",
+            "description" : "Literal String Or <a href='http://en.wikipedia.org/wiki/Regular_expression'>Regular Expression</a>"
+          },
+          "discard_on": {
+            "type": "string",
+            "optional": true,
+            "title": "Discard Filter",
+            "description" : "Literal String Or <a href='http://en.wikipedia.org/wiki/Regular_expression'>Regular Expression</a>"
+          }
+        },
+        "disposition": [
+          "accept_on",
+          "discard_on",
+          "funnel"
+        ]
+      }
+    },
+    "xml2json": {
+      "title": "Convert XML to JSON",
+      "description": "Converts An XML Document Into JSON",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "json" : {
+            "type" : "object",
+            "title" : "JSON Object"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "body": {
+            "type" : "text",
+            "title": "XML"
+          }
+        },
+        "required": [
+          "body"
+        ],
+        "disposition": [
+          "body"
+        ]
+      }
+    },
+    "nonce": {
+      "title": "Generate A Random String",
+      "description": "Generate A Random 64 Bit String",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "nonce": {
+            "type": "string",
+            "title": "Random String"
+          }
+        }
+        ,
+        "disposition": [
+       		"nonce"
+       		]
+      },
+      "imports": {
+        "properties": {}
+      },
+      "disposition": []
+    },
+    "ksplit": {
+      "title": "Split JSON By Row",
+      "description": "Exports Every Row Or Hash Key For An Object",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "key": {
+            "type": "string",
+            "title": "Source Key"
+          },
+          "index": {
+            "type": "integer",
+            "title": "Item Offset"
+          },
+          "value": {
+            "type": "mixed",
+            "title": "Key Value"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "rows": {
+            "type": "object",
+            "title": "JSON Object"
+          }
+        },
+        "required": [
+          "rows"
+        ],
+        "disposition": [
+          "rows"
+        ]
+      }
+    },
+    "lsplit": {
+      "title": "Split Text by Line",
+      "description": "Export Every Line In A Text Document Individually (Windows/Mac/Linux)",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "index": {
+            "type": "integer",
+            "title": "Line Number"
+          },
+          "value": {
+            "type": "string",
+            "title": "Line Value"
+          },
+          "num_lines": {
+            "title" : "# Lines",
+            "type": "string"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "body": {
+            "type": "string",
+            "title": "Text"
+          }
+        },
+        "required": [
+          "body"
+        ],
+        "disposition": [
+          "body"
+        ]
+      }
+    },
+    "str_split": {
+      "title": "Split Text by String",
+      "description": "Export Every Line In A Text Document Individually, Split By Custom Delimiter",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "index": {
+            "type": "integer",
+            "title": "Line Number"
+          },
+          "value": {
+            "type": "string",
+            "title": "Line Value"
+          },
+          "num_lines": {
+            "type": "string",
+            "title": "# Lines"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "body": {
+            "type": "string",
+            "title": "Text"
+          },
+          "split_by": {
+            "type": "string",
+            "title": "Separator String"
+          }
+        },
+        "required": [
+          "body",
+          "split_by"
+        ],
+        "disposition": [
+          "body",
+          "split_by"
+        ]
+      }
+    },
+    "blackhole": {
+      "title": "Do Nothing",
+      "description": "Great For Testing",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {},
+        "disposition": []
+      },
+      "exports": {
+        "properties": {}
+      },
+      "imports": {
+        "properties": {}
+      },
+      "disposition": []
+    },
+    "counter": {
+      "title": "Record A Count",
+      "description": "Increment A Counter By Custom Group",
+      "trigger": "invoke",
+      "config": {
+        "properties": {
+          "group_by": {
+            "type": "string",
+            "title": "Group By"
+          },
+          "increment_by": {
+            "type": "integer",
+            "default": 1,
+            "title": "Increment By #"
+          }
+        },
+        "definitions": {},
+        "disposition": [
+          "group_by",
+          "increment_by"
+        ],
+        "required": [
+          "group_by",
+          "increment_by"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "new_count": {
+            "type": "integer",
+            "title": "New Count"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+        },
+        "disposition": [
+        ]
+      },
+      "rpcs": {
+        "get_count": {
+          "description": "Gets Current Count and Last Update Time",
+          "contentType": "application/json",
+          "title": "Get Count"
+        }
+      }
+    },
+    "text2json": {
+      "title": "Convert Text to JSON",
+      "description": "Converts A JSON String To JSON Object",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {}
+      },
+      "imports": {
+        "properties": {
+          "body": {
+            "title": "JSON String",
+            "type" : "text"
+          }
+        },
+        "required": [
+          "body"
+        ],
+        "disposition": [
+          "body"
+        ]
+      }
+    },
+    "json2schema": {
+      "disabled" : true,
+      "title": "Get JSON Schema",
+      "description": "Convert JSON Struct to JSON Schema",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "object": {
+            "title": "JSON Object",
+            "type" : "object"
+          },
+          "schema": {
+            "title": "JSON Schema",
+            "type" : "object"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "source": {
+            "title": "JSON Object",
+            "type" : "object"
+          }
+        },
+        "required": [
+          "source"
+        ],
+        "disposition": [
+          "source"
+        ]
+      }
+    },
+    "entity_encode": {
+      "title": "HTML Entity Encode",
+      "description": "Encodes HTML Entities, Strips &lt;script&gt; Tags And XSS",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {}
+      },
+      "imports": {
+        "properties": {
+          "funnel": {
+            "type": "string",
+            "title": "Encode Attributes",
+            "description" : "If Empty, Encodes All Attributes"
+          }
+        },
+        "disposition": [
+          "funnel"
+        ]
+      }
+    },
+    "entity_decode": {
+      "title": "HTML Entity Decode",
+      "description": "Decodes HTML Entities",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {}
+      },
+      "imports": {
+        "properties": {
+          "funnel": {
+            "type": "string",
+            "title": "Decode Attributes",
+            "description" : "If Empty, Decodes All Attributes"
+          }
+        },
+        "disposition": [
+          "funnel"
+        ]
+      }
+    },
+    "generator": {
+      "title": "Generate a Payload",
+      "description": "Periodically Generate A Static Payload",
+      "trigger": "poll",
+      "config": {
+        "properties": {
+          "payload": {
+            "type": "mixed",
+            "title": "Payload",
+            "description" : "<a href=\"http://json.org\">JSON</a> Will Automatically Convert To An Object"
+          }
+        },
+        "disposition": [
+          "payload"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "payload": {
+            "type": "mixed",
+            "title": "Payload"
+          }
+        },
+        "disposition": [
+          "payload"
+        ]
+      },
+      "imports": {
+        "properties": {},
+        "disposition": []
+      }
+    },
+    "file_to_text": {
+      "title": "Convert Text File To String",
+      "description": "Extracts The Text From A Text File",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+           "body": {
+            "type": "string",
+            "title": "Body"
+          },
+           "name": {
+            "type": "string",
+            "title": "File Name"
+          },
+           "size": {
+            "type": "number",
+            "title": "File Size"
+          },
+           "extension": {
+            "type": "string",
+            "title": "Extension"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "extension" : {
+            "type" : "string",
+            "title" : "File Extension",
+            "default": "txt,csv,mkd"
+          }
+        },
+        "required" : [
+          "extension"
+        ],
+        "disposition" : [
+          "extension"
+        ]
+      }
+    },
+    "file_gzip": {
+      "title": "GZip Files",
+      "description": "Replace Any Present File With A GZipped Equivalent",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {},
+        "disposition": []
+      },
+      "exports": {
+        "properties": {}
+      },
+      "imports": {
+        "properties": {},
+        "disposition": []
+      }
+    },
+    "file_rename": {
+      "title": "Rename File",
+      "description": "Renames A File",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {}
+      },
+      "imports": {
+        "properties": {
+          "file_new_name" : {
+            "type" : "string",
+            "title" : "New Filename",
+            "description" : "Be Careful That Multiple Files Don't Have The Same Name!"
+          }
+        },
+        "required" : [
+          "file_new_name"
+        ],
+        "disposition" : [
+          "file_new_name"
+        ]
+      }
+    },
+    "file_create_text": {
+      "title": "Create A Text File",
+      "description": "Creates A Text File",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {}
+      },
+      "imports": {
+        "properties": {
+          "contents" : {
+            "type" : "string",
+            "title" : "Contents"
+          },
+          "file_name" : {
+            "type" : "string",
+            "title" : "Target File Name"
+          }
+        },
+        "required" : [
+          "contents",
+          "file_name"
+        ],
+        "disposition" : [
+          "contents",
+          "file_name"
+        ]
+      }
+    },
+    "regex_replace": {
+      "title": "Regex Replace",
+      "description": "Replace a String by Regular Expression",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "out_str": {
+            "type": "string",
+            "title": "Output String"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "in_str": {
+            "type": "string",
+            "title": "Input"
+          },
+          "regex": {
+            "type": "string",
+            "title": "Match Filter",
+            "description" : "Literal String Or <a href='http://en.wikipedia.org/wiki/Regular_expression'>Regular Expression</a>"
+          },
+          "repl_str": {
+            "type": "string",
+            "title": "Replace With"
+          }
+        },
+        "required": [
+          "in_str",
+          "regex"
+        ],
+        "disposition": [
+          "in_str",
+          "regex",
+          "repl_str"
+        ]
+      }
+    },
+    "truthy": {
+      "title": "Input is Truthy",
+      "description": "Continue Only If Input Has A True-like Value",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {}
+      },
+      "imports": {
+        "properties": {
+          "value": {
+            "type": "string",
+            "title": "Input",
+            "description" : "Continues When 1, yes, y or true"
+          }
+        },
+        "required" : [
+          "value"
+        ],
+        "disposition": [
+          "value"
+        ]
+      }
+    },
+    "falsy": {
+      "title": "Input is Falsy",
+      "description": "Continue Only If Input Has A False-like Value",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {}
+      },
+      "imports": {
+        "properties": {
+          "value": {
+            "type": "string",
+            "title": "Input",
+            "description" : "Continues When 0, no, n or false"
+          }
+        },
+        "required" : [
+          "value"
+        ],
+        "disposition": [
+          "value"
+        ]
+      }
+    },
+    "delta_gate": {
+      "title": "When Something Changes",
+      "description": "Continue Only When A Value Changes",
+      "trigger": "invoke",
+      "config": {
+        "properties": {
+        "key": {
+            "type": "string",
+            "title": "Key Name",
+            "description" : "Name Of The Value To Track"
+          },
+          "value": {
+            "type": "string",
+            "title": "Tracking Value",
+            "description" : "Actual Value"
+          },
+          "delta_precision": {
+            "type": "number",
+            "default": 1,
+            "title": "Floating Point Delta Precision"
+          }
+        },
+        "definitions": {},
+        "required": [
+          "key",
+          "value"
+        ],
+        "disposition": [
+          "key",
+          "value",
+          "delta_precision"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "delta": {
+            "type": "string",
+            "title": "Delta"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+        }
+      }
+    },
+    "has_files": {
+      "title": "When A File Is Present",
+      "description": "Continue Only When A File Is Present",
+      "trigger": "invoke",
+      "config": {
+        "properties": {
+          "extension": {
+            "type": "string",
+            "title": "File Extension"
+          }
+        },
+        "disposition": [
+          "extension"
+        ]
+      },
+      "exports": {
+        "properties": {}
+      },
+      "imports": {
+        "properties": {},
+        "disposition": []
+      }
+    },
+    "dedup": {
+      "title": "De-Duplicate",
+      "description": "Ignore Values which have been seen before",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {}
+      },
+      "imports": {
+        "properties": {
+          "value": {
+            "type": "string",
+            "title": "New Value"
+          }
+        },
+        "required": [
+          "value"
+        ],
+        "disposition": [
+          "value"
+        ]
+      }
+    },
+    "console": {
+      "disabled" : true,
+      "title": "Log to Console",
+      "description": "Logs to System Console & passes Message along.",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "exported": {
+            "type": "object",
+            "title":"Consoled Message"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "imported": {
+            "type": "object",
+            "title": "Message to Send to Console"
+          }
+        },
+        "disposition" : [
+          "imported"
+        ]
+      }
+    }
+  },
+  "dataSources": {
+    "counter": {
+      "properties": {
+        "id": {
+          "type": "string",
+          "renderable": true,
+          "writable": false,
+          "unique": true
+        },
+        "owner_id": {
+          "type": "string",
+          "renderable": false,
+          "writable": false
+        },
+        "channel_id": {
+          "type": "string",
+          "renderable": true,
+          "writable": false
+        },
+        "created": {
+          "type": "number",
+          "renderable": true,
+          "writable": false
+        },
+        "last_update": {
+          "type": "number",
+          "renderable": true,
+          "writable": false
+        },
+        "group": {
+          "type": "string",
+          "renderable": true,
+          "writable": false
+        },
+        "count": {
+          "type": "number",
+          "renderable": true,
+          "writable": false,
+          "default": 0
+        }
+      },
+      "keys": [
+        "channel_id",
+        "owner_id",
+        "group"
+      ]
+    },
+    "delta_gate": {
+      "properties": {
+        "owner_id": {
+          "type": "string",
+          "renderable": false,
+          "writable": false
+        },
+        "channel_id": {
+          "type": "string",
+          "renderable": true,
+          "writable": false
+        },
+        "created": {
+          "type": "number",
+          "renderable": true,
+          "writable": false
+        },
+        "last_update": {
+          "type": "number",
+          "renderable": true,
+          "writable": false
+        },
+        "key": {
+          "type": "string",
+          "renderable": true,
+          "writable": false
+        },
+        "value": {
+          "type": "string",
+          "renderable": true,
+          "writable": false
+        }
+      },
+      "keys": [
+        "channel_id",
+        "owner_id",
+        "key"
+      ]
+    }
+  },
+  "tags": [
+    "productivity"
+  ]
+}
