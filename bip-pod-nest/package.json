@@ -1,0 +1,27 @@
+{
+  "name": "bip-pod-nest",
+  "version": "0.2.0",
+  "description": "nest Pod for Bipio",
+  "keywords": [
+    "bip",
+    "bipio",
+    "pod",
+    "nest"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bipio-server/bip-pod-nest.git"
+  },
+  "bugs": {
+    "url": "http://github.com/bipio-server/bip-pod-nest/issues"
+  },
+  "license": "Apache-2.0",
+  "main": ".",
+  "dependencies": {
+    "request": ">= 2.2.9",
+    "passport-nest": "1.0.0"
+  },
+  "engines": {
+    "node": ">= 0.10.0"
+  }
+}

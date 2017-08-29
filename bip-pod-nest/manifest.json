@@ -1,0 +1,166 @@
+{
+ "name":"nest",
+ "title":"Nest&reg;",
+ "description":"The Nest&reg; Learning Thermostat is an electronic, programmable, and self-learning Wi-Fi-enabled thermostat that optimizes heating and cooling of homes and businesses to conserve energy.",
+ "url":"https://nest.com",
+ "trackDuplicates":false,
+ "config" : {
+  "oauth" : {
+   "clientID" : "",
+   "clientSecret" : ""
+ }
+ },
+ "auth" : {
+  "strategy":"oauth",
+  "properties" : {
+    "clientID" : {
+     "type":"string",
+     "title":"Client ID"
+     },
+     "clientSecret" : {
+       "type":"string",
+       "title":"Client Secret"
+     }
+   }
+   },
+   "rpcs" : {
+    "device_ids" : {
+      "contentType" : "application/json",
+      "title" : "My Devices"
+    }
+    },
+    "actions" : {
+      "read_temperature" : {
+       "title":"Read Thermostat Temperature",
+       "description":"Gets The Current State Of Your Nest Thermostat",
+       "doc_ref":"https://developer.nest.com/",
+       "trigger":"poll",
+       "config" : {
+          "properties" : {
+            "device_id" : {
+              "type" : "string",
+              "title" : "Device ID",
+              "label": {
+                "$ref": "/rpcs/device_ids#thermostats/*/{name}"
+              },
+              "oneOf" : [
+                {
+                  "$ref": "/rpcs/device_ids#thermostats/*/{device_id}"
+                }
+              ]
+            }
+          },
+          "required" : [ "device_id" ],
+          "disposition" : [ "device_id" ]
+        },
+        "exports" : {
+          "properties" : {
+            "is_online" : {
+              "type" : "boolean",
+              "title" : "Is Online"
+            },
+            "name" : {
+              "type" : "boolean",
+              "title" : "Name"
+            },
+            "ambient_temperature_c" : {
+              "type":"string",
+              "title":"Ambient Celcius"
+            },
+            "ambient_temperature_f" : {
+              "type":"string",
+              "title":"Ambient Fahrenheit"
+            },
+            "target_temperature_c" : {
+              "type":"string",
+              "title":"Target Celcius"
+            },
+            "target_temperature_f" : {
+              "type":"string",
+              "title":"Target Fahrenheit"
+            },
+            "temperature_scale" : {
+              "type" : "string",
+              "title" : "Temperature Scale, 'C' or 'F'"
+            }
+          }
+        },
+        "imports" : {
+          "properties" : { },
+          "required" : [
+          ],
+          "disposition" : [
+          ]
+        }
+      },
+      "set_temperature" : {
+        "title":"Set Temperature",
+        "description":"Set A New Target Temperature",
+        "doc_ref":"https://developer.nest.com/",
+        "trigger":"invoke",
+        "config" : {
+          "properties" : {
+            "device_id" : {
+              "type" : "string",
+              "title" : "Device ID",
+              "label": {
+                "$ref": "/rpcs/device_ids#thermostats/*/{name}"
+              },
+              "oneOf" : [
+                {
+                  "$ref": "/rpcs/device_ids#thermostats/*/{device_id}"
+                }
+              ]
+            },
+            "target_temperature" : {
+              "type" : "number",
+              "title" : "Target Temperature"
+            },
+            "temperature_scale" : {
+              "type" : "string",
+              "title" : "Temperature Scale",
+              "oneOf" : [
+                {
+                  "$ref" : "#/config/definitions/temperature_scale"
+                }
+              ]
+
+            }
+          },
+          "definitions" : {
+            "temperature_scale" : {
+              "description" : "Temperature Scale",
+              "enum" : [
+                "c",
+                "f"
+              ],
+              "enum_label" : [
+                "Celcius",
+                "Fahrenheit"
+              ]
+            }
+          },
+          "required" : [
+            "device_id",
+            "target_temperature",
+            "temperature_scale"
+          ],
+          "disposition" : [
+            "device_id",
+            "target_temperature",
+            "temperature_scale"
+          ]
+        },
+        "exports" : {
+          "properties" : {
+          }
+        },
+        "imports" : {
+          "properties" : {},
+          "definitions" : {},
+          "required" : [],
+          "disposition" : []
+        }
+      }
+    }
+  }
