@@ -1,0 +1,28 @@
+{
+  "name": "bip-pod-embedly",
+  "version": "0.4.0",
+  "author": "Michael Pearson",
+  "description": "Embedly Pod for Bipio",
+  "keywords": [
+    "bip",
+    "bipio",
+    "pod",
+    "embedly"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bipio-server/bip-pod-embedly.git"
+  },
+  "bugs": {
+    "url": "http://github.com/bipio-server/bip-pod-embedly/issues"
+  },
+  "license": "Apache-2.0",
+  "main": ".",
+  "dependencies": {
+    "pkginfo": "0.2.x",
+    "embedly": ">=1.0.2"
+  },
+  "engines": {
+    "node": ">= 0.10.0"
+  }
+}

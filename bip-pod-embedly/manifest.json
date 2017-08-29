@@ -1,0 +1,177 @@
+{
+  "name": "embedly",
+  "title": "Embedly",
+  "description": "With Embedly you can embed media from over 250 providers, and surface popular content with analytics. You can gain deeper insights on the articles shared on your site, and improve load times with image optimization.",
+  "url": "http://embed.ly",
+  "trackDuplicates": false,
+  "config": {},
+  "auth": {
+    "strategy": "issuer_token",
+    "properties": {
+      "password": {
+        "title": "API Key",
+        "type": "string"
+      }
+    },
+    "disposition": [
+      "password"
+    ]
+  },
+  "rpcs": {},
+  "actions": {
+    "oembed": {
+      "title": "Create oEmbed",
+      "description": "Create The oEmbed Representation Of A URL",
+      "doc_ref": "http://embed.ly/docs/api/embed/endpoints/1/oembed",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "title": "Resource Type"
+          },
+          "author_name": {
+            "type": "string",
+            "title": "Author Name"
+          },
+          "author_url": {
+            "type": "string",
+            "title": "Author URL"
+          },
+          "provider_name": {
+            "type": "string",
+            "title": "Provider Name"
+          },
+          "provider_url": {
+            "type": "string",
+            "title": "Provider URL"
+          },
+          "thumbnail_url": {
+            "type": "string",
+            "title": "Thumbnail URL"
+          },
+          "description": {
+            "type": "string",
+            "title": "URL Description"
+          },
+          "html": {
+            "type": "string",
+            "title": "HTML (Rich/Video Types)"
+          },
+          "width": {
+            "type": "string",
+            "title": "Width (Rich/Video Types)"
+          },
+          "height": {
+            "type": "string",
+            "title": "Height (Rich/Video Types)"
+          },
+          "url": {
+            "type": "string",
+            "title": "URL (Photo Types)"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "url": {
+            "type": "string",
+            "title": "URL"
+          },
+          "maxwidth": {
+            "type": "integer",
+            "title": "Max Width"
+          },
+          "maxheight": {
+            "type": "integer",
+            "title": "Max Height"
+          },
+          "autoplay": {
+            "type": "boolean",
+            "title": "Autoplay Video"
+          },
+          "words": {
+            "type": "integer",
+            "title": "Max Description Words"
+          }
+        },
+        "required": [
+          "url"
+        ],
+        "disposition": [
+          "url",
+          "maxwidth",
+          "maxheight",
+          "autoplay",
+          "words"
+        ]
+      }
+    },
+    "extract": {
+      "title": "Extract Page",
+      "description": "The Extract endpoint is designed to provide users with important information from each link including the article text, keywords, related links, and even video embeds.",
+      "doc_ref": "http://embed.ly/docs/api/extract/endpoints/1/extract",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "url": {
+            "type": "string",
+            "title": "URL"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description"
+          },
+          "favicon_url": {
+            "type": "string",
+            "title": "Favicon URL"
+          },
+          "content": {
+            "type": "string",
+            "title": "Extracted Content"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "url": {
+            "type": "string",
+            "title": "URL"
+          },
+          "maxwidth": {
+            "type": "integer",
+            "title": "Max Width"
+          },
+          "maxheight": {
+            "type": "integer",
+            "title": "Max Height"
+          }
+        },
+        "required": [
+          "url"
+        ],
+        "disposition": [
+          "url",
+          "maxwidth",
+          "maxheight"
+        ]
+      }
+    }
+  },
+  "tags": [
+    "productivity",
+    "embed"
+  ]
+}
