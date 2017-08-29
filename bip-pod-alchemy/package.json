@@ -1,0 +1,27 @@
+{
+  "name": "bip-pod-alchemy",
+  "author": "Michael Pearson",
+  "version": "0.4.0",
+  "description": "AlchemyAPI Pod for Bipio",
+  "keywords": [
+    "bip",
+    "bipio",
+    "pod",
+    "alchemy"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bipio-server/bip-pod-alchemy.git"
+  },
+  "bugs": {
+    "url": "http://github.com/bipio-server/bip-pod-alchemy/issues"
+  },
+  "license": "Apache-2.0",
+  "main": ".",
+  "dependencies": {
+    "request": "^2.34.0"
+  },
+  "engines": {
+    "node": ">= 0.10.0"
+  }
+}

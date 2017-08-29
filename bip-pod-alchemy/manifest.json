@@ -1,0 +1,501 @@
+{
+  "name": "alchemy",
+  "title": "AlchemyAPI",
+  "description": "Text Analysis by AlchemyAPI. The World's Most Popular Natural Language Processing Service.",
+  "url": "http://www.alchemyapi.com",
+  "trackDuplicates": false,
+  "config": {},
+  "auth": {
+    "strategy": "issuer_token",
+    "properties": {
+      "password": {
+        "title": "API Key",
+        "type": "string"
+      }
+    },
+    "disposition": [
+      "password"
+    ]
+  },
+  "rpcs": {},
+  "actions": {
+    "scrape_nlp_url": {
+      "title": "Scrape A URL With Natural Language",
+      "description": "Extract structured data from a URL using natural language.",
+      "doc_ref": "http://www.alchemyapi.com/api/scrape/proc.html",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "resultText": {
+            "type": "string",
+            "title": "Result Text"
+          },
+          "resultURL": {
+            "type": "string",
+            "title": "Result URL"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "url": {
+            "type": "string",
+            "title": "Source URL"
+          },
+          "query": {
+            "type": "string",
+            "title": "NLP Query",
+            "description" : "See <a href='http://www.alchemyapi.com/api/scrape/qlang.html'>AlchemyAPI Documentation</a>"
+          }
+        },
+        "required": [
+          "url",
+          "query"
+        ],
+        "disposition": [
+          "url",
+          "query"
+        ]
+      }
+    },
+    "scrape_nlp_html": {
+      "title": "Scrape HTML With Natural Language",
+      "description": "Extract structured data for uploaded HTML using natural language",
+      "doc_ref": "http://www.alchemyapi.com/api/content-scraping",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "resultText": {
+            "type": "string",
+            "title": "Result Text"
+          },
+          "resultURL": {
+            "type": "string",
+            "title": "Result URL"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "html": {
+            "type": "string",
+            "title": "Source HTML"
+          },
+          "query": {
+            "type": "string",
+            "title": "NLP Query",
+            "description" : "See <a href='http://www.alchemyapi.com/api/scrape/qlang.html'>AlchemyAPI Documentation</a>"
+          }
+        },
+        "required": [
+          "html",
+          "query"
+        ],
+        "disposition": [
+          "html",
+          "query"
+        ]
+      }
+    },
+    "taxonomize_url": {
+      "title": "Classify by URL",
+      "description": "Classifies web content by URL",
+      "doc_ref": "http://www.alchemyapi.com/api/taxonomy",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "language": {
+            "type": "string",
+            "title": "Detected Language"
+          },
+          "label_highest": {
+            "type": "string",
+            "title": "Category Label"
+          },
+          "label_highest_score": {
+            "type": "string",
+            "title": "Highest Category Score"
+          },
+          "taxonomy": {
+            "type": "array",
+            "title": "List of all taxonomies"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "url": {
+            "type": "string",
+            "title": "Source URL"
+          },
+          "query": {
+            "type": "string",
+            "title": "NLP Query",
+            "description" : "See <a href='http://www.alchemyapi.com/api/scrape/qlang.html'>AlchemyAPI Documentation</a>"
+          }
+        },
+        "disposition": [
+          "url",
+          "query"
+        ]
+      }
+    },
+    "taxonomize_text": {
+      "title": "Classify Text",
+      "description": "Classifies Text Content",
+      "doc_ref": "http://www.alchemyapi.com/api/taxonomy",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "language": {
+            "type": "string",
+            "title": "Detected Language"
+          },
+          "label_highest": {
+            "type": "string",
+            "title": "Category Label"
+          },
+          "label_highest_score": {
+            "type": "string",
+            "title": "Highest Category Score"
+          },
+          "taxonomy": {
+            "type": "array",
+            "title": "List of all taxonomies"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "text": {
+            "type": "string",
+            "title": "Source Text"
+          }
+        },
+        "disposition": [
+          "text"
+        ]
+      }
+    },
+    "taxonomize_html": {
+      "title": "Classify by HTML",
+      "description": "Classifies HTML Content",
+      "doc_ref": "http://www.alchemyapi.com/api/taxonomy",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "language": {
+            "type": "string",
+            "title": "Detected Language"
+          },
+          "label_highest": {
+            "type": "string",
+            "title": "Category Label"
+          },
+          "label_highest_score": {
+            "type": "string",
+            "title": "Highest Category Score"
+          },
+          "taxonomy": {
+            "type": "array",
+            "title": "List of all taxonomies"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "html": {
+            "type": "string",
+            "title": "Source HTML"
+          },
+          "url": {
+            "type": "string",
+            "title": "Source URL of HTML"
+          },
+          "query": {
+            "type": "string",
+            "title": "NLP Query",
+            "description" : "See <a href='http://www.alchemyapi.com/api/scrape/qlang.html'>AlchemyAPI Documentation</a>"
+          }
+        },
+        "disposition": [
+          "html",
+          "url",
+          "query"
+        ]
+      }
+    },
+    "image_tag_url": {
+      "title": "Tag an image by URL",
+      "description": "Tags an image by URL",
+      "doc_ref": "http://www.alchemyapi.com/api/image-tagging/urls.html",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "tag_highest_text": {
+            "type": "string",
+            "title": "Highest Ranked Tag Text"
+          },
+          "tag_highest_score": {
+            "type": "string",
+            "title": "Highest Ranked Tag"
+          },
+          "tags": {
+            "type": "array",
+            "title": "List of all tags"
+          },
+          "tags_csv": {
+            "type": "string",
+            "title": "Comma Separated List of all tags"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "url": {
+            "type": "string",
+            "title": "Source URL"
+          }
+        },
+        "required": [
+          "url"
+        ],
+        "disposition": [
+          "url"
+        ]
+      }
+    },
+    "sentiment_text": {
+      "title": "Get Sentiment from Text",
+      "description": "Analyses the sentiment (positive, neutral, negative, mixed) of the given text",
+      "doc_ref": "http://www.alchemyapi.com/api/sentiment",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "language": {
+            "type": "string",
+            "title": "Text Language"
+          },
+          "type": {
+            "type": "string",
+            "title": "Sentiment Type"
+          },
+          "score": {
+            "type": "string",
+            "title": "Type Score"
+          },
+          "mixed": {
+            "type": "string",
+            "title": "Is Mixed"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "text": {
+            "type": "string",
+            "title": "Source Text"
+          },
+          "url": {
+            "type": "string",
+            "required": false,
+            "title": "Source URL"
+          }
+        },
+        "required": [
+          "text"
+        ],
+        "disposition": [
+          "text",
+          "url"
+        ]
+      }
+    },
+    "sentiment_text_target": {
+      "title": "Get Target Sentiment from Text",
+      "description": "Analyses the sentiment (positive, neutral, negative, mixed) of the given text for a keyword target",
+      "doc_ref": "http://www.alchemyapi.com/api/sentiment",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "language": {
+            "type": "string",
+            "title": "Text Language"
+          },
+          "type": {
+            "type": "string",
+            "title": "Sentiment Type"
+          },
+          "score": {
+            "type": "string",
+            "title": "Type Score"
+          },
+          "mixed": {
+            "type": "string",
+            "title": "Is Mixed"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "text": {
+            "type": "string",
+            "title": "Source Text"
+          },
+          "target": {
+            "type": "string",
+            "title": "Target Phrase"
+          },
+          "url": {
+            "type": "string",
+            "required": false,
+            "title": "Source URL"
+          }
+        },
+        "required": [
+          "text",
+          "target"
+        ],
+        "disposition": [
+          "text",
+          "target",
+          "url"
+        ]
+      }
+    },
+    "sentiment_url": {
+      "title": "Get Sentiment from a URL",
+      "description": "Analyses the sentiment (positive, neutral, negative, mixed) of the given URL",
+      "doc_ref": "http://www.alchemyapi.com/api/sentiment",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "language": {
+            "type": "string",
+            "title": "Text Language"
+          },
+          "type": {
+            "type": "string",
+            "title": "Sentiment Type"
+          },
+          "score": {
+            "type": "string",
+            "title": "Type Score"
+          },
+          "mixed": {
+            "type": "string",
+            "title": "Is Mixed"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "url": {
+            "type": "string",
+            "title": "Source URL"
+          }
+        },
+        "required": [
+          "url"
+        ],
+        "disposition": [
+          "url"
+        ]
+      }
+    },
+    "sentiment_url_target": {
+      "title": "Get Target Sentiment from a URL",
+      "description": "Analyses the sentiment (positive, neutral, negative, mixed) of the given URL for a keyword target",
+      "doc_ref": "http://www.alchemyapi.com/api/sentiment",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "language": {
+            "type": "string",
+            "title": "Text Language"
+          },
+          "type": {
+            "type": "string",
+            "title": "Sentiment Type"
+          },
+          "score": {
+            "type": "string",
+            "title": "Type Score"
+          },
+          "mixed": {
+            "type": "string",
+            "title": "Is Mixed"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "target": {
+            "type": "string",
+            "title": "Target Phrase"
+          },
+          "url": {
+            "type": "string",
+            "title": "Source URL"
+          }
+        },
+        "required": [
+          "url",
+          "target"
+        ],
+        "disposition": [
+          "url",
+          "target"
+        ]
+      }
+    }
+  },
+  "tags": [
+    "nlp",
+    "language",
+    "ai",
+    "artificial-intelligence",
+    "analytics",
+    "productivity"
+  ]
+}
