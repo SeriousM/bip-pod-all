@@ -1,0 +1,150 @@
+{
+  "name": "wemo",
+  "title": "Wemo",
+  "description": "WEMO is a series of products from Belkin International, Inc. that allows users to control home electronics from anywhere.  The product suite includes the WEMO Switch, WEMO Motion Sensor, WEMO Insight Switch, WEMO Light Switch, NetCam and WEMO App.",
+  "url": "www.belkin.com/wemo/",
+  "trackDuplicates": false,
+  "config": {},
+  "auth": {
+    "strategy": "none"
+  },
+  "rpcs": {},
+  "actions": {
+  	"motion_detection": {
+      "disabled" : true,
+      "title": "Detect Motion ",
+      "description": "read wemo motion sensor",
+      "doc_ref": "http://developers.belkin.com/wemo/sdk",
+      "trigger": "poll",
+      "config": {
+        "properties": {
+		      "device_ip": {
+		        "type":  "string",
+		        "title": "Device IP"
+		      },
+     	    "device_port": {
+		        "type":  "string",
+		        "title": "Device Port"
+		      }
+        },
+     	  "required": [
+        	"device_ip",
+        	"device_port"
+        ],
+        "disposition": [
+        	"device_ip",
+        	"device_port"
+        ]
+      },
+      "exports": {
+        "properties": {
+	         "movement": {
+			        "type":  "string",
+			        "title": "Motion Status"
+			      	}
+        }
+      },
+      "imports": {
+        "properties": {
+        },
+        "required": [
+        ],
+        "disposition" : [
+        ]
+      }
+    },
+
+    "switch": {
+      "title": "Switch On Or Off",
+      "description": "Manipulate wemo switch",
+      "doc_ref": "http://developers.belkin.com/wemo/sdk",
+      "trigger": "invoke",
+      "config": {
+        "properties": {
+		      "device_ip": {
+		        "type":  "string",
+		        "title": "Device IP"
+		      },
+     	    "device_port": {
+		        "type":  "string",
+		        "title": "Device Port"
+		      },
+     	    "state": {
+		        "type":  "boolean",
+		        "title": "Switch State",
+            "description" : "True is ON, False is OFF"
+		      }
+
+        },
+     	 "required": [
+        	"device_ip",
+        	"device_port",
+          "state"
+        ],
+        "disposition": [
+        	"device_ip",
+        	"device_port",
+          "state"
+       	]
+      },
+      "exports": {
+        "properties": {
+        }
+      },
+      "imports": {
+        "properties": {
+        },
+        "required": [
+        ],
+        "disposition": [
+        ]
+      }
+    },
+    "get_switch_state": {
+      "title": "Get Switch State",
+      "description": "Gets The State Of A Switch",
+      "doc_ref": "http://developers.belkin.com/wemo/sdk",
+      "trigger": "invoke",
+      "config": {
+        "properties": {
+          "device_ip": {
+            "type":  "string",
+            "title": "Device IP"
+          },
+          "device_port": {
+            "type":  "string",
+            "title": "Device Port"
+          }
+
+        },
+       "required": [
+          "device_ip",
+          "device_port"
+        ],
+        "disposition": [
+          "device_ip",
+          "device_port"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "state": {
+            "type":  "boolean",
+            "title": "Switch State",
+            "description" : "True is ON, False is OFF"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+        },
+        "required": [
+        ],
+        "disposition": [
+        ]
+      }
+    }
+
+
+  }
+}
