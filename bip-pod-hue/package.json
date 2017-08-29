@@ -1,0 +1,23 @@
+{
+  "name": "bip-pod-hue",
+  "version": "0.2.0",
+  "description": "Hue Pod for Bipio",
+  "keywords": [
+    "bip",
+    "bipio",
+    "pod",
+    "hue"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bipio-server/bip-pod-hue.git"
+  },
+  "bugs": {
+    "url": "http://github.com/bipio-server/bip-pod-hue/issues"
+  },
+  "license": "Apache-2.0",
+  "main": ".",
+  "engines": {
+    "node": ">= 0.10.0"
+  }
+}

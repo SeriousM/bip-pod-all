@@ -1,0 +1,300 @@
+{
+  "name": "hue",
+  "title": "Hue",
+  "description": "Philips hue bridge light system",
+  "url": "http://www.developers.meethue.com/",
+  "trackDuplicates": false,
+  "config": {},
+  "auth": {
+    "strategy": "none"
+  },
+  "rpcs": {},
+  "actions": {     
+  	"get_all_lights": {
+      "title": "Get All lights",
+      "description": "Get hue lights",
+      "uri": "http://{bridge}/api/{user}/lights",
+      "trigger" : "invoke",
+      "config": {
+       "properties": {
+         "bridge": {
+            "type": "string",
+            "title": "Bridge"
+          },
+          "username": {
+            "type": "string",
+            "title": "Username"
+          }
+         },
+        "required": [
+          "username",
+          "bridge"
+        ],
+        "disposition": [
+          "username",
+          "bridge"
+        ],
+        "definitions" : {}
+      },
+      "exports": {
+        "properties": {
+          "name" : {
+            "description" : "light name",
+            "title" : "light name",
+            "type" : "string"
+          },
+         "id" : {
+            "description" : "light Id",
+            "title" : "light id",
+            "type" : "string"
+          }
+        },
+        "definitions" : {}
+      },
+      "imports": {
+        "properties": {
+        },
+        "definitions" : {}
+      }
+    },
+    "get_light_state": {
+      "title": "Get Light State",
+      "description": "Get hue light state",
+      "uri": "http://{bridge}/api/{user}/lights/{id}",
+      "trigger" : "invoke",
+      "config": {
+       "properties": {
+         "bridge": {
+            "type": "string",
+            "title": "Bridge"
+          },
+          "username": {
+            "type": "string",
+            "title": "Username"
+          }
+         },
+        "required": [
+          "username",
+          "bridge"
+        ],
+        "disposition": [
+          "username",
+          "bridge"
+        ],
+        "definitions" : {}
+      },
+      "exports": {
+        "properties": {
+          "name" : {
+            "description" : "light name",
+            "title" : "name",
+            "type" : "string"
+          },
+           "state" : {
+            "description" : "State",
+            "title" : "State",
+            "type" : "string"
+          },
+           "type" : {
+            "description" : "Type",
+            "title" : "Type",
+            "type" : "string"
+          },
+          "modelid" : {
+            "description" : "Model id",
+            "title" : "Model id",
+            "type" : "string"
+          },
+          "swversion" : {
+            "description" : "Version",
+            "title" : "Version",
+            "type" : "string"
+          },
+          "pointsymbol" : {
+            "description" : "Point symbol",
+            "title" : "Point symbol",
+            "type" : "string"
+          }
+          
+        },
+        "definitions" : {}
+      },
+      "imports": {
+       "properties": {
+          "lightId": {
+            "type": "string",
+            "title": "Light Id"
+          }
+        },
+        "required": [
+          "lightId"
+        ],
+        "definitions" : {}
+      }
+    },
+    "rename_light": {
+      "title": "Rename Light",
+      "description": "Rename hue light ",
+      "uri": "http://{bridge}/api/{user}/lights/{id}",
+      "trigger" : "invoke",
+      "config": {
+       "properties": {
+         "bridge": {
+            "type": "string",
+            "title": "Bridge"
+          },
+          "username": {
+            "type": "string",
+            "title": "Username"
+          }
+         },
+        "required": [
+          "username",
+          "bridge"
+        ],
+        "disposition": [
+          "username",
+          "bridge"
+        ],
+        "definitions" : {}
+      },
+      "exports": {
+        "properties": {
+          "success" : {
+            "description" : "Light name",
+            "title" : "Light name",
+            "type" : "string"
+          }
+        },
+
+        "definitions" : {}
+      },
+      "imports": {
+       "properties": {
+          "lightId": {
+            "type": "string",
+            "title": "Light Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "New Name"
+          }
+        },
+        "required": [
+          "lightId",
+          "name"
+        ],
+        "disposition": [
+            "lightId",
+             "name"
+        ],
+        "definitions" : {}
+      }
+    },
+   "set_light_state": {
+      "title": "Set Light State",
+      "description": "Set hue light state",
+      "uri": "http://{bridge}/api/{user}/lights/{id}/state",
+      "trigger" : "invoke",
+      "config": {
+       "properties": {
+         "bridge": {
+            "type": "string",
+            "title": "Bridge"
+          },
+          "username": {
+            "type": "string",
+            "title": "Username"
+          }
+         },
+        "required": [
+          "username",
+          "bridge"
+        ],
+        "disposition": [
+          "username",
+          "bridge"
+        ],
+        "definitions" : {}
+      },
+      "exports": {
+        "properties": {
+           "success" : {
+            "description" : "update status",
+            "title" : "update status",
+            "type" : "string"
+          }
+        },
+        "definitions" : {}
+      },
+      "imports": {
+       "properties": {
+          "lightId": {
+            "type": "string",
+            "title": "Light Id"
+          },
+          "on": {
+            "type": "string",
+            "title": "On"
+          },
+          "bri": {
+            "type": "string",
+            "title": "Brightness"
+          },
+           "hue": {
+            "type": "string",
+            "title": "Hue"
+          },
+           "sat": {
+            "type": "string",
+            "title": "Saturation"
+          },
+          "xy": {
+            "type": "array",
+            "title": "XY"
+          },
+          "ct": {
+            "type": "string",
+            "title": "Color temperatures"
+          },
+           "alert": {
+            "type": "string",
+            "title": "Alert"
+          },
+           "effect": {
+            "type": "string",
+            "title": "Effect"
+          },
+           "colormode": {
+            "type": "string",
+            "title": "Color Mode"
+          },
+           "reachable": {
+            "type": "string",
+            "title": "Reachable"
+          }
+        },
+        "required": [
+          "lightId"
+        ],
+         "disposition": [
+            "lightId",
+           	"on",
+            "bri",
+            "hue",
+            "sat",
+            "xy",
+            "ct",
+            "alert",
+            "effect",
+            "colormode",
+            "reachable"
+        ],
+        "definitions" : {}
+      }
+    }
+    
+    
+    
+   }
+}
