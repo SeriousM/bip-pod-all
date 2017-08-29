@@ -1,0 +1,87 @@
+{
+  "name": "math",
+  "title": "Math",
+  "description": "Math Functions and Evaluations",
+  "url": "",
+  "trackDuplicates": false,
+  "config": {},
+  "auth": {
+    "strategy": "none"
+  },
+  "rpcs": {},
+  "actions": {
+    "eval": {
+      "title": "Calculate",
+      "description": "Evaluate A Math Expression",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "result": {
+            "type": "string",
+            "title": "Result"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "expression": {
+            "type": "string",
+            "title": "Expression",
+            "description" : "Eval Expressions Provided By <a href='http://mathjs.org/index.html'>MathJS.org</a>"
+          }
+        },
+        "required": [
+          "expression"
+        ],
+        "disposition": [
+          "expression"
+        ]
+      }
+    },
+    "random_int": {
+      "title": "Random Integer",
+      "description": "Generate A Random Integer >= Minimum And <= Maximum",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "random_int": {
+            "type": "string",
+            "title": "Random Integer"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "min": {
+            "type": "string",
+            "title": "Minimum"
+          },
+          "max": {
+            "type": "string",
+            "title": "Maximum"
+          }
+        },
+        "disposition": [
+          "min",
+          "max"
+        ],
+        "required": [
+          "min",
+          "max"
+        ]
+      }
+    }
+  },
+  "tags": [
+    "productivity",
+    "math"
+  ]
+}
