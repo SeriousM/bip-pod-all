@@ -1,0 +1,23 @@
+{
+  "name": "bip-pod-hall",
+  "version": "0.1.0",
+  "description": "hall Pod for Bipio",
+  "keywords": [
+    "bip",
+    "bipio",
+    "pod",
+    "hall"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bipio-server/bip-pod-hall.git"
+  },
+  "bugs": {
+    "url": "http://github.com/bipio-server/bip-pod-hall/issues"
+  },
+  "license": "Apache-2.0",
+  "main": ".",
+  "engines": {
+    "node": ">= 0.10.0"
+  }
+}
