@@ -1,0 +1,23 @@
+{
+  "name": "bip-pod-idonethis",
+  "version": "0.1.0",
+  "description": "idonethis Pod for Bipio",
+  "keywords": [
+    "bip",
+    "bipio",
+    "pod",
+    "idonethis"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bipio-server/bip-pod-idonethis.git"
+  },
+  "bugs": {
+    "url": "http://github.com/bipio-server/bip-pod-idonethis/issues"
+  },
+  "license": "Apache-2.0",
+  "main": ".",
+  "engines": {
+    "node": ">= 0.10.0"
+  }
+}

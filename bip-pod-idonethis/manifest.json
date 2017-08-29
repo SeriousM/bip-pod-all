@@ -1,0 +1,334 @@
+{
+  "name": "idonethis",
+  "title": "IDoneThis",
+  "description": "Reply to an evening email reminder with what you did that day. The next day, get a digest with what everyone on the team got done with IDoneThis",
+  "url": "http://www.idonethis.com",
+  "trackDuplicates": true,
+  "version": "v0.1",
+  "auth": {
+    "strategy": "issuer_token",
+    "properties": {
+      "username": {
+        "title": "API Key",
+        "type": "string"
+      }
+    },
+    "disposition": [
+      "username"
+    ]
+  },
+  "rpcs": {
+    "teams": {
+      "contentType": "application/json",
+      "title": "Get My Teams"
+    }
+  },
+  "actions": {
+    "teams": {
+      "title": "Teams",
+      "description": "Returns the list of teams you can post dones to.",
+      "trigger": "invoke",
+      "config": {
+        "properties": {}
+      },
+      "imports": {
+        "properties": {}
+      },
+      "exports": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "Team Name",
+            "description": "Name of the team you can post dones to."
+          },
+          "done_count": {
+            "type": "number",
+            "title": "Done Count",
+            "description": "Number of Dones for a given Team."
+          },
+          "updated": {
+            "type": "string",
+            "title": "Team Updated",
+            "description": "Last update for a Team"
+          },
+          "created": {
+            "type": "string",
+            "title": "Team Created",
+            "description": "Creation Timestamp of a Team"
+          },
+          "url": {
+            "type": "string",
+            "title": "Team URL"
+          },
+          "short_name": {
+            "type": "string",
+            "title": "Team Short Name"
+          },
+          "dones": {
+            "type": "string",
+            "title": "Team Dones URL"
+          },
+          "is_personal": {
+            "type": "boolean",
+            "title": "Is Team Personal"
+          },
+          "permalink": {
+            "type": "string",
+            "title": "Team Permalink"
+          }
+        }
+      },
+        "disposition": [
+        	"name",
+        	"done_count",
+        	"updated",
+        	"created",
+        	"url",
+        	"short_name",
+        	"dones",
+        	"is_personal",
+        	"permalink"
+        	]
+    },
+    "dones": {
+      "title": "Get Dones",
+      "description": "Returns the list of dones you have permission to view.",
+      "trigger": "poll",
+      "config": {
+        "properties": {
+          "team": {
+            "type": "string",
+            "oneOf": [
+              {
+                "$ref": "/rpcs/teams#results/{short_name}"
+              }
+            ],
+            "label": {
+              "$ref": "/rpcs/teams#results/{name}"
+            },
+            "title": "Team"
+          }
+        },
+        "required": [
+          "team"
+        ],
+        "disposition": [
+          "team",
+          "tags"
+        ]
+      },
+      "imports": {
+        "properties": {
+          "team": {
+            "type": "string",
+            "title": "Team (short) Name",
+            "description": "Filter on Team (short) name"
+          },
+          "tags": {
+            "type": "string",
+            "title": "Filter on Tags",
+            "description": "can be single or comma-separated values"
+          }
+        },
+        "required": [
+          "team"
+        ],
+        "disposition": [
+          "team",
+          "tags"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "ID"
+          },
+          "created": {
+            "type": "string",
+            "title": "Created Time"
+          },
+          "updated": {
+            "type": "string",
+            "title": "Updated Time"
+          },
+          "markedup_text": {
+            "type": "string",
+            "title": "Markedup Text"
+          },
+          "url": {
+            "type": "string",
+            "title": "URL"
+          },
+          "team": {
+            "type": "string",
+            "title": "Team URL"
+          },
+          "raw_text": {
+            "type": "string",
+            "title": "Raw Text"
+          },
+          "done_date": {
+            "type": "string",
+            "title": "Done Date"
+          },
+          "team_short_name": {
+            "type": "string",
+            "title": "Team Short Name"
+          },
+          "owner": {
+            "type": "string",
+            "title": "Owner"
+          },
+          "tags": {
+            "type": "array",
+            "title": "Tags"
+          },
+          "likes": {
+            "type": "array",
+            "title": "Likes"
+          },
+          "comments": {
+            "type": "array",
+            "title": "Comments"
+          },
+          "meta_data": {
+            "type": "object",
+            "title": "Meta Data"
+          },
+          "permalink": {
+            "type": "string",
+            "title": "Permalinke"
+          },
+          "is_goal": {
+            "type": "boolean",
+            "title": "Is Goal"
+          },
+          "goal_completed": {
+            "type": "boolean",
+            "title": "Goal Completed"
+          }
+        }
+      }
+    },
+    "new_done": {
+      "title": "Create New Done",
+      "description": "Create a new Done.",
+      "trigger": "invoke",
+      "config": {
+        "properties": {
+          "team": {
+            "type": "string",
+            "oneOf": [
+              {
+                "$ref": "/rpcs/teams#results/{short_name}"
+              }
+            ],
+            "label": {
+              "$ref": "/rpcs/teams#results/{name}"
+            },
+            "title": "Team"
+          }
+        },
+        "required": [
+          "team"
+        ],
+        "disposition": [
+          "team"
+        ]
+      },
+      "imports": {
+        "properties": {
+          "raw_text": {
+            "type": "string",
+            "title": "Text of the new Done"
+          },
+          "team": {
+            "type": "string",
+            "title": "Team"
+          }
+        },
+        "required": [
+          "team",
+          "raw_text"
+        ],
+        "disposition": [
+          "team",
+          "raw_text"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "ID"
+          },
+          "created": {
+            "type": "string",
+            "title": "Created Time"
+          },
+          "updated": {
+            "type": "string",
+            "title": "Updated Time"
+          },
+          "markedup_text": {
+            "type": "string",
+            "title": "Markedup Text"
+          },
+          "url": {
+            "type": "string",
+            "title": "URL"
+          },
+          "team": {
+            "type": "string",
+            "title": "Team URL"
+          },
+          "raw_text": {
+            "type": "string",
+            "title": "Raw Text"
+          },
+          "done_date": {
+            "type": "string",
+            "title": "Done Date"
+          },
+          "team_short_name": {
+            "type": "string",
+            "title": "Team Short Name"
+          },
+          "owner": {
+            "type": "string",
+            "title": "Owner"
+          },
+          "tags": {
+            "type": "array",
+            "title": "Tags"
+          },
+          "likes": {
+            "type": "array",
+            "title": "Likes"
+          },
+          "comments": {
+            "type": "array",
+            "title": "Comments"
+          },
+          "meta_data": {
+            "type": "object",
+            "title": "Meta Data"
+          },
+          "permalink": {
+            "type": "string",
+            "title": "Permalinke"
+          },
+          "is_goal": {
+            "type": "boolean",
+            "title": "Is Goal"
+          },
+          "goal_completed": {
+            "type": "boolean",
+            "title": "Goal Completed"
+          }
+        }
+      }
+    }
+  }
+}
