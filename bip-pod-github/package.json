@@ -1,0 +1,27 @@
+{
+  "name": "bip-pod-github",
+  "version": "0.4.0",
+  "author": "Michael Pearson",
+  "description": "Github Pod for Bipio",
+  "keywords": [
+    "bip",
+    "bipio",
+    "pod",
+    "github"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bipio-server/bip-pod-github.git"
+  },
+  "bugs": {
+    "url": "http://github.com/bipio-server/bip-pod-github/issues"
+  },
+  "license": "Apache-2.0",
+  "main": ".",
+  "dependencies": {
+    "passport-github": ">=0.1.5"
+  },
+  "engines": {
+    "node": ">= 0.10.0"
+  }
+}
