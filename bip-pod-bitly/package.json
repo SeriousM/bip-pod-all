@@ -1,0 +1,29 @@
+{
+  "name": "bip-pod-bitly",
+  "author": "Michael Pearson",
+  "version": "0.4.0",
+  "description": "Bitly Pod for Bipio",
+  "keywords": [
+    "bip",
+    "bipio",
+    "pod",
+    "bitly"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bipio-server/bip-pod-bitly.git"
+  },
+  "bugs": {
+    "url": "http://github.com/bipio-server/bip-pod-bitly/issues"
+  },
+  "license": "Apache-2.0",
+  "main": ".",
+  "dependencies": {
+    "pkginfo": "0.2.x",
+    "passport-bitly": "git://github.com/simov/passport-bitly.git",
+    "request": "2.29.0"
+  },
+  "engines": {
+    "node": ">= 0.10.0"
+  }
+}

@@ -1,0 +1,133 @@
+{
+  "name": "bitly",
+  "title": "Bitly",
+  "description": "Offers URL redirection service with real-time link tracking.",
+  "url": "https://bitly.com",
+  "trackDuplicates": false,
+  "config": {
+    "oauth": {
+      "clientID": "",
+      "clientSecret": "",
+      "callbackURL": ""
+    }
+  },
+  "auth": {
+    "strategy": "oauth",
+    "properties": {
+      "access_token": {
+        "type": "string",
+        "title": "Access Token"
+      }
+    },
+    "disposition": [
+      "access_token"
+    ]
+  },
+  "rpcs": {},
+  "actions": {
+    "shorten": {
+      "title": "Shorten a URL",
+      "description": "Converts A URL Into It's Bitly Short URL",
+      "doc_ref": "http://dev.bitly.com/links.html#v3_shorten",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "new_hash": {
+            "type": "string",
+            "title": "If A New Hash"
+          },
+          "url": {
+            "type": "string",
+            "title": "Bitly URL"
+          },
+          "hash": {
+            "type": "string",
+            "title": "Account URL Hash"
+          },
+          "global_hash": {
+            "type": "string",
+            "title": "Global Hash"
+          },
+          "long_url": {
+            "type": "string",
+            "title": "Source URL"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "url": {
+            "type": "string",
+            "title": "URL"
+          }
+        },
+        "required": [
+          "url"
+        ],
+        "disposition": [
+          "url"
+        ]
+      }
+    },
+    "expand": {
+      "title": "Expands a URL",
+      "description": "Given a bitly URL, returns the target (long) URL",
+      "doc_ref": "http://dev.bitly.com/links.html#v3_expand",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "title" : {
+            "type" : "string",
+            "title" : "Link Title"
+          },
+          "short_url": {
+            "type": "string",
+            "title": "Bitly URL"
+          },
+          "created_at": {
+            "type": "string",
+            "title": "Created At Timestamp"
+          },
+          "created_by": {
+            "type": "string",
+            "title": "Created By User"
+          },
+          "user_hash": {
+            "type": "string",
+            "title": "User Hash"
+          },
+          "global_hash": {
+            "type": "string",
+            "title": "Global Hash"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "short_url": {
+            "type": "string",
+            "title": "Short URL"
+          }
+        },
+        "required": [
+          "short_url"
+        ],
+        "disposition": [
+          "short_url"
+        ]
+      }
+    }
+  },
+  "tags": [
+    "link",
+    "shortener"
+  ]
+}
