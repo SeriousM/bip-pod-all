@@ -1,0 +1,27 @@
+{
+  "name": "bip-pod-numerous",
+  "version": "0.4.0",
+  "author": "Michael Pearson",
+  "description": "Numerous Pod for Bipio",
+  "keywords": [
+    "bip",
+    "bipio",
+    "pod",
+    "numerous"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bipio-server/bip-pod-numerous.git"
+  },
+  "bugs": {
+    "url": "http://github.com/bipio-server/bip-pod-numerous/issues"
+  },
+  "license": "Apache-2.0",
+  "main": ".",
+  "dependencies": {
+    "form-data": "^0.1.2"
+  },
+  "engines": {
+    "node": ">= 0.10.0"
+  }
+}
