@@ -1,0 +1,116 @@
+{
+  "name": "circonus",
+  "title": "Circonus",
+  "description": "Circonus monitors and analyzes all your data, from any source",
+  "url": "http://www.circonus.com",
+  "trackDuplicates": true,
+  "config": {},
+  "auth": {
+    "strategy": "issuer_token",
+    "properties": {
+      "username": {
+        "title": "App Name",
+        "type": "string"
+      },
+      "password": {
+        "title": "API Token",
+        "type": "string"
+      }
+    },
+    "disposition": [
+      "username",
+      "password"
+    ]
+  },
+  "rpcs": {},
+  "actions": {
+    "on_new_alert": {
+      "title": "On a New Alert",
+      "description": "Triggers On a New Alert",
+      "doc_ref": "https://login.circonus.com/resources/api/calls/alert",
+      "trigger": "poll",
+      "config": {
+        "properties": {}
+      },
+      "exports": {
+        "properties": {
+          "_value": {
+            "type": "string",
+            "title": "Alert Value"
+          },
+          "_alert_url": {
+            "type": "string",
+            "title": "Alert URL"
+          },
+          "_metric_name": {
+            "type": "string",
+            "title": "Metric Name"
+          },
+          "_metric_notes": {
+            "type": "string",
+            "title": "Metric Notes"
+          },
+          "_metric_link": {
+            "type": "string",
+            "title": "Metric Link"
+          },
+          "_severity": {
+            "type": "string",
+            "title": "Severity"
+          },
+          "_cid": {
+            "type": "string",
+            "title": "Alert ID"
+          },
+          "_occurred_on": {
+            "type": "string",
+            "title": "UTC Unix Time"
+          }
+        }
+      },
+      "imports": {
+        "properties": {}
+      }
+    },
+    "http_trap": {
+      "title": "HTTP Trap",
+      "description": "Sends JSON object data to a HTTP Trap",
+      "doc_ref": "http://www.circonus.com/json-over-http",
+      "trigger": "invoke",
+      "config": {
+        "properties": {
+          "trap_url": {
+            "type": "string",
+            "title": "Trap URL"
+          }
+        },
+        "required": [
+          "trap_url"
+        ],
+        "disposition": [
+          "trap_url"
+        ]
+      },
+      "exports": {
+        "properties": {}
+      },
+      "imports": {
+        "properties": {
+          "data": {
+            "type": "mixed",
+            "title": "JSON Data Object"
+          }
+        },
+        "required": [
+          "data"
+        ],
+        "disposition": [
+          "data"
+        ]
+      }
+    }
+  },
+  "tags": [
+    "analytics"
+  ]
+}
