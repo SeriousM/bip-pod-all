@@ -1,0 +1,170 @@
+{
+  "name": "stackexchange",
+  "title": "Stack Exchange",
+  "url": "http://www.stackexchange.com",
+  "description": "Stack Exchange is a network of question and answer websites on diverse topics in many different fields, each site covering a specific topic, where questions, answers, and users are subject to a reputation award process",
+  "API": "2.2",
+  "trackDuplicates": true,
+  "auth": {
+    "strategy": "none"
+  },
+  "rpcs": {
+    "get_sites": {
+      "title": "Get Sites",
+      "contentType": "application/json"
+    }
+  },
+  "actions": {
+    "search": {
+      "trigger": "poll",
+      "title": "Search",
+      "description": "Triggers When A Search Term Matches",
+      "ref": "https://api.stackexchange.com/docs/search",
+      "imports": {
+        "properties": {
+          "query": {
+            "type": "string",
+            "title": "Query String"
+          },
+          "site": {
+            "type": "string",
+            "title": "Site Name"
+          }
+        },
+        "definitions": {},
+        "required": [
+          "site",
+          "query"
+        ],
+        "disposition": [
+          "site",
+          "query"
+        ]
+      },
+      "config": {
+        "properties": {
+          "query": {
+            "type": "string",
+            "title": "Query String"
+          },
+          "site": {
+            "type": "string",
+            "oneOf": [
+              {
+                "$ref": "/rpcs/get_sites#items/{api_site_parameter}"
+              }
+            ],
+            "label": {
+              "$ref": "/rpcs/get_sites#items/{name}"
+            },
+            "title": "Site Name"
+          }
+        },
+        "definitions": {},
+        "required": [
+          "site",
+          "query"
+        ],
+        "disposition": [
+          "site",
+          "query"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "title": "Tags"
+          },
+          "owner": {
+            "type": "object",
+            "properties": {
+              "reputation": {
+                "type": "number",
+                "description": "Reputation"
+              },
+              "user_id": {
+                "type": "number",
+                "description": "User ID"
+              },
+              "user_type": {
+                "type": "string",
+                "description": "User Type"
+              },
+              "accept_rate": {
+                "type": "number",
+                "description": "Accept Rate"
+              },
+              "profile_image": {
+                "type": "string",
+                "description": "Profile Image"
+              },
+              "display_name": {
+                "type": "string",
+                "description": "Display Name"
+              },
+              "link": {
+                "type": "string",
+                "description": "Link"
+              }
+            },
+            "title": "Owner"
+          },
+          "is_answered": {
+            "type": "boolean",
+            "title": "Is Answered"
+          },
+          "view_count": {
+            "type": "number",
+            "title": "View Count"
+          },
+          "answer_count": {
+            "type": "number",
+            "title": "Answer Count"
+          },
+          "score": {
+            "type": "number",
+            "title": "Score"
+          },
+          "last_activity_date": {
+            "type": "number",
+            "title": "Last Activity Date"
+          },
+          "creation_date": {
+            "type": "number",
+            "title": "Creation Date"
+          },
+          "question_id": {
+            "type": "number",
+            "title": "Question ID"
+          },
+          "link": {
+            "type": "string",
+            "title": "Link"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          }
+        },
+        "definitions": {},
+        "disposition": [
+          "tags",
+          "owner",
+          "is_answered",
+          "view_count",
+          "answer_count",
+          "score",
+          "last_activity_date",
+          "creation_date",
+          "question_id",
+          "link",
+          "title"
+        ]
+      }
+    }
+  }
+}
