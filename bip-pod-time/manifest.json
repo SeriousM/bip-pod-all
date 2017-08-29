@@ -1,0 +1,149 @@
+{
+  "name": "time",
+  "title": "Time",
+  "description": "Time Manipulation, Formatting, Timezone Conversion + more",
+  "url": "",
+  "trackDuplicates": false,
+  "config": {},
+  "auth": {
+    "strategy": "none"
+  },
+  "rpcs": {
+    "timezones": {
+      "contentType": "application/json",
+      "title": "Timezones"
+    }
+  },
+  "actions": {
+    "format": {
+      "title": "Format a Time",
+      "description": "Converts a UTC or string time representation into the given format",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "time_formatted": {
+            "type": "string",
+            "title": "Formatted Time"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "time": {
+            "type": "string",
+            "title": "Time"
+          },
+          "format": {
+            "type": "string",
+            "title": "Format",
+            "description" : "eg: DD/MM/YYYY"
+          }
+        },
+        "required": [
+          "time"
+        ],
+        "disposition": [
+          "time",
+          "format"
+        ]
+      }
+    },
+    "tz_convert": {
+      "title": "Convert To Timezone",
+      "description": "Converts a UTC or string time representation into the given TimeZone and Format",
+      "trigger": "invoke",
+      "config": {
+        "properties": {
+          "time_zone": {
+            "type": "string",
+            "title": "New Timezone",
+            "oneOf": [
+              {
+                "$ref": "/rpcs/timezones"
+              }
+            ]
+          }
+        },
+        "disposition": [
+          "time_zone"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "time_converted": {
+            "type": "string",
+            "title": "Converted Time"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "time": {
+            "type": "string",
+            "title": "Time"
+          },
+          "format": {
+            "type": "string",
+            "title": "Format",
+            "description" : "eg: DD/MM/YYYY"
+          }
+        },
+        "required": [
+          "time",
+          "time_zone"
+        ],
+        "disposition": [
+          "time",
+          "time_zone",
+          "format"
+        ]
+      }
+    },
+    "calculate": {
+      "title": "Calculate a Time",
+      "description": "Calculates a time from a simple natural language expression, eg: \"in 2 days\"",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "date_calculated": {
+            "type": "string",
+            "title": "Calculated Time"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "expression": {
+            "type": "string",
+            "description": "eg: in 3 days",
+            "title": "Date Expression"
+          },
+          "format": {
+            "type": "string",
+            "description": "eg: DD/MM/YYYY",
+            "title": "Date Format"
+          }
+        },
+        "required": [
+          "expression"
+        ],
+        "disposition": [
+          "expression",
+          "format"
+        ]
+      }
+    }
+  },
+  "tags": [
+    "productivity",
+    "time"
+  ]
+}
