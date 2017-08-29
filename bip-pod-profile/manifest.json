@@ -1,0 +1,66 @@
+{
+  "name": "profile",
+  "title": "Profile",
+  "description": "Your Personal bip.io Profile",
+  "url": "",
+  "trackDuplicates": false,
+  "config": {},
+  "auth": {
+    "strategy": "none"
+  },
+  "rpcs": {
+      "get_profile": {
+        "contentType": "text/html",
+        "properties": {},
+        "title": "Display My Profile"
+      }
+    },
+  "actions": {
+    "email_me" : {
+      "title" : "Email Me",
+      "description" : "Send An Email To Yourself",
+      "trigger" : "invoke",
+      "config": {
+        "properties": {
+        }
+      },
+      "imports": {
+        "properties": {
+          "subject": {
+            "type": "string",
+            "title": "Subject"
+          },
+          "body_html": {
+            "type": "text",
+            "title": "HTML Body"
+          },
+          "body_text": {
+            "type": "text",
+            "title": "Text Body",
+            "description" : "Text Body Will Be Automatically Generated From HTML Body"
+          }
+        },
+        "required" : [
+          "subject"
+        ],
+        "disposition": [
+          "subject",
+          "body_html",
+          "body_text"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "response_code": {
+            "type": "integer",
+            "title": "SMTP Response Code"
+          },
+          "response_message": {
+            "type": "string",
+            "title": "SMTP Response Message"
+          }
+        }
+      }
+    }
+  }
+}
