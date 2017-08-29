@@ -1,0 +1,219 @@
+{
+  "name": "mixcloud",
+  "title": "MixCloud",
+  "description": "Great radio, for everyone, with MixCloud. Listen to the best DJs and radio presenters in the world.",
+  "url": "http://www.mixcloud.com/",
+  "trackDuplicates": false,
+  "config": {
+    "oauth": {
+      "clientID": "",
+      "clientSecret": ""
+    }
+  },
+  "auth": {
+    "strategy": "oauth",
+    "properties": {
+      "access_token": {
+        "type": "string",
+        "title": "Access Token"
+      },
+      "username": {
+        "type": "string",
+        "title": "Username"
+      }
+    },
+    "disposition": [
+      "access_token",
+      "username"
+    ]
+  },
+  "rpcs": {},
+  "actions": {
+    "get_favorites": {
+      "title": "Get MixCloud Favorites",
+      "description": "Retrieves MixCloud Favorites",
+      "trigger": "poll",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "Mix Name"
+          },
+          "tags": {
+            "type": "array",
+            "title": "Mix Tags"
+          },
+          "key": {
+            "type": "string",
+            "title": "Key"
+          },
+          "url": {
+            "type": "string",
+            "title": "Mix URL"
+          },
+          "pictures_xl": {
+            "type": "string",
+            "title": "Extra Large Picture URL"
+          },
+          "pictures_thumbnail": {
+            "type": "string",
+            "title": "Thumbnail URL"
+          },
+          "user_username": {
+            "type": "string",
+            "title": "Username"
+          },
+          "user_name": {
+            "type": "string",
+            "title": "User Actual Name"
+          },
+          "user_url": {
+            "type": "string",
+            "title": "User URL"
+          },
+          "user_picture_xl": {
+            "type": "string",
+            "title": "User XL Picture"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "since": {
+            "type": "number",
+            "descsription": "Since Time (Unix Timestamp)"
+          },
+          "until": {
+            "type": "number",
+            "descsription": "Until Time (Unix Timestamp)"
+          }
+        },
+        "disposition": [
+          "since",
+          "until"
+        ]
+      }
+    },
+    "oembed": {
+      "title": "MixCloud oEmbed",
+      "description": "Converts any MixCloud entity to its oEmbed representation",
+      "trigger": "invoke",
+      "config": {
+        "properties": {}
+      },
+      "exports": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "title": "oEmbed Type"
+          },
+          "provider_name": {
+            "type": "string",
+            "title": "Provider Name (mixcloud)"
+          },
+          "provider_url": {
+            "type": "string",
+            "title": "Provider URL"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "html": {
+            "type": "string",
+            "title": "oEmbed HTML"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "url": {
+            "type": "string",
+            "title": "URL"
+          },
+          "maxwidth": {
+            "type": "string",
+            "title": "Max Width"
+          },
+          "maxheight": {
+            "type": "string",
+            "title": "Max Height"
+          },
+          "auto_play": {
+            "type": "boolean",
+            "title": "Auto Play"
+          },
+          "show_comments": {
+            "type": "boolean",
+            "title": "Show Comments"
+          },
+          "color": {
+            "type": "string",
+            "title": "Primary Color Value (hex)"
+          }
+        },
+        "required": [
+          "url"
+        ],
+        "disposition": [
+          "url",
+          "maxwidth",
+          "maxheight",
+          "auto_play",
+          "show_comments",
+          "color"
+        ]
+      }
+    }
+  },
+  "dataSources": {
+    "track_favorite": {
+      "properties": {
+        "id": {
+          "type": "string",
+          "renderable": false,
+          "writable": false,
+          "unique": true
+        },
+        "owner_id": {
+          "type": "string",
+          "renderable": false,
+          "writable": false
+        },
+        "created": {
+          "type": "string",
+          "renderable": true,
+          "writable": false
+        },
+        "last_update": {
+          "type": "string",
+          "renderable": true,
+          "writable": false
+        },
+        "channel_id": {
+          "type": "string",
+          "renderable": true,
+          "writable": false
+        },
+        "track_id": {
+          "type": "string",
+          "renderable": true,
+          "writable": false
+        }
+      },
+      "keys": [
+        "owner_id",
+        "channel_id",
+        "track_id"
+      ]
+    }
+  },
+  "tags": [
+    "social",
+    "audio"
+  ]
+}
