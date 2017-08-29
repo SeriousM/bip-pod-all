@@ -1,0 +1,151 @@
+{
+  "name": "minecraft",
+  "title": "Minecraft",
+  "url": "https://minecraft.net",
+  "description": "Minecraft is a game about breaking and placing blocks",
+  "auth": {
+    "strategy": "none"
+  },
+  "trackDeltas" : true,
+  "actions": {
+    "server_status": {
+      "trigger": "invoke",
+      "title": "Get Server Status",
+      "description": "Retrieves Stats For a MineCraft Server",
+      "config": {
+        "properties": {
+          "host": {
+            "type": "string",
+            "title": "Host"
+          },
+          "port": {
+            "type": "string",
+            "title": "Port",
+            "default": 25565
+          }
+        },
+        "definitions": {},
+        "disposition": [
+          "host",
+          "port"
+        ]
+      },
+      "imports": {
+        "properties": {
+          "host": {
+            "type": "string",
+            "title": "Host"
+          },
+          "port": {
+            "type": "string",
+            "title": "Port",
+            "default": 25565
+          }
+        },
+        "definitions": {},
+        "disposition": [
+          "host",
+          "port"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "description": {
+            "type": "string",
+            "title": "Server Description"
+          },
+          "players_max": {
+            "type": "object",
+            "title": "Maximum Players"
+          },
+          "players_online": {
+            "type": "object",
+            "title": "Online Players"
+          },
+          "version_name": {
+            "type": "string",
+            "title": "Version Name"
+          },
+          "version_protocol": {
+            "type": "string",
+            "title": "Version Protocol"
+          },
+          "latency": {
+            "type": "number",
+            "title": "Latency MS"
+          },
+          "favicon": {
+            "type": "string",
+            "title": "Favicon (Base64)"
+          }
+        },
+        "definitions": {}
+      }
+    },
+    "server_status_change": {
+      "trigger": "poll",
+      "title": "When A Server Goes Up Or Down",
+      "description": "Triggers When A Minecraft Server Goes Up Or Down",
+      "config": {
+        "properties": {
+          "host": {
+            "type": "string",
+            "title": "Host"
+          },
+          "port": {
+            "type": "string",
+            "title": "Port",
+            "default": 25565
+          }
+        },
+        "definitions": {},
+        "disposition": [
+          "host",
+          "port"
+        ]
+      },
+      "imports": {
+        "properties": {
+        },
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "title": "Server Status (up or down)"
+          },
+          "description": {
+            "type": "string",
+            "title": "Server Description"
+          },
+          "players_max": {
+            "type": "object",
+            "title": "Maximum Players"
+          },
+          "players_online": {
+            "type": "object",
+            "title": "Online Players"
+          },
+          "version_name": {
+            "type": "string",
+            "title": "Version Name"
+          },
+          "version_protocol": {
+            "type": "string",
+            "title": "Version Protocol"
+          },
+          "latency": {
+            "type": "number",
+            "title": "Latency MS"
+          },
+          "favicon": {
+            "type": "string",
+            "title": "Favicon (Base64)"
+          }
+        },
+        "definitions": {}
+      }
+    }
+  }
+}
