@@ -1,0 +1,214 @@
+{
+  "name": "hipchat",
+  "title": "HipChat",
+  "description": "HipChat is hosted group chat and IM for companies and teams. Supercharge real-time collaboration with persistent chat rooms, file sharing, and chat history",
+  "url": "https://www.hipchat.com",
+  "trackDuplicates": false,
+  "config": {},
+  "auth": {
+    "strategy": "issuer_token",
+    "properties": {
+      "password": {
+        "title": "API Access Token",
+        "type": "string"
+      }
+    },
+    "disposition": [
+      "password"
+    ]
+  },
+  "rpcs": {
+    "room_list": {
+      "contentType": "application/json",
+      "title": "Get Rooms"
+    }
+  },
+  "actions": {
+    "room_notify": {
+      "title": "Send a message to a room",
+      "description": "Send a message to a room",
+      "trigger": "invoke",
+      "config": {
+        "properties": {
+          "room_id": {
+            "type": "string",
+            "oneOf": [
+              {
+                "$ref": "/rpcs/room_list/{id}"
+              }
+            ],
+            "label": {
+              "$ref": "/rpcs/my_pages/{name}"
+            },
+            "title": "Room ID"
+          },
+          "room_token": {
+            "type": "string",
+            "title": "Room Notification Token"
+          }
+        },
+        "required": [
+          "room_id",
+          "room_token"
+        ],
+        "disposition": [
+          "room_id",
+          "room_token"
+        ]
+      },
+      "exports": {
+        "properties": {}
+      },
+      "imports": {
+        "properties": {
+          "message": {
+            "type": "string",
+            "title": "Message"
+          }
+        },
+        "required": [
+          "message"
+        ],
+        "disposition": [
+          "message"
+        ]
+      }
+    },
+    "create_webhook": {
+      "title": "Create Webhook",
+      "description": "Creates a new webhook",
+      "trigger": "invoke",
+      "config": {
+        "properties": {
+          "room_id": {
+            "type": "string",
+            "oneOf": [
+              {
+                "$ref": "/rpcs/room_list/{id}"
+              }
+            ],
+            "label": {
+              "$ref": "/rpcs/my_pages/{name}"
+            },
+            "title": "Room ID"
+          }
+        },
+        "disposition": [
+          "room_id"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "hook_id": {
+            "type": "integer",
+            "title": "Webhook ID"
+          },
+          "link_self": {
+            "type": "string",
+            "title": "HipChat webhook URL"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "url": {
+            "type": "string",
+            "title": "Hook URL"
+          },
+          "pattern": {
+            "type": "string",
+            "title": "pattern"
+          },
+          "event": {
+            "type": "string",
+            "oneOf": [
+              {
+                "$ref": "#/imports/definitions/room_events"
+              }
+            ],
+            "title": "Event Type"
+          },
+          "name": {
+            "type": "string",
+            "title": "Hook Name"
+          }
+        },
+        "definitions": {
+          "room_events": {
+            "description": "Room Event Types",
+            "enum": [
+              "room_message",
+              "room_notification",
+              "room_exit",
+              "room_enter",
+              "room_topic_change"
+            ],
+            "enum_label": [
+              "Message",
+              "Notification",
+              "Exit",
+              "Enter",
+              "Change Topic"
+            ],
+            "default": "room_message"
+          }
+        },
+        "disposition": [
+          "url",
+          "pattern",
+          "event",
+          "name"
+        ]
+      }
+    },
+    "set_topic": {
+      "title": "Set Room Topic",
+      "description": "Set Room Topic",
+      "trigger": "invoke",
+      "config": {
+        "properties": {
+          "room_id": {
+            "type": "string",
+            "oneOf": [
+              {
+                "$ref": "/rpcs/room_list/{id}"
+              }
+            ],
+            "label": {
+              "$ref": "/rpcs/my_pages/{name}"
+            },
+            "title": "Room ID"
+          }
+        },
+        "required": [
+          "room_id"
+        ],
+        "disposition": [
+          "room_id"
+        ]
+      },
+      "exports": {
+        "properties": {}
+      },
+      "imports": {
+        "properties": {
+          "topic": {
+            "type": "string",
+            "title": "New topic"
+          }
+        },
+        "required": [
+          "topic"
+        ],
+        "disposition": [
+          "topic"
+        ]
+      }
+    }
+  },
+  "tags": [
+    "social",
+    "messaging",
+    "productivity"
+  ]
+}
