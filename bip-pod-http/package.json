@@ -1,0 +1,27 @@
+{
+  "name": "bip-pod-http",
+  "version": "0.4.0",
+  "author": "Michael Pearson",
+  "description": "HTTP Pod for Bipio",
+  "keywords": [
+    "bip",
+    "bipio",
+    "pod",
+    "http"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bipio-server/bip-pod-http.git"
+  },
+  "bugs": {
+    "url": "http://github.com/bipio-server/bip-pod-http/issues"
+  },
+  "license": "Apache-2.0",
+  "main": ".",
+  "dependencies": {
+    "request": ">=2.30.1"
+  },
+  "engines": {
+    "node": ">= 0.10.0"
+  }
+}
