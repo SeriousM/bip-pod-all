@@ -1,0 +1,100 @@
+{
+  "name": "twilio",
+  "title": "Twilio",
+  "description": "Build the next generation of communications with Twilio",
+  "url": "https://www.twilio.com",
+  "trackDuplicates": false,
+  "config": {},
+  "auth": {
+    "strategy": "issuer_token",
+    "properties": {
+      "username": {
+        "title": "Account Sid",
+        "type": "string"
+      },
+      "password": {
+        "title": "Auth Token",
+        "type": "string"
+      }
+    },
+    "disposition": [
+      "username",
+      "password"
+    ]
+  },
+  "rpcs": {},
+  "actions": {
+    "send_sms": {
+      "title": "Send an SMS message",
+      "description": "Sends a new outgoing SMS Message. If you are sending SMS while your Twilio account is in Trial mode, the \"To\" phone number must be verified with Twilio.",
+      "trigger": "invoke",
+      "config": {
+        "properties": {
+          "body": {
+            "type": "string",
+            "title": "SMS Body"
+          },
+          "to_phone": {
+            "type": "string",
+            "title": "Recipient Phone #"
+          },
+          "from_phone": {
+            "type": "string",
+            "title": "From Phone Number"
+          }
+        },
+        "required" : [
+          "from_phone",
+          "to_phone"
+        ],
+        "disposition": [
+          "from_phone",
+          "to_phone",
+          "body"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "title": "SMS Status"
+          },
+          "sid": {
+            "type": "string",
+            "title": "SMS Message Id"
+          },
+          "body": {
+            "type": "string",
+            "title": "Response Body"
+          },
+          "uri": {
+            "type": "string",
+            "title": "Twilio SMS URI"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "body": {
+            "type": "string",
+            "title": "SMS Body"
+          },
+          "to_phone": {
+            "type": "string",
+            "title": "Recipient Phone #"
+          }
+        },
+        "required" : [
+          "to_phone"
+        ],
+        "disposition": [
+          "body",
+          "to_phone"
+        ]
+      }
+    }
+  },
+  "tags": [
+    "messaging"
+  ]
+}
