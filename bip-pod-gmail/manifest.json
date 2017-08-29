@@ -1,0 +1,483 @@
+{
+  "name": "gmail",
+  "title": "Gmail",
+  "description": "Gmail is a Google-owned, web-based email service provides details of storage, options and links to related services",
+  "url": "https://gmail.google.com",
+  "trackDuplicates": true,
+  "rateLimit" : 100,
+  "config": {
+    "oauth": {
+      "clientID": "",
+      "clientSecret": "",
+      "scopes": [
+        "https://www.googleapis.com/auth/gmail.compose",
+        "https://www.googleapis.com/auth/userinfo.email",
+        "https://www.googleapis.com/auth/userinfo.profile",
+        "https://www.googleapis.com/auth/gmail.readonly"
+      ],
+      "extras": {
+        "accessType": "offline",
+        "approvalPrompt": "force"
+      }
+    }
+  },
+  "auth": {
+    "strategy": "oauth",
+    "passport": {
+      "provider": "google-oauth",
+      "strategy": "OAuth2Strategy"
+    },
+    "properties": {
+      "access_token": {
+        "type": "string",
+        "title": "Access Token"
+      }
+    },
+    "disposition": [
+      "access_token"
+    ]
+  },
+  "rpcs": {},
+  "actions": {
+    "send": {
+      "doc_ref": "https://developers.google.com/gmail/api/v1/reference/",
+      "title": "Send An Email",
+      "description": "Send An Email via your Gmail account or alias",
+      "trigger": "invoke",
+      "config": {
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "default": "me",
+            "title": "From Email"
+          }
+        },
+        "definitions": {},
+        "disposition": [
+          "user_id"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Message ID"
+          },
+          "threadId": {
+            "type": "string",
+            "title": "Thread ID"
+          },
+          "labelIds": {
+            "type": "array",
+            "title": "Labels"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "title": "From Email"
+          },
+          "rcpt_to": {
+            "type": "string",
+            "title": "To Email"
+          },
+          "reply_to": {
+            "type": "string",
+            "title": "Reply To Email"
+          },
+          "subject": {
+            "type": "string",
+            "title": "Subject"
+          },
+          "body": {
+            "type": "string",
+            "title": "Body"
+          }
+        },
+        "required": [
+          "rcpt_to"
+        ],
+        "disposition": [
+          "rcpt_to",
+          "reply_to",
+          "user_id",
+          "subject",
+          "body"
+        ]
+      }
+    },
+    "on_new_message": {
+      "doc_ref": "https://developers.google.com/gmail/api/v1/reference/",
+      "title": "On A New Email",
+      "description": "When A New Email Appears In Your Inbox",
+      "trigger": "poll",
+      "config": {
+        "properties": {},
+        "DISABLED_properties": {
+          "get_attachments": {
+            "type": "boolean",
+            "description": "Include Attachments",
+            "default": false
+          }
+        },
+        "definitions": {}
+      },
+      "exports": {
+        "DISABLED_properties": {
+          "html_body": {
+            "description": "HTML Body",
+            "type": "string"
+          }
+        },
+        "properties": {
+          "text_body": {
+            "type": "string",
+            "title": "Text Body"
+          },
+          "mimeType": {
+            "type": "string",
+            "title": "Mime Type"
+          },
+          "Delivered-To": {
+            "type": "string",
+            "title": "Delivered To"
+          },
+          "Received": {
+            "type": "string",
+            "title": "Received"
+          },
+          "X-Received": {
+            "type": "string",
+            "title": "X Received"
+          },
+          "Return-Path": {
+            "type": "string",
+            "title": "Return Path"
+          },
+          "Received-SPF": {
+            "type": "string",
+            "title": "Received SPF"
+          },
+          "Authentication-Results": {
+            "type": "string",
+            "title": "Authentication Results"
+          },
+          "X-Google-DKIM-Signature": {
+            "type": "string",
+            "title": "X Google DKIM Signature"
+          },
+          "X-Gm-Message-State": {
+            "type": "string",
+            "title": "X Gm Message State"
+          },
+          "MIME-Version": {
+            "type": "string",
+            "title": "MIME Version"
+          },
+          "Reply-To": {
+            "type": "string",
+            "title": "Reply To"
+          },
+          "Date": {
+            "type": "string",
+            "title": "Date"
+          },
+          "Message-ID": {
+            "type": "string",
+            "title": "Message ID"
+          },
+          "Subject": {
+            "type": "string",
+            "title": "Subject"
+          },
+          "From": {
+            "type": "string",
+            "title": "From"
+          },
+          "To": {
+            "type": "string",
+            "title": "To"
+          },
+          "Content-Type": {
+            "type": "string",
+            "title": "Content Type"
+          }
+        },
+        "disposition": [
+          "text_body",
+          "mimeType",
+          "Delivered-To",
+          "Received",
+          "X-Received",
+          "Return-Path",
+          "Received-SPF",
+          "Authentication-Results",
+          "X-Google-DKIM-Signature",
+          "X-Gm-Message-State",
+          "MIME-Version",
+          "Reply-To",
+          "Date",
+          "Message-ID",
+          "Subject",
+          "From",
+          "To",
+          "Content-Type"
+        ]
+      },
+      "imports": {
+        "properties": {},
+        "disposition": []
+      },
+        "disposition": []
+    },
+    "on_specific_new_message": {
+      "doc_ref": "https://developers.google.com/gmail/api/v1/reference/",
+      "title": "On A New Email From An Address",
+      "description": "When A New Email From A Certain Address Appears In Your Inbox",
+      "trigger": "poll",
+      "config": {
+        "properties": {
+          "from_id": {
+            "type": "string",
+            "title": "From Email",
+            "description" : "Email Address Or Sender Name"
+          }
+         },
+         "required": [
+          "from_id"
+        ],
+        "disposition": [
+          "from_id"
+        ],
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "text_body": {
+            "type": "string",
+            "title": "Text Body"
+          },
+          "mimeType": {
+            "type": "string",
+            "title": "Mime Type"
+          },
+          "Delivered-To": {
+            "type": "string",
+            "title": "Delivered To"
+          },
+          "Received": {
+            "type": "string",
+            "title": "Received"
+          },
+          "X-Received": {
+            "type": "string",
+            "title": "X Received"
+          },
+          "Return-Path": {
+            "type": "string",
+            "title": "Return Path"
+          },
+          "Received-SPF": {
+            "type": "string",
+            "title": "Received SPF"
+          },
+          "Authentication-Results": {
+            "type": "string",
+            "title": "Authentication Results"
+          },
+          "X-Google-DKIM-Signature": {
+            "type": "string",
+            "title": "X Google DKIM Signature"
+          },
+          "X-Gm-Message-State": {
+            "type": "string",
+            "title": "X Gm Message State"
+          },
+          "MIME-Version": {
+            "type": "string",
+            "title": "MIME Version"
+          },
+          "Reply-To": {
+            "type": "string",
+            "title": "Reply To"
+          },
+          "Date": {
+            "type": "string",
+            "title": "Date"
+          },
+          "Message-ID": {
+            "type": "string",
+            "title": "Message ID"
+          },
+          "Subject": {
+            "type": "string",
+            "title": "Subject"
+          },
+          "From": {
+            "type": "string",
+            "title": "From"
+          },
+          "To": {
+            "type": "string",
+            "title": "To"
+          },
+          "Content-Type": {
+            "type": "string",
+            "title": "Content Type"
+          }
+        },
+        "disposition": [
+          "text_body",
+          "mimeType",
+          "Delivered-To",
+          "Received",
+          "X-Received",
+          "Return-Path",
+          "Received-SPF",
+          "Authentication-Results",
+          "X-Google-DKIM-Signature",
+          "X-Gm-Message-State",
+          "MIME-Version",
+          "Reply-To",
+          "Date",
+          "Message-ID",
+          "Subject",
+          "From",
+          "To",
+          "Content-Type"
+        ]
+      },
+      "imports": {
+        "properties": {
+        },
+        "disposition": []
+      }
+    },
+    "on_search_new_message": {
+      "doc_ref": "https://developers.google.com/gmail/api/v1/reference/",
+      "title": "On A New Email Matches A Search",
+      "description": "Triggers When An Email Matching Your Search Query Appears In Your Inbox",
+      "trigger": "poll",
+      "config": {
+        "properties": {
+          "q": {
+            "type": "string",
+            "title": "Search Query",
+            "description" : "See <a target='_blank' href='https://support.google.com/mail/answer/7190?hl=en'>Gmail Advanced Search Documentation</a> For More Info"
+          }
+         },
+         "required": [
+          "q"
+        ],
+        "disposition": [
+          "q"
+        ],
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "text_body": {
+            "type": "string",
+            "title": "Text Body"
+          },
+          "mimeType": {
+            "type": "string",
+            "title": "Mime Type"
+          },
+          "Delivered-To": {
+            "type": "string",
+            "title": "Delivered To"
+          },
+          "Received": {
+            "type": "string",
+            "title": "Received"
+          },
+          "X-Received": {
+            "type": "string",
+            "title": "X Received"
+          },
+          "Return-Path": {
+            "type": "string",
+            "title": "Return Path"
+          },
+          "Received-SPF": {
+            "type": "string",
+            "title": "Received SPF"
+          },
+          "Authentication-Results": {
+            "type": "string",
+            "title": "Authentication Results"
+          },
+          "X-Google-DKIM-Signature": {
+            "type": "string",
+            "title": "X Google DKIM Signature"
+          },
+          "X-Gm-Message-State": {
+            "type": "string",
+            "title": "X Gm Message State"
+          },
+          "MIME-Version": {
+            "type": "string",
+            "title": "MIME Version"
+          },
+          "Reply-To": {
+            "type": "string",
+            "title": "Reply To"
+          },
+          "Date": {
+            "type": "string",
+            "title": "Date"
+          },
+          "Message-ID": {
+            "type": "string",
+            "title": "Message ID"
+          },
+          "Subject": {
+            "type": "string",
+            "title": "Subject"
+          },
+          "From": {
+            "type": "string",
+            "title": "From"
+          },
+          "To": {
+            "type": "string",
+            "title": "To"
+          },
+          "Content-Type": {
+            "type": "string",
+            "title": "Content Type"
+          }
+        },
+        "disposition": [
+          "text_body",
+          "mimeType",
+          "Delivered-To",
+          "Received",
+          "X-Received",
+          "Return-Path",
+          "Received-SPF",
+          "Authentication-Results",
+          "X-Google-DKIM-Signature",
+          "X-Gm-Message-State",
+          "MIME-Version",
+          "Reply-To",
+          "Date",
+          "Message-ID",
+          "Subject",
+          "From",
+          "To",
+          "Content-Type"
+        ]
+      },
+      "imports": {
+        "properties": {
+        }
+        ,
+        "disposition": []
+      }
+    }
+  }
+}
