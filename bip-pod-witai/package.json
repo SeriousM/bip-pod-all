@@ -1,0 +1,25 @@
+{
+  "name": "bip-pod-witai",
+  "version": "0.4.0",
+  "author": "Michael Pearson",
+  "description": "WitAI Pod for Bipio",
+  "keywords": [
+    "bip",
+    "bipio",
+    "pod",
+    "witai"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bipio-server/bip-pod-witai.git"
+  },
+  "bugs": {
+    "url": "http://github.com/bipio-server/bip-pod-witai/issues"
+  },
+  "license": "Apache-2.0",
+  "main": ".",
+  "dependencies": {},
+  "engines": {
+    "node": ">= 0.10.0"
+  }
+}
