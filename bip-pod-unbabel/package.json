@@ -1,0 +1,25 @@
+{
+  "name": "bip-pod-unbabel",
+  "version": "0.4.0",
+  "author": "Michael Pearson",
+  "description": "Unbabel Pod for Bipio",
+  "keywords": [
+    "bip",
+    "bipio",
+    "pod",
+    "unbabel"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bipio-server/bip-pod-unbabel.git"
+  },
+  "bugs": {
+    "url": "http://github.com/bipio-server/bip-pod-unbabel/issues"
+  },
+  "license": "Apache-2.0",
+  "main": ".",
+  "dependencies": {},
+  "engines": {
+    "node": ">= 0.10.0"
+  }
+}

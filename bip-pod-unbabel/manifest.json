@@ -1,0 +1,209 @@
+{
+  "name": "unbabel",
+  "title": "Unbabel",
+  "description": "Unbabel is helping the world communicate through machine translation + crowd editing",
+  "url": "https://www.unbabel.com",
+  "trackDuplicates": false,
+  "config": {
+    "url": "http://sandbox.unbabel.com"
+  },
+  "auth": {
+    "strategy": "issuer_token",
+    "properties": {
+      "username": {
+        "title": "Username",
+        "type": "string"
+      },
+      "password": {
+        "title": "API Key",
+        "type": "string"
+      }
+    },
+    "disposition": [
+      "username",
+      "password"
+    ]
+  },
+  "rpcs": {},
+  "actions": {
+    "request_translation": {
+      "title": "Request Translation",
+      "description": "Requests a Translation from Unbabel",
+      "trigger": "invoke",
+      "config": {
+        "properties": {
+          "target_language": {
+            "type": "string",
+            "title": "Target Language"
+          },
+          "instructions": {
+            "type": "string",
+            "title": "Client instructions for the translator"
+          }
+        },
+        "disposition": [
+          "target_language",
+          "instructions"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "formality": {
+            "type": "string",
+            "title": "The tone that should be used in the translation"
+          },
+          "text": {
+            "type": "string",
+            "title": "Original Text"
+          },
+          "target_language": {
+            "type": "string",
+            "title": "Target Language"
+          },
+          "source_language": {
+            "type": "string",
+            "title": "Source Language"
+          },
+          "uid": {
+            "type": "string",
+            "title": "Transaction ID"
+          },
+          "price_euro": {
+            "type": "string",
+            "title": "Price &euro;EUR"
+          },
+          "topics": {
+            "type": "string",
+            "title": "List of Topics for the text"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "text": {
+            "type": "string",
+            "title": "Text to Translate"
+          },
+          "source_language": {
+            "type": "string",
+            "title": "Source Language"
+          },
+          "formality": {
+            "type": "string",
+            "title": "The tone that should be used in the translation"
+          },
+          "topics": {
+            "type": "string",
+            "title": "List of Topics for the text"
+          }
+        },
+        "disposition": [
+          "text",
+          "source_language",
+          "formality",
+          "topics"
+        ]
+      },
+      "rpcs": {
+        "update_status": {
+          "description": "Updates the internally tracked status for a translation UID to something new",
+          "title": "Update Tracking Status"
+        }
+      }
+    },
+    "get_delivered": {
+      "title": "Get Newly Delivered Translation",
+      "description": "Distribute a newly delivered translation",
+      "trigger": "poll",
+      "config": {
+        "properties": {}
+      },
+      "exports": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "text": {
+            "type": "string",
+            "title": "Translated Text"
+          },
+          "target_language": {
+            "type": "string",
+            "title": "Target Language"
+          },
+          "source_language": {
+            "type": "string",
+            "title": "Source Language"
+          },
+          "uid": {
+            "type": "string",
+            "title": "Transaction ID"
+          },
+          "price_euro": {
+            "type": "string",
+            "title": "Price &euro;EUR"
+          }
+        }
+      },
+      "imports": {
+        "properties": {}
+      },
+      "rpcs": {
+        "update_status": {
+          "description": "Updates the internally tracked status for a translation UID to something new",
+          "title": "Update Tracking Status"
+        }
+      }
+    }
+  },
+  "dataSources": {
+    "track_translation": {
+      "properties": {
+        "id": {
+          "type": "string",
+          "renderable": false,
+          "writable": false,
+          "unique": true
+        },
+        "owner_id": {
+          "type": "string",
+          "renderable": false,
+          "writable": false
+        },
+        "created": {
+          "type": "string",
+          "renderable": true,
+          "writable": false
+        },
+        "last_update": {
+          "type": "string",
+          "renderable": true,
+          "writable": false
+        },
+        "channel_id": {
+          "type": "string",
+          "renderable": true,
+          "writable": false
+        },
+        "uid": {
+          "type": "string",
+          "renderable": true,
+          "writable": false
+        },
+        "lastStatus": {
+          "type": "string",
+          "renderable": true,
+          "writable": false
+        }
+      },
+      "keys": [
+        "id"
+      ]
+    }
+  }
+}
