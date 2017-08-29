@@ -1,0 +1,224 @@
+{
+  "name": "scriptr",
+  "title": "Scriptr",
+  "href" : "https://www.scriptr.io",
+  "description": "scriptr.io is a very powerful cloud service to run your server-side code. With scriptr.io, you use scripts to create the custom back-end APIs needed to power your Internet of Things (IoT) and other projects. scriptr.io allows you to get productive quickly by providing an integrated web-based environment for developing, running and debugging your code",
+  "url": "",
+  "trackDuplicates": false,
+  "config": {
+	  "api_base": "https://api.scriptr.io",
+	  "management_path": "/m/",
+	  "script_path": "/",
+	  "oauth": {
+	      "clientID": "",
+	      "authorizationURL": "",
+	      "scopes": [
+	        "script:execute",
+	        "script:read",
+	        "hook:write"
+	      ]
+	    }
+  },
+  "auth": {
+    "strategy": "oauth",
+    "properties": {
+      "access_token": {
+        "type": "string",
+        "title": "Access Token"
+      }
+    },
+    "disposition": [
+      "access_token"
+    ]
+
+  },
+  "rpcs": {
+    "my_scripts": {
+      "contentType": "application/json",
+      "properties": {
+          "name": {
+              "type": "string",
+              "description": "name"
+            }
+       },
+      "title": "Get My Scripts"
+    }
+  },
+  "actions": {
+	"on_run_script": {
+		  "title": "On Run Script",
+	      "description": "Registers a webhook for scriptr to callback whenever the selected script runs",
+	      "trigger": "http",
+	      "config": {
+	    	  "properties": {
+	    		  "script_name": {
+	    			  "type": "string",
+	    			  "oneOf": [
+			            {
+			            	"$ref": "/rpcs/my_scripts#response/result/scripts/{name}"
+			            }
+			            ],
+			            "title": "Script Name"
+	    		  }
+	    	  },
+	    	  "required" : [
+	    	                "script_name"
+	    	              ],
+	    	  "disposition": [
+	    	            "script_name"
+	    	                  ]
+	      },
+	      "exports": {
+	          "properties": {},
+	          "disposition": []
+	        },
+	        "imports": {
+	            "properties": {},
+	            "disposition": []
+	         }
+	},
+    "run_script": {
+      "title": "Run Script",
+      "description": "Runs a script exporting the response body",
+      "trigger": "invoke",
+      "config": {
+        "properties": {
+	        "script_name": {
+	            "type": "string",
+	            "oneOf": [
+	              {
+	                "$ref": "/rpcs/my_scripts#response/result/scripts/{name}"
+	              }
+	            ],
+	            "title": "Script Name"
+	          },
+	          "method": {
+	            "type": "string",
+	            "default": "GET",
+	            "oneOf": [
+	              {
+	                "$ref": "#/config/definitions/method"
+	              }
+	            ],
+	            "title": "Default Request Method"
+	          },
+	          "query_string": {
+				  "type": "string",
+				  "title": "Query String",
+				  "description" : "eg: foo=bar&baz=qux"
+				},
+				"body": {
+				  "type": "string",
+				  "title": "POST/PUT Body"
+				},
+				"post_files": {
+					"type": "boolean",
+					"default": false,
+					"title": "POST any present file"
+				},
+				"file_name": {
+					"type": "string",
+					"title": "File Name"
+				},
+				"headers" : {
+					"type" : "text",
+					"title" : "HTTP Headers",
+					"description" : "1 header per line, for example : Content-Type: application/json"
+				}
+			},
+        "definitions": {
+          "method": {
+            "description": "HTTP Request Method",
+            "enum": [
+              "GET",
+              "POST",
+              "PUT",
+              "DELETE",
+              "HEAD",
+              "PATCH"
+            ],
+            "enum_label": [
+              "GET",
+              "POST",
+              "PUT",
+              "DELETE",
+              "HEAD",
+              "PATCH"
+            ],
+            "default": "GET"
+          }
+        },
+        "disposition": [
+          "script_name",
+          "method",
+          "query_string",
+          "body",
+          "post_files",
+          "file_name",
+          "headers"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "response": {
+            "type": "string",
+            "title": "Response Body"
+          },
+          "result": {
+            "type": "mixed",
+            "title": "Script Result"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "method": {
+            "type": "string",
+            "default": "GET",
+            "oneOf": [
+              {
+                "$ref": "#/config/definitions/method"
+              }
+            ],
+            "title": "Request Method"
+          },
+          "script_name": {
+            "type": "string",
+            "title": "Script Name"
+          },
+          "query_string": {
+            "type": "string",
+            "title": "Query String",
+            "description" : "eg: foo=bar&baz=qux"
+          },
+          "body": {
+            "type": "string",
+            "title": "POST/PUT Body"
+          },
+          "headers" : {
+            "type" : "text",
+            "title" : "HTTP Headers",
+            "description" : "1 header per line, for example : Content-Type: application/json"
+          }
+        },
+        "required": [
+          "method",
+          "script_name"
+        ],
+        "disposition": [
+          "method",
+          "script_name",
+          "query_string",
+          "body",
+          "headers"
+        ]
+      },
+      "rpcs": {
+      }
+    }
+  },
+  "tags": [
+    "scriptr",
+    "scripting logic"
+  ]
+}
