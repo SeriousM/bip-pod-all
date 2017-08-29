@@ -1,0 +1,91 @@
+{
+  "name": "kato",
+  "title": "Kato",
+  "description": "<a href=\"https://kato.im\">Kato</a> brings the power of text, voice, and video to team communication and intelligently manages information coming from other services",
+  "url": "",
+  "trackDuplicates": false,
+  "config": {},
+  "auth": {
+    "strategy": "none"
+  },
+  "rpcs": {},
+  "actions": {
+    "post_message": {
+      "title": "Post a Message",
+      "description": "Posts a new message to a Kato room via the HTTP Post Integration",
+      "trigger": "invoke",
+      "config": {
+        "properties": {
+          "from": {
+            "type": "string",
+            "title": "From Label"
+          },
+          "renderer": {
+            "type": "string",
+            "oneOf": [
+              {
+                "$ref": "#/config/definitions/renderer"
+              }
+            ],
+            "title": "Text Renderer"
+          },
+          "room_id": {
+            "type": "string",
+            "title": "Room ID"
+          },
+          "color": {
+            "type": "string",
+            "title": "Default HTML Color"
+          }
+        },
+        "definitions": {
+          "renderer": {
+            "description": "Text Renderer",
+            "enum": [
+              "default",
+              "code",
+              "markdown"
+            ],
+            "enum_label": [
+              "Default",
+              "Code",
+              "Markdown"
+            ],
+            "default": "default"
+          }
+        },
+        "required": [
+          "room_id"
+        ],
+        "disposition": [
+          "room_id",
+          "from",
+          "renderer",
+          "color"
+        ]
+      },
+      "exports": {
+        "properties": {}
+      },
+      "imports": {
+        "properties": {
+          "color": {
+            "type": "string",
+            "title": "HTML Color"
+          },
+          "text": {
+            "type": "string",
+            "title": "Message Text"
+          }
+        },
+        "required": [
+          "text"
+        ],
+        "disposition": [
+          "text",
+          "color"
+        ]
+      }
+    }
+  }
+}

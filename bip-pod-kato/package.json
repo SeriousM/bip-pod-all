@@ -1,0 +1,25 @@
+{
+  "name": "bip-pod-kato",
+  "version": "0.4.0",
+  "author": "Michael Pearson",
+  "description": "Kato Pod for Bipio",
+  "keywords": [
+    "bip",
+    "bipio",
+    "pod",
+    "kato"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bipio-server/bip-pod-kato.git"
+  },
+  "bugs": {
+    "url": "http://github.com/bipio-server/bip-pod-kato/issues"
+  },
+  "license": "Apache-2.0",
+  "main": ".",
+  "dependencies": {},
+  "engines": {
+    "node": ">= 0.10.0"
+  }
+}
