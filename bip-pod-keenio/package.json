@@ -1,0 +1,27 @@
+{
+  "name": "bip-pod-keenio",
+  "version": "0.4.0",
+  "author": "Michael Pearson",
+  "description": "KeenIO Pod for Bipio",
+  "keywords": [
+    "bip",
+    "bipio",
+    "pod",
+    "keenio"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bipio-server/bip-pod-keenio.git"
+  },
+  "bugs": {
+    "url": "http://github.com/bipio-server/bip-pod-keenio/issues"
+  },
+  "license": "Apache-2.0",
+  "main": ".",
+  "dependencies": {
+    "keen-js": "^3.2.4"
+  },
+  "engines": {
+    "node": ">= 0.10.0"
+  }
+}

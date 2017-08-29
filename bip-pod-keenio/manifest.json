@@ -1,0 +1,122 @@
+{
+  "name": "keenio",
+  "title": "Keen IO",
+  "description": "Keen IO - Analytics for Developers",
+  "url": "https://keen.io",
+  "trackDuplicates": false,
+  "config": {},
+  "auth": {
+    "strategy": "issuer_token",
+    "properties": {
+      "username": {
+        "title": "Read Key",
+        "type": "string"
+      },
+      "password": {
+        "title": "Write Key",
+        "type": "string"
+      }
+    },
+    "disposition": [
+      "username",
+      "password"
+    ]
+  },
+  "rpcs": {},
+  "actions": {
+    "add_event": {
+      "title": "Add an Event",
+      "description": "Adds Event data to a KeenIO Project Id",
+      "trigger": "invoke",
+      "config": {
+        "properties": {
+          "project_id": {
+            "type": "string",
+            "title": "Project ID"
+          }
+        },
+        "required": [
+          "project_id"
+        ],
+        "disposition": [
+          "project_id"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "created": {
+            "type": "boolean",
+            "title": "Event Created"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "collection_name": {
+            "type": "string",
+            "title": "Collection Name"
+          },
+          "event": {
+            "type": "object",
+            "title": "Event Object",
+            "description" : "Object or JSON String"
+          }
+        },
+        "required": [
+          "collection_name",
+          "event"
+        ],
+        "disposition": [
+          "collection_name",
+          "event"
+        ]
+      }
+    },
+    "add_events": {
+      "title": "Add Multiple Events",
+      "description": "Adds Multiple Events data to a KeenIO Project Id",
+      "trigger": "invoke",
+      "config": {
+        "properties": {
+          "project_id": {
+            "type": "string",
+            "title": "Project ID"
+          }
+        },
+        "required": [
+          "project_id"
+        ],
+        "disposition": [
+          "project_id"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "title": "Event Successfully Created"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "events": {
+            "type": "object",
+            "title": "Events Object",
+            "description" : "Object of Array(s) of Events"
+          }
+        },
+        "required": [
+          "events"
+        ],
+        "disposition": [
+          "events"
+        ]
+      }
+    }
+
+  },
+  "tags": [
+    "analytics"
+  ]
+}
