@@ -1,0 +1,24 @@
+{
+  "name": "bip-pod-stackoverflow",
+  "version": "0.1.0",
+  "description": "StackOverflow Pod for Bipio",
+  "keywords": [
+    "bip",
+    "bipio",
+    "pod",
+    "stackoverflow"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bipio-server/bip-pod-stackoverflow.git"
+  },
+  "bugs": {
+    "url": "http://github.com/bipio-server/bip-pod-stackoverflow/issues"
+  },
+  "license": "Apache-2.0",
+  "main": ".",
+  "dependencies": {},
+  "engines": {
+    "node": ">= 0.10.0"
+  }
+}
