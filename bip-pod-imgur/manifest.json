@@ -1,0 +1,105 @@
+{
+  "name": "imgur",
+  "title": "Imgur",
+  "description": "Imgur is used to share photos with social networks and online communities, and has the funniest pictures from all over the Internet.",
+  "url": "http://imgur.com",
+  "trackDuplicates": false,
+  "config": {
+    "oauth": {
+      "clientID": "",
+      "clientSecret": "",
+      "callbackURL": ""
+    }
+  },
+  "auth": {
+    "strategy": "none",
+    "properties": {
+      "clientID": {
+        "type": "string",
+        "title": "Client ID"
+      }
+    },
+    "disposition": [
+      "clientID"
+    ],
+    "_note": "Pod does not require oauth right now but does require an oauth client id for anon upload"
+  },
+  "rpcs": {},
+  "actions": {
+    "image_upload_anon": {
+      "title": "Anon Image Upload",
+      "description": "Upload an image to Imgur Anonymously (meaning, not tied to your account)",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Image ID"
+          },
+          "deletehash": {
+            "type": "string",
+            "title": "Unique Deletion Hash"
+          },
+          "link": {
+            "type": "string",
+            "title": "Link to Image"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "ID"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description"
+          },
+          "link": {
+            "type": "string",
+            "title": "Link"
+          },
+          "width": {
+            "type": "number",
+            "title": "Width"
+          },
+          "height": {
+            "type": "number",
+            "title": "Height"
+          },
+          "type": {
+            "type": "string",
+            "title": "Type"
+          },
+          "size": {
+            "type": "number",
+            "title": "Size"
+          }
+        },
+        "disposition": [
+          "id",
+          "title",
+          "description",
+          "link",
+          "width",
+          "height",
+          "type",
+          "size"
+        ]
+      }
+    }
+  },
+  "tags": [
+    "images",
+    "social"
+  ]
+}
