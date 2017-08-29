@@ -1,0 +1,28 @@
+{
+  "name": "bip-pod-mailchimp",
+  "version": "0.4.0",
+  "author": "Michael Pearson",
+  "description": "MailChimp Pod for Bipio",
+  "keywords": [
+    "bip",
+    "bipio",
+    "pod",
+    "boilerplate"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bipio-server/bip-pod-mailchimp.git"
+  },
+  "bugs": {
+    "url": "http://github.com/bipio-server/bip-pod-mailchimp/issues"
+  },
+  "license": "Apache-2.0",
+  "main": ".",
+  "dependencies": {
+    "passport-mailchimp": ">=0.0.1",
+    "mailchimp": ">=1.1.0"
+  },
+  "engines": {
+    "node": ">= 0.10.0"
+  }
+}

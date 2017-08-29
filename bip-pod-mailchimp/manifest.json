@@ -1,0 +1,297 @@
+{
+  "name": "mailchimp",
+  "title": "MailChimp",
+  "description": "MailChimp is an email marketing service provider. It is a web-based application, although data can be downloaded and for some features there is an offline application.",
+  "url": "",
+  "trackDuplicates": false,
+  "rateLimit" : 5,
+  "config": {
+    "oauth": {
+      "clientID": "",
+      "clientSecret": ""
+    }
+  },
+  "auth": {
+    "strategy": "oauth",
+    "properties": {
+      "access_token": {
+        "type": "string",
+        "title": "Access Token"
+      },
+      "dc": {
+        "type": "string",
+        "title": "Data Center"
+      }
+    },
+    "disposition": [
+      "access_token",
+      "dc"
+    ]
+  },
+  "rpcs": {
+    "get_lists": {
+      "contentType": "application/json",
+      "properties": {
+        "total": {
+          "type": "integer",
+          "description": "Name"
+        },
+        "data": {
+          "type": "array",
+          "description": "Array of Lists"
+        }
+      },
+      "title": "Get Lists"
+    }
+  },
+  "actions": {
+    "add_subscriber": {
+      "title": "Add a Subscriber",
+      "description": "Any Email address this channel receives will be added as a subscriber to an existing list",
+      "trigger": "invoke",
+      "config": {
+        "properties": {
+          "list_id": {
+            "type": "string",
+            "oneOf": [
+              {
+                "$ref": "/rpcs/get_lists#data/{id}"
+              }
+            ],
+            "label": {
+              "$ref": "/rpcs/get_lists#data/{name}"
+            },
+            "title": "List ID"
+          }
+        },
+        "required": [
+          "list_id"
+        ],
+        "disposition": [
+          "list_id"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "email": {
+            "type": "string",
+            "title": "Added Email Address"
+          },
+          "euid": {
+            "type": "string",
+            "title": "Email Unique ID"
+          },
+          "leid": {
+            "type": "string",
+            "title": "List Email Unique ID"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "email": {
+            "type": "string",
+            "title": "Email Address"
+          }
+        },
+        "required": [
+          "email"
+        ],
+        "disposition": [
+          "email"
+        ]
+      }
+    },
+    "add_static_segment": {
+      "title": "Add Static Segment",
+      "description": "Adds a Static Segment to an existing List",
+      "trigger": "invoke",
+      "config": {
+        "properties": {
+          "list_id": {
+            "type": "string",
+            "oneOf": [
+              {
+                "$ref": "/rpcs/get_lists#data/{id}"
+              }
+            ],
+            "label": {
+              "$ref": "/rpcs/get_lists#data/{name}"
+            },
+            "title": "List ID"
+          }
+        },
+        "required": [
+          "list_id"
+        ],
+        "disposition": [
+          "list_id"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Segment ID"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "segment_name": {
+            "type": "string",
+            "title": "Segment Name"
+          }
+        },
+        "required": [
+          "segment_name"
+        ],
+        "disposition": [
+          "segment_name"
+        ]
+      }
+    },
+    "get_growth_history": {
+      "title": "Get Growh History",
+      "description": "Retrieves the Growth History For A Given List",
+      "trigger": "invoke",
+      "config": {
+        "properties": {
+          "list_id": {
+            "type": "string",
+            "oneOf": [
+              {
+                "$ref": "/rpcs/get_lists#data/{id}"
+              }
+            ],
+            "label": {
+              "$ref": "/rpcs/get_lists#data/{name}"
+            },
+            "title": "List ID"
+          }
+        },
+        "required": [
+          "list_id"
+        ],
+        "disposition": [
+          "list_id"
+        ]
+      },
+      "exports": {
+        "type" :  "array",
+        "items": {
+          "month": {
+            "type": "string",
+            "title": "The Year and Month"
+          },
+          "existing": {
+            "type": "integer",
+            "title": "Existing Subscribers"
+          },
+          "imports": {
+            "type": "integer",
+            "title": "Imported Subscribers"
+          },
+          "optins": {
+            "type": "integer",
+            "title": "Optin Subscribers"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+        }
+      }
+    },
+    "remove_subscriber": {
+      "title": "Remove a Subscriber",
+      "description": "Un-Subscribe The Given Email Address From A List",
+      "trigger": "invoke",
+      "config": {
+        "properties": {
+          "list_id": {
+            "type": "string",
+            "oneOf": [
+              {
+                "$ref": "/rpcs/get_lists#data/{id}"
+              }
+            ],
+            "label": {
+              "$ref": "/rpcs/get_lists#data/{name}"
+            },
+            "title": "List ID"
+          },
+          "delete_member" : {
+            "title" : "Completely Delete Member",
+            "type" : "boolean",
+            "default" : false
+          },
+          "send_goodbye" : {
+            "title" : "Send A Goodbye Message",
+            "type" : "boolean",
+            "default" : true
+          },
+          "send_notify" : {
+            "title" : "Notify List Maintainer",
+            "type" : "boolean",
+            "default" : true
+          }
+        },
+        "required": [
+          "list_id"
+        ],
+        "disposition": [
+          "list_id",
+          "delete_member",
+          "send_goodbye",
+          "send_notify"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "complete": {
+            "type": "boolean",
+            "title": "Removed OK"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "email": {
+            "type": "string",
+            "title": "Email Address"
+          },
+          "delete_member" : {
+            "title" : "Completely Delete Member",
+            "type" : "boolean",
+            "default" : false
+          },
+          "send_goodbye" : {
+            "title" : "Send A Goodbye Message",
+            "type" : "boolean",
+            "default" : true
+          },
+          "send_notify" : {
+            "title" : "Notify List Maintainer",
+            "type" : "boolean",
+            "default" : true
+          }
+        },
+        "required": [
+          "email"
+        ],
+        "disposition": [
+          "email",
+          "delete_member",
+          "send_goodbye",
+          "send_notify"
+        ]
+      }
+    }
+  },
+  "tags": [
+    "email",
+    "messaging",
+    "productivity"
+  ]
+}
