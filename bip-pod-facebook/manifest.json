@@ -1,0 +1,609 @@
+{
+  "name": "facebook",
+  "title": "Facebook",
+  "description": "Facebook is a social networking website where users may create a personal profile, add other users as friends, and exchange messages, including automatic notifications when they update their profile.",
+  "url": "https://www.facebook.com",
+  "trackDuplicates": false,
+  "config": {
+    "oauth": {
+      "clientID": "",
+      "clientSecret": "",
+      "scopes": [
+        "email",
+        "user_about_me",
+        "read_stream",
+        "user_photos",
+        "publish_actions",
+        "manage_pages",
+        "publish_pages"
+      ]
+    }
+  },
+  "auth": {
+    "strategy": "oauth",
+    "properties": {
+      "access_token": {
+        "type": "string",
+        "title": "Access Token"
+      },
+      "clientSecret": {
+        "type": "string",
+        "title": "Client Secret"
+      },
+      "username": {
+        "type": "string",
+        "title": "User Name"
+      },
+      "user_id": {
+        "type": "string",
+        "title": "User ID"
+      }
+    },
+    "disposition": [
+      "access_token",
+      "clientSecret",
+      "username",
+      "user_id"
+    ]
+  },
+  "rpcs": {
+    "my_pages": {
+      "contentType": "application/json",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "ID"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name"
+        }
+      },
+      "title": "Get My Pages"
+    }
+  },
+  "actions": {
+    "post_timeline_mine": {
+      "title": "Post To Your Timeline",
+      "description": "Post A New Message To Your Timeline",
+      "doc_ref": "",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Post ID"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "message": {
+            "type": "string",
+            "title": "New Message"
+          },
+          "link": {
+            "type": "string",
+            "title": "URL"
+          }
+        },
+        "required" : [
+          "message"
+        ],
+        "disposition": [
+          "message",
+          "link"
+        ]
+      }
+    },
+    "get_post_photo": {
+  	  "title": "When You Post A Photo",
+  	  "description": "Triggers When you Post A New Photo To Your Timeline",
+  	  "doc_ref": "",
+        "trigger": "poll",
+        "config": {
+          "properties": {
+          }
+        },
+        "exports": {
+          "properties": {
+            "id": {
+              "type": "string",
+              "title": "Photo ID"
+            },
+            "backdated_time": {
+              "type": "string",
+              "title": "Photo backdated time"
+            },
+            "from": {
+              "type": "string",
+              "title": "Picture URL"
+            },
+            "height": {
+              "type": "number",
+              "title": "Height of this photo"
+            },
+            "link": {
+              "type": "string",
+              "title": "Link to photo"
+            },
+            "name": {
+              "type": "string",
+              "title": "User caption of the photo"
+            },
+            "updated_time": {
+              "type": "string",
+              "title": "Link Icon"
+            },
+            "width": {
+              "type": "number",
+              "title": "Width of this photo"
+            }
+          }
+        },
+        "imports": {
+          "properties": {
+            "since": {
+              "type": "number",
+              "title": "Since Time"
+            },
+            "until": {
+              "type": "number",
+              "title": "Until Time"
+            }
+          },
+          "disposition": [
+            "since",
+            "until"
+          ]
+        }
+	  },
+	  "get_tagged_photo": {
+		  "title": "When You Get Tagged In A Photo",
+		  "description": "Triggers When You Got Tagged In A Photo",
+		  "doc_ref": "",
+	      "trigger": "poll",
+	      "config": {
+	          "properties": {
+	          }
+	        },
+	        "exports": {
+	          "properties": {
+	            "id": {
+	              "type": "string",
+	              "title": "Photo ID"
+	            },
+	            "backdated_time": {
+	              "type": "string",
+	              "title": "Photo backdated time"
+	            },
+	            "from": {
+	              "type": "string",
+	              "title": "Picture URL"
+	            },
+	            "height": {
+	              "type": "number",
+	              "title": "Height of this photo"
+	            },
+	            "link": {
+	              "type": "string",
+	              "title": "Link to photo"
+	            },
+	            "name": {
+	              "type": "string",
+	              "title": "User caption of the photo"
+	            },
+	            "updated_time": {
+	              "type": "string",
+	              "title": "Link Icon"
+	            },
+	            "width": {
+	              "type": "number",
+	              "title": "Width of this photo"
+	            }
+	          }
+	        },
+	        "imports": {
+	          "properties": {
+	            "since": {
+	              "type": "number",
+	              "title": "Since Time"
+	            },
+	            "until": {
+	              "type": "number",
+	              "title": "Until Time"
+	            }
+	          },
+	        "disposition": [
+	          "since",
+	          "until"
+	        ]
+	      }
+		},
+    "get_timeline_mine": {
+      "title": "When Your Timeline Is Posted To",
+      "description": "Triggers When Your Timeline Is Updated",
+      "doc_ref": "",
+      "trigger": "poll",
+      "config": {
+        "properties": {
+          "me_only": {
+            "type": "boolean",
+            "default": false,
+            "title": "My Posts Only"
+          }
+        },
+        "disposition": [
+          "me_only"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Post ID"
+          },
+          "message": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Post type"
+          },
+          "picture": {
+            "type": "string",
+            "title": "Picture URL"
+          },
+          "link": {
+            "type": "string",
+            "title": "Link URL"
+          },
+          "name": {
+            "type": "string",
+            "title": "Link Name"
+          },
+          "description": {
+            "type": "string",
+            "title": "Link Description"
+          },
+          "icon": {
+            "type": "string",
+            "title": "Link Icon"
+          },
+          "created_time": {
+            "type": "string",
+            "title": "UTC Created Time"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "since": {
+            "type": "number",
+            "title": "Since Time"
+          },
+          "until": {
+            "type": "number",
+            "title": "Until Time"
+          }
+        },
+        "disposition": [
+          "since",
+          "until"
+        ]
+      }
+    },
+    "get_timeline_link": {
+      "title": "When A Link Is Posted",
+      "description": "Triggers When Your Timeline Is Updated",
+      "doc_ref": "",
+      "trigger": "poll",
+      "config": {
+        "properties": {
+          "me_only": {
+            "type": "boolean",
+            "default": false,
+            "title": "My Posts Only"
+          }
+        },
+        "disposition": [
+          "me_only"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Post ID"
+          },
+          "message": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Post type"
+          },
+          "status_type": {
+            "type": "string",
+            "title": "Status Post Type"
+          },
+          "created_time": {
+            "type": "string",
+            "title": "UTC Created Time"
+          },
+          "updated_time": {
+            "type": "string",
+            "title": "UTC Updated Time"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "since": {
+            "type": "number",
+            "title": "Since Time"
+          },
+          "until": {
+            "type": "number",
+            "title": "Until Time"
+          }
+        },
+        "disposition": [
+          "since",
+          "until"
+        ]
+      }
+    },
+    "post_page": {
+      "title": "Post To A Page",
+      "description": "Posts A Message To A Page That You Manage",
+      "doc_ref": "",
+      "trigger": "invoke",
+      "config": {
+        "properties": {
+          "page_id": {
+            "type": "string",
+            "oneOf": [
+              {
+                "$ref": "/rpcs/my_pages/{id}"
+              }
+            ],
+            "label": {
+              "$ref": "/rpcs/my_pages/{name}"
+            },
+            "title": "Page ID"
+          }
+        },
+        "required": [
+          "page_id"
+        ],
+        "disposition": [
+          "page_id"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Post ID"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "message": {
+            "type": "string",
+            "title": "New Post Content"
+          },
+          "link": {
+            "type": "string",
+            "title": "URL"
+          }
+        },
+        "required": [
+          "message"
+        ],
+        "disposition": [
+          "message",
+          "link"
+        ]
+      }
+    },
+    "post_page_photo": {
+      "title": "Post Photo To Page",
+      "description": "Posts a Photo to a Page that you manage.  Any image files it receives will also be uploaded",
+      "doc_ref": "",
+      "trigger": "invoke",
+      "config": {
+        "properties": {
+          "page_id": {
+            "type": "string",
+            "oneOf": [
+              {
+                "$ref": "/rpcs/my_pages/{id}"
+              }
+            ],
+            "label": {
+              "$ref": "/rpcs/my_pages/{name}"
+            },
+            "title": "Page ID"
+          }
+        },
+        "required": [
+          "page_id"
+        ],
+        "disposition": [
+          "page_id"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Photo ID"
+          },
+          "post_id": {
+            "type": "string",
+            "title": "Post ID"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "message": {
+            "type": "string",
+            "title": "Photo Description"
+          },
+          "url": {
+            "type": "string",
+            "title": "URL (Optional)"
+          }
+        },
+        "disposition": [
+          "message",
+          "url"
+        ]
+      }
+    },
+    "get_page_timeline": {
+      "title": "When Your Page Is Posted To",
+      "description": "Triggers When One Of Your Pages Is Posted To",
+      "doc_ref": "",
+      "trigger": "poll",
+      "config": {
+        "properties": {
+          "me_only": {
+            "type": "boolean",
+            "default": true,
+            "title": "Retrieve only Posts By Page Admins"
+          },
+          "page_id": {
+            "type": "string",
+            "oneOf": [
+              {
+                "$ref": "/rpcs/my_pages/{id}"
+              }
+            ],
+            "label": {
+              "$ref": "/rpcs/my_pages/{name}"
+            },
+            "title": "Page ID"
+          }
+        },
+        "required" : [
+          "page_id"
+        ],
+        "disposition": [
+          "page_id",
+          "me_only"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Post ID"
+          },
+          "message": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Post type"
+          },
+          "picture": {
+            "type": "string",
+            "title": "Picture URL"
+          },
+          "link": {
+            "type": "string",
+            "title": "Link URL"
+          },
+          "post_link": {
+            "type": "string",
+            "title": "Link To Post"
+          },
+          "name": {
+            "type": "string",
+            "title": "Link Name"
+          },
+          "description": {
+            "type": "string",
+            "title": "Link Description"
+          },
+          "icon": {
+            "type": "string",
+            "title": "Link Icon"
+          },
+          "created_time": {
+            "type": "string",
+            "title": "UTC Created Time"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "since": {
+            "type": "number",
+            "title": "Since Time"
+          },
+          "until": {
+            "type": "number",
+            "title": "Until Time"
+          }
+        },
+        "disposition": [
+          "since",
+          "until"
+        ]
+      }
+    }
+  },
+  "dataSources": {
+    "track_feed": {
+      "properties": {
+        "id": {
+          "type": "string",
+          "renderable": false,
+          "writable": false,
+          "unique": true
+        },
+        "owner_id": {
+          "type": "string",
+          "renderable": false,
+          "writable": false
+        },
+        "created": {
+          "type": "string",
+          "renderable": false,
+          "writable": false
+        },
+        "last_update": {
+          "type": "string",
+          "renderable": false,
+          "writable": false
+        },
+        "channel_id": {
+          "type": "string",
+          "renderable": false,
+          "writable": false
+        }
+      },
+      "keys": [
+        "channel_id",
+        "owner_id"
+      ]
+    }
+  },
+  "tags": [
+    "social",
+    "messaging"
+  ]
+}
