@@ -1,0 +1,25 @@
+{
+  "name": "bip-pod-crypto",
+  "version": "0.4.0",
+  "author": "Michael Pearson",
+  "description": "Crypto Pod for Bipio",
+  "keywords": [
+    "bip",
+    "bipio",
+    "pod",
+    "crypto"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bipio-server/bip-pod-crypto.git"
+  },
+  "bugs": {
+    "url": "http://github.com/bipio-server/bip-pod-crypto/issues"
+  },
+  "license": "Apache-2.0",
+  "main": ".",
+  "dependencies": {},
+  "engines": {
+    "node": ">= 0.10.0"
+  }
+}

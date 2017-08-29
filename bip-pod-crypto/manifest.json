@@ -1,0 +1,49 @@
+{
+  "name": "crypto",
+  "title": "Crypto",
+  "description": "Simple Crypto Functions",
+  "url": "",
+  "trackDuplicates": false,
+  "config": {},
+  "auth": {
+    "strategy": "none"
+  },
+  "rpcs": {},
+  "actions": {
+    "hash": {
+      "title": "MD5 Hash",
+      "description": "Exports The MD5 Hash Of Your Content",
+      "doc_ref": "http://nodejs.org/api/crypto.html#crypto_class_hash",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "hash": {
+            "type": "string",
+            "title": "MD5 String"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "funnel": {
+            "type": "string",
+            "title": "Content"
+          }
+        },
+        "required": [
+          "funnel"
+        ],
+        "disposition": [
+          "funnel"
+        ]
+      }
+    }
+  },
+  "tags": [
+    "security"
+  ]
+}
