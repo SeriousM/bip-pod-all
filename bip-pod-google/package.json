@@ -1,0 +1,29 @@
+{
+  "name": "bip-pod-google",
+  "version": "0.4.0",
+  "author": "Michael Pearson",
+  "description": "Google Pod for Bipio",
+  "keywords": [
+    "bip",
+    "bipio",
+    "pod",
+    "google"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bipio-server/bip-pod-google.git"
+  },
+  "bugs": {
+    "url": "http://github.com/bipio-server/bip-pod-google/issues"
+  },
+  "license": "Apache-2.0",
+  "main": ".",
+  "dependencies": {
+    "pkginfo": "0.2.x",
+    "passport-google-oauth": ">=0.1.5",
+    "googleapis": "0.8.0"
+  },
+  "engines": {
+    "node": ">= 0.10.0"
+  }
+}

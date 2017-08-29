@@ -1,0 +1,358 @@
+{
+  "name": "google",
+  "title": "Google APIs",
+  "description": "Google APIs is a set of APIs developed by Google that allows interaction with Google Services and integration of rich, multimedia, search or feed-based Internet content into web applications",
+  "url": "https://developers.google.com/apis-explorer",
+  "trackDuplicates": false,
+  "config": {
+    "oauth": {
+      "clientID": "",
+      "clientSecret": "",
+      "scopes": [
+        "https://www.googleapis.com/auth/calendar",
+        "https://www.google.com/m8/feeds",
+        "https://www.googleapis.com/auth/userinfo.email",
+        "https://www.googleapis.com/auth/userinfo.profile",
+        "https://www.googleapis.com/auth/drive.file"
+      ],
+      "extras": {
+        "accessType": "offline",
+        "approvalPrompt": "force"
+      }
+    },
+    "api_key": ""
+  },
+  "auth": {
+    "strategy": "oauth",
+    "passport": {
+      "provider": "google-oauth",
+      "strategy": "OAuth2Strategy"
+    },
+    "properties": {
+      "access_token": {
+        "type": "string",
+        "title": "Access Token"
+      }
+    },
+    "disposition": [
+      "access_token"
+    ]
+  },
+  "rpcs": {},
+  "actions": {
+    "lengthen_url": {
+      "title": "Lengthen a URL",
+      "description": "Lengthens an existing shortened URL. The Google URL Shortener API allows you to shorten URLs just as you would on goo.gl.",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "short_url": {
+            "type": "string",
+            "title": "Short URL (URL ID)"
+          },
+          "long_url": {
+            "type": "string",
+            "title": "Long URL"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "short_url": {
+            "type": "string",
+            "title": "Short URL (URL ID)"
+          }
+        },
+        "required": [
+          "short_url"
+        ],
+        "disposition": [
+          "short_url"
+        ]
+      }
+    },
+    "shorten_url": {
+      "title": "Shorten a URL",
+      "description": "Create a new shortened URL. The Google URL Shortener API allows you to shorten URLs just as you would on goo.gl.",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "short_url": {
+            "type": "string",
+            "title": "Short URL (URL ID)"
+          },
+          "long_url": {
+            "type": "string",
+            "title": "Long URL"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "long_url": {
+            "type": "string",
+            "title": "Long URL"
+          }
+        },
+        "required": [
+          "long_url"
+        ],
+        "disposition": [
+          "long_url"
+        ]
+      }
+    },
+    "calendar_ev_insert": {
+      "title": "Insert a Calendar Event",
+      "description": "Creates a Google Calendar Event With Structured Data",
+      "trigger": "invoke",
+      "docref" : "https://developers.google.com/google-apps/calendar/v3/reference/events/insert",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "id": {
+            "type": "string",
+            "title": "ID"
+          },
+          "created": {
+            "type": "string",
+            "title": "Created Time"
+          },
+          "summary": {
+            "type": "string",
+            "title": "Summary"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description"
+          },
+          "location": {
+            "type": "string",
+            "title": "Location"
+          },
+          "start_date": {
+            "type": "string",
+            "title": "Start Date",
+            "description" : "A combined date-time value. A time zone offset is required unless a time zone is explicitly specified in Start TimeZone."
+          },
+          "start_datetime": {
+            "type": "string",
+            "title": "Start DateTime"
+          },
+          "start_timezone": {
+            "type": "string",
+            "title": "Start TimeZone"
+          },
+          "end_date": {
+            "type": "string",
+            "title": "End Date",
+            "description" : "A combined date-time value. A time zone offset is required unless a time zone is explicitly specified in End TimeZone."
+          },
+          "end_datetime": {
+            "type": "string",
+            "title": "End DateTime"
+          },
+          "end_timezone": {
+            "type": "string",
+            "title": "End TimeZone"
+          },
+          "attendees": {
+            "type": "array",
+            "title": "Attendees"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+           "text": {
+            "type": "string",
+            "title": "Event Description"
+          },
+          "attendees_emails": {
+            "type": "string",
+            "title": "Attendee Emails",
+            "description" : "Comma Separated"
+          },
+          "reminder_method": {
+            "type": "string",
+            "title": "Reminder Method",
+            "description" : "email, sms or popup"
+          },
+          "reminder_minutes": {
+            "type": "integer",
+            "title": "# Minutes Prior to send Reminder"
+          },
+          "location": {
+            "type": "string",
+            "title": "Location"
+          },
+          "start_date": {
+            "type": "string",
+            "title": "Start Date"
+          },
+          "start_datetime": {
+            "type": "string",
+            "title": "Start DateTime"
+          },
+          "start_timezone": {
+            "type": "string",
+            "title": "Start TimeZone"
+          },
+          "end_date": {
+            "type": "string",
+            "title": "End Date"
+          },
+          "end_datetime": {
+            "type": "string",
+            "title": "End DateTime"
+          },
+          "end_timezone": {
+            "type": "string",
+            "title": "End TimeZone"
+          }
+        },
+        "required": [
+          "text",
+          "attendees_emails"
+        ],
+        "disposition": [
+          "text",
+          "attendees_emails",
+          "reminder_method",
+          "reminder_minutes",
+          "location",
+          "start_date",
+          "start_datetime",
+          "start_timezone",
+          "end_date",
+          "end_datetime",
+          "end_timezone"
+        ]
+      }
+    },
+    "calendar_ev_quickadd": {
+      "title": "Quick-Add a Calendar Event",
+      "description": "Creates an event based on a simple text string",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "id": {
+            "type": "string",
+            "title": "ID"
+          },
+          "created": {
+            "type": "string",
+            "title": "Created Time"
+          },
+          "summary": {
+            "type": "string",
+            "title": "Summary"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description"
+          },
+          "location": {
+            "type": "string",
+            "title": "Location"
+          },
+          "start_date": {
+            "type": "string",
+            "title": "Start Date"
+          },
+          "start_datetime": {
+            "type": "string",
+            "title": "Start DateTime"
+          },
+          "start_timezone": {
+            "type": "string",
+            "title": "Start TimeZone"
+          },
+          "end_date": {
+            "type": "string",
+            "title": "End Date"
+          },
+          "end_datetime": {
+            "type": "string",
+            "title": "End DateTime"
+          },
+          "end_timezone": {
+            "type": "string",
+            "title": "End TimeZone"
+          },
+          "attendees": {
+            "type": "array",
+            "title": "Attendees"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "text": {
+            "type": "string",
+            "title": "Event Text"
+          }
+        },
+        "required": [
+          "text"
+        ],
+        "disposition": [
+          "text"
+        ]
+      }
+    },
+    "create_drive_file": {
+      "title": "Create a File on Google Drive",
+      "description": "Uploads any present file to Google drive. DEPRECATED - Please use the Google Drive Pod instead",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {},
+        "disposition": []
+      },
+      "exports": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "File ID"
+          }
+        },
+        "disposition": [
+        	"id"
+        ]
+      },
+      "imports": {
+        "properties": {},
+        "disposition": []
+      }
+    }
+  },
+  "tags": [
+    "social",
+    "apps",
+    "productivity"
+  ]
+}
