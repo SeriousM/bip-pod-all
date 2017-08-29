@@ -1,0 +1,803 @@
+{
+  "name": "twitter",
+  "title": "Twitter",
+  "description": "<a href=\"https://twitter.com\">Twitter</a> is an online social networking service and microblogging service that enables its users to send and read text-based messages of up to 140 characters, known as \"tweets\"",
+  "url": "",
+  "trackDuplicates": true,
+  "config": {
+    "oauth": {
+      "consumerKey": "",
+      "consumerSecret": ""
+    }
+  },
+  "auth": {
+    "strategy": "oauth",
+    "properties": {
+      "access_token": {
+        "type": "string",
+        "title": "Access Token"
+      },
+      "secret": {
+        "type": "string",
+        "title": "Token Secret"
+      },
+      "consumerKey": {
+        "type": "string",
+        "title": "Consumer Key"
+      },
+      "consumerSecret": {
+        "type": "string",
+        "title": "Consumer Secret"
+      }
+    },
+    "disposition": [
+      "access_token",
+      "secret",
+      "consumerKey",
+      "consumerSecret"
+    ]
+  },
+  "rpcs": {},
+  "actions": {
+    "retweet": {
+      "title": "Retweet",
+      "doc_ref": "https://dev.twitter.com/rest/reference/post/statuses/retweet/%3Aid",
+      "description": "Retweets A Tweet",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "text": {
+            "type": "string",
+            "title": "Tweet Text"
+          },
+          "retweeted": {
+            "type": "boolean",
+            "title": "Was Retweeted"
+          },
+          "id": {
+            "type": "string",
+            "title": "ID"
+          },
+          "tweet_url": {
+            "type": "string",
+            "title": "Tweet Direct URL"
+          },
+          "user_name": {
+            "type": "string",
+            "title": "User Name"
+          },
+          "created_at": {
+            "type": "string",
+            "title": "Created Timestamp"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Tweet ID"
+          }
+        },
+        "required": [
+          "id"
+        ],
+        "disposition": [
+          "id"
+        ]
+      }
+    },
+    "search": {
+      "title": "On A New Tweet Search",
+      "doc_ref": "https://dev.twitter.com/rest/public/search",
+      "description": "Triggers When A New Tweet Matches Your Search Terms",
+      "trigger": "poll",
+      "config": {
+        "properties": {
+          "q": {
+            "type": "string",
+            "title": "Search For"
+          }
+        },
+        "definitions": {},
+        "required": [
+          "q"
+        ],
+        "disposition": [
+          "q"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "text": {
+            "type": "string",
+            "title": "Tweet Text"
+          },
+          "retweeted": {
+            "type": "boolean",
+            "title": "Was Retweeted"
+          },
+          "id": {
+            "type": "string",
+            "title": "ID"
+          },
+          "tweet_url": {
+            "type": "string",
+            "title": "Tweet Direct URL"
+          },
+          "user_name": {
+            "type": "string",
+            "title": "User Name"
+          },
+          "created_at": {
+            "type": "string",
+            "title": "Created Timestamp"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "q": {
+            "type": "string",
+            "title": "Search For"
+          }
+        },
+        "required": [
+          "q"
+        ],
+        "disposition": [
+          "q"
+        ]
+      }
+    },
+    "status_update": {
+      "title": "Tweet",
+      "description": "Create A New Tweet",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Tweet ID"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "title": "New Status"
+          }
+        },
+        "required": [
+          "status"
+        ],
+        "disposition": [
+          "status"
+        ]
+      }
+    },
+    "user_timeline": {
+      "title": "When A User Tweets",
+      "description": "Gets New Tweets By A User",
+      "trigger": "poll",
+      "config": {
+        "properties": {
+          "screen_name": {
+            "type": "string",
+            "title": "Screen Name"
+          },
+          "user_id": {
+            "type": "string",
+            "title": "User ID"
+          }
+        },
+        "disposition": [
+          "screen_name",
+          "user_id"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "text": {
+            "type": "string",
+            "title": "Tweet Text"
+          },
+          "retweeted": {
+            "type": "boolean",
+            "title": "Was Retweeted"
+          },
+          "id": {
+            "type": "string",
+            "title": "ID"
+          },
+          "tweet_url": {
+            "type": "string",
+            "title": "Tweet Direct URL"
+          },
+          "created_at": {
+            "type": "string",
+            "title": "Created Timestamp"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "since_id": {
+            "type": "string",
+            "title": "Since Tweet ID"
+          }
+        },
+        "disposition": [
+          "since_id"
+        ]
+      }
+    },
+     "users_show": {
+      "title": "Get User Profile",
+      "description": "Get User Profile.",
+      "trigger": "invoke",
+      "config": {
+          "properties": {},
+        	"definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "ID"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "screen_name": {
+            "type": "string",
+            "title": "Screen Name"
+          },
+          "profile_location": {
+            "type": "string",
+            "title": "Profile Location"
+          },
+          "location": {
+            "type": "string",
+            "title": "Location"
+          },
+         "followers_count": {
+            "type": "number",
+            "title": "Followers Count"
+          },
+          "friends_count": {
+            "type": "number",
+            "title": "Friends Count"
+          },
+          "geo_enabled": {
+            "type": "boolean",
+            "title": "Geo Enabled"
+          },
+          "created_at": {
+            "type": "string",
+            "title": "Created Timestamp"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "screen_name": {
+            "type": "string",
+            "title" : "Screen Name"
+          }
+        },
+        "required": [
+          "screen_name"
+        ],
+        "disposition": [
+          "screen_name"
+        ]
+      }
+    },
+    "user_mentions": {
+      "title": "When You're Mentioned",
+      "description": "Gets New Tweets You're Mentioned In",
+      "trigger": "poll",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "text": {
+            "type": "string",
+            "title": "Tweet Text"
+          },
+          "retweeted": {
+            "type": "boolean",
+            "title": "Was Retweeted"
+          },
+          "id": {
+            "type": "string",
+            "title": "ID"
+          },
+          "tweet_url": {
+            "type": "string",
+            "title": "Tweet Direct URL"
+          },
+          "user_name": {
+            "type": "string",
+            "title": "Mentioning User Name"
+          },
+          "created_at": {
+            "type": "string",
+            "title": "Created Timestamp"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "since_id": {
+            "type": "string",
+            "title": "Since Tweet ID"
+          }
+        },
+        "disposition": [
+          "since_id"
+        ]
+      }
+    },
+    "each_follower": {
+      "title": "Retrieve My Followers",
+      "description": "Retrieves The ID Of Every User Following You",
+      "trigger": "invoke",
+      "config": {
+        "properties": {
+          "me_following": {
+            "type": "boolean",
+            "default": true,
+            "title": "Only get Users that I am also following"
+          }
+        },
+        "disposition": [
+          "me_following"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "User Name"
+          },
+          "screen_name": {
+            "type": "string",
+            "title": "User Screen Name"
+          },
+          "id_str": {
+            "type": "string",
+            "title": "User ID"
+          },
+          "profile_image_url": {
+            "type": "string",
+            "title": "Profile Image URL"
+          },
+          "url": {
+            "type": "string",
+            "title": "Profile URL"
+          },
+          "utc_offset": {
+            "type": "string",
+            "title": "UTC Offset"
+          },
+          "description": {
+            "type": "string",
+            "title": "Profile Description"
+          }
+        }
+      },
+      "imports": {
+        "properties": {}
+      }
+	  },
+    "new_follower": {
+      "title": "On A New Follower",
+      "description": "Triggers On A New Follower",
+      "trigger": "poll",
+      "config": {
+        "properties": {
+        }
+      },
+      "exports": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "User Name"
+          },
+          "screen_name": {
+            "type": "string",
+            "title": "User Screen Name"
+          },
+          "id_str": {
+            "type": "string",
+            "title": "User ID"
+          },
+          "profile_image_url": {
+            "type": "string",
+            "title": "Profile Image URL"
+          },
+          "url": {
+            "type": "string",
+            "title": "Profile URL"
+          },
+          "utc_offset": {
+            "type": "string",
+            "title": "UTC Offset"
+          },
+          "description": {
+            "type": "string",
+            "title": "Profile Description"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+        }
+      }
+    },
+    "new_link": {
+      "title": "When You Tweet A Link",
+      "description": "Triggers When You Tweet A Link",
+      "trigger": "poll",
+      "imports": {
+        "properties": {
+        }
+      },
+      "exports": {
+        "properties": {
+          "url": {
+            "type": "string",
+            "title": "URL"
+          },
+          "expanded_url": {
+            "type": "string",
+            "title": "Expanded URL"
+          },
+          "display_url": {
+            "type": "string",
+            "title": "Display URL"
+          }
+        }
+      },
+      "config": {
+        "properties": {
+        }
+      }
+    },
+    "follow_user": {
+      "title": "Follow A User",
+      "description": "Start Following a Twitter User",
+      "trigger": "invoke",
+      "config": {
+        "properties": {
+          "enable_notifications": {
+            "type": "boolean",
+            "default": true,
+            "title": "Enable Notifications For The Target User"
+          }
+        },
+        "disposition": [
+          "enable_notifications"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "User Name"
+          },
+          "screen_name": {
+            "type": "string",
+            "title": "User Screen Name"
+          },
+          "id_str": {
+            "type": "string",
+            "title": "User ID (String)"
+          },
+          "profile_image_url": {
+            "type": "string",
+            "title": "Profile Image URL"
+          },
+          "url": {
+            "type": "string",
+            "title": "Profile URL"
+          },
+          "utc_offset": {
+            "type": "string",
+            "title": "UTC Offset"
+          },
+          "description": {
+            "type": "string",
+            "title": "Profile Description"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "screen_name": {
+            "type": "string",
+            "title": "Screen Name"
+          },
+          "user_id": {
+            "type": "string",
+            "title": "ID"
+          }
+        },
+        "disposition": [
+          "screen_name",
+          "user_id"
+        ]
+      }
+    },
+    "new_tweet": {
+      "title": "When You Tweet",
+      "description": "Triggers When You Tweet Something New",
+      "trigger": "poll",
+      "config": {
+        "properties": {
+        }
+      },
+      "exports": {
+        "properties": {
+          "text": {
+            "type": "string",
+            "title": "Tweet Text"
+          },
+          "retweeted": {
+            "type": "boolean",
+            "title": "Was Retweeted"
+          },
+          "id": {
+            "type": "string",
+            "title": "ID"
+          },
+          "tweet_url": {
+            "type": "string",
+            "title": "Tweet Direct URL"
+          },
+          "user_name": {
+            "type": "string",
+            "title": "User Name"
+          },
+          "created_at": {
+            "type": "string",
+            "title": "Created Timestamp"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+        }
+      }
+    },
+     "favorite_tweet": {
+      "title": "When You Favorite A Tweet",
+      "description": "Triggers When You Favorite A Tweet",
+      "doc_ref": "https://dev.twitter.com/rest/public/search",
+      "trigger": "poll",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "text": {
+            "type": "string",
+            "title": "Tweet Text"
+          },
+          "retweeted": {
+            "type": "boolean",
+            "title": "Was Retweeted"
+          },
+          "id": {
+            "type": "string",
+            "title": "ID"
+          },
+          "tweet_url": {
+            "type": "string",
+            "title": "Tweet Direct URL"
+          },
+          "user_name": {
+            "type": "string",
+            "title": "User Name"
+          },
+          "created_at": {
+            "type": "string",
+            "title": "Created Timestamp"
+          }
+        }
+      },
+      "imports": {
+        "properties": {}
+      }
+    },
+     "local_tweets": {
+      "title": "On a Local Tweet",
+      "description": "Triggers When There's A New Local Tweet",
+      "doc_ref": "https://dev.twitter.com/rest/public/search",
+      "trigger": "poll",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "text": {
+            "type": "string",
+            "title": "Tweet Text"
+          },
+          "retweeted": {
+            "type": "boolean",
+            "title": "Was Retweeted"
+          },
+          "id": {
+            "type": "string",
+            "title": "ID"
+          },
+          "tweet_url": {
+            "type": "string",
+            "title": "Tweet Direct URL"
+          },
+          "user_name": {
+            "type": "string",
+            "title": "User Name"
+          },
+          "created_at": {
+            "type": "string",
+            "title": "Created Timestamp"
+          }
+        }
+      },
+      "imports": {
+        "properties": {}
+      }
+    },
+
+    "direct_message": {
+      "title": "Send Direct Message",
+      "description": "Direct Message Another Twitter User",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "id_str": {
+            "type": "string",
+            "title": "Message ID"
+          },
+          "sender_id": {
+            "type": "string",
+            "title": "Your User ID"
+          },
+          "sender_screen_name": {
+            "type": "string",
+            "title": "Your Screen Name"
+          },
+          "text": {
+            "type": "string",
+            "title": "The Message You Sent"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "message": {
+            "type": "string",
+            "title": "Direct Message Content"
+          },
+          "user_id": {
+            "type": "string",
+            "title": "User ID"
+          }
+        },
+        "required": [
+          "message",
+          "user_id"
+        ],
+        "disposition": [
+          "message",
+          "user_id"
+        ]
+      }
+    }
+  },
+  "dataSources": {
+    "track_timeline": {
+      "properties": {
+        "id": {
+          "type": "string",
+          "renderable": false,
+          "writable": false,
+          "unique": true
+        },
+        "owner_id": {
+          "type": "string",
+          "renderable": false,
+          "writable": false
+        },
+        "created": {
+          "type": "string",
+          "renderable": false,
+          "writable": false
+        },
+        "last_update": {
+          "type": "string",
+          "renderable": false,
+          "writable": false
+        },
+        "channel_id": {
+          "type": "string",
+          "renderable": false,
+          "writable": false
+        },
+        "last_id_str": {
+          "type": "string",
+          "renderable": false,
+          "writable": false
+        }
+      },
+      "keys": [
+        "channel_id",
+        "owner_id"
+      ]
+    },
+    "track_mentions": {
+      "properties": {
+        "id": {
+          "type": "string",
+          "renderable": false,
+          "writable": false,
+          "unique": true
+        },
+        "owner_id": {
+          "type": "string",
+          "renderable": false,
+          "writable": false
+        },
+        "created": {
+          "type": "string",
+          "renderable": false,
+          "writable": false
+        },
+        "last_update": {
+          "type": "string",
+          "renderable": false,
+          "writable": false
+        },
+        "channel_id": {
+          "type": "string",
+          "renderable": false,
+          "writable": false
+        },
+        "last_id_str": {
+          "type": "string",
+          "renderable": false,
+          "writable": false
+        }
+      },
+      "keys": [
+        "channel_id",
+        "owner_id"
+      ]
+    }
+  },
+  "tags": [
+    "social"
+  ]
+}
