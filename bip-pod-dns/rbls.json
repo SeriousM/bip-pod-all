@@ -1,0 +1,47 @@
+[
+{
+"name": "SpamCop",
+"dns": "bl.spamcop.net",
+"site": "http://spamcop.net"
+},
+{
+"name": "Sorbs Aggregate Zone",
+"dns": "dnsbl.sorbs.net",
+"site": "http://dnsbl.sorbs.net/"
+},
+{
+"name": "Sorbs spam.dnsbl Zone",
+"dns": "spam.dnsbl.sorbs.net",
+"site": "http://sorbs.net"
+},
+{
+"name": "Composite Blocking List",
+"dns": "cbl.abuseat.org",
+"site": "http://www.abuseat.org"
+},
+{
+"name": "SpamHaus Zen",
+"dns": "zen.spamhaus.org",
+"site": "http://spamhaus.org"
+},
+{
+"name": "Multi SURBL",
+"dns": "multi.surbl.org",
+"site": "http://www.surbl.org"
+},
+{
+"name": "Spam Cannibal",
+"dns": "bl.spamcannibal.org",
+"site": "http://www.spamcannibal.org/cannibal.cgi"
+},
+{
+"name": "dnsbl.abuse.ch",
+"dns": "spam.abuse.ch",
+"site": "http://dnsbl.abuse.ch/"
+},
+{
+"name": "The Unsubscribe Blacklist(UBL)",
+"dns": "ubl.unsubscore.com ",
+"site": "http://www.lashback.com/blacklist/"
+}
+]

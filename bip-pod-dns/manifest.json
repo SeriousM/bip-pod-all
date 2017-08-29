@@ -1,0 +1,233 @@
+{
+  "name": "dns",
+  "title": "DNS",
+  "description": "Host, whois and general discovery with the global Domain Name System",
+  "url": "",
+  "trackDuplicates": false,
+  "config": {},
+  "auth": {
+    "strategy": "none"
+  },
+  "rpcs": {},
+  "actions": {
+    "checkdnsbl": {
+  	  "title": "Check DNSBL",
+  	  "description" : "Check an addr against a list of DNS Blacklists",
+      "doc_ref" : "http://en.wikipedia.org/wiki/DNSBL",
+  	  "trigger": "invoke",
+  	  "config": {
+  	    "properties": {},
+  		  "definitions": {}
+	    },
+	    "imports": {
+	      "properties": {
+          "ip": {
+            "type": "string",
+            "title": "IP Address"
+          }
+        },
+        "required": [
+          "ip"
+        ],
+        "disposition": [
+          "ip"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "blacklisted": {
+            "type": "boolean",
+            "title": "Blacklisted"
+          }
+        }
+      }
+    },
+    "get_gtld": {
+      "title": "Get GTLD",
+      "description": "Extracts GTLD and Subdomain tokens from a URL.  Works with any URI Scheme.",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "imports": {
+        "properties": {
+          "url": {
+            "type": "string",
+            "title": "URL"
+          }
+        },
+        "required": [
+          "url"
+        ],
+        "disposition": [
+          "url"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "gtld": {
+            "type": "string",
+            "title": "Generic Top Level Domain"
+          },
+          "domain": {
+            "type": "string",
+            "title": "Domain"
+          },
+          "subdomain": {
+            "type": "string",
+            "title": "Sub-Domain"
+          },
+          "protocol": {
+            "type": "string",
+            "title": "URI Scheme"
+          },
+          "host": {
+            "type": "string",
+            "title": "Host Name"
+          }
+        }
+      }
+    },
+    "whois": {
+      "title": "Get Whois",
+      "description": "Extracts Whois Data from a URL",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "imports": {
+        "properties": {
+          "url": {
+            "type": "string",
+            "title": "URL"
+          }
+        },
+        "required": [
+          "url"
+        ],
+        "disposition": [
+          "url"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "whois_body": {
+            "type": "string",
+            "title": "Raw Whois Data"
+          }
+        }
+      }
+    },
+    "lookup": {
+      "title": "Resolve A Domain",
+      "description": "Resolves a domain into the first found A (IPv4) or AAAA (IPv6) record",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "imports": {
+        "properties": {
+          "url": {
+            "type": "string",
+            "title": "URL"
+          }
+        },
+        "required": [
+          "url"
+        ],
+        "disposition": [
+          "url"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "ip": {
+            "type": "string",
+            "title": "IP Address"
+          },
+          "ip_version": {
+            "type": "string",
+            "title": "IP Version (4 or 6)"
+          }
+        }
+      }
+    },
+    "resolve_mx": {
+      "title": "Resolve MX",
+      "description": "Resolves the MX (Mail Exchange) for a URL",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "imports": {
+        "properties": {
+          "url": {
+            "type": "string",
+            "title": "URL"
+          }
+        },
+        "required": [
+          "url"
+        ],
+        "disposition": [
+          "url"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "mx": {
+            "type": "array",
+            "title": "MX Hosts"
+          },
+          "mx_first": {
+            "type": "string",
+            "title": "Lowest Priority MX"
+          }
+        }
+      }
+    },
+    "reverse": {
+      "title": "Reverse Lookup",
+      "description": "Reverse resolves an ip address to an array of domain names",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "imports": {
+        "properties": {
+          "ip_addr": {
+            "type": "string",
+            "title": "IP Address"
+          }
+        },
+        "required": [
+          "ip_addr"
+        ],
+        "disposition": [
+          "ip_addr"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "ip_first": {
+            "type": "string",
+            "title": "First IP"
+          },
+          "ip_all": {
+            "type": "array",
+            "title": "All Reverse IP's"
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    "networking",
+    "productivity"
+  ]
+}

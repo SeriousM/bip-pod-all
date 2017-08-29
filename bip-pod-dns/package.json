@@ -1,0 +1,28 @@
+{
+  "name": "bip-pod-dns",
+  "author": "Michael Pearson",
+  "version": "0.4.0",
+  "description": "DNS Pod for Bipio",
+  "keywords": [
+    "bip",
+    "bipio",
+    "pod",
+    "dns"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bipio-server/bip-pod-dns.git"
+  },
+  "bugs": {
+    "url": "http://github.com/bipio-server/bip-pod-dns/issues"
+  },
+  "license": "Apache-2.0",
+  "main": ".",
+  "dependencies": {
+    "tldtools": "0.0.9",
+    "ipaddr.js": ">=0.1.2"
+  },
+  "engines": {
+    "node": ">= 0.10.0"
+  }
+}
