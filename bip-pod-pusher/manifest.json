@@ -1,0 +1,80 @@
+{
+  "name": "pusher",
+  "title": "Pusher",
+  "description": "Pusher is a hosted API for quickly, easily and securely adding scalable realtime functionality to web and mobile apps.",
+  "url": "",
+  "trackDuplicates": false,
+  "config": {},
+  "auth": {
+    "strategy": "issuer_token",
+    "properties": {
+      "username": {
+        "title": "App ID",
+        "type": "string"
+      },
+      "key": {
+        "title": "Key",
+        "type": "string"
+      },
+      "password": {
+        "title": "Secret",
+        "type": "string"
+      }
+    },
+    "disposition": [
+      "username",
+      "key",
+      "password"
+    ]
+  },
+  "rpcs": {},
+  "actions": {
+    "trigger_event": {
+      "title": "Trigger an Event",
+      "description": "Triggers an event on one or more Pusher channels.",
+      "trigger": "invoke",
+      "config": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "Default Event Name"
+          }
+        },
+        "disposition": [
+          "name"
+        ]
+      },
+      "exports": {
+        "properties": {}
+      },
+      "imports": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "Event Name"
+          },
+          "channels": {
+            "type": "string",
+            "title": "List of Channels",
+            "description" : "Comma separated list of channels"
+          },
+          "data": {
+            "type": "string",
+            "title": "Event Data",
+            "description" : "JSON String or Object"
+          }
+        },
+        "required": [
+          "data",
+          "name",
+          "channels"
+        ],
+        "disposition": [
+          "data",
+          "name",
+          "channels"
+        ]
+      }
+    }
+  }
+}

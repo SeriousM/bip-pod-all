@@ -1,0 +1,27 @@
+{
+  "name": "bip-pod-pusher",
+  "version": "0.4.0",
+  "author": "Michael Pearson",
+  "description": "Pusher Pod for Bipio",
+  "keywords": [
+    "bip",
+    "bipio",
+    "pod",
+    "pusher"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bipio-server/bip-pod-pusher.git"
+  },
+  "bugs": {
+    "url": "http://github.com/bipio-server/bip-pod-pusher/issues"
+  },
+  "license": "Apache-2.0",
+  "main": ".",
+  "dependencies": {
+    "pusher": "^1.0.0"
+  },
+  "engines": {
+    "node": ">= 0.10.0"
+  }
+}
