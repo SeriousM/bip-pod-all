@@ -1,0 +1,149 @@
+{
+  "name": "reddit",
+  "url": "http://reddit.com",
+  "title": "Reddit",
+  "description": "Reddit Is The Front Page of the Internet",
+  "trackDuplicates": true,
+  "version": "v1",
+  "auth": {
+    "strategy": "none"
+  },
+  "actions": {
+    "subreddit": {
+      "title": "On New Post",
+      "description": "When a New Post Appears in A Subreddit",
+      "trigger": "poll",
+      "config": {
+        "properties": {
+          "subreddit": {
+            "type": "string",
+            "title": "Subreddit"
+          }
+        },
+        "required": [
+          "subreddit"
+        ],
+        "disposition": [
+          "subreddit"
+        ]
+      },
+      "imports": {
+        "properties": {}
+      },
+      "exports": {
+        "properties": {
+          "author": {
+            "type": "string",
+            "title": "author",
+            "description": "Author"
+          },
+          "title": {
+            "type": "string",
+            "title": "title",
+            "description": "Title"
+          },
+          "url": {
+            "type": "string",
+            "title": "url",
+            "description": "URL"
+          },
+          "permalink": {
+            "type": "string",
+            "title": "permalink",
+            "description": "Permalink"
+          },
+          "created": {
+            "type": "number",
+            "title": "created",
+            "description": "Created Timestamp"
+          },
+          "ups": {
+            "type": "number",
+            "title": "Ups",
+            "description": "# Upvotes"
+          },
+          "id": {
+            "type": "string",
+            "title": "subredditId",
+            "description": "ID"
+          }
+        }
+      },
+        "disposition": [
+        	"author",
+        	"title",
+        	"url",
+        	"permalink",
+        	"created",
+        	"ups",
+        	"id"
+        	]
+    },
+    "user": {
+      "title": "Get User's Latest Activity",
+      "description": "Get the Latest Activity of a Reddit User",
+      "trigger": "invoke",
+      "config": {
+        "properties": {
+          "username": {
+            "type": "string",
+            "title": "Username",
+            "description" : "jane_doe"
+          }
+        },
+        "required": [
+          "username"
+        ],
+        "disposition": [
+          "username"
+        ]
+      },
+      "imports": {
+        "properties": {
+          "username": {
+            "type": "string",
+            "title": "Username",
+            "description" : "jane_doe"
+          }
+        },
+        "disposition": [
+          "username"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "author": {
+            "type": "string",
+            "title": "author",
+            "description": "Author"
+          },
+          "body": {
+            "type": "string",
+            "title": "body",
+            "description": "Body"
+          },
+          "link_url": {
+            "type": "string",
+            "title": "link_url",
+            "description": "Link"
+          },
+          "created": {
+            "type": "number",
+            "title": "created",
+            "description": "Date Created"
+          },
+          "ups": {
+            "type": "number",
+            "title": "ups",
+            "description": "# Upvotes"
+          },
+          "id": {
+            "type": "string",
+            "title": "id",
+            "description": "ID"
+          }
+        }
+      }
+    }
+  }
+}
