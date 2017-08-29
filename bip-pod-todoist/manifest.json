@@ -1,0 +1,97 @@
+{
+  "name": "todoist",
+  "title": "Todoist",
+  "description": "Trusted by over 1 million people, Todoist is the best online task management app and to-do list.",
+  "url": "https://todoist.com",
+  "trackDuplicates": false,
+  "config": {},
+  "auth": {
+    "strategy": "issuer_token",
+    "properties": {
+      "password": {
+        "title": "API Token",
+        "type": "string"
+      }
+    },
+    "disposition": [
+      "password"
+    ]
+  },
+  "rpcs": {},
+  "actions": {
+    "add_item": {
+      "title": "Add a Task",
+      "description": "Adds a Todoist Task",
+      "trigger": "invoke",
+      "config": {
+        "properties": {
+          "project_id": {
+            "type": "string",
+            "title": "Project ID"
+          }
+        },
+        "required": [
+          "project_id"
+        ],
+        "disposition": [
+          "project_id"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Task ID"
+          },
+          "due_date": {
+            "type": "string",
+            "title": "Due Date (literal)"
+          },
+          "date_string": {
+            "type": "string",
+            "title": "Due Date (natural language)"
+          },
+          "content": {
+            "type": "string",
+            "title": "Task Content"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "due_date": {
+            "type": "string",
+            "title": "Due Date (literal)"
+          },
+          "date_string": {
+            "type": "string",
+            "title": "Due Date (natural language)"
+          },
+          "content": {
+            "type": "string",
+            "title": "Task Content"
+          }
+        },
+        "required": [
+          "content"
+        ],
+        "disposition": [
+          "content",
+          "due_date",
+          "date_string"
+        ]
+      },
+      "rpcs": {
+        "get_projects": {
+          "description": "Retrieves all projects for your account",
+          "contentType": "application/json",
+          "properties": {},
+          "title": "Retrieve Projects"
+        }
+      }
+    }
+  },
+  "tags": [
+    "productivity"
+  ]
+}

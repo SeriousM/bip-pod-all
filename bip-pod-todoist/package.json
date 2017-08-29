@@ -1,0 +1,25 @@
+{
+  "name": "bip-pod-todoist",
+  "version": "0.4.0",
+  "author": "Michael Pearson",
+  "description": "Todoist Pod for Bipio",
+  "keywords": [
+    "bip",
+    "bipio",
+    "pod",
+    "boilerplate"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bipio-server/bip-pod-boilerplate.git"
+  },
+  "bugs": {
+    "url": "http://github.com/bipio-server/bip-pod-boilerplate/issues"
+  },
+  "license": "Apache-2.0",
+  "main": ".",
+  "dependencies": {},
+  "engines": {
+    "node": ">= 0.10.0"
+  }
+}
