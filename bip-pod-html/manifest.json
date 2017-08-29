@@ -1,0 +1,233 @@
+{
+  "name": "html",
+  "title": "HTML",
+  "description": "HTML Actions",
+  "url": "",
+  "trackDuplicates": false,
+  "config": {},
+  "auth": {
+    "strategy": "none"
+  },
+  "rpcs": {},
+  "actions": {
+    "validate": {
+      "title": "W3C Validate",
+      "description": "Validate HTML with the W3C Validation Service, exporting the results",
+      "doc_ref": "http://validator.w3.org",
+      "trigger": "invoke",
+      "config": {
+        "properties": {
+          "aggregate": {
+            "type": "string",
+            "oneOf": [
+              {
+                "$ref": "#/config/definitions/aggregate_type"
+              }
+            ],
+            "title": "Error Aggregation Type"
+          }
+        },
+        "definitions": {
+          "aggregate_type": {
+            "description": "Error Aggregation Type",
+            "enum": [
+              "none",
+              "json",
+              "text"
+            ],
+            "enum_label": [
+              "None (Export each message)",
+              "Raw JSON",
+              "Text Normalized"
+            ],
+            "default": "json"
+          }
+        },
+        "disposition": [
+          "aggregate"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "message": {
+            "type": "string",
+            "title": "Validation Message"
+          },
+          "lastLine": {
+            "type": "integer",
+            "title": "Last Line"
+          },
+          "lastColumn": {
+            "type": "integer",
+            "title": "Column Number"
+          },
+          "explanation": {
+            "type": "string",
+            "title": "Explanation"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "url": {
+            "type": "string",
+            "title": "URL"
+          }
+        },
+        "required": [
+          "url"
+        ],
+        "disposition": [
+          "url"
+        ]
+      }
+    },
+    "dom_select": {
+      "title": "DOM Selector",
+      "description": "Select portions of DOM for export from a URL or raw HTML data using jQuery syntax",
+      "doc_ref": "http://api.jquery.com/category/selectors",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "attr": {
+            "type": "string",
+            "title": "Attribute Value"
+          },
+          "html": {
+            "type": "string",
+            "title": "Inner HTML"
+          },
+          "text": {
+            "type": "string",
+            "title": "Text"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "selector": {
+            "type": "string",
+            "title": "jQuery Selector",
+            "description" : "See <a href=\"https://api.jquery.com/category/selectors/\" target=\"_blank\">jQuery Selector Documentation</a>"
+          },
+          "attr": {
+            "type": "string",
+            "title": "Export Attribute"
+          },
+          "source": {
+            "type": "string",
+            "title": "URL or HTML"
+          }
+        },
+        "required": [
+          "source",
+          "selector"
+        ],
+        "disposition": [
+          "source",
+          "selector",
+          "attr"
+        ]
+      }
+    },
+    "get_favicon": {
+      "title": "Get Favicon",
+      "description": "Resolve a Favicon URL for any URI Scheme",
+      "doc_ref": "http://en.wikipedia.org/wiki/Favicon",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "url": {
+            "type": "string",
+            "title": "Favicon URL"
+          },
+          "suffix": {
+            "type": "string",
+            "title": "Favicon File Suffix"
+          },
+          "mime": {
+            "type": "string",
+            "title": "Mime Type"
+          },
+          "domain": {
+            "type": "string",
+            "title": "Domain Name"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "url": {
+            "type": "string",
+            "title": "Target Site URL"
+          }
+        },
+        "required": [
+          "url"
+        ],
+        "disposition": [
+          "url"
+        ]
+      }
+    },
+    "entity_encode": {
+      "title": "HTML Entity Encode",
+      "description": "Encodes HTML Entities, Strips &lt;script&gt; Tags And XSS",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {}
+      },
+      "imports": {
+        "properties": {
+          "funnel": {
+            "type": "string",
+            "title": "Encode Attributes",
+            "description" : "If Empty, Encodes All Attributes"
+          }
+        },
+        "disposition": [
+          "funnel"
+        ]
+      }
+    },
+    "entity_decode": {
+      "title": "HTML Entity Decode",
+      "description": "Decodes HTML Entities",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {}
+      },
+      "imports": {
+        "properties": {
+          "funnel": {
+            "type": "string",
+            "title": "Decode Attributes",
+            "description" : "If Empty, Decodes All Attributes"
+          }
+        },
+        "disposition": [
+          "funnel"
+        ]
+      }
+    }
+  },
+  "tags": [
+    "html"
+  ]
+}
