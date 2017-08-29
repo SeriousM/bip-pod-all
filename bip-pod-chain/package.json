@@ -1,0 +1,26 @@
+{
+  "name": "bip-pod-chain",
+  "version": "0.5.0",
+  "description": "chain Pod for Bipio",
+  "keywords": [
+    "bip",
+    "bipio",
+    "pod",
+    "chain"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bipio-server/bip-pod-chain.git"
+  },
+  "bugs": {
+    "url": "http://github.com/bipio-server/bip-pod-chain/issues"
+  },
+  "license": "Apache-2.0",
+  "main": ".",
+  "dependencies": {
+    "chain-node": ">=3.1.2"
+  },
+  "engines": {
+    "node": ">= 0.10.0"
+  }
+}
