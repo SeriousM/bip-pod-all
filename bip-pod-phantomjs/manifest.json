@@ -1,0 +1,58 @@
+{
+  "name": "phantomjs",
+  "title": "PhantomJS",
+  "description": "PhantomJS is a headless WebKit scriptable with a JavaScript API. It has fast and native support for various web standards: DOM handling, CSS selector, JSON, Canvas, and SVG.",
+  "url": "http://phantomjs.org",
+  "trackDuplicates": false,
+  "config": {},
+  "auth": {
+    "strategy": "none"
+  },
+  "rpcs": {},
+  "actions": {
+    "screen_shot": {
+      "title": "Screen Shot a Web Page",
+      "description": "Takes a screen shot of a given URL in a browser",
+      "trigger": "invoke",
+      "config": {
+        "properties": {
+          "viewport": {
+            "type": "string",
+            "title": "Viewport Size",
+            "description" : "eg: 800x1128"
+          }
+        },
+        "disposition": [
+          "viewport"
+        ]
+      },
+      "exports": {
+        "properties": {}
+      },
+      "imports": {
+        "properties": {
+          "url": {
+            "type": "string",
+            "title": "Target URL"
+          },
+          "viewport": {
+            "type": "string",
+            "title": "Viewport Size",
+            "description" : "eg: 800x1128"
+          }
+        },
+        "required": [
+          "url"
+        ],
+        "disposition": [
+          "url",
+          "viewport"
+        ]
+      }
+    }
+  },
+  "tags": [
+    "productivity",
+    "testing"
+  ]
+}
