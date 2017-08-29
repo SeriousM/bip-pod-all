@@ -1,0 +1,125 @@
+{
+  "name": "templater",
+  "title": "Templater",
+  "description": "Text, Markdown and HTML Templates",
+  "url": "",
+  "trackDuplicates": false,
+  "config": {},
+  "auth": {
+    "strategy": "none"
+  },
+  "rpcs": {},
+  "actions": {
+    "text_template": {
+      "title": "Message Template",
+      "description": "Generic text message",
+      "trigger": "invoke",
+      "config": {
+        "properties": {
+          "message": {
+            "type": "text",
+            "required": false,
+            "title": "Default Message"
+          }
+        },
+        "disposition": [
+          "message"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "message": {
+            "type": "text",
+            "title": "Templated Message"
+          },
+          "line_count" : {
+            "type" : "number",
+            "title" : "# Lines"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "message": {
+            "type": "text",
+            "title": "Templated Message"
+          }
+        },
+        "disposition": [
+          "message"
+        ]
+      }
+    },
+    "markdown2html": {
+      "title": "Markdown to HTML",
+      "description": "Exports Markdown template parsed to HTML",
+      "trigger": "invoke",
+      "config": {
+        "properties": {
+          "message": {
+            "type": "text",
+            "required": false,
+            "title": "Default Message"
+          }
+        },
+        "disposition": [
+          "message"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "message": {
+            "type": "string",
+            "title": "Templated Markdown Message"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "message": {
+            "type": "string",
+            "title": "Templated Markdown Message"
+          }
+        },
+        "disposition": [
+          "message"
+        ]
+      }
+    },
+    "html2markdown": {
+      "title": "HTML to Markdown",
+      "description": "Converts a message from HTML to Markdown",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "markdown": {
+            "type": "string",
+            "title": "Markdown"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "html": {
+            "type": "string",
+            "title": "HTML"
+          }
+        },
+        "required": [
+          "html"
+        ],
+        "disposition": [
+          "html"
+        ]
+      }
+    }
+  },
+  "tags": [
+    "productivity",
+    "templating"
+  ]
+}

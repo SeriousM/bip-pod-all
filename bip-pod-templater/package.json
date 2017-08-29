@@ -1,0 +1,31 @@
+{
+  "name": "bip-pod-templater",
+  "version": "0.4.0",
+  "author": "Michael Pearson",
+  "description": "Templating Pod for Bipio",
+  "keywords": [
+    "bip",
+    "bipio",
+    "pod",
+    "templater"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bipio-server/bip-pod-templater.git"
+  },
+  "bugs": {
+    "url": "http://github.com/bipio-server/bip-pod-templater/issues"
+  },
+  "license": "Apache-2.0",
+  "main": ".",
+  "dependencies": {
+    "html-md": "^3.0.2",
+    "marked": ">=0.2.9",
+    "node-uuid": "1.3.3",
+    "pkginfo": "0.2.x"
+  },
+  "engines": {
+    "node": ">= 0.10.0"
+  },
+  "readmeFilename": "README.md"
+}
