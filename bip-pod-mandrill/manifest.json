@@ -1,0 +1,385 @@
+{
+  "name": "mandrill",
+  "title": "Mandrill",
+  "description": "Mandrill is a transactional email platform from MailChimp",
+  "url": "https://mandrill.com",
+  "trackDuplicates": false,
+  "config": {},
+  "auth": {
+    "strategy": "issuer_token",
+    "properties": {
+      "password": {
+        "type": "string",
+        "title": "API Key"
+      }
+    }
+  },
+  "rpcs": {
+    "templates_list" : {
+      "contentType" : "application/json",
+      "title" : "My Templates"
+    }
+  },
+  "actions": {
+		  "send_template": {
+		      "title": "Send a Template Email",
+		      "description": "Send an Email using a predefined template",
+		      "doc_ref": "https://mandrillapp.com/api/docs/messages.JSON.html",
+		      "trigger": "invoke",
+		      "config": {
+		        "properties": {
+		          "from_email": {
+		            "type": "string",
+		            "title": "Default From Address"
+		          },
+		          "from_name": {
+		            "type": "string",
+		            "title": "From Name"
+		          },
+              "template_name" : {
+                "type" : "string",
+                "title" : "Template Name",
+                "oneOf" : [
+                  {
+                    "$ref": "/rpcs/templates_list#{name}"
+                  }
+                ]
+              },
+              "merge_language" : {
+                "type" : "string",
+                "title" : "Merge Language",
+                "oneOf" : [
+                  {
+                    "$ref" : "#/imports/definitions/merge_language"
+                  }
+                ]
+              },
+              "important" : {
+                "type" : "boolean",
+                "title" : "Important",
+                "default" : false
+              },
+              "track_opens" : {
+                "type" : "boolean",
+                "title" : "Track Opens",
+                "default" : true
+              },
+              "track_clicks" : {
+                "type" : "boolean",
+                "title" : "Track Clicks",
+                "default" : true
+              },
+              "auto_text" : {
+                "type" : "boolean",
+                "title" : "Auto Text",
+                "default" : false
+              },
+              "auto_html" : {
+                "type" : "boolean",
+                "title" : "Auto HTML",
+                "default" : false
+              },
+              "inline_css" : {
+                "type" : "boolean",
+                "title" : "Inline CSS",
+                "description" : "Only for HTML documents less than 256KB in size",
+                "default" : false
+              },
+              "url_strip_qs" : {
+                "type" : "boolean",
+                "title" : "Strip Query Strings",
+                "description" : "Strip the query string from URLs when aggregating tracked URL data",
+                "default" : false
+              },
+              "preserve_recipients" : {
+                "type" : "boolean",
+                "title" : "Preserve Recipients",
+                "default" : false
+              },
+              "view_content_link" : {
+                "type" : "boolean",
+                "title" : "View Content Link",
+                "default" : false
+              }
+		        },
+		        "required": [
+              "from_email",
+              "from_name",
+              "template_name",
+              "merge_language"
+		        ],
+		        "disposition": [
+		          "from_email",
+		          "from_name",
+              "template_name",
+              "merge_language",
+              "important",
+              "track_opens",
+              "track_clicks",
+              "auto_text",
+              "auto_html",
+              "inline_css",
+              "url_strip_qs",
+              "preserve_recipients",
+              "view_content_link"
+		        ]
+		      },
+		      "exports": {
+		        "properties": {
+		          "email": {
+		            "type": "string",
+		            "title": "Email Address"
+		          },
+		          "status": {
+		            "type": "string",
+		            "title": "Status"
+		          },
+		          "_id": {
+		            "type": "string",
+		            "title": "Message ID"
+		          },
+		          "reject_reason": {
+		            "type": "string",
+		            "title": "Rejection Reason"
+		          }
+		        }
+		      },
+		      "imports": {
+		        "properties": {
+		          "to_email": {
+		            "type": "string",
+		            "title": "To Address"
+		          },
+		          "subject": {
+		            "type": "string",
+		            "title": "Subject"
+		          },
+              "cc_address": {
+                "type": "string",
+                "title": "Cc",
+                "description" : "Space Separated, eg: test@example.org joe@bloggs.com"
+              },
+              "bcc_address": {
+                "type": "string",
+                "title": "Bcc",
+                "description" : "Space Separated, eg: test@example.org joe@bloggs.com"
+              },
+		          "merge_vars": {
+		            "type": "string",
+		            "title": "Merge Variables",
+                "description" : "Comma Separated, eg: name=joe,company=big-co"
+		          },
+              "merge_language" : {
+                "type" : "string",
+                "title" : "Merge Language",
+                "oneOf" : [
+                  {
+                    "$ref" : "#/imports/definitions/merge_language"
+                  }
+                ]
+              },
+              "tracking_domain" : {
+                "type" : "string",
+                "title" : "Tracking Domain"
+              },
+              "signing_domain" : {
+                "type" : "string",
+                "title" : "Signing Domain"
+              },
+              "return_path_domain" : {
+                "type" : "string",
+                "title" : "Return Path Domain"
+              },
+              "ip_pool" : {
+                "type" : "string",
+                "title" : "IP Pool"
+              },
+              "send_at" : {
+                "type" : "string",
+                "title" : "Send At",
+                "description" : "UTC timestamp in YYYY-MM-DD HH:MM:SS format"
+              }
+		        },
+
+		        "required": [
+              "to_email",
+              "subject"
+		        ],
+		        "disposition": [
+		          "to_email",
+		          "subject",
+		          "merge_vars",
+              "merge_language",
+              "cc_address",
+              "bcc_address",
+              "tracking_domain",
+              "signing_domain",
+              "return_path_domain",
+              "ip_pool",
+              "send_at"
+		        ],
+            "definitions": {
+              "merge_language": {
+                "description": "Merge Language",
+                "enum": [
+                  "mailchimp",
+                  "handlebars"
+                ],
+                "enum_label": [
+                  "MailChimp",
+                  "Handlebars"
+                ],
+                "default": "handlebars"
+              }
+            }
+		      }
+		    },
+    "send": {
+      "title": "Send an Email",
+      "description": "Send an Email",
+      "doc_ref": "https://mandrillapp.com/api/docs/messages.JSON.html",
+      "trigger": "invoke",
+      "config": {
+        "properties": {
+          "from_email": {
+            "type": "string",
+            "title": "Default From Address"
+          },
+          "from_name": {
+            "type": "string",
+            "title": "From Name"
+          }
+        },
+        "required": [
+          "from_email"
+        ],
+        "disposition": [
+          "from_email",
+          "from_name"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "email": {
+            "type": "string",
+            "title": "Email Address"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "_id": {
+            "type": "string",
+            "title": "Message ID"
+          },
+          "reject_reason": {
+            "type": "string",
+            "title": "Rejection Reason"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "to_email": {
+            "type": "string",
+            "title": "To Address"
+          },
+          "cc_address": {
+            "type": "string",
+            "title": "Cc (space separated)"
+          },
+          "bcc_address": {
+            "type": "string",
+            "title": "Bcc (space separated)"
+          },
+          "subject": {
+            "type": "string",
+            "title": "Subject"
+          },
+          "text": {
+            "type": "string",
+            "title": "Text"
+          },
+          "html": {
+            "type": "string",
+            "title": "HTML"
+          }
+        },
+        "required": [
+          "from_email",
+          "to_email"
+        ],
+        "disposition" : [
+          "from_email",
+          "to_email",
+          "cc_address",
+          "bcc_address",
+          "subject",
+          "text",
+          "html"
+        ]
+      }
+    },
+    "template_render": {
+      "title": "Render A Template",
+      "description": "Renders A Template Editable Area Using MailChimp Merge Language",
+      "doc_ref": "https://mandrillapp.com/api/docs/templates.JSON.html#method=render",
+      "trigger": "invoke",
+      "config": {
+        "properties": {
+          "template_name" : {
+            "type" : "string",
+            "title" : "Template Name",
+            "oneOf" : [
+              {
+                "$ref": "/rpcs/templates_list#{name}"
+              }
+            ]
+          }
+        },
+        "required": [
+          "template_name"
+        ],
+        "disposition": [
+          "template_name"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "html": {
+            "type": "string",
+            "title": "Rendered HTML Template"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "template_content" : {
+            "type" : "string",
+            "title" : "Editable Area Content",
+            "description" : "<a href=\"http://kb.mailchimp.com/merge-tags/all-the-merge-tags-cheat-sheet\">MailChimp Merge Language Cheat Sheet</a>"
+          },
+          "editable_name" : {
+            "type" : "string",
+            "title" : "Editable Area Name",
+            "description" : "<a href=\"http://templates.mailchimp.com/getting-started/template-language/\">Creating Editable Areas</a>",
+            "default" : "editable"
+          },
+          "merge_vars": {
+            "type": "string",
+            "title": "Merge Variables",
+            "description" : "Comma Separated, eg: name=joe,company=big-co"
+          }
+        },
+
+        "required": [
+        ],
+        "disposition": [
+          "editable_name",
+          "template_content",
+          "merge_vars"
+        ]
+      }
+    }
+  }
+}
