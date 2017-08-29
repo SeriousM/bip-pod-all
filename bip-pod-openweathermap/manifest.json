@@ -1,0 +1,185 @@
+{
+  "name": "openweathermap",
+  "title": "OpenWeatherMap",
+  "url": "http://www.openweathermap.org",
+  "description": "OpenWeatherMap service provides open weather data for more than 200,000 cities",
+  "auth": {
+    "strategy": "issuer_token",
+    "properties": {
+      "username": {
+        "title": "API Key",
+        "type": "string"
+      }
+    },
+    "disposition": [
+      "username"
+    ]
+  },
+  "rpcs": {},
+  "actions": {
+    "forecast": {
+      "trigger": "invoke",
+      "title": "Forecast",
+      "description": "Get the Forecast for a Given City",
+      "config": {
+        "properties": {
+          "q": {
+            "type": "string",
+            "title": "City & Country",
+            "description" : "eg: New York,USA"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "q": {
+            "type": "string",
+            "title": "City & Country",
+            "description" : "eg: New York,USA"
+          },
+          "cnt": {
+            "type": "number",
+            "title": "Number of Days"
+          }
+        },
+        "disposition": [
+          "q",
+          "cnt"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "temp": {
+            "type": "number",
+            "title": "Temperature"
+          },
+          "description": {
+            "type": "string",
+            "title": "Weather"
+          },
+          "wind_speed": {
+            "type": "number",
+            "title": "Wind Speed"
+          },
+          "wind_direction": {
+            "type": "number",
+            "title": "Wind Direction"
+          },
+          "pressure": {
+            "type": "number",
+            "title": "Barometric Pressure"
+          }
+        }
+      }
+    },
+    "daily": {
+      "trigger": "invoke",
+      "title": "Daily Forecast",
+      "description": "Get the Daily Forecast for a Given City",
+      "config": {
+        "properties": {
+          "q": {
+            "type": "string",
+            "title": "City & Country",
+            "description" : "eg: New York,USA"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "q": {
+            "type": "string",
+            "title": "City & Country",
+            "description" : "eg: New York,USA"
+          },
+          "cnt": {
+            "type": "number",
+            "title": "Number of Days"
+          }
+        },
+        "disposition": [
+          "q",
+          "cnt"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "temp_day": {
+            "type": "number",
+            "title": "Daytime Temperature"
+          },
+          "temp_night": {
+            "type": "number",
+            "title": "Night-time Temperature"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description of the Weather"
+          },
+          "wind_speed": {
+            "type": "number",
+            "title": "Wind Speed"
+          },
+          "wind_direction": {
+            "type": "number",
+            "title": "Wind Direction"
+          },
+          "pressure": {
+            "type": "number",
+            "title": "Barometric Pressure"
+          },
+          "humidity": {
+            "type": "number",
+            "title": "Humidity"
+          }
+        }
+      }
+    },
+    "now": {
+      "trigger": "invoke",
+      "title": "Weather Right Now",
+      "description": "Get the Current Weather for a Given City",
+      "config": {
+        "properties": {
+          "q": {
+            "type": "string",
+            "title": "Weather in City & Country",
+            "description" : "eg: New York,USA"
+          }
+        }
+      },
+      "imports": {
+        "properties": {
+          "q": {
+            "type": "string",
+            "title": "City & Country",
+            "description" : "eg: New York,USA"
+          }
+        },
+        "disposition": [
+          "q"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "temp": {
+            "type": "number",
+            "title": "Temperature"
+          },
+          "description": {
+            "type": "string",
+            "title": "Weather"
+          },
+          "wind_speed": {
+            "type": "number",
+            "title": "Wind Speed"
+          },
+          "wind_direction": {
+            "type": "number",
+            "title": "Wind Direction"
+          }
+        }
+      }
+    }
+  }
+}
