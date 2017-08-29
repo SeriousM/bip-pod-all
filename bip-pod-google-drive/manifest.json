@@ -1,0 +1,499 @@
+{
+  "name": "google-drive",
+  "title": "Google Drive",
+  "description": "Google Drive is a file storage and synchronization service provided by Google",
+  "url": "https://drive.google.com/apis-explorer",
+  "trackDuplicates": true,
+  "rateLimit" : 100,
+  "config": {
+    "oauth": {
+      "clientID": "",
+      "clientSecret": "",
+      "scopes": [
+        "https://www.googleapis.com/auth/userinfo.email",
+        "https://www.googleapis.com/auth/userinfo.profile",
+        "https://www.googleapis.com/auth/drive",
+        "https://www.googleapis.com/auth/drive.file",
+        "https://spreadsheets.google.com/feeds",
+        "https://docs.google.com/feeds"
+      ],
+      "extras": {
+        "accessType": "offline",
+        "approvalPrompt": "force"
+      }
+    }
+  },
+  "auth": {
+    "strategy": "oauth",
+    "passport": {
+      "provider": "google-oauth",
+      "strategy": "OAuth2Strategy"
+    },
+    "properties": {
+      "access_token": {
+        "type": "string",
+        "title": "Access Token"
+      }
+    },
+    "disposition": [
+      "access_token"
+    ]
+  },
+  "rpcs": {
+    "list_files": {
+      "contentType": "application/json",
+      "title": "List Your Files"
+    },
+    "list_folders": {
+      "contentType": "application/json",
+      "title": "List Your Folders"
+    },
+    "list_spreadsheets": {
+      "contentType": "application/json",
+      "title": "List Your Spreadsheets"
+    }
+  },
+  "actions": {
+    "create_file": {
+      "title": "Create a File on Google Drive",
+      "description": "Uploads any present file to Google drive",
+      "trigger": "invoke",
+      "config": {
+        "properties": {
+          "folder_id" : {
+            "type" : "string",
+            "title" : "Target Folder",
+            "label": {
+              "$ref": "/rpcs/list_folders#items/{title}"
+            },
+            "oneOf" : [
+              {
+                "$ref": "/rpcs/list_folders#items/{id}"
+              }
+            ]
+          }
+        },
+        "definitions": {},
+        "disposition": [
+          "folder_id"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "ID"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description"
+          },
+          "originalFilename": {
+            "type": "string",
+            "title": "Original Filename"
+          },
+          "iconLink": {
+            "type": "string",
+            "title": "Icon Link"
+          },
+          "mimeType": {
+            "type": "string",
+            "title": "Mime Type"
+          },
+          "thumbnailLink": {
+            "type": "string",
+            "title": "Thumbnail Link"
+          },
+          "createdDate": {
+            "type": "string",
+            "title": "Created Date"
+          },
+          "downloadUrl": {
+            "type": "string",
+            "title": "Download URL"
+          }
+        },
+        "disposition": [
+        	"id",
+        	"title",
+        	"description",
+        	"originalFilename",
+        	"iconLink",
+        	"mimeType",
+        	"thumbnailLink",
+        	"createdDate",
+        	"downloadUrl"
+        	]
+      },
+      "imports": {
+        "properties": {}
+      }
+    },
+    "copy_file": {
+      "title": "Copy a File on Google Drive",
+      "description": "Copies A Google Drive File To A New Name",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "ID"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description"
+          },
+          "originalFilename": {
+            "type": "string",
+            "title": "Original Filename"
+          },
+          "iconLink": {
+            "type": "string",
+            "title": "Icon Link"
+          },
+          "mimeType": {
+            "type": "string",
+            "title": "Mime Type"
+          },
+          "thumbnailLink": {
+            "type": "string",
+            "title": "Thumbnail Link"
+          },
+          "createdDate": {
+            "type": "string",
+            "title": "Created Date"
+          },
+          "downloadUrl": {
+            "type": "string",
+            "title": "Download URL"
+          }
+        },
+        "disposition": [
+        	"id",
+        	"title",
+        	"description",
+        	"originalFilename",
+        	"iconLink",
+        	"mimeType",
+        	"thumbnailLink",
+        	"createdDate",
+        	"downloadUrl"
+        	]
+      },
+      "imports": {
+        "properties": {
+          "file_title" : {
+            "type" : "string",
+            "title" : "File Name To Copy"
+          },
+          "dest_file_title" : {
+            "type" : "string",
+            "title" : "New File Name"
+          }
+        },
+        "required" : [
+          "file_title",
+          "dest_file_title"
+        ],
+        "disposition" : [
+          "file_title",
+          "dest_file_title"
+        ]
+      }
+    },
+    "create_spreadsheet": {
+      "title": "Create a Spreadsheet",
+      "description": "Create a Spreadsheet on Google Drive",
+      "trigger": "invoke",
+      "config": {
+        "properties": {},
+        "definitions": {}
+      },
+      "exports": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "ID"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description"
+          },
+          "originalFilename": {
+            "type": "string",
+            "title": "Original Filename"
+          },
+          "iconLink": {
+            "type": "string",
+            "title": "Icon Link"
+          },
+          "mimeType": {
+            "type": "string",
+            "title": "Mime Type"
+          },
+          "thumbnailLink": {
+            "type": "string",
+            "title": "Thumbnail Link"
+          },
+          "createdDate": {
+            "type": "string",
+            "title": "Created Date"
+          },
+          "downloadUrl": {
+            "type": "string",
+            "title": "Download URL"
+          }
+        },
+        "disposition": [
+        	"id",
+        	"title",
+        	"description",
+        	"originalFilename",
+        	"iconLink",
+        	"mimeType",
+        	"thumbnailLink",
+        	"createdDate",
+        	"downloadUrl"
+        	]
+      },
+      "imports": {
+        "properties": {
+          "headers": {
+            "type": "string",
+            "title": "Column Headers",
+            "description" : "Comma Separated"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description"
+          }
+        },
+        "required": [
+          "title"
+        ],
+        "disposition": [
+          "title",
+          "description",
+          "headers"
+        ]
+      }
+    },
+    "on_new_file": {
+      "title": "On A New File",
+      "description": "Triggers when a new file appears in your Google Drive",
+      "trigger": "poll",
+      "config": {
+        "properties": {
+          "query": {
+            "type": "string",
+            "title": "Search Query"
+          }
+        },
+        "disposition": [
+          "query"
+        ]
+      },
+      "exports": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "ID"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description"
+          },
+          "originalFilename": {
+            "type": "string",
+            "title": "Original Filename"
+          },
+          "iconLink": {
+            "type": "string",
+            "title": "Icon Link"
+          },
+          "mimeType": {
+            "type": "string",
+            "title": "Mime Type"
+          },
+          "thumbnailLink": {
+            "type": "string",
+            "title": "Thumbnail Link"
+          },
+          "createdDate": {
+            "type": "string",
+            "title": "Created Date"
+          },
+          "downloadUrl": {
+            "type": "string",
+            "title": "Download URL"
+          }
+        },
+        "disposition": [
+        	"id",
+        	"title",
+        	"description",
+        	"originalFilename",
+        	"iconLink",
+        	"mimeType",
+        	"thumbnailLink",
+        	"createdDate",
+        	"downloadUrl"
+        	]
+      },
+      "imports": {
+        "properties": {}
+      }
+    },
+    "update_cell": {
+      "title": "Update a Spreadsheet Cell on Google Drive",
+      "description": "Update a Spreadsheet Cell on Google Drive",
+      "trigger": "invoke",
+      "config": {
+        "properties": {
+        	"spreadsheetName":{
+	        	"type": "string",
+	            "title": "Spreadsheet Name"
+        	},
+        	"worksheetName":{
+	        	"type": "string",
+	            "title": "Worksheet Name"
+        	},
+        	"row":{
+	        	"type": "string",
+	            "title": "Row Number"
+        	},
+        	"col":{
+	        	"type": "string",
+	            "title": "Column Number"
+        	},
+        	"value":{
+	        	"type": "string",
+	            "title": "Cell value"
+        	}
+        },
+        "definitions": {},
+        "required": ["spreadsheetName","worksheetName","row","col","value"],
+        "disposition": ["spreadsheetName","worksheetName","row","col","value"]
+      },
+      "exports": {
+        "properties": {
+        },
+        "disposition": [
+        	]
+      },
+      "imports": {
+        "properties": {}
+      }
+    },
+    "read_cell": {
+      "title": "Read a Spreadsheet Cell on Google Drive",
+      "description": "Read a Spreadsheet Cell on Google Drive",
+      "trigger": "poll",
+      "config": {
+        "properties": {
+        	"spreadsheetName":{
+	        	"type": "string",
+	            "title": "Spreadsheet Name"
+        	},
+        	"worksheetName":{
+	        	"type": "string",
+	            "title": "Worksheet Name"
+        	},
+        	"row":{
+	        	"type": "string",
+	            "title": "Row Number"
+        	},
+        	"col":{
+	        	"type": "string",
+	            "title": "Column Number"
+        	}
+        },
+        "definitions": {},
+        "required": ["spreadsheetName","worksheetName","row","col"],
+        "disposition": ["spreadsheetName","worksheetName","row","col"]
+      },
+      "exports": {
+        "properties": {
+          "value": {
+            "type": "string",
+            "title": "Cell Value"
+          }
+        },
+        "disposition": [
+        	"value"
+        	]
+      },
+      "imports": {
+        "properties": {}
+      }
+    },
+
+    "append_row": {
+      "title": "Append To A Spreadsheet",
+      "description": "Appends A Row To An Existing Spreadsheet",
+      "trigger": "invoke",
+      "config": {
+        "properties": {
+          "spreadsheetName":{
+            "type": "string",
+              "title": "Spreadsheet Name"
+          },
+          "worksheetName":{
+            "type": "string",
+              "title": "Worksheet Name"
+          },
+          "value":{
+            "type": "string",
+              "title": "New Row",
+              "description" : "Comma Separated"
+          }
+        },
+        "definitions": {},
+        "required": ["spreadsheetName","worksheetName","value"],
+        "disposition": ["spreadsheetName","worksheetName","value"]
+      },
+      "exports": {
+        "properties": {
+          "value": {
+            "type": "string",
+            "title": "Cell Value"
+          }
+        },
+        "disposition": [
+          "value"
+          ]
+      },
+      "imports": {
+        "properties": {}
+      }
+    }
+
+  },
+  "tags": [
+    "productivity"
+  ]
+}

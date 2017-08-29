@@ -1,0 +1,31 @@
+{
+  "name": "bip-pod-google-drive",
+  "version": "0.4.0",
+  "author": "Michael Pearson",
+  "description": "Google Drive Pod for Bipio",
+  "keywords": [
+    "bip",
+    "bipio",
+    "pod",
+    "google",
+    "google-drive"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bipio-server/bip-pod-google-drive.git"
+  },
+  "bugs": {
+    "url": "http://github.com/bipio-server/bip-pod-google-drive/issues"
+  },
+  "license": "Apache-2.0",
+  "main": ".",
+  "dependencies": {
+    "googleapis": "^1.0.20",
+    "passport-google-oauth": ">=0.1.5",
+    "pkginfo": "0.2.x",
+    "edit-google-spreadsheet": ">=0.0.1"
+  },
+  "engines": {
+    "node": ">= 0.10.0"
+  }
+}
